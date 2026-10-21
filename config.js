@@ -4,5 +4,5 @@ window.SITE_CONFIG = {
   DONATE_BMAC_URL: "https://buymeacoffee.com/barbellsoft",  // Buy Me a Coffee(2026-10-19 사용자 연결)
   DONATE_PAYPAL_URL: "",  // PayPal 후원 주소(https://). 값이 비면 해당 버튼은 만들지 않는다
   STATS_URL: "https://barbellsoft.goatcounter.com/count",  // 방문 통계(GoatCounter, 쿠키 없음, 2026-10-21). 비우면 세지 않는다
-  CONTACT_URL: "https://github.com/barbellsoft/ReviveUSB/issues",  // 버그 신고 창구(이메일 mailto: 또는 이슈 트래커). 비면 Support 의 해당 줄을 숨긴다
+  CONTACT_URL: "mailto:softbarbell@gmail.com",  // 맨 아래 «Contact» 링크. 10-21 깃허브 이슈 → 브랜드 메일(계정 없는 사람도 문의). About 에도 주소를 보인다
 };
