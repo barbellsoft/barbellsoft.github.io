@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>ReviveUSB help</title>
+<meta name="description" content="Free Windows tool for a USB drive that asks to be formatted, shows as RAW, or hides your files. It copies the drive safely, recovers files from the copy, then repairs the drive. If the drive itself is failing, it does not repair it: it gets your files out safely and tells you to replace the drive.">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=0a5064bf">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html" aria-current="page">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en">Blog</a></nav></div></header>
+<nav class="subnav" aria-label="Product"><div class="wrap"><img src="../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">Home</a><a href="download.html">Download</a><a href="faq.html">FAQ</a><a href="help.html" aria-current="page">Help</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="reviveusb-user-manual">ReviveUSB user manual</h1>
+<p>ReviveUSB recovers files from a failing USB drive or external hard disk and, when you want, repairs the drive so you can use it again. It all happens in one window: pick a disk, then click a button. Follow this manual from top to bottom.</p>
+<hr />
+<h2 id="0-quick-start">0. Quick start</h2>
+<ol>
+<li>Run <code>ReviveUSB.exe</code> and allow administrator rights when Windows asks.</li>
+<li>Click <strong>Refresh</strong>, then click your USB drive in the disk list.</li>
+<li>Click <strong>Back up to image</strong> and save the image on a different drive with enough free space.</li>
+<li>Click <strong>Recover files (names/paths)</strong>, pick the image, and choose a folder on a healthy drive. If nothing comes back, do the same with <strong>Recover files (signature)</strong>.</li>
+<li>Only when you have all your files, use one of the repair buttons to make the drive usable again.</li>
+</ol>
+<p>The one rule that matters: if you want your data back, save nothing new to the broken drive. Make the image first and recover from the image.</p>
+<p>If you do not need the data and only want the drive working again, skip steps 3 and 4. Chapter 7 covers this.</p>
+<hr />
+<h2 id="1-what-the-program-does">1. What the program does</h2>
+<p>Use it when a drive is in one of these states:</p>
+<ul>
+<li>You deleted files by accident.</li>
+<li>Windows asks "You need to format the disk before you can use it" when you plug the drive in. This is a damaged filesystem, shown as RAW.</li>
+<li>A large drive shows up as a small RAW piece or has no drive letter, because its partition is damaged.</li>
+<li>The drive is recognized but your files are not visible.</li>
+</ul>
+<p>It has two goals, and one tool handles both.</p>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>What it means</th>
+<th>Buttons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get the data back</td>
+<td>Recover files that are deleted or invisible</td>
+<td><strong>Back up to image</strong>, then one of the <strong>Recover files</strong> buttons</td>
+</tr>
+<tr>
+<td>Get the drive back</td>
+<td>Reformat the drive so it can be used again</td>
+<td><strong>Check (chkdsk)</strong>, <strong>Format</strong>, <strong>Full rebuild</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The order is fixed: recover the data first, repair the drive second. Repairing first destroys the data for good.</p>
+<hr />
+<h2 id="2-safety-rules-to-read-before-you-start">2. Safety rules to read before you start</h2>
+<p>Writing to the broken drive is what ruins recovery. Running this program is fine, because backup and recovery only read from the drive.</p>
+<p>Here is why. When you delete a file, the data itself usually stays on the drive. Only the index entry that points to it is removed, and that is why recovery is possible at all. If you then save a new file to the drive, the system sees free space where your old data sits and may write the new file right on top of it. Once that happens the old data cannot be recovered.</p>
+<p>Do not do any of these before recovery:</p>
+<ul>
+<li>Save or copy new files to the drive.</li>
+<li>Format the drive, either in Windows or with the repair buttons.</li>
+<li>Click Yes when Windows offers to scan and repair the drive.</li>
+</ul>
+<p>These buttons are safe, because they only read: <strong>Refresh</strong>, <strong>Health check</strong>, <strong>Back up to image</strong>, and both <strong>Recover files</strong> buttons.</p>
+<pre><code>broken USB drive --(read only)--&gt; disk2.img (backup copy) --&gt; recovered\ (your files)
+   original untouched              work on this copy            results
+</code></pre>
+<hr />
+<h2 id="3-what-you-need">3. What you need</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 or 11</td>
+<td>Yes. Python is not needed</td>
+</tr>
+<tr>
+<td>Administrator rights</td>
+<td>Needed for backup, recovering straight from a disk, and repair</td>
+</tr>
+<tr>
+<td>Free space for the image</td>
+<td>As much as the drive's capacity, on another drive. A 128 GB drive needs 128 GB free</td>
+</tr>
+<tr>
+<td>A healthy place for recovered files</td>
+<td>Any drive except the broken one</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-starting-the-program">4. Starting the program</h2>
+<h3 id="41-download-and-check-the-file">4.1 Download and check the file</h3>
+<p>Download <code>ReviveUSB.exe</code> from the Download page. The file is not code-signed yet, so Windows SmartScreen or your antivirus may warn you. Before you run it, check that the file matches the SHA-256 shown on the Download page. In PowerShell:</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>If the hashes match and SmartScreen appears, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<h3 id="42-administrator-rights">4.2 Administrator rights</h3>
+<p>The program asks for administrator rights when it starts, because reading a raw disk requires them. Allow it. The top of the window then shows <strong>Administrator: ON</strong>. If it says OFF, click <strong>Restart as administrator</strong>.</p>
+<h3 id="43-the-window">4.3 The window</h3>
+<pre><code>+--------------------------------------------------------------------+
+| Help                                                               |
++--------------------------------------------------------------------+
+| Administrator: ON                                    [♥ Support ▾] |
+| (1) Select a disk                                                  |
+|     No. | Name | Size | Filesystem | Status                        |
+|     [Refresh]   [ ] Show internal disks (caution)                  |
+| (2) Choose an action                                               |
+|     [Health check]                  [Back up to image]             |
+|     [Recover files (names/paths)]   [Recover files (signature)]    |
+|     Repair (erases data): [Check (chkdsk)] [Format] [Full rebuild] |
+|     After repair: [Test drive] [Copy files back]                   |
+| progress bar, percent, amount done                                 |
+| Progress: log of what the program is doing                         |
++--------------------------------------------------------------------+
+</code></pre>
+<p>The <strong>Help</strong> menu at the top of the window opens this manual: choose <strong>ReviveUSB help</strong> or press <strong>F1</strong>. The manual is built into the program, so it opens in your browser even without an internet connection. <strong>About ReviveUSB...</strong> (<strong>Ctrl+F1</strong>) shows the version. <strong>ReviveUSB website</strong> opens barbellsoft.com, and <strong>Check for updates</strong> opens its download page, where the latest version is listed. <strong>Support</strong> in the same menu and the <strong>♥ Support</strong> button at the top right open the Buy Me a Coffee page in your browser. ReviveUSB is free and donating is optional; the program itself never handles payments. When files are recovered or copied back successfully, the log ends with one line showing these donation links.</p>
+<p>Only USB disks are listed. Your internal disks stay hidden unless you tick <strong>Show internal disks (caution)</strong>. Leave it unticked unless you know exactly what you are doing.</p>
+<p>While a task runs, the action buttons are greyed out and the progress bar and log keep updating. There is no Stop button. To stop a backup, close the window; chapter 5 explains how to continue later.</p>
+<hr />
+<h2 id="5-recovering-a-drive-in-five-steps">5. Recovering a drive in five steps</h2>
+<h3 id="step-1-select-the-drive">Step 1. Select the drive</h3>
+<p>Plug in the drive and click <strong>Refresh</strong>. Click your drive in the list. The log confirms which disk you selected, for example <code>Disk 2 selected: SanDisk Ultra</code>.</p>
+<p>Look at the <strong>Filesystem</strong> column. RAW means the filesystem is damaged.</p>
+<p>You can click <strong>Health check</strong> now. It shows the drive's status and, if the drive exposes them, SMART counters such as wear and uncorrectable read errors. Many USB drives do not pass SMART data through; the log then says so.</p>
+<h3 id="step-2-back-up-to-an-image">Step 2. Back up to an image</h3>
+<p>Click <strong>Back up to image</strong>. Choose where to save the image, on another drive with enough free space. The suggested name is <code>diskN.img</code>, where N is the disk number.</p>
+<p>The original drive is only read. Bad regions are skipped quickly, so the copy keeps going instead of stalling. The progress bar shows the percentage and how much has been copied.</p>
+<p>If some regions could not be read, the program asks whether to retry them sector by sector. Retrying can rescue more of your data, but on a badly damaged drive it can take a long time. If you close the window during the retry, back up again to the same file later and it picks up the retry. Backing up again to a finished image never reads the whole drive again: it only offers to retry the unreadable regions. To start over, choose a new file name.</p>
+<p>If you pick a place on the drive you are recovering, the program refuses and asks for a different drive. Saving there could overwrite the files you want back.</p>
+<p>You can stop at any time by closing the window. Progress is saved every two seconds. To continue, start the program again, select the same drive, click <strong>Back up to image</strong>, and choose the same file. If Windows asks whether to replace it, answer Yes: the log shows <code>Resuming image</code> and the copy picks up where it left off. The program checks that it is the same drive. If the file belongs to a different drive, or the drive now reports a different size, it stops instead of mixing or overwriting the earlier copy; choose a new file name in that case.</p>
+<h3 id="step-3-recover-files-from-the-image">Step 3. Recover files from the image</h3>
+<p>There are two buttons. Try <strong>Recover files (names/paths)</strong> first, and use <strong>Recover files (signature)</strong> if it finds nothing.</p>
+<ol>
+<li>Click the button.</li>
+<li>Select your image file (<code>.img</code>).</li>
+<li>Choose a folder for the recovered files, on a healthy drive. A folder on the drive you are recovering is refused. If the drive has several partitions, each one's files go into its own subfolder such as <code>volume2_exfat</code>.</li>
+</ol>
+<p>The names/paths method copies every file it can find, not only deleted ones. That is what you want when Windows says the drive "is not accessible" or asks you to format it: the files are usually still there, and they come back with their names. When it finds both current and deleted files, the deleted ones go into a separate <code>_deleted_files</code> folder so that an old copy never sits next to the current file. The folder you save into needs as much free space as the files; the log warns you before it starts if it does not have it. On a FAT32 drive that Windows deleted files from, the log may list files that "may be wrong inside": Windows erased part of where they start, and for types like .bin there is no signature to tell the right spot. Open those files before you rely on them.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Recover files (names/paths)</th>
+<th>Recover files (signature)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What you get</td>
+<td>File names, folder paths, and contents</td>
+<td>Contents only, named by sequence number such as <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>Works on</td>
+<td>NTFS, FAT32, and exFAT</td>
+<td>Any drive, even when the filesystem is gone</td>
+</tr>
+<tr>
+<td>Works best when</td>
+<td>The filesystem can still be read, even if Windows will not open the drive</td>
+<td>The filesystem itself is destroyed</td>
+</tr>
+<tr>
+<td>Order</td>
+<td>Try first</td>
+<td>Use when the first one finds nothing</td>
+</tr>
+</tbody>
+</table>
+<p>Try the names/paths method first even if the drive shows as RAW. Windows shows RAW whenever it cannot mount the filesystem, even if only one value in it is wrong, and the program can often still read it and bring the files back with their names. If it says it cannot detect the filesystem, or finds nothing, use the signature method.</p>
+<p>The signature method finds JPEG, PNG, GIF, BMP, PDF, and ZIP files, and MP4, MOV, 3GP, M4A, and HEIC files (phone and dashcam videos, iPhone photos). Office files such as docx, xlsx, and pptx are ZIP files inside, so they come back with a <code>.zip</code> name; rename them to the right extension. A video whose end was never written (a cut-off recording, or a drive that lost its data) is saved as far as it goes, but most players cannot play it without the missing end.</p>
+<p>If a disk is selected in the list, the program first asks whether to read that disk directly. Click <strong>No</strong> to choose your image file, or <strong>Yes</strong> to read the disk itself. Reading the disk needs administrator rights and is riskier for a failing drive, so an image is the better choice.</p>
+<h3 id="step-4-repair-the-drive-only-after-recovery-is-done">Step 4. Repair the drive (only after recovery is done)</h3>
+<p>Select the drive and use one of the repair buttons. Chapter 7 explains which one to pick. <strong>Format</strong> and <strong>Full rebuild</strong> erase data, so the program asks you to type a confirmation word exactly, for example <code>FORMAT E</code>. Make sure you have recovered all your files before you use them.</p>
+<p>Before <strong>Check (chkdsk)</strong>, <strong>Format</strong> or <strong>Full rebuild</strong> writes anything, the program checks the drive by reading only. If the drive shows signs that its controller is failing, it does not repair and says why in the log. The signs are: the drive does not respond to reads or reports a size of 0, or part of the drive could not be read. On FAT32 drives it also checks whether the filesystem claims the drive is bigger than it really is, whether the two copies of the file table (FAT) disagree in many places, and whether half or more of the places that should hold files read back blank. There is no way to force the repair then. Repair writes a lot, and a failing drive can stop working entirely in the middle of a large write. Recover your files with Steps 2 and 3, then replace the drive. A drive that shows as RAW only because its filesystem cannot be recognized is not blocked. The same check runs when you repair without recovering data (chapter 7).</p>
+<h3 id="step-5-put-the-files-back-after-repair">Step 5. Put the files back (after repair)</h3>
+<p>The full order is: recover the data, keep the recovered files on your PC, repair the drive, then put the files back on the repaired drive. This step is the last part. It also checks that the drive really stores data before you trust it again.</p>
+<p>When <strong>Format</strong> or <strong>Full rebuild</strong> finishes, the log says: click <strong>Refresh</strong>, then <strong>Test drive</strong>, then <strong>Copy files back</strong>. Both buttons are in the <strong>After repair:</strong> row and work on the drive letter of the selected disk. They do not need administrator rights.</p>
+<ol>
+<li>Click <strong>Refresh</strong> and select the repaired drive. It may have a new drive letter.</li>
+<li>Click <strong>Test drive</strong>. Choose <strong>Yes</strong> to test all free space, or <strong>No</strong> for a quick 1 GB test (<strong>Cancel</strong> does nothing). The full test is slow, but it is the one that finds drives that fake their capacity. The program writes test data into a <code>_revive_test</code> folder on the drive, reads it back without going through the Windows cache, compares it, and then deletes the folder. A folder left over from an interrupted earlier test is deleted too. If the drive fills up, writing stops there and the data written so far is checked.</li>
+<li>Read the result in the log. A pass says how much was written and read back with no errors. A failure says how much did not read back correctly; replace the drive. If data written later came back in place of earlier data, the log says the drive probably holds only about a certain size, less than it claims. That is a drive with fake capacity. Do not put your files on it. If the drive stops responding during the test, the log says after how much data it stopped and that the drive cannot hold data reliably. Do not put your files on it; replace it.</li>
+<li>Click <strong>Copy files back</strong> and select the folder on your PC that holds the recovered files. A folder on the same drive is refused. If the drive does not have enough free space, the program says so before it writes anything. It copies all files with the same folder structure, except top-level <code>System Volume Information</code> and <code>$RECYCLE.BIN</code> folders, which Windows creates again by itself.</li>
+<li>After copying, the program reads every file back from the drive, again bypassing the cache, and compares its SHA-256 with the original. If all match, the log says so. If some files did not read back the same, the log lists them and says the drive is not storing data reliably. Do not keep important files on that drive.</li>
+</ol>
+<p>Keep the recovered files on your PC even after a successful copy, so you still have a second copy.</p>
+<hr />
+<h2 id="6-button-reference">6. Button reference</h2>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>What it does</th>
+<th class="ta-center">Changes the drive</th>
+<th class="ta-center">Administrator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Refresh</strong></td>
+<td>Lists connected USB drives (and internal disks when the box is ticked)</td>
+<td class="ta-center">No</td>
+<td class="ta-center">No</td>
+</tr>
+<tr>
+<td><strong>Health check</strong></td>
+<td>Shows the drive's status and SMART counters when available. Most USB sticks report none; the log then says the check cannot tell whether the drive will fail again</td>
+<td class="ta-center">No</td>
+<td class="ta-center">No</td>
+</tr>
+<tr>
+<td><strong>Back up to image</strong></td>
+<td>Copies the whole drive to an image file, skipping bad regions, offers to retry them sector by sector, and resumes an earlier copy</td>
+<td class="ta-center">No</td>
+<td class="ta-center">Yes</td>
+</tr>
+<tr>
+<td><strong>Recover files (names/paths)</strong></td>
+<td>Reads NTFS, FAT32, or exFAT and copies out all files with their names and folders: current files, deleted files, and files in deleted folders</td>
+<td class="ta-center">No</td>
+<td class="ta-center">Only without an image</td>
+</tr>
+<tr>
+<td><strong>Recover files (signature)</strong></td>
+<td>Finds JPEG, PNG, GIF, BMP, PDF, ZIP, MP4, MOV, and HEIC files by their content</td>
+<td class="ta-center">No</td>
+<td class="ta-center">Only without an image</td>
+</tr>
+<tr>
+<td><strong>Check (chkdsk)</strong></td>
+<td>Runs chkdsk in fix mode on the drive letter. Asks Yes or No first</td>
+<td class="ta-center">Fixes errors, keeps data</td>
+<td class="ta-center">Yes</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td>Quick-formats the volume as NTFS with the label <code>USB</code>. You type <code>FORMAT &lt;letter&gt;</code> to confirm</td>
+<td class="ta-center">Erases data</td>
+<td class="ta-center">Yes</td>
+</tr>
+<tr>
+<td><strong>Full rebuild</strong></td>
+<td>Wipes the whole disk, creates a new partition, and quick-formats it as NTFS with the label <code>USB</code>. You type <code>ERASE DISK &lt;number&gt;</code> to confirm</td>
+<td class="ta-center">Erases data</td>
+<td class="ta-center">Yes</td>
+</tr>
+<tr>
+<td><strong>Test drive</strong></td>
+<td>Writes test data to all free space or 1 GB, reads it back bypassing the Windows cache, compares it, and deletes it. Finds drives that lose data or fake their capacity</td>
+<td class="ta-center">Writes test data, then deletes it</td>
+<td class="ta-center">No</td>
+</tr>
+<tr>
+<td><strong>Copy files back</strong></td>
+<td>Copies the recovered files from a folder on your PC to the drive with the same folders, then reads each one back and compares SHA-256</td>
+<td class="ta-center">Writes files</td>
+<td class="ta-center">No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Full rebuild</strong> picks the partition style for you: MBR for drives of 2 TB or less, GPT for larger ones. The log says which one it chose.</p>
+<hr />
+<h2 id="7-repairing-a-drive-when-you-dont-need-the-data">7. Repairing a drive when you don't need the data</h2>
+<p>If you do not need the files and only want a failing USB drive or external disk back in service, skip the backup and recovery steps and repair it directly.</p>
+<h3 id="71-diagnose-first">7.1 Diagnose first</h3>
+<p>Click <strong>Refresh</strong>, select the drive, and look at the list and the log. A real example from a WD external drive: the list showed 3.6 TB, status <code>Healthy/Online</code>, and only a 200 MB RAW piece without a drive letter.</p>
+<p>How to read this: a status of <code>Healthy/Online</code> means the hardware is working and only the partition structure is broken. Software can usually repair that. If a large drive shows only a small RAW piece, or has no drive letter, its main partition is gone.</p>
+<h3 id="72-choosing-a-repair-from-gentlest-to-strongest">7.2 Choosing a repair, from gentlest to strongest</h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Button</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drive letter exists, files are corrupted or give read errors</td>
+<td><strong>Check (chkdsk)</strong></td>
+<td>Fixes filesystem errors and keeps the data</td>
+</tr>
+<tr>
+<td>Drive letter exists, you want to wipe it</td>
+<td><strong>Format</strong></td>
+<td>Reformats the volume only</td>
+</tr>
+<tr>
+<td>RAW, no drive letter, damaged partitions</td>
+<td><strong>Full rebuild</strong></td>
+<td>Wipes the whole disk and recreates it. This is the usual fix</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Check (chkdsk)</strong> and <strong>Format</strong> need a drive letter. If the drive has none, the program tells you to use <strong>Full rebuild</strong> instead. chkdsk also cannot repair a RAW drive, because there is no filesystem left to fix.</p>
+<h3 id="73-reviving-a-raw-drive">7.3 Reviving a RAW drive</h3>
+<p>This is the most common case. Select the drive, click <strong>Full rebuild</strong>, and type <code>ERASE DISK 2</code> (with your disk number) when asked. It usually takes a few seconds to a minute. When it finishes, the drive gets a new drive letter. Before you trust it with files, click <strong>Refresh</strong>, select the drive, and run <strong>Test drive</strong>. Step 5 in chapter 5 explains the result and how to put your files back.</p>
+<p>The new filesystem is NTFS, which Windows reads and writes. If you need the drive on a Mac or another device, reformat it afterwards with that device or with Windows' own format dialog.</p>
+<h3 id="74-cleaning-up">7.4 Cleaning up</h3>
+<p>If you made an image earlier and no longer need it, delete the image file and the progress file next to it, for example <code>disk2.img</code> and <code>disk2.img.state.json</code>.</p>
+<h3 id="75-if-the-repair-fails">7.5 If the repair fails</h3>
+<ol>
+<li>Unplug the drive, plug it back in, click <strong>Refresh</strong>, and try again. Windows may be holding the disk locked.</li>
+<li>Close anything else that might be using the drive, such as antivirus or Explorer previews.</li>
+<li>If it still fails, the status stays <code>Unhealthy</code>, or the drive keeps appearing and disappearing, the hardware is probably failing. Software cannot fix that, so consider replacing the drive.</li>
+</ol>
+<h3 id="76-lowering-the-risk-of-another-failure">7.6 Lowering the risk of another failure</h3>
+<p>No software can guarantee a drive will not fail again. <strong>Health check</strong> reads the counters the drive keeps about itself: reallocated sectors, read errors, and wear. Uncorrectable read or write errors, or high wear, mean a high risk of another failure, and replacement is recommended.</p>
+<p>Many USB enclosures do not pass SMART data through, because of limits in the bridge chip. In that case the health check says the drive does not expose SMART data. A dedicated tool such as CrystalDiskInfo may still read it.</p>
+<p>Some principles to keep in mind:</p>
+<ul>
+<li>Software works around cells that have already gone bad. It cannot extend the physical life of the drive.</li>
+<li>Never keep the only copy of important data on a drive that has failed once. Always keep a second backup.</li>
+<li>If the drive turns RAW again soon after a rebuild, or keeps disconnecting, replace it.</li>
+</ul>
+<hr />
+<h2 id="8-troubleshooting">8. Troubleshooting</h2>
+<h3 id="the-disk-list-is-empty">The disk list is empty</h3>
+<p>The log says <code>No disks found</code>. Check that the drive is plugged in and shows up in Windows Disk Management, then click <strong>Refresh</strong> again. If the drive is not a USB drive, tick <strong>Show internal disks (caution)</strong>.</p>
+<h3 id="the-list-shows-firmware-failure-rom-mode-or-no-storage-size-0">The list shows "Firmware failure (ROM mode)" or "No storage (size 0)"</h3>
+<p>The USB's controller could not load its firmware, or the drive reports no storage. Windows usually shows such a drive as "No Media" or as a 0-byte disk, and may ask to format it; choose Cancel. When you select the drive, a <strong>Diagnosis</strong> box opens below the disk list. It shows the device ID, the likely controller and what to do next. Backup, recovery and repair are turned off while the drive is in this state, because there is nothing to read or write.</p>
+<ol>
+<li>Unplug the drive and plug it back in. The box checks again every 5 seconds by itself (you can also click <strong>Check again</strong>). If the drive comes back with its normal name, do not write to it; back it up first. The box stays open, says the drive is back and shows the <strong>Back up to image</strong> and <strong>Test drive (whole free space)</strong> buttons. Repair and <strong>Copy files back</strong> stay off for this drive until it passes <strong>Test drive</strong> on the whole free space, even if you close the box, because a large write can make it stop again.</li>
+<li>If it does not come back, ReviveUSB cannot revive it, and its files cannot be read. If the files matter, a data recovery lab may be able to read the memory chip directly; otherwise, replace the drive. ReviveUSB does not recommend factory tools (mass production tools): they did not work on the drive we tested, and they are not officially distributed.</li>
+<li>If it came back in step 1 and you want to keep using it, back it up first, then run <strong>Test drive</strong> on the whole free space. When the test passes with no errors, repair and <strong>Copy files back</strong> turn on for that drive and the box closes by itself. A quick 1 GB test does not turn them on.</li>
+</ol>
+<p><strong>Copy diagnosis</strong> copies the text in the box so you can paste it when you ask for help. Close the box with <strong>×</strong>.</p>
+<p>Some devices show "Empty (0)" in gray instead. A device the program does not know is reporting no storage, and an empty card reader slot usually looks exactly like this. That is not a fault: insert a card. If a USB stick shows this, unplug it and plug it back in. Backup, recovery and repair stay off meanwhile, because there is nothing to read.</p>
+<h3 id="backup-is-very-slow-for-example-an-estimate-of-100-hours-or-more">Backup is very slow (for example, an estimate of 100 hours or more)</h3>
+<p>The program already skips bad regions, so a slowdown usually comes from the drive or the connection. If the speed is low from start to finish (a few hundred KB/s), try these in order:</p>
+<ol>
+<li>Plug the drive straight into a USB 3.0 port (blue) on the back of the PC. Avoid hubs and extension cables.</li>
+<li>Swap the cable.</li>
+<li>Try another PC.</li>
+</ol>
+<p>To switch ports, close ReviveUSB, move the drive, and back up again to the same image file. It continues where it stopped.</p>
+<h3 id="the-drive-shows-as-raw">The drive shows as RAW</h3>
+<p>Windows cannot read the filesystem, but the program often still can. Back up to an image and try <strong>Recover files (names/paths)</strong> first; if it finds nothing, use <strong>Recover files (signature)</strong>. After recovery, bring the drive back with <strong>Full rebuild</strong>.</p>
+<h3 id="could-not-detect-the-filesystem">"Could not detect the filesystem"</h3>
+<p>The names/paths method only understands NTFS, FAT32, and exFAT, and it needs the filesystem index to be readable. Use <strong>Recover files (signature)</strong> instead. (The message may use command-line names such as <code>carve</code> or <code>--fs</code>; in the window, the signature button is the same thing.)</p>
+<h3 id="this-action-needs-administrator-rights">"This action needs administrator rights"</h3>
+<p>Click <strong>Yes</strong> to restart the program as administrator, or close it and run it again, allowing the Windows prompt.</p>
+<h3 id="recovered-files-will-not-open">Recovered files will not open</h3>
+<p>The file may have been fragmented, so only its first part was recovered. Try both recovery buttons. Parts of the drive that could not be read are missing from the image, and files stored there cannot come back complete.</p>
+<hr />
+<h2 id="9-faq">9. FAQ</h2>
+<p>Q. I want to save the USB drive, so what does "don't write to it" mean?
+A. It means do not save new data to the drive. Running this program is fine because backup and recovery only read. See chapter 2.</p>
+<p>Q. Can this damage the original drive?
+A. Backup and recovery are read-only. Only the repair buttons change the original, and they ask for confirmation first.</p>
+<p>Q. Can file names be recovered?
+A. <strong>Recover files (names/paths)</strong> restores names and folders. <strong>Recover files (signature)</strong> restores contents only and names the files by sequence number.</p>
+<p>Q. My drive is 114 GB. Do I have to image all of it?
+A. A full backup is the safe choice. If you are short on time, you can close the program partway and run <strong>Recover files (signature)</strong> on the image you have so far; it recovers files from the part that was copied.</p>
+<p>Q. Are there cases where recovery is impossible?
+A. Yes. If the data has been overwritten, or the flash chip itself is dead, software cannot help. A professional data recovery service is the answer then.</p>
+<hr />
+<h2 id="10-glossary">10. Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image (.img)</td>
+<td>A byte-for-byte copy of the drive in one file. You work on this copy instead of the original</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>The filesystem index is broken, so Windows cannot read the drive</td>
+</tr>
+<tr>
+<td>Signature recovery (carving)</td>
+<td>Recovering a file by finding its content fingerprint (magic bytes)</td>
+</tr>
+<tr>
+<td>Names/paths recovery (undelete)</td>
+<td>Reading the filesystem index to restore files with their names and paths</td>
+</tr>
+<tr>
+<td>Bad sector</td>
+<td>A storage area that fails to read. Backup skips it and records it</td>
+</tr>
+<tr>
+<td>Sector and cluster</td>
+<td>The smallest unit of storage (usually 512 bytes) and a group of sectors</td>
+</tr>
+<tr>
+<td>Administrator rights</td>
+<td>The Windows permission needed to access a raw disk</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-language">11. Language</h2>
+<p>The program starts in English. To switch, pick a language in the language box at the top right of the window (11 languages, including 한국어, 日本語 and 简体中文). The program remembers the choice and starts in that language next time.</p>
+<hr />
+<h2 id="12-disclaimer">12. Disclaimer</h2>
+<p>ReviveUSB is provided as is, with no warranty of any kind. Recovery is never guaranteed, and the repair buttons erase data permanently. You use the program at your own risk. The author is not liable for data loss or any other damage that results from using it. Keep backups of anything important.</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a></nav><div class="prefs"><span>Language: <a href="../revive/help.html" lang="en" aria-current="true">English</a> · <a href="../ko/revive/help.html" lang="ko">한국어</a> · <a href="../ja/revive/help.html" lang="ja">日本語</a> · <a href="../zh-cn/revive/help.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/revive/help.html" lang="zh-TW">繁體中文</a> · <a href="../es/revive/help.html" lang="es">Español</a> · <a href="../de/revive/help.html" lang="de">Deutsch</a> · <a href="../fr/revive/help.html" lang="fr">Français</a> · <a href="../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/revive/help.html" lang="ru">Русский</a> · <a href="../vi/revive/help.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=3866ec0a"></script>
+<script src="../site.js?v=b66a4edc"></script>
+</body>
+</html>

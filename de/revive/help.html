@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>ReviveUSB Hilfe</title>
+<meta name="description" content="Kostenloses Windows-Tool für ein USB-Laufwerk, das formatiert werden will, als RAW angezeigt wird oder Ihre Dateien versteckt. Es kopiert das Laufwerk sicher, stellt Dateien aus der Kopie wieder her und repariert danach das Laufwerk. Wenn das Laufwerk selbst ausfällt, wird es nicht repariert: Ihre Dateien werden sicher herausgeholt und Sie erhalten den Rat, es zu ersetzen.">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../de/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Hauptmenü"><a href="../../de/revive/index.html" aria-current="page">ReviveUSB</a><a href="../../de/chatda/index.html">Chatda</a><a href="../../de/about.html">Über uns</a><a href="../../de/donate.html">Spenden</a><a href="../../blog/index.html" lang="en">Blog</a></nav></div></header>
+<nav class="subnav" aria-label="Produkt"><div class="wrap"><img src="../../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">Startseite</a><a href="download.html">Download</a><a href="faq.html">FAQ</a><a href="help.html" aria-current="page">Hilfe</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="reviveusb-benutzerhandbuch">ReviveUSB Benutzerhandbuch</h1>
+<p>ReviveUSB rettet Dateien von einem defekten USB-Laufwerk oder einer externen Festplatte und repariert das Laufwerk auf Wunsch, damit Sie es wieder verwenden können. Alles geschieht in einem Fenster: Datenträger auswählen, dann eine Schaltfläche anklicken. Folgen Sie diesem Handbuch von oben nach unten.</p>
+<hr />
+<h2 id="0-schnellstart">0. Schnellstart</h2>
+<ol>
+<li>Starten Sie <code>ReviveUSB.exe</code> und erlauben Sie Administratorrechte, wenn Windows danach fragt.</li>
+<li>Klicken Sie auf <strong>Aktualisieren</strong> und dann in der Datenträgerliste auf Ihr USB-Laufwerk.</li>
+<li>Klicken Sie auf <strong>Als Image sichern</strong> und speichern Sie das Image auf einem anderen Laufwerk mit genug freiem Speicher.</li>
+<li>Klicken Sie auf <strong>Dateien retten (Namen/Pfade)</strong>, wählen Sie das Image und einen Ordner auf einem intakten Laufwerk. Kommt nichts zurück, gehen Sie mit <strong>Dateien retten (Signatur)</strong> genauso vor.</li>
+<li>Erst wenn Sie alle Dateien haben, machen Sie das Laufwerk mit einer der Reparatur-Schaltflächen wieder nutzbar.</li>
+</ol>
+<p>Die eine Regel, die zählt: Wenn Sie Ihre Daten zurückwollen, speichern Sie nichts Neues auf das defekte Laufwerk. Erstellen Sie zuerst das Image und stellen Sie aus dem Image wieder her.</p>
+<p>Wenn Sie die Daten nicht brauchen und nur das Laufwerk wieder funktionieren soll, überspringen Sie Schritt 3 und 4. Kapitel 7 beschreibt das.</p>
+<hr />
+<h2 id="1-was-das-programm-tut">1. Was das Programm tut</h2>
+<p>Verwenden Sie es, wenn ein Laufwerk in einem dieser Zustände ist:</p>
+<ul>
+<li>Sie haben versehentlich Dateien gelöscht.</li>
+<li>Windows meldet beim Anschließen „Sie müssen den Datenträger formatieren, bevor Sie ihn verwenden können“. Das ist ein beschädigtes Dateisystem, angezeigt als RAW.</li>
+<li>Ein großes Laufwerk erscheint als kleines RAW-Stück oder hat keinen Laufwerksbuchstaben, weil seine Partition beschädigt ist.</li>
+<li>Das Laufwerk wird erkannt, aber Ihre Dateien sind nicht sichtbar.</li>
+</ul>
+<p>Es gibt zwei Ziele, und ein Tool erledigt beide.</p>
+<table>
+<thead>
+<tr>
+<th>Ziel</th>
+<th>Bedeutung</th>
+<th>Schaltflächen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Daten zurückholen</td>
+<td>Gelöschte oder unsichtbare Dateien wiederherstellen</td>
+<td><strong>Als Image sichern</strong>, dann eine der <strong>Dateien retten</strong>-Schaltflächen</td>
+</tr>
+<tr>
+<td>Laufwerk zurückholen</td>
+<td>Laufwerk neu formatieren, damit es wieder nutzbar ist</td>
+<td><strong>Prüfen (chkdsk)</strong>, <strong>Formatieren</strong>, <strong>Neu aufbauen</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Die Reihenfolge steht fest: zuerst die Daten retten, dann das Laufwerk reparieren. Wer zuerst repariert, vernichtet die Daten endgültig.</p>
+<hr />
+<h2 id="2-sicherheitsregeln-vor-dem-start">2. Sicherheitsregeln vor dem Start</h2>
+<p>Was die Wiederherstellung ruiniert, ist das Schreiben auf das defekte Laufwerk. Dieses Programm auszuführen ist unbedenklich, weil Sicherung und Wiederherstellung nur vom Laufwerk lesen.</p>
+<p>Der Grund: Wenn Sie eine Datei löschen, bleiben die Daten selbst meist auf dem Laufwerk. Nur der Indexeintrag, der auf sie zeigt, wird entfernt, und genau deshalb ist eine Wiederherstellung überhaupt möglich. Speichern Sie danach eine neue Datei auf das Laufwerk, sieht das System freien Platz dort, wo Ihre alten Daten liegen, und schreibt die neue Datei womöglich direkt darüber. Dann lassen sich die alten Daten nicht mehr retten.</p>
+<p>Tun Sie vor der Wiederherstellung nichts davon:</p>
+<ul>
+<li>Neue Dateien auf dem Laufwerk speichern oder dorthin kopieren.</li>
+<li>Das Laufwerk formatieren, weder in Windows noch mit den Reparatur-Schaltflächen.</li>
+<li>Auf Ja klicken, wenn Windows anbietet, das Laufwerk zu prüfen und zu reparieren.</li>
+</ul>
+<p>Diese Schaltflächen sind sicher, weil sie nur lesen: <strong>Aktualisieren</strong>, <strong>Zustandsprüfung</strong>, <strong>Als Image sichern</strong> und beide <strong>Dateien retten</strong>-Schaltflächen.</p>
+<pre><code>defektes USB-Laufwerk --(nur lesen)--&gt; disk2.img (Sicherungskopie) --&gt; recovered\ (Ihre Dateien)
+   Original unberührt                   mit dieser Kopie arbeiten        Ergebnis
+</code></pre>
+<hr />
+<h2 id="3-was-sie-brauchen">3. Was Sie brauchen</h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Voraussetzung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 oder 11</td>
+<td>Ja. Python wird nicht benötigt</td>
+</tr>
+<tr>
+<td>Administratorrechte</td>
+<td>Nötig für die Sicherung, die direkte Wiederherstellung von einem Datenträger und die Reparatur</td>
+</tr>
+<tr>
+<td>Freier Speicher für das Image</td>
+<td>So viel wie die Kapazität des Laufwerks, auf einem anderen Laufwerk. Ein 128-GB-Laufwerk braucht 128 GB frei</td>
+</tr>
+<tr>
+<td>Ein intakter Ort für gerettete Dateien</td>
+<td>Jedes Laufwerk außer dem defekten</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-programm-starten">4. Programm starten</h2>
+<h3 id="41-herunterladen-und-datei-prüfen">4.1 Herunterladen und Datei prüfen</h3>
+<p>Laden Sie <code>ReviveUSB.exe</code> von der Download-Seite herunter. Die Datei ist noch nicht codesigniert, daher warnen Windows SmartScreen oder Ihr Virenscanner möglicherweise. Prüfen Sie vor dem Start, ob die Datei zum SHA-256 auf der Download-Seite passt. In PowerShell:</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>Wenn die Hashwerte übereinstimmen und SmartScreen erscheint, wählen Sie <strong>Weitere Informationen</strong> und dann <strong>Trotzdem ausführen</strong>.</p>
+<h3 id="42-administratorrechte">4.2 Administratorrechte</h3>
+<p>Das Programm fragt beim Start nach Administratorrechten, weil das direkte Lesen eines Datenträgers sie erfordert. Erlauben Sie es. Oben im Fenster steht dann <strong>Administrator: EIN</strong>. Steht dort AUS, klicken Sie auf <strong>Als Administrator neu starten</strong>.</p>
+<h3 id="43-das-fenster">4.3 Das Fenster</h3>
+<pre><code>+------------------------------------------------------------------------------+
+| Hilfe                                                                        |
++------------------------------------------------------------------------------+
+| Administrator: EIN                                        [♥ Unterstützen ▾] |
+| (1) Datenträger auswählen                                                    |
+|     Nr. | Name | Größe | Dateisystem | Status                                |
+|     [Aktualisieren]   [ ] Interne Datenträger anzeigen (Vorsicht)            |
+| (2) Aktion wählen                                                            |
+|     [Zustandsprüfung]               [Als Image sichern]                      |
+|     [Dateien retten (Namen/Pfade)]  [Dateien retten (Signatur)]              |
+|     Reparatur (löscht Daten): [Prüfen (chkdsk)] [Formatieren] [Neu aufbauen] |
+|     Nach der Reparatur: [Laufwerk testen] [Dateien zurückkopieren]           |
+| Fortschrittsbalken, Prozent, erledigte Menge                                 |
+| Fortschritt: Protokoll dessen, was das Programm gerade tut                   |
++------------------------------------------------------------------------------+
+</code></pre>
+<p>Das Menü <strong>Hilfe</strong> oben im Fenster öffnet dieses Handbuch: Wählen Sie <strong>ReviveUSB-Hilfe</strong> oder drücken Sie <strong>F1</strong>. Das Handbuch ist im Programm enthalten und öffnet sich deshalb auch ohne Internetverbindung im Browser. <strong>Info über ReviveUSB...</strong> (<strong>Strg+F1</strong>) zeigt die Version. <strong>ReviveUSB-Website</strong> öffnet barbellsoft.com, <strong>Nach Updates suchen</strong> die Download-Seite mit der neuesten Version. <strong>Unterstützen</strong> im selben Menü und die Schaltfläche <strong>♥ Unterstützen</strong> oben rechts öffnen die Seite von Buy Me a Coffee im Browser. ReviveUSB ist kostenlos, eine Spende ist freiwillig; das Programm selbst wickelt keine Zahlungen ab. Wenn Dateien erfolgreich wiederhergestellt oder zurückkopiert wurden, endet das Protokoll mit einer Zeile, die diese Spendenlinks zeigt.</p>
+<p>Nur USB-Datenträger werden aufgelistet. Ihre internen Datenträger bleiben verborgen, solange Sie <strong>Interne Datenträger anzeigen (Vorsicht)</strong> nicht ankreuzen. Lassen Sie das Häkchen weg, außer Sie wissen genau, was Sie tun.</p>
+<p>Während ein Vorgang läuft, sind die Aktions-Schaltflächen ausgegraut, und Fortschrittsbalken und Protokoll werden laufend aktualisiert. Eine Stopp-Schaltfläche gibt es nicht. Um eine Sicherung anzuhalten, schließen Sie das Fenster; Kapitel 5 erklärt, wie Sie später fortsetzen.</p>
+<hr />
+<h2 id="5-ein-laufwerk-in-fünf-schritten-retten">5. Ein Laufwerk in fünf Schritten retten</h2>
+<h3 id="schritt-1-laufwerk-auswählen">Schritt 1. Laufwerk auswählen</h3>
+<p>Schließen Sie das Laufwerk an und klicken Sie auf <strong>Aktualisieren</strong>. Klicken Sie in der Liste auf Ihr Laufwerk. Das Protokoll bestätigt, welchen Datenträger Sie gewählt haben, zum Beispiel <code>Datenträger 2 ausgewählt: SanDisk Ultra</code>.</p>
+<p>Achten Sie auf die Spalte <strong>Dateisystem</strong>. RAW bedeutet, dass das Dateisystem beschädigt ist.</p>
+<p>Sie können jetzt auf <strong>Zustandsprüfung</strong> klicken. Sie zeigt den Status des Laufwerks und, sofern das Laufwerk sie ausgibt, SMART-Zähler wie Verschleiß und nicht korrigierbare Lesefehler. Viele USB-Laufwerke reichen keine SMART-Daten durch; das Protokoll sagt es dann.</p>
+<h3 id="schritt-2-als-image-sichern">Schritt 2. Als Image sichern</h3>
+<p>Klicken Sie auf <strong>Als Image sichern</strong>. Wählen Sie den Speicherort für das Image auf einem anderen Laufwerk mit genug freiem Speicher. Der vorgeschlagene Name ist <code>diskN.img</code>, wobei N die Datenträgernummer ist.</p>
+<p>Das Original-Laufwerk wird nur gelesen. Defekte Bereiche werden schnell übersprungen, sodass die Kopie weiterläuft, statt hängen zu bleiben. Der Fortschrittsbalken zeigt den Prozentsatz und wie viel schon kopiert ist.</p>
+<p>Konnten manche Bereiche nicht gelesen werden, fragt das Programm, ob es sie sektorweise erneut versuchen soll. Das kann mehr von Ihren Daten retten, bei einem stark beschädigten Laufwerk aber lange dauern. Schließen Sie das Fenster während des erneuten Versuchs, sichern Sie später erneut in dieselbe Datei, dann wird der Versuch fortgesetzt. Eine erneute Sicherung in ein fertiges Image liest nie wieder das ganze Laufwerk: Sie bietet nur an, die unlesbaren Bereiche erneut zu versuchen. Um neu zu beginnen, wählen Sie einen neuen Dateinamen.</p>
+<p>Wählen Sie einen Ort auf dem Laufwerk, das Sie retten, lehnt das Programm ab und verlangt ein anderes Laufwerk. Speichern dort könnte die Dateien überschreiben, die Sie zurückwollen.</p>
+<p>Sie können jederzeit durch Schließen des Fensters anhalten. Der Fortschritt wird alle zwei Sekunden gespeichert. Zum Fortsetzen starten Sie das Programm erneut, wählen dasselbe Laufwerk, klicken auf <strong>Als Image sichern</strong> und wählen dieselbe Datei. Fragt Windows, ob sie ersetzt werden soll, antworten Sie mit Ja: Das Protokoll zeigt <code>Image wird fortgesetzt</code>, und die Kopie macht dort weiter, wo sie aufgehört hat. Das Programm prüft, ob es dasselbe Laufwerk ist. Gehört die Datei zu einem anderen Laufwerk oder meldet das Laufwerk jetzt eine andere Größe, bricht es ab, statt die frühere Kopie zu vermischen oder zu überschreiben; wählen Sie in diesem Fall einen neuen Dateinamen.</p>
+<h3 id="schritt-3-dateien-aus-dem-image-retten">Schritt 3. Dateien aus dem Image retten</h3>
+<p>Es gibt zwei Schaltflächen. Versuchen Sie zuerst <strong>Dateien retten (Namen/Pfade)</strong> und verwenden Sie <strong>Dateien retten (Signatur)</strong>, wenn dabei nichts gefunden wird.</p>
+<ol>
+<li>Klicken Sie auf die Schaltfläche.</li>
+<li>Wählen Sie Ihre Imagedatei (<code>.img</code>).</li>
+<li>Wählen Sie einen Ordner für die geretteten Dateien auf einem intakten Laufwerk. Ein Ordner auf dem Laufwerk, das Sie retten, wird abgelehnt. Hat das Laufwerk mehrere Partitionen, landen die Dateien jeder Partition in einem eigenen Unterordner wie <code>volume2_exfat</code>.</li>
+</ol>
+<p>Die Namen/Pfade-Methode kopiert alle Dateien, die sie findet, nicht nur gelöschte. Genau das brauchen Sie, wenn Windows meldet, dass auf das Laufwerk „nicht zugegriffen werden kann“, oder verlangt, es zu formatieren: Die Dateien sind meist noch da und kommen mit ihren Namen zurück. Findet sie sowohl aktuelle als auch gelöschte Dateien, landen die gelöschten in einem eigenen Ordner <code>_deleted_files</code>, damit eine alte Kopie nie neben der aktuellen Datei liegt. Der Zielordner braucht so viel freien Speicher, wie die Dateien belegen; reicht er nicht, warnt das Protokoll vor dem Start. Auf einem FAT32-Laufwerk, auf dem Windows Dateien gelöscht hat, kann das Protokoll Dateien auflisten, die „falschen Inhalt haben können“: Windows hat einen Teil ihrer Startposition gelöscht, und bei Typen wie .bin gibt es keine Signatur, um die richtige Stelle zu erkennen. Öffnen Sie diese Dateien, bevor Sie sich darauf verlassen.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Dateien retten (Namen/Pfade)</th>
+<th>Dateien retten (Signatur)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ergebnis</td>
+<td>Dateinamen, Ordnerpfade und Inhalte</td>
+<td>Nur Inhalte, benannt nach laufender Nummer wie <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>Funktioniert mit</td>
+<td>NTFS, FAT32 und exFAT</td>
+<td>Jedem Laufwerk, auch ohne Dateisystem</td>
+</tr>
+<tr>
+<td>Am besten, wenn</td>
+<td>Das Dateisystem noch lesbar ist, auch wenn Windows das Laufwerk nicht öffnet</td>
+<td>Das Dateisystem selbst zerstört ist</td>
+</tr>
+<tr>
+<td>Reihenfolge</td>
+<td>Zuerst versuchen</td>
+<td>Verwenden, wenn die erste nichts findet</td>
+</tr>
+</tbody>
+</table>
+<p>Versuchen Sie zuerst die Namen/Pfade-Methode, auch wenn das Laufwerk als RAW angezeigt wird. Windows zeigt RAW immer dann, wenn es das Dateisystem nicht einbinden kann, auch wenn darin nur ein einziger Wert falsch ist, und das Programm kann es oft trotzdem lesen und die Dateien mit ihren Namen zurückholen. Meldet die Methode, dass sie das Dateisystem nicht erkennt, oder findet sie nichts, verwenden Sie die Signatur-Methode.</p>
+<p>Die Signatur-Methode findet JPEG-, PNG-, GIF-, BMP-, PDF- und ZIP-Dateien sowie MP4-, MOV-, 3GP-, M4A- und HEIC-Dateien (Videos von Handys und Dashcams, iPhone-Fotos). Office-Dateien wie docx, xlsx und pptx sind intern ZIP-Dateien und kommen daher mit der Endung <code>.zip</code> zurück; benennen Sie sie mit der richtigen Endung um. Ein Video, dessen Ende nie geschrieben wurde (eine abgebrochene Aufnahme oder ein Laufwerk, das Daten verloren hat), wird so weit gespeichert, wie es reicht, aber die meisten Player können es ohne das fehlende Ende nicht abspielen.</p>
+<p>Ist in der Liste ein Datenträger ausgewählt, fragt das Programm zuerst, ob es direkt von diesem Datenträger lesen soll. Klicken Sie auf <strong>Nein</strong>, um Ihre Image-Datei auszuwählen, oder auf <strong>Ja</strong>, um den Datenträger selbst zu lesen. Das direkte Lesen braucht Administratorrechte und ist für ein defektes Laufwerk riskanter, daher ist ein Image die bessere Wahl.</p>
+<h3 id="schritt-4-laufwerk-reparieren-erst-nach-der-wiederherstellung">Schritt 4. Laufwerk reparieren (erst nach der Wiederherstellung)</h3>
+<p>Wählen Sie das Laufwerk und verwenden Sie eine der Reparatur-Schaltflächen. Kapitel 7 erklärt, welche Sie nehmen. <strong>Formatieren</strong> und <strong>Neu aufbauen</strong> löschen Daten, daher verlangt das Programm, dass Sie ein Bestätigungswort exakt eintippen, zum Beispiel <code>FORMAT E</code>. Vergewissern Sie sich, dass Sie alles gerettet haben, bevor Sie sie verwenden.</p>
+<p>Bevor <strong>Prüfen (chkdsk)</strong>, <strong>Formatieren</strong> oder <strong>Neu aufbauen</strong> etwas schreibt, prüft das Programm das Laufwerk nur lesend. Zeigt das Laufwerk Anzeichen, dass sein Controller ausfällt, repariert es nicht und nennt den Grund im Protokoll. Die Anzeichen sind: Das Laufwerk reagiert nicht auf Lesezugriffe oder meldet eine Größe von 0, oder ein Teil des Laufwerks konnte nicht gelesen werden. Bei FAT32-Laufwerken prüft es außerdem, ob das Dateisystem das Laufwerk größer angibt, als es wirklich ist, ob die beiden Kopien der Dateitabelle (FAT) an vielen Stellen voneinander abweichen und ob die Hälfte oder mehr der Stellen, an denen Dateien liegen sollten, leer gelesen werden. Die Reparatur lässt sich dann nicht erzwingen. Eine Reparatur schreibt viel, und ein ausfallendes Laufwerk kann mitten in einem großen Schreibvorgang ganz aufhören zu arbeiten. Holen Sie Ihre Dateien mit Schritt 2 und 3 zurück und ersetzen Sie das Laufwerk. Ein Laufwerk, das nur als RAW erscheint, weil sein Dateisystem nicht erkannt wird, wird nicht blockiert. Dieselbe Prüfung läuft, wenn Sie ohne Datenrettung reparieren (Kapitel 7).</p>
+<h3 id="schritt-5-dateien-zurückbringen-nach-der-reparatur">Schritt 5. Dateien zurückbringen (nach der Reparatur)</h3>
+<p>Die ganze Reihenfolge lautet: Daten retten, die geretteten Dateien auf dem PC aufbewahren, das Laufwerk reparieren und dann die Dateien auf das reparierte Laufwerk zurückbringen. Dieser Schritt ist der letzte Teil. Er prüft außerdem, ob das Laufwerk Daten wirklich speichert, bevor Sie ihm wieder vertrauen.</p>
+<p>Wenn <strong>Formatieren</strong> oder <strong>Neu aufbauen</strong> fertig ist, steht im Protokoll: auf <strong>Aktualisieren</strong> klicken, dann <strong>Laufwerk testen</strong>, dann <strong>Dateien zurückkopieren</strong>. Beide Schaltflächen stehen in der Zeile <strong>Nach der Reparatur:</strong> und arbeiten mit dem Laufwerksbuchstaben des gewählten Datenträgers. Sie brauchen keine Administratorrechte.</p>
+<ol>
+<li>Klicken Sie auf <strong>Aktualisieren</strong> und wählen Sie das reparierte Laufwerk. Es kann einen neuen Laufwerksbuchstaben haben.</li>
+<li>Klicken Sie auf <strong>Laufwerk testen</strong>. Wählen Sie <strong>Ja</strong>, um den ganzen freien Speicher zu testen, oder <strong>Nein</strong> für einen schnellen Test mit 1 GB (<strong>Abbrechen</strong> tut nichts). Der volle Test ist langsam, findet aber Laufwerke, die eine falsche Kapazität vortäuschen. Das Programm schreibt Testdaten in einen Ordner <code>_revive_test</code> auf dem Laufwerk, liest sie am Windows-Cache vorbei zurück, vergleicht sie und löscht den Ordner dann. Ein Ordner, den ein früher abgebrochener Test hinterlassen hat, wird ebenfalls gelöscht. Wird das Laufwerk voll, hört das Schreiben dort auf, und die bis dahin geschriebenen Daten werden geprüft.</li>
+<li>Lesen Sie das Ergebnis im Protokoll. Bei Erfolg steht dort, wie viel ohne Fehler geschrieben und zurückgelesen wurde. Bei einem Fehlschlag steht dort, wie viel nicht korrekt zurückgelesen wurde; ersetzen Sie das Laufwerk. Kamen später geschriebene Daten an der Stelle früherer Daten zurück, meldet das Protokoll, dass das Laufwerk vermutlich nur etwa eine bestimmte Menge fasst, weniger als angegeben. Das ist ein Laufwerk mit gefälschter Kapazität. Legen Sie Ihre Dateien nicht darauf. Hört das Laufwerk während des Tests auf zu reagieren, nennt das Protokoll, nach wie vielen Daten es stehen blieb, und dass das Laufwerk Daten nicht zuverlässig speichern kann. Legen Sie Ihre Dateien nicht darauf, sondern ersetzen Sie es.</li>
+<li>Klicken Sie auf <strong>Dateien zurückkopieren</strong> und wählen Sie den Ordner auf Ihrem PC mit den geretteten Dateien. Ein Ordner auf demselben Laufwerk wird abgelehnt. Hat das Laufwerk nicht genug freien Speicher, meldet das Programm das, bevor es etwas schreibt. Es kopiert alles mit derselben Ordnerstruktur, außer den Ordnern <code>System Volume Information</code> und <code>$RECYCLE.BIN</code> auf oberster Ebene, die Windows selbst neu anlegt.</li>
+<li>Nach dem Kopieren liest das Programm jede Datei vom Laufwerk zurück, wieder am Cache vorbei, und vergleicht ihre SHA-256-Prüfsumme mit dem Original. Stimmt alles überein, sagt das Protokoll das. Wurden einige Dateien nicht gleich zurückgelesen, listet das Protokoll sie auf und meldet, dass das Laufwerk Daten nicht zuverlässig speichert. Bewahren Sie keine wichtigen Dateien auf diesem Laufwerk auf.</li>
+</ol>
+<p>Behalten Sie die geretteten Dateien auch nach erfolgreichem Kopieren auf Ihrem PC, damit Sie weiterhin eine zweite Kopie haben.</p>
+<hr />
+<h2 id="6-schaltflächen-im-überblick">6. Schaltflächen im Überblick</h2>
+<table>
+<thead>
+<tr>
+<th>Schaltfläche</th>
+<th>Funktion</th>
+<th class="ta-center">Ändert das Laufwerk</th>
+<th class="ta-center">Administrator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Aktualisieren</strong></td>
+<td>Listet angeschlossene USB-Laufwerke auf (und interne Datenträger, wenn das Kästchen angekreuzt ist)</td>
+<td class="ta-center">Nein</td>
+<td class="ta-center">Nein</td>
+</tr>
+<tr>
+<td><strong>Zustandsprüfung</strong></td>
+<td>Zeigt den Status des Laufwerks und, falls verfügbar, SMART-Zähler. Die meisten USB-Sticks liefern keine; das Protokoll sagt dann, dass die Prüfung nicht erkennen kann, ob das Laufwerk wieder ausfallen wird</td>
+<td class="ta-center">Nein</td>
+<td class="ta-center">Nein</td>
+</tr>
+<tr>
+<td><strong>Als Image sichern</strong></td>
+<td>Kopiert das ganze Laufwerk in eine Imagedatei, überspringt defekte Bereiche, bietet an, sie sektorweise erneut zu lesen, und setzt eine frühere Kopie fort</td>
+<td class="ta-center">Nein</td>
+<td class="ta-center">Ja</td>
+</tr>
+<tr>
+<td><strong>Dateien retten (Namen/Pfade)</strong></td>
+<td>Liest NTFS, FAT32 oder exFAT und kopiert alle Dateien mit Namen und Ordnern heraus: aktuelle Dateien, gelöschte Dateien und Dateien in gelöschten Ordnern</td>
+<td class="ta-center">Nein</td>
+<td class="ta-center">Nur ohne Image</td>
+</tr>
+<tr>
+<td><strong>Dateien retten (Signatur)</strong></td>
+<td>Findet JPEG-, PNG-, GIF-, BMP-, PDF-, ZIP-, MP4-, MOV- und HEIC-Dateien anhand ihres Inhalts</td>
+<td class="ta-center">Nein</td>
+<td class="ta-center">Nur ohne Image</td>
+</tr>
+<tr>
+<td><strong>Prüfen (chkdsk)</strong></td>
+<td>Führt chkdsk im Reparaturmodus auf dem Laufwerksbuchstaben aus. Fragt vorher Ja oder Nein</td>
+<td class="ta-center">Behebt Fehler, behält Daten</td>
+<td class="ta-center">Ja</td>
+</tr>
+<tr>
+<td><strong>Formatieren</strong></td>
+<td>Schnellformatiert das Volume als NTFS mit der Bezeichnung <code>USB</code>. Zur Bestätigung tippen Sie <code>FORMAT &lt;Buchstabe&gt;</code></td>
+<td class="ta-center">Löscht Daten</td>
+<td class="ta-center">Ja</td>
+</tr>
+<tr>
+<td><strong>Neu aufbauen</strong></td>
+<td>Löscht den ganzen Datenträger, legt eine neue Partition an und schnellformatiert sie als NTFS mit der Bezeichnung <code>USB</code>. Zur Bestätigung tippen Sie <code>ERASE DISK &lt;Nummer&gt;</code></td>
+<td class="ta-center">Löscht Daten</td>
+<td class="ta-center">Ja</td>
+</tr>
+<tr>
+<td><strong>Laufwerk testen</strong></td>
+<td>Schreibt Testdaten in den ganzen freien Speicher oder 1 GB, liest sie am Windows-Cache vorbei zurück, vergleicht sie und löscht sie. Findet Laufwerke, die Daten verlieren oder eine falsche Kapazität vortäuschen</td>
+<td class="ta-center">Schreibt Testdaten und löscht sie danach</td>
+<td class="ta-center">Nein</td>
+</tr>
+<tr>
+<td><strong>Dateien zurückkopieren</strong></td>
+<td>Kopiert die geretteten Dateien aus einem Ordner auf Ihrem PC mit denselben Ordnern auf das Laufwerk, liest dann jede zurück und vergleicht SHA-256</td>
+<td class="ta-center">Schreibt Dateien</td>
+<td class="ta-center">Nein</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Neu aufbauen</strong> wählt den Partitionsstil selbst: MBR für Laufwerke bis 2 TB, GPT für größere. Das Protokoll nennt die Wahl.</p>
+<hr />
+<h2 id="7-ein-laufwerk-reparieren-wenn-sie-die-daten-nicht-brauchen">7. Ein Laufwerk reparieren, wenn Sie die Daten nicht brauchen</h2>
+<p>Brauchen Sie die Dateien nicht und soll ein defektes USB-Laufwerk oder eine externe Festplatte nur wieder einsatzbereit werden, überspringen Sie Sicherung und Wiederherstellung und reparieren Sie direkt.</p>
+<h3 id="71-zuerst-diagnostizieren">7.1 Zuerst diagnostizieren</h3>
+<p>Klicken Sie auf <strong>Aktualisieren</strong>, wählen Sie das Laufwerk und sehen Sie sich Liste und Protokoll an. Ein echtes Beispiel von einer externen WD-Festplatte: Die Liste zeigte 3,6 TB, Status <code>Healthy/Online</code> und nur ein 200-MB-RAW-Stück ohne Laufwerksbuchstaben.</p>
+<p>So lesen Sie das: Der Status <code>Healthy/Online</code> bedeutet, dass die Hardware funktioniert und nur die Partitionsstruktur defekt ist. Das kann Software meist reparieren. Zeigt ein großes Laufwerk nur ein kleines RAW-Stück oder keinen Laufwerksbuchstaben, ist seine Hauptpartition verloren.</p>
+<h3 id="72-reparatur-wählen-von-sanft-bis-stark">7.2 Reparatur wählen, von sanft bis stark</h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Schaltfläche</th>
+<th>Funktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laufwerksbuchstabe vorhanden, Dateien beschädigt oder Lesefehler</td>
+<td><strong>Prüfen (chkdsk)</strong></td>
+<td>Behebt Dateisystemfehler und behält die Daten</td>
+</tr>
+<tr>
+<td>Laufwerksbuchstabe vorhanden, Sie wollen es leeren</td>
+<td><strong>Formatieren</strong></td>
+<td>Formatiert nur das Volume neu</td>
+</tr>
+<tr>
+<td>RAW, kein Laufwerksbuchstabe, beschädigte Partitionen</td>
+<td><strong>Neu aufbauen</strong></td>
+<td>Löscht den ganzen Datenträger und legt ihn neu an. Das ist die übliche Lösung</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prüfen (chkdsk)</strong> und <strong>Formatieren</strong> brauchen einen Laufwerksbuchstaben. Hat das Laufwerk keinen, verweist das Programm auf <strong>Neu aufbauen</strong>. chkdsk kann auch kein RAW-Laufwerk reparieren, weil kein Dateisystem mehr da ist.</p>
+<h3 id="73-ein-raw-laufwerk-wiederbeleben">7.3 Ein RAW-Laufwerk wiederbeleben</h3>
+<p>Das ist der häufigste Fall. Wählen Sie das Laufwerk, klicken Sie auf <strong>Neu aufbauen</strong> und tippen Sie auf Nachfrage <code>ERASE DISK 2</code> (mit Ihrer Datenträgernummer). Das dauert meist einige Sekunden bis eine Minute. Danach erhält das Laufwerk einen neuen Laufwerksbuchstaben. Bevor Sie ihm wieder Dateien anvertrauen, klicken Sie auf <strong>Aktualisieren</strong>, wählen das Laufwerk und führen <strong>Laufwerk testen</strong> aus. Schritt 5 in Kapitel 5 erklärt das Ergebnis und wie Sie Ihre Dateien zurückbringen.</p>
+<p>Das neue Dateisystem ist NTFS, das Windows lesen und schreiben kann. Brauchen Sie das Laufwerk an einem Mac oder einem anderen Gerät, formatieren Sie es danach mit diesem Gerät oder mit dem Formatierungsdialog von Windows neu.</p>
+<h3 id="74-aufräumen">7.4 Aufräumen</h3>
+<p>Haben Sie früher ein Image erstellt und brauchen es nicht mehr, löschen Sie die Imagedatei und die Fortschrittsdatei daneben, zum Beispiel <code>disk2.img</code> und <code>disk2.img.state.json</code>.</p>
+<h3 id="75-wenn-die-reparatur-scheitert">7.5 Wenn die Reparatur scheitert</h3>
+<ol>
+<li>Trennen Sie das Laufwerk, schließen Sie es wieder an, klicken Sie auf <strong>Aktualisieren</strong> und versuchen Sie es erneut. Windows hält den Datenträger womöglich gesperrt.</li>
+<li>Schließen Sie alles, was das Laufwerk noch verwenden könnte, etwa Virenscanner oder Explorer-Vorschauen.</li>
+<li>Scheitert es weiterhin, bleibt der Status <code>Unhealthy</code> oder taucht das Laufwerk immer wieder auf und verschwindet, ist wahrscheinlich die Hardware defekt. Das kann Software nicht beheben; erwägen Sie einen Austausch des Laufwerks.</li>
+</ol>
+<h3 id="76-das-risiko-eines-erneuten-ausfalls-senken">7.6 Das Risiko eines erneuten Ausfalls senken</h3>
+<p>Keine Software kann garantieren, dass ein Laufwerk nicht wieder ausfällt. Die <strong>Zustandsprüfung</strong> liest die Zähler, die das Laufwerk über sich selbst führt: umgeleitete Sektoren, Lesefehler und Verschleiß. Nicht korrigierbare Lese- oder Schreibfehler oder hoher Verschleiß bedeuten ein hohes Risiko eines erneuten Ausfalls; ein Austausch wird empfohlen.</p>
+<p>Viele USB-Gehäuse reichen wegen Einschränkungen des Bridge-Chips keine SMART-Daten durch. Die Zustandsprüfung meldet dann, dass das Laufwerk keine SMART-Daten ausgibt. Ein Spezialtool wie CrystalDiskInfo kann sie unter Umständen trotzdem lesen.</p>
+<p>Einige Grundsätze:</p>
+<ul>
+<li>Software umgeht Zellen, die bereits defekt sind. Die physische Lebensdauer des Laufwerks kann sie nicht verlängern.</li>
+<li>Bewahren Sie die einzige Kopie wichtiger Daten nie auf einem Laufwerk auf, das schon einmal ausgefallen ist. Halten Sie immer eine zweite Sicherung.</li>
+<li>Wird das Laufwerk kurz nach einem Neuaufbau wieder RAW oder trennt es sich ständig, tauschen Sie es aus.</li>
+</ul>
+<hr />
+<h2 id="8-fehlerbehebung">8. Fehlerbehebung</h2>
+<h3 id="die-datenträgerliste-ist-leer">Die Datenträgerliste ist leer</h3>
+<p>Das Protokoll meldet <code>Keine Datenträger gefunden</code>. Prüfen Sie, ob das Laufwerk angeschlossen ist und in der Windows-Datenträgerverwaltung erscheint, und klicken Sie dann erneut auf <strong>Aktualisieren</strong>. Ist es kein USB-Laufwerk, kreuzen Sie <strong>Interne Datenträger anzeigen (Vorsicht)</strong> an.</p>
+<h3 id="die-liste-zeigt-firmware-fehler-rom-modus-oder-kein-speicher-0">Die Liste zeigt "Firmware-Fehler (ROM-Modus)" oder "Kein Speicher (0)"</h3>
+<p>Der Controller des USB-Sticks konnte seine Firmware nicht laden, oder das Laufwerk meldet keinen Speicher. Windows zeigt ein solches Laufwerk meist als "Kein Medium" oder als Datenträger mit 0 Byte an und fragt vielleicht, ob es formatiert werden soll; wählen Sie dann Abbrechen. Wenn Sie das Laufwerk auswählen, öffnet sich unter der Datenträgerliste ein Feld <strong>Diagnose</strong>. Es zeigt die Geräte-ID, den vermutlichen Controller und die nächsten Schritte. Solange das Laufwerk in diesem Zustand ist, sind Sicherung, Wiederherstellung und Reparatur ausgeschaltet, denn es gibt nichts zu lesen oder zu schreiben.</p>
+<ol>
+<li>Ziehen Sie das Laufwerk ab und stecken Sie es wieder an. Das Feld prüft alle 5 Sekunden von selbst erneut (Sie können auch auf <strong>Erneut prüfen</strong> klicken). Kommt das Laufwerk mit seinem normalen Namen zurück, schreiben Sie nichts darauf, sondern sichern Sie es zuerst. Das Feld bleibt offen, meldet die Rückkehr und zeigt die Schaltflächen <strong>Als Image sichern</strong> und <strong>Laufwerk testen (ganzer freier Platz)</strong>. Reparatur und <strong>Dateien zurückkopieren</strong> bleiben für dieses Laufwerk ausgeschaltet, bis es <strong>Laufwerk testen</strong> über den ganzen freien Speicher besteht, auch wenn Sie das Feld schließen, weil ein großer Schreibvorgang es wieder stoppen kann.</li>
+<li>Kommt es nicht zurück, kann ReviveUSB es nicht wiederbeleben, und seine Dateien lassen sich nicht lesen. Sind die Dateien wichtig, kann ein Datenrettungslabor den Speicherchip eventuell direkt auslesen; andernfalls ersetzen Sie das Laufwerk. ReviveUSB empfiehlt keine Fertigungswerkzeuge (Mass-Production-Tools): Bei dem Laufwerk, das wir getestet haben, haben sie nicht funktioniert, und sie werden nicht offiziell verteilt.</li>
+<li>Ist es in Schritt 1 zurückgekommen und möchten Sie es weiter benutzen, sichern Sie es zuerst und führen dann <strong>Laufwerk testen</strong> über den ganzen freien Speicher aus. Besteht der Test ohne Fehler, werden Reparatur und <strong>Dateien zurückkopieren</strong> für dieses Laufwerk eingeschaltet, und das Feld schließt sich von selbst. Ein schneller 1-GB-Test schaltet sie nicht ein.</li>
+</ol>
+<p><strong>Diagnose kopieren</strong> kopiert den Text des Felds, damit Sie ihn einfügen können, wenn Sie um Hilfe bitten. Schließen Sie das Feld mit <strong>×</strong>.</p>
+<p>Manche Geräte erscheinen grau als "Leer (0)". Dann meldet ein Gerät, das das Programm nicht kennt, keinen Speicher, und ein leerer Steckplatz eines Kartenlesers sieht meist genau so aus. Das ist kein Defekt: Stecken Sie eine Karte ein. Zeigt ein USB-Stick das an, ziehen Sie ihn ab und stecken Sie ihn wieder ein. Sicherung, Wiederherstellung und Reparatur bleiben so lange aus, weil es nichts zu lesen gibt.</p>
+<h3 id="die-sicherung-ist-sehr-langsam-zum-beispiel-eine-schätzung-von-100-stunden-oder-mehr">Die Sicherung ist sehr langsam (zum Beispiel eine Schätzung von 100 Stunden oder mehr)</h3>
+<p>Das Programm überspringt defekte Bereiche bereits, daher liegt eine Verlangsamung meist am Laufwerk oder an der Verbindung. Ist die Geschwindigkeit von Anfang bis Ende niedrig (einige hundert KB/s), versuchen Sie Folgendes der Reihe nach:</p>
+<ol>
+<li>Schließen Sie das Laufwerk direkt an einen USB-3.0-Anschluss (blau) auf der Rückseite des PCs an. Vermeiden Sie Hubs und Verlängerungskabel.</li>
+<li>Tauschen Sie das Kabel.</li>
+<li>Versuchen Sie einen anderen PC.</li>
+</ol>
+<p>Um den Anschluss zu wechseln, schließen Sie ReviveUSB, stecken das Laufwerk um und sichern erneut in dieselbe Imagedatei. Es geht dort weiter, wo es aufgehört hat.</p>
+<h3 id="das-laufwerk-wird-als-raw-angezeigt">Das Laufwerk wird als RAW angezeigt</h3>
+<p>Windows kann das Dateisystem nicht lesen, das Programm aber oft schon. Sichern Sie das Laufwerk als Image und versuchen Sie zuerst <strong>Dateien retten (Namen/Pfade)</strong>; findet das nichts, verwenden Sie <strong>Dateien retten (Signatur)</strong>. Machen Sie das Laufwerk nach der Wiederherstellung mit <strong>Neu aufbauen</strong> wieder nutzbar.</p>
+<h3 id="dateisystem-nicht-erkannt">„Dateisystem nicht erkannt“</h3>
+<p>Die Namen/Pfade-Methode versteht nur NTFS, FAT32 und exFAT, und der Dateisystemindex muss lesbar sein. Verwenden Sie stattdessen <strong>Dateien retten (Signatur)</strong>. (Die Meldung kann Befehlszeilennamen wie <code>carve</code> oder <code>--fs</code> verwenden; im Fenster ist die Signatur-Schaltfläche dasselbe.)</p>
+<h3 id="dieser-vorgang-erfordert-administratorrechte">„Dieser Vorgang erfordert Administratorrechte“</h3>
+<p>Klicken Sie auf <strong>Ja</strong>, um das Programm als Administrator neu zu starten, oder schließen Sie es und starten Sie es erneut, wobei Sie die Windows-Abfrage erlauben.</p>
+<h3 id="wiederhergestellte-dateien-lassen-sich-nicht-öffnen">Wiederhergestellte Dateien lassen sich nicht öffnen</h3>
+<p>Die Datei war womöglich fragmentiert, sodass nur ihr erster Teil gerettet wurde. Versuchen Sie beide Wiederherstellungs-Schaltflächen. Unlesbare Teile des Laufwerks fehlen im Image, und Dateien, die dort lagen, kommen nicht vollständig zurück.</p>
+<hr />
+<h2 id="9-faq">9. FAQ</h2>
+<p>F. Ich will das USB-Laufwerk retten. Was bedeutet also „nicht darauf schreiben“?
+A. Es bedeutet, keine neuen Daten auf dem Laufwerk zu speichern. Dieses Programm auszuführen ist unbedenklich, weil Sicherung und Wiederherstellung nur lesen. Siehe Kapitel 2.</p>
+<p>F. Kann das das Original-Laufwerk beschädigen?
+A. Sicherung und Wiederherstellung lesen nur. Nur die Reparatur-Schaltflächen ändern das Original, und sie verlangen vorher eine Bestätigung.</p>
+<p>F. Lassen sich Dateinamen wiederherstellen?
+A. <strong>Dateien retten (Namen/Pfade)</strong> stellt Namen und Ordner wieder her. <strong>Dateien retten (Signatur)</strong> stellt nur Inhalte wieder her und benennt die Dateien nach laufender Nummer.</p>
+<p>F. Mein Laufwerk hat 114 GB. Muss ich alles als Image sichern?
+A. Eine vollständige Sicherung ist die sichere Wahl. Fehlt Ihnen die Zeit, können Sie das Programm zwischendurch schließen und <strong>Dateien retten (Signatur)</strong> auf das bisherige Image anwenden; es rettet Dateien aus dem bereits kopierten Teil.</p>
+<p>F. Gibt es Fälle, in denen eine Wiederherstellung unmöglich ist?
+A. Ja. Wenn die Daten überschrieben wurden oder der Flash-Chip selbst defekt ist, kann Software nicht helfen. Dann ist ein professioneller Datenrettungsdienst die Lösung.</p>
+<hr />
+<h2 id="10-glossar">10. Glossar</h2>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image (.img)</td>
+<td>Eine byte-genaue Kopie des Laufwerks in einer Datei. Sie arbeiten mit dieser Kopie statt mit dem Original</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>Der Dateisystemindex ist defekt, daher kann Windows das Laufwerk nicht lesen</td>
+</tr>
+<tr>
+<td>Signatursuche (Carving)</td>
+<td>Eine Datei anhand ihres inhaltlichen Fingerabdrucks (Magic Bytes) wiederherstellen</td>
+</tr>
+<tr>
+<td>Namen/Pfade-Wiederherstellung (Undelete)</td>
+<td>Den Dateisystemindex lesen, um Dateien mit Namen und Pfaden wiederherzustellen</td>
+</tr>
+<tr>
+<td>Defekter Sektor</td>
+<td>Ein Speicherbereich, der sich nicht lesen lässt. Die Sicherung überspringt und protokolliert ihn</td>
+</tr>
+<tr>
+<td>Sektor und Cluster</td>
+<td>Die kleinste Speichereinheit (meist 512 Byte) und eine Gruppe von Sektoren</td>
+</tr>
+<tr>
+<td>Administratorrechte</td>
+<td>Die Windows-Berechtigung für den direkten Zugriff auf einen Datenträger</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-sprache">11. Sprache</h2>
+<p>Das Programm startet auf Englisch. Um auf Deutsch umzustellen, wählen Sie Deutsch im Sprachfeld oben rechts im Fenster. Das Programm merkt sich die Wahl und startet beim nächsten Mal in dieser Sprache.</p>
+<hr />
+<h2 id="12-haftungsausschluss">12. Haftungsausschluss</h2>
+<p>ReviveUSB wird wie besehen und ohne jegliche Gewähr bereitgestellt. Eine Wiederherstellung ist nie garantiert, und die Reparatur-Schaltflächen löschen Daten dauerhaft. Sie verwenden das Programm auf eigenes Risiko. Der Autor haftet nicht für Datenverlust oder sonstige Schäden, die aus der Nutzung entstehen. Bewahren Sie Sicherungen aller wichtigen Daten auf.</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../de/revive/index.html">ReviveUSB</a><a href="../../de/chatda/index.html">Chatda</a><a href="../../de/about.html">Über uns</a><a href="../../de/donate.html">Spenden</a><a href="../../de/privacy.html">Datenschutz</a><a id="contact-link" href="#" hidden>Kontakt</a></nav><div class="prefs"><span>Sprache: <a href="../../revive/help.html" lang="en">English</a> · <a href="../../ko/revive/help.html" lang="ko">한국어</a> · <a href="../../ja/revive/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/revive/help.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/revive/help.html" lang="zh-TW">繁體中文</a> · <a href="../../es/revive/help.html" lang="es">Español</a> · <a href="../../de/revive/help.html" lang="de" aria-current="true">Deutsch</a> · <a href="../../fr/revive/help.html" lang="fr">Français</a> · <a href="../../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/revive/help.html" lang="ru">Русский</a> · <a href="../../vi/revive/help.html" lang="vi">Tiếng Việt</a></span><label>Design <select id="theme-select"><option value="auto">Standard</option><option value="dark">Dunkel</option><option value="light">Hell</option></select></label></div><p class="mt-note">Diese Seite wurde maschinell übersetzt. Wenn Ihnen ein Fehler auffällt, sagen Sie uns bitte Bescheid.</p><p>© 2026 Barbellsoft. Kostenlose Software, bereitgestellt wie besehen, ohne Gewähr.</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>

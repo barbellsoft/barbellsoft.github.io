@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Aide de ReviveUSB</title>
+<meta name="description" content="Outil gratuit pour Windows, pour une clé USB qui demande à être formatée, apparaît en RAW ou cache vos fichiers. Il copie la clé en toute sécurité, récupère les fichiers à partir de la copie, puis répare la clé. Si le lecteur lui-même est défaillant, il ne le répare pas : il sort vos fichiers en sécurité et vous conseille de le remplacer.">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../fr/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Principal"><a href="../../fr/revive/index.html" aria-current="page">ReviveUSB</a><a href="../../fr/chatda/index.html">Chatda</a><a href="../../fr/about.html">À propos</a><a href="../../fr/donate.html">Faire un don</a><a href="../../blog/index.html" lang="en">Blog</a></nav></div></header>
+<nav class="subnav" aria-label="Produit"><div class="wrap"><img src="../../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">Accueil</a><a href="download.html">Téléchargement</a><a href="faq.html">FAQ</a><a href="help.html" aria-current="page">Aide</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="manuel-dutilisation-de-reviveusb">Manuel d'utilisation de ReviveUSB</h1>
+<p>ReviveUSB récupère les fichiers d'une clé USB ou d'un disque dur externe défaillant et, si vous le souhaitez, répare le lecteur pour que vous puissiez le réutiliser. Tout se passe dans une seule fenêtre : choisissez un disque, puis cliquez sur un bouton. Suivez ce manuel du début à la fin.</p>
+<hr />
+<h2 id="0-démarrage-rapide">0. Démarrage rapide</h2>
+<ol>
+<li>Lancez <code>ReviveUSB.exe</code> et accordez les droits d'administrateur quand Windows les demande.</li>
+<li>Cliquez sur <strong>Actualiser</strong>, puis cliquez sur votre clé USB dans la liste des disques.</li>
+<li>Cliquez sur <strong>Sauvegarder en image</strong> et enregistrez l'image sur un autre lecteur disposant d'assez d'espace libre.</li>
+<li>Cliquez sur <strong>Récupérer (noms/chemins)</strong>, choisissez l'image, puis un dossier sur un lecteur en bon état. Si rien n'est récupéré, faites de même avec <strong>Récupérer (signature)</strong>.</li>
+<li>Seulement quand vous avez tous vos fichiers, utilisez l'un des boutons de réparation pour rendre le lecteur de nouveau utilisable.</li>
+</ol>
+<p>La seule règle qui compte : si vous voulez retrouver vos données, n'enregistrez rien de nouveau sur le lecteur endommagé. Créez d'abord l'image et récupérez à partir de l'image.</p>
+<p>Si vous n'avez pas besoin des données et voulez seulement que le lecteur fonctionne de nouveau, sautez les étapes 3 et 4. Le chapitre 7 traite ce cas.</p>
+<hr />
+<h2 id="1-ce-que-fait-le-programme">1. Ce que fait le programme</h2>
+<p>Utilisez-le quand un lecteur se trouve dans l'une de ces situations :</p>
+<ul>
+<li>Vous avez supprimé des fichiers par erreur.</li>
+<li>Windows affiche « Vous devez formater le disque avant de pouvoir l'utiliser » quand vous branchez le lecteur. Il s'agit d'un système de fichiers endommagé, affiché comme RAW.</li>
+<li>Un lecteur de grande capacité apparaît comme un petit morceau RAW ou n'a pas de lettre de lecteur, parce que sa partition est endommagée.</li>
+<li>Le lecteur est reconnu mais vos fichiers ne sont pas visibles.</li>
+</ul>
+<p>Il a deux objectifs, et un seul outil les couvre tous les deux.</p>
+<table>
+<thead>
+<tr>
+<th>Objectif</th>
+<th>Ce que cela signifie</th>
+<th>Boutons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrouver les données</td>
+<td>Récupérer des fichiers supprimés ou invisibles</td>
+<td><strong>Sauvegarder en image</strong>, puis l'un des boutons <strong>Récupérer</strong></td>
+</tr>
+<tr>
+<td>Retrouver le lecteur</td>
+<td>Reformater le lecteur pour le réutiliser</td>
+<td><strong>Vérifier (chkdsk)</strong>, <strong>Formater</strong>, <strong>Reconstruire</strong></td>
+</tr>
+</tbody>
+</table>
+<p>L'ordre est fixe : récupérez d'abord les données, réparez le lecteur ensuite. Réparer en premier détruit les données pour de bon.</p>
+<hr />
+<h2 id="2-règles-de-sécurité-à-lire-avant-de-commencer">2. Règles de sécurité à lire avant de commencer</h2>
+<p>C'est l'écriture sur le lecteur endommagé qui ruine la récupération. Lancer ce programme ne pose pas de problème, car la sauvegarde et la récupération ne font que lire le lecteur.</p>
+<p>Voici pourquoi. Quand vous supprimez un fichier, les données elles-mêmes restent généralement sur le lecteur. Seule l'entrée d'index qui pointe vers elles est retirée, et c'est ce qui rend la récupération possible. Si vous enregistrez ensuite un nouveau fichier sur le lecteur, le système voit de l'espace libre là où se trouvent vos anciennes données et peut écrire le nouveau fichier juste par-dessus. Dès lors, les anciennes données ne peuvent plus être récupérées.</p>
+<p>Ne faites rien de tout cela avant la récupération :</p>
+<ul>
+<li>Enregistrer ou copier de nouveaux fichiers sur le lecteur.</li>
+<li>Formater le lecteur, que ce soit dans Windows ou avec les boutons de réparation.</li>
+<li>Cliquer sur Oui quand Windows propose d'analyser et de réparer le lecteur.</li>
+</ul>
+<p>Ces boutons sont sans risque, car ils ne font que lire : <strong>Actualiser</strong>, <strong>Bilan de santé</strong>, <strong>Sauvegarder en image</strong> et les deux boutons <strong>Récupérer</strong>.</p>
+<pre><code>clé USB endommagée --(lecture seule)--&gt; disk2.img (copie de sauvegarde) --&gt; recovered\ (vos fichiers)
+   original intact                       travail sur cette copie              résultats
+</code></pre>
+<hr />
+<h2 id="3-ce-quil-vous-faut">3. Ce qu'il vous faut</h2>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Exigence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 ou 11</td>
+<td>Oui. Python n'est pas nécessaire</td>
+</tr>
+<tr>
+<td>Droits d'administrateur</td>
+<td>Nécessaires pour la sauvegarde, la récupération directe depuis un disque et la réparation</td>
+</tr>
+<tr>
+<td>Espace libre pour l'image</td>
+<td>Autant que la capacité du lecteur, sur un autre lecteur. Un lecteur de 128 Go demande 128 Go libres</td>
+</tr>
+<tr>
+<td>Un emplacement sain pour les fichiers récupérés</td>
+<td>N'importe quel lecteur sauf celui qui est endommagé</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-lancer-le-programme">4. Lancer le programme</h2>
+<h3 id="41-télécharger-et-vérifier-le-fichier">4.1 Télécharger et vérifier le fichier</h3>
+<p>Téléchargez <code>ReviveUSB.exe</code> depuis la page Téléchargement. Le fichier n'est pas encore signé numériquement, donc Windows SmartScreen ou votre antivirus peut afficher un avertissement. Avant de le lancer, vérifiez que le fichier correspond au SHA-256 indiqué sur la page Téléchargement. Dans PowerShell :</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>Si les empreintes correspondent et que SmartScreen apparaît, choisissez <strong>Informations complémentaires</strong>, puis <strong>Exécuter quand même</strong>.</p>
+<h3 id="42-droits-dadministrateur">4.2 Droits d'administrateur</h3>
+<p>Le programme demande les droits d'administrateur au démarrage, car la lecture brute d'un disque les exige. Acceptez. Le haut de la fenêtre affiche alors <strong>Administrateur : activé</strong>. S'il indique désactivé, cliquez sur <strong>Redémarrer en administrateur</strong>.</p>
+<h3 id="43-la-fenêtre">4.3 La fenêtre</h3>
+<pre><code>+-----------------------------------------------------------------------------------+
+| Aide                                                                              |
++-----------------------------------------------------------------------------------+
+| Administrateur : activé                                            [♥ Soutenir ▾] |
+| (1) Sélectionnez un disque                                                        |
+|     N° | Nom | Taille | Système de fichiers | État                                |
+|     [Actualiser]   [ ] Afficher les disques internes (prudence)                   |
+| (2) Choisissez une action                                                         |
+|     [Bilan de santé]                [Sauvegarder en image]                        |
+|     [Récupérer (noms/chemins)]      [Récupérer (signature)]                       |
+|     Réparer (efface les données) : [Vérifier (chkdsk)] [Formater] [Reconstruire]  |
+|     Après réparation : [Tester le lecteur] [Remettre les fichiers]                |
+| barre de progression, pourcentage, quantité traitée                               |
+| Progression : journal de ce que fait le programme                                 |
++-----------------------------------------------------------------------------------+
+</code></pre>
+<p>Le menu <strong>Aide</strong> en haut de la fenêtre ouvre ce manuel : choisissez <strong>Aide de ReviveUSB</strong> ou appuyez sur <strong>F1</strong>. Le manuel est intégré au programme, il s'ouvre donc dans votre navigateur même sans connexion Internet. <strong>À propos de ReviveUSB...</strong> (<strong>Ctrl+F1</strong>) affiche la version. <strong>Site web de ReviveUSB</strong> ouvre barbellsoft.com, et <strong>Rechercher des mises à jour</strong> ouvre sa page de téléchargement, où figure la dernière version. <strong>Soutenir</strong> dans le même menu et le bouton <strong>♥ Soutenir</strong> en haut à droite ouvrent la page Buy Me a Coffee dans votre navigateur. ReviveUSB est gratuit et le don est facultatif ; le programme ne gère jamais de paiement. Quand des fichiers ont été récupérés ou remis avec succès, le journal se termine par une ligne qui affiche ces liens de don.</p>
+<p>Seuls les disques USB sont listés. Vos disques internes restent masqués tant que vous ne cochez pas <strong>Afficher les disques internes (prudence)</strong>. Laissez cette case décochée sauf si vous savez exactement ce que vous faites.</p>
+<p>Pendant l'exécution d'une tâche, les boutons d'action sont grisés et la barre de progression et le journal continuent de se mettre à jour. Il n'y a pas de bouton Arrêter. Pour arrêter une sauvegarde, fermez la fenêtre ; le chapitre 5 explique comment reprendre plus tard.</p>
+<hr />
+<h2 id="5-récupérer-un-lecteur-en-cinq-étapes">5. Récupérer un lecteur en cinq étapes</h2>
+<h3 id="étape-1-sélectionner-le-lecteur">Étape 1. Sélectionner le lecteur</h3>
+<p>Branchez le lecteur et cliquez sur <strong>Actualiser</strong>. Cliquez sur votre lecteur dans la liste. Le journal confirme le disque sélectionné, par exemple <code>Disque 2 sélectionné : SanDisk Ultra</code>.</p>
+<p>Regardez la colonne <strong>Système de fichiers</strong>. RAW signifie que le système de fichiers est endommagé.</p>
+<p>Vous pouvez cliquer sur <strong>Bilan de santé</strong> dès maintenant. Il affiche l'état du lecteur et, si le lecteur les fournit, des compteurs SMART tels que l'usure et les erreurs de lecture non corrigeables. Beaucoup de clés USB ne transmettent pas les données SMART ; le journal l'indique alors.</p>
+<h3 id="étape-2-sauvegarder-en-image">Étape 2. Sauvegarder en image</h3>
+<p>Cliquez sur <strong>Sauvegarder en image</strong>. Choisissez où enregistrer l'image, sur un autre lecteur disposant d'assez d'espace libre. Le nom proposé est <code>diskN.img</code>, où N est le numéro du disque.</p>
+<p>Le lecteur d'origine est seulement lu. Les zones défectueuses sont sautées rapidement, si bien que la copie continue au lieu de se bloquer. La barre de progression affiche le pourcentage et la quantité déjà copiée.</p>
+<p>Si certaines zones n'ont pas pu être lues, le programme demande s'il faut les réessayer secteur par secteur. Réessayer peut sauver davantage de données, mais sur un lecteur très endommagé cela peut être long. Si vous fermez la fenêtre pendant la nouvelle tentative, sauvegardez plus tard de nouveau vers le même fichier et elle reprendra. Sauvegarder de nouveau vers une image terminée ne relit jamais tout le lecteur : le programme propose seulement de réessayer les zones illisibles. Pour recommencer depuis le début, choisissez un nouveau nom de fichier.</p>
+<p>Si vous choisissez un emplacement sur le lecteur que vous récupérez, le programme refuse et demande un autre lecteur. Y enregistrer pourrait écraser les fichiers que vous voulez retrouver.</p>
+<p>Vous pouvez arrêter à tout moment en fermant la fenêtre. La progression est enregistrée toutes les deux secondes. Pour continuer, relancez le programme, sélectionnez le même lecteur, cliquez sur <strong>Sauvegarder en image</strong> et choisissez le même fichier. Si Windows demande s'il faut le remplacer, répondez Oui : le journal affiche <code>Reprise de l'image</code> et la copie reprend là où elle s'était arrêtée. Le programme vérifie qu'il s'agit du même lecteur. Si le fichier appartient à un autre lecteur, ou si le lecteur indique maintenant une taille différente, il s'arrête au lieu de mélanger ou d'écraser la copie précédente ; choisissez alors un nouveau nom de fichier.</p>
+<h3 id="étape-3-récupérer-les-fichiers-à-partir-de-limage">Étape 3. Récupérer les fichiers à partir de l'image</h3>
+<p>Il y a deux boutons. Essayez d'abord <strong>Récupérer (noms/chemins)</strong>, et utilisez <strong>Récupérer (signature)</strong> s'il ne trouve rien.</p>
+<ol>
+<li>Cliquez sur le bouton.</li>
+<li>Sélectionnez votre fichier image (<code>.img</code>).</li>
+<li>Choisissez un dossier pour les fichiers récupérés, sur un lecteur en bon état. Un dossier sur le lecteur que vous récupérez est refusé. Si le lecteur a plusieurs partitions, les fichiers de chacune vont dans leur propre sous-dossier, par exemple <code>volume2_exfat</code>.</li>
+</ol>
+<p>La méthode noms/chemins copie tous les fichiers qu'elle trouve, pas seulement les fichiers supprimés. C'est ce qu'il vous faut quand Windows indique que le lecteur « n'est pas accessible » ou vous demande de le formater : les fichiers sont en général toujours là, et ils reviennent avec leurs noms. Quand elle trouve à la fois des fichiers actuels et des fichiers supprimés, les fichiers supprimés vont dans un dossier à part, <code>_deleted_files</code>, pour qu'une ancienne copie ne se retrouve jamais à côté du fichier actuel. Le dossier de destination doit avoir autant d'espace libre que les fichiers en occupent ; s'il ne l'a pas, le journal vous prévient avant de commencer. Sur un lecteur FAT32 dont Windows a supprimé des fichiers, le journal peut lister des fichiers qui « peuvent avoir un contenu erroné » : Windows a effacé une partie de leur position de départ et, pour des types comme .bin, aucune signature ne permet de trouver le bon emplacement. Ouvrez-les avant de vous y fier.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Récupérer (noms/chemins)</th>
+<th>Récupérer (signature)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ce que vous obtenez</td>
+<td>Noms de fichiers, chemins des dossiers et contenu</td>
+<td>Contenu seulement, nommé par numéro d'ordre, par exemple <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>Fonctionne sur</td>
+<td>NTFS, FAT32 et exFAT</td>
+<td>N'importe quel lecteur, même sans système de fichiers</td>
+</tr>
+<tr>
+<td>Idéal quand</td>
+<td>Le système de fichiers est encore lisible, même si Windows n'ouvre pas le lecteur</td>
+<td>Le système de fichiers lui-même est détruit</td>
+</tr>
+<tr>
+<td>Ordre</td>
+<td>À essayer en premier</td>
+<td>Quand le premier ne trouve rien</td>
+</tr>
+</tbody>
+</table>
+<p>Essayez d'abord la méthode noms/chemins, même si le lecteur apparaît en RAW. Windows affiche RAW dès qu'il ne parvient pas à monter le système de fichiers, même si une seule valeur y est fausse, et le programme peut souvent encore le lire et récupérer les fichiers avec leurs noms. Si elle indique qu'elle ne détecte pas le système de fichiers, ou ne trouve rien, utilisez la méthode par signature.</p>
+<p>La méthode par signature retrouve les fichiers JPEG, PNG, GIF, BMP, PDF et ZIP, ainsi que les fichiers MP4, MOV, 3GP, M4A et HEIC (vidéos de téléphones et de dashcams, photos d'iPhone). Les fichiers Office tels que docx, xlsx et pptx sont des fichiers ZIP en interne : ils reviennent donc avec un nom en <code>.zip</code> ; renommez-les avec la bonne extension. Une vidéo dont la fin n'a jamais été écrite (un enregistrement interrompu, ou un lecteur qui a perdu ses données) est enregistrée jusqu'où elle va, mais la plupart des lecteurs vidéo ne peuvent pas la lire sans la fin manquante.</p>
+<p>Si un disque est sélectionné dans la liste, le programme demande d'abord s'il doit lire ce disque directement. Cliquez sur <strong>Non</strong> pour choisir votre fichier image, ou sur <strong>Oui</strong> pour lire le disque lui-même. Lire le disque demande les droits d'administrateur et c'est plus risqué pour un lecteur défaillant : une image reste le meilleur choix.</p>
+<h3 id="étape-4-réparer-le-lecteur-seulement-une-fois-la-récupération-terminée">Étape 4. Réparer le lecteur (seulement une fois la récupération terminée)</h3>
+<p>Sélectionnez le lecteur et utilisez l'un des boutons de réparation. Le chapitre 7 explique lequel choisir. <strong>Formater</strong> et <strong>Reconstruire</strong> effacent les données ; le programme vous demande donc de saisir exactement un mot de confirmation, par exemple <code>FORMAT E</code>. Assurez-vous d'avoir tout récupéré avant de les utiliser.</p>
+<p>Avant que <strong>Vérifier (chkdsk)</strong>, <strong>Formater</strong> ou <strong>Reconstruire</strong> n'écrive quoi que ce soit, le programme vérifie le lecteur en lecture seule. Si le lecteur montre des signes de défaillance de son contrôleur, il ne répare pas et en donne la raison dans le journal. Ces signes sont : le lecteur ne répond pas aux lectures ou indique une taille de 0, ou une partie du lecteur n'a pas pu être lue. Sur un lecteur FAT32, il vérifie aussi si le système de fichiers annonce un lecteur plus grand qu'il ne l'est, si les deux copies de la table des fichiers (FAT) diffèrent à de nombreux endroits et si la moitié ou plus des emplacements censés contenir des fichiers se lisent vides. Il n'y a alors aucun moyen de forcer la réparation. Une réparation écrit beaucoup, et un lecteur défaillant peut cesser complètement de fonctionner au milieu d'une grosse écriture. Récupérez vos fichiers avec les étapes 2 et 3, puis remplacez le lecteur. Un lecteur qui apparaît en RAW seulement parce que son système de fichiers n'est pas reconnu n'est pas bloqué. La même vérification a lieu quand vous réparez sans récupérer les données (chapitre 7).</p>
+<h3 id="étape-5-remettre-les-fichiers-après-réparation">Étape 5. Remettre les fichiers (après réparation)</h3>
+<p>L'ordre complet est le suivant : récupérer les données, garder les fichiers récupérés sur votre PC, réparer le lecteur, puis remettre les fichiers sur le lecteur réparé. Cette étape est la dernière. Elle vérifie aussi que le lecteur conserve vraiment les données avant que vous lui fassiez de nouveau confiance.</p>
+<p>Quand <strong>Formater</strong> ou <strong>Reconstruire</strong> se termine, le journal indique : cliquez sur <strong>Actualiser</strong>, puis sur <strong>Tester le lecteur</strong>, puis sur <strong>Remettre les fichiers</strong>. Les deux boutons se trouvent sur la ligne <strong>Après réparation :</strong> et agissent sur la lettre de lecteur du disque sélectionné. Ils ne demandent pas les droits d'administrateur.</p>
+<ol>
+<li>Cliquez sur <strong>Actualiser</strong> et sélectionnez le lecteur réparé. Il a peut-être reçu une nouvelle lettre.</li>
+<li>Cliquez sur <strong>Tester le lecteur</strong>. Choisissez <strong>Oui</strong> pour tester tout l'espace libre, ou <strong>Non</strong> pour un test rapide de 1 Go (<strong>Annuler</strong> ne fait rien). Le test complet est lent, mais c'est lui qui repère les lecteurs qui annoncent une fausse capacité. Le programme écrit des données de test dans un dossier <code>_revive_test</code> sur le lecteur, les relit sans passer par le cache de Windows, les compare, puis supprime le dossier. Un dossier laissé par un test précédent interrompu est supprimé aussi. Si le lecteur se remplit, l'écriture s'arrête là et les données écrites jusque-là sont vérifiées.</li>
+<li>Lisez le résultat dans le journal. Si le test réussit, il indique la quantité écrite et relue sans erreur. S'il échoue, il indique la quantité qui n'a pas été relue correctement ; remplacez le lecteur. Si des données écrites plus tard sont revenues à la place de données écrites avant, le journal indique que le lecteur ne contient probablement qu'environ une certaine taille, moins que ce qu'il annonce. C'est un lecteur à fausse capacité. N'y mettez pas vos fichiers. Si le lecteur cesse de répondre pendant le test, le journal indique après quelle quantité de données il s'est arrêté et que le lecteur ne peut pas conserver les données de façon fiable. N'y mettez pas vos fichiers ; remplacez-le.</li>
+<li>Cliquez sur <strong>Remettre les fichiers</strong> et sélectionnez le dossier de votre PC qui contient les fichiers récupérés. Un dossier situé sur le même lecteur est refusé. Si le lecteur n'a pas assez d'espace libre, le programme le signale avant d'écrire quoi que ce soit. Il copie tout avec la même structure de dossiers, sauf les dossiers <code>System Volume Information</code> et <code>$RECYCLE.BIN</code> à la racine, que Windows recrée de lui-même.</li>
+<li>Après la copie, le programme relit chaque fichier depuis le lecteur, toujours sans passer par le cache, et compare son SHA-256 avec celui de l'original. Si tout correspond, le journal l'indique. Si certains fichiers ne sont pas relus à l'identique, le journal en donne la liste et indique que le lecteur ne conserve pas les données de façon fiable. Ne gardez pas de fichiers importants sur ce lecteur.</li>
+</ol>
+<p>Gardez les fichiers récupérés sur votre PC même après une copie réussie, pour conserver une deuxième copie.</p>
+<hr />
+<h2 id="6-référence-des-boutons">6. Référence des boutons</h2>
+<table>
+<thead>
+<tr>
+<th>Bouton</th>
+<th>Ce qu'il fait</th>
+<th class="ta-center">Modifie le lecteur</th>
+<th class="ta-center">Administrateur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actualiser</strong></td>
+<td>Liste les clés USB connectées (et les disques internes quand la case est cochée)</td>
+<td class="ta-center">Non</td>
+<td class="ta-center">Non</td>
+</tr>
+<tr>
+<td><strong>Bilan de santé</strong></td>
+<td>Affiche l'état du lecteur et les compteurs SMART quand ils sont disponibles. La plupart des clés USB n'en fournissent aucun ; le journal indique alors que le bilan ne peut pas dire si le lecteur tombera de nouveau en panne</td>
+<td class="ta-center">Non</td>
+<td class="ta-center">Non</td>
+</tr>
+<tr>
+<td><strong>Sauvegarder en image</strong></td>
+<td>Copie tout le lecteur dans un fichier image en sautant les zones défectueuses, propose de les réessayer secteur par secteur, et reprend une copie précédente</td>
+<td class="ta-center">Non</td>
+<td class="ta-center">Oui</td>
+</tr>
+<tr>
+<td><strong>Récupérer (noms/chemins)</strong></td>
+<td>Lit NTFS, FAT32 ou exFAT et copie tous les fichiers avec leurs noms et leurs dossiers : fichiers actuels, fichiers supprimés et fichiers des dossiers supprimés</td>
+<td class="ta-center">Non</td>
+<td class="ta-center">Seulement sans image</td>
+</tr>
+<tr>
+<td><strong>Récupérer (signature)</strong></td>
+<td>Retrouve les fichiers JPEG, PNG, GIF, BMP, PDF, ZIP, MP4, MOV et HEIC d'après leur contenu</td>
+<td class="ta-center">Non</td>
+<td class="ta-center">Seulement sans image</td>
+</tr>
+<tr>
+<td><strong>Vérifier (chkdsk)</strong></td>
+<td>Lance chkdsk en mode correction sur la lettre de lecteur. Demande d'abord Oui ou Non</td>
+<td class="ta-center">Corrige les erreurs, conserve les données</td>
+<td class="ta-center">Oui</td>
+</tr>
+<tr>
+<td><strong>Formater</strong></td>
+<td>Effectue un formatage rapide du volume en NTFS avec le nom de volume <code>USB</code>. Vous saisissez <code>FORMAT &lt;lettre&gt;</code> pour confirmer</td>
+<td class="ta-center">Efface les données</td>
+<td class="ta-center">Oui</td>
+</tr>
+<tr>
+<td><strong>Reconstruire</strong></td>
+<td>Efface tout le disque, crée une nouvelle partition et la formate rapidement en NTFS avec le nom de volume <code>USB</code>. Vous saisissez <code>ERASE DISK &lt;numéro&gt;</code> pour confirmer</td>
+<td class="ta-center">Efface les données</td>
+<td class="ta-center">Oui</td>
+</tr>
+<tr>
+<td><strong>Tester le lecteur</strong></td>
+<td>Écrit des données de test dans tout l'espace libre ou sur 1 Go, les relit sans passer par le cache de Windows, les compare et les supprime. Repère les lecteurs qui perdent des données ou annoncent une fausse capacité</td>
+<td class="ta-center">Écrit des données de test, puis les supprime</td>
+<td class="ta-center">Non</td>
+</tr>
+<tr>
+<td><strong>Remettre les fichiers</strong></td>
+<td>Copie les fichiers récupérés depuis un dossier de votre PC vers le lecteur avec les mêmes dossiers, puis relit chacun d'eux et compare leur SHA-256</td>
+<td class="ta-center">Écrit des fichiers</td>
+<td class="ta-center">Non</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reconstruire</strong> choisit le type de partition pour vous : MBR pour les lecteurs de 2 To ou moins, GPT pour les plus grands. Le journal indique lequel a été choisi.</p>
+<hr />
+<h2 id="7-réparer-un-lecteur-quand-vous-navez-pas-besoin-des-données">7. Réparer un lecteur quand vous n'avez pas besoin des données</h2>
+<p>Si vous n'avez pas besoin des fichiers et voulez seulement remettre en service une clé USB ou un disque externe défaillant, sautez les étapes de sauvegarde et de récupération et réparez-le directement.</p>
+<h3 id="71-diagnostiquer-dabord">7.1 Diagnostiquer d'abord</h3>
+<p>Cliquez sur <strong>Actualiser</strong>, sélectionnez le lecteur et regardez la liste et le journal. Un exemple réel avec un disque externe WD : la liste affichait 3,6 To, l'état <code>Healthy/Online</code>, et seulement un morceau RAW de 200 Mo sans lettre de lecteur.</p>
+<p>Comment l'interpréter : un état <code>Healthy/Online</code> signifie que le matériel fonctionne et que seule la structure des partitions est cassée. Un logiciel peut généralement réparer cela. Si un lecteur de grande capacité n'affiche qu'un petit morceau RAW, ou n'a pas de lettre de lecteur, sa partition principale a disparu.</p>
+<h3 id="72-choisir-une-réparation-de-la-plus-douce-à-la-plus-forte">7.2 Choisir une réparation, de la plus douce à la plus forte</h3>
+<table>
+<thead>
+<tr>
+<th>Symptôme</th>
+<th>Bouton</th>
+<th>Ce qu'il fait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>La lettre de lecteur existe, les fichiers sont corrompus ou provoquent des erreurs de lecture</td>
+<td><strong>Vérifier (chkdsk)</strong></td>
+<td>Corrige les erreurs du système de fichiers et conserve les données</td>
+</tr>
+<tr>
+<td>La lettre de lecteur existe, vous voulez tout effacer</td>
+<td><strong>Formater</strong></td>
+<td>Reformate seulement le volume</td>
+</tr>
+<tr>
+<td>RAW, pas de lettre de lecteur, partitions endommagées</td>
+<td><strong>Reconstruire</strong></td>
+<td>Efface tout le disque et le recrée. C'est la solution habituelle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vérifier (chkdsk)</strong> et <strong>Formater</strong> ont besoin d'une lettre de lecteur. Si le lecteur n'en a pas, le programme vous indique d'utiliser plutôt <strong>Reconstruire</strong>. chkdsk ne peut pas non plus réparer un lecteur RAW, car il n'y a plus de système de fichiers à corriger.</p>
+<h3 id="73-ranimer-un-lecteur-raw">7.3 Ranimer un lecteur RAW</h3>
+<p>C'est le cas le plus courant. Sélectionnez le lecteur, cliquez sur <strong>Reconstruire</strong> et saisissez <code>ERASE DISK 2</code> (avec votre numéro de disque) quand on vous le demande. Cela prend généralement de quelques secondes à une minute. À la fin, le lecteur reçoit une nouvelle lettre de lecteur. Avant de lui confier des fichiers, cliquez sur <strong>Actualiser</strong>, sélectionnez le lecteur et lancez <strong>Tester le lecteur</strong>. L'étape 5 du chapitre 5 explique le résultat et comment remettre vos fichiers.</p>
+<p>Le nouveau système de fichiers est NTFS, que Windows sait lire et écrire. Si vous avez besoin du lecteur sur un Mac ou un autre appareil, reformatez-le ensuite avec cet appareil ou avec la boîte de dialogue de formatage de Windows.</p>
+<h3 id="74-faire-le-ménage">7.4 Faire le ménage</h3>
+<p>Si vous avez créé une image auparavant et n'en avez plus besoin, supprimez le fichier image et le fichier de progression à côté, par exemple <code>disk2.img</code> et <code>disk2.img.state.json</code>.</p>
+<h3 id="75-si-la-réparation-échoue">7.5 Si la réparation échoue</h3>
+<ol>
+<li>Débranchez le lecteur, rebranchez-le, cliquez sur <strong>Actualiser</strong> et réessayez. Windows bloque peut-être le disque.</li>
+<li>Fermez tout ce qui pourrait utiliser le lecteur, comme l'antivirus ou les aperçus de l'Explorateur.</li>
+<li>Si cela échoue encore, si l'état reste <code>Unhealthy</code>, ou si le lecteur n'arrête pas d'apparaître et de disparaître, le matériel est probablement défaillant. Aucun logiciel ne peut corriger cela : envisagez de remplacer le lecteur.</li>
+</ol>
+<h3 id="76-réduire-le-risque-dune-nouvelle-panne">7.6 Réduire le risque d'une nouvelle panne</h3>
+<p>Aucun logiciel ne peut garantir qu'un lecteur ne tombera plus en panne. <strong>Bilan de santé</strong> lit les compteurs que le lecteur tient sur lui-même : secteurs réalloués, erreurs de lecture et usure. Des erreurs de lecture ou d'écriture non corrigeables, ou une usure élevée, signifient un risque élevé de nouvelle panne, et le remplacement est recommandé.</p>
+<p>Beaucoup de boîtiers USB ne transmettent pas les données SMART, en raison des limites de leur puce passerelle. Dans ce cas, le bilan de santé indique que le lecteur ne fournit pas de données SMART. Un outil dédié comme CrystalDiskInfo peut parfois quand même les lire.</p>
+<p>Quelques principes à garder en tête :</p>
+<ul>
+<li>Le logiciel contourne les cellules déjà défaillantes. Il ne peut pas prolonger la durée de vie physique du lecteur.</li>
+<li>Ne gardez jamais l'unique copie de données importantes sur un lecteur déjà tombé en panne une fois. Gardez toujours une seconde sauvegarde.</li>
+<li>Si le lecteur repasse en RAW peu après une reconstruction, ou se déconnecte sans cesse, remplacez-le.</li>
+</ul>
+<hr />
+<h2 id="8-dépannage">8. Dépannage</h2>
+<h3 id="la-liste-des-disques-est-vide">La liste des disques est vide</h3>
+<p>Le journal indique <code>Aucun disque trouvé</code>. Vérifiez que le lecteur est branché et qu'il apparaît dans la Gestion des disques de Windows, puis cliquez de nouveau sur <strong>Actualiser</strong>. Si le lecteur n'est pas un lecteur USB, cochez <strong>Afficher les disques internes (prudence)</strong>.</p>
+<h3 id="la-liste-affiche-panne-firmware-mode-rom-ou-aucune-capacité-0">La liste affiche « Panne firmware (mode ROM) » ou « Aucune capacité (0) »</h3>
+<p>Le contrôleur de la clé USB n'a pas pu charger son firmware, ou le lecteur n'offre aucun espace de stockage. Windows affiche généralement un tel lecteur comme « Aucun média » ou comme un disque de 0 octet, et peut proposer de le formater ; choisissez Annuler. Quand vous sélectionnez le lecteur, un cadre <strong>Diagnostic</strong> s'ouvre sous la liste des disques. Il affiche l'ID du périphérique, le contrôleur probable et la marche à suivre. Tant que le lecteur est dans cet état, la sauvegarde, la récupération et la réparation sont désactivées, car il n'y a rien à lire ni à écrire.</p>
+<ol>
+<li>Débranchez le lecteur puis rebranchez-le. Le cadre revérifie tout seul toutes les 5 secondes (vous pouvez aussi cliquer sur <strong>Revérifier</strong>). Si le lecteur revient avec son nom normal, n'écrivez rien dessus ; sauvegardez-le d'abord. Le cadre reste ouvert, indique son retour et affiche les boutons <strong>Sauvegarder en image</strong> et <strong>Tester le lecteur (tout l'espace libre)</strong>. La réparation et <strong>Remettre les fichiers</strong> restent désactivées pour ce lecteur, même si vous fermez le cadre, tant qu'il n'a pas réussi <strong>Tester le lecteur</strong> sur tout l'espace libre, car une grosse écriture peut l'arrêter de nouveau.</li>
+<li>S'il ne revient pas, ReviveUSB ne peut pas le ranimer et ses fichiers ne peuvent pas être lus. Si les fichiers comptent, un laboratoire de récupération de données pourra peut-être lire directement la puce mémoire ; sinon, remplacez le lecteur. ReviveUSB ne recommande pas les outils d'usine (outils de production en série) : ils n'ont pas fonctionné sur le lecteur que nous avons testé et ne sont pas distribués officiellement.</li>
+<li>S'il est revenu à l'étape 1 et que vous voulez continuer à l'utiliser, sauvegardez-le d'abord, puis lancez <strong>Tester le lecteur</strong> sur tout l'espace libre. Quand le test réussit sans erreur, la réparation et <strong>Remettre les fichiers</strong> s'activent pour ce lecteur et le cadre se ferme tout seul. Un test rapide de 1 Go ne les active pas.</li>
+</ol>
+<p><strong>Copier le diagnostic</strong> copie le texte du cadre pour que vous puissiez le coller quand vous demandez de l'aide. Fermez le cadre avec <strong>×</strong>.</p>
+<p>Certains appareils apparaissent en gris comme « Vide (0) ». C'est un appareil que le programme ne connaît pas et qui n'indique aucune capacité ; un emplacement vide de lecteur de cartes ressemble généralement à cela. Ce n'est pas une panne : insérez une carte. Si une clé USB s'affiche ainsi, débranchez-la puis rebranchez-la. Sauvegarde, récupération et réparation restent désactivées pendant ce temps, car il n'y a rien à lire.</p>
+<h3 id="la-sauvegarde-est-très-lente-par-exemple-une-estimation-de-100-heures-ou-plus">La sauvegarde est très lente (par exemple, une estimation de 100 heures ou plus)</h3>
+<p>Le programme saute déjà les zones défectueuses, donc un ralentissement vient généralement du lecteur ou de la connexion. Si la vitesse est faible du début à la fin (quelques centaines de Ko/s), essayez ceci dans l'ordre :</p>
+<ol>
+<li>Branchez le lecteur directement sur un port USB 3.0 (bleu) à l'arrière du PC. Évitez les concentrateurs et les rallonges.</li>
+<li>Changez de câble.</li>
+<li>Essayez un autre PC.</li>
+</ol>
+<p>Pour changer de port, fermez ReviveUSB, déplacez le lecteur et sauvegardez de nouveau vers le même fichier image. La copie reprend là où elle s'était arrêtée.</p>
+<h3 id="le-lecteur-apparaît-en-raw">Le lecteur apparaît en RAW</h3>
+<p>Windows ne parvient pas à lire le système de fichiers, mais le programme y arrive souvent. Sauvegardez le lecteur en image et essayez d'abord <strong>Récupérer (noms/chemins)</strong> ; s'il ne trouve rien, utilisez <strong>Récupérer (signature)</strong>. Après la récupération, remettez le lecteur en service avec <strong>Reconstruire</strong>.</p>
+<h3 id="système-de-fichiers-non-détecté">« Système de fichiers non détecté »</h3>
+<p>La méthode noms/chemins ne comprend que NTFS, FAT32 et exFAT, et elle a besoin que l'index du système de fichiers soit lisible. Utilisez plutôt <strong>Récupérer (signature)</strong>. (Le message peut employer des noms de la ligne de commande comme <code>carve</code> ou <code>--fs</code> ; dans la fenêtre, le bouton signature correspond à la même chose.)</p>
+<h3 id="cette-opération-nécessite-des-droits-dadministrateur">« Cette opération nécessite des droits d'administrateur »</h3>
+<p>Cliquez sur <strong>Oui</strong> pour redémarrer le programme en administrateur, ou fermez-le et relancez-le en acceptant la demande de Windows.</p>
+<h3 id="les-fichiers-récupérés-ne-souvrent-pas">Les fichiers récupérés ne s'ouvrent pas</h3>
+<p>Le fichier était peut-être fragmenté, si bien que seule sa première partie a été récupérée. Essayez les deux boutons de récupération. Les parties du lecteur qui n'ont pas pu être lues manquent dans l'image, et les fichiers qui s'y trouvaient ne peuvent pas revenir complets.</p>
+<hr />
+<h2 id="9-faq">9. FAQ</h2>
+<p>Q. Je veux sauver ma clé USB : que veut dire « ne rien écrire dessus » ?
+R. Cela signifie ne pas enregistrer de nouvelles données sur le lecteur. Lancer ce programme ne pose pas de problème, car la sauvegarde et la récupération ne font que lire. Voir le chapitre 2.</p>
+<p>Q. Cela peut-il endommager le lecteur d'origine ?
+R. La sauvegarde et la récupération sont en lecture seule. Seuls les boutons de réparation modifient l'original, et ils demandent d'abord une confirmation.</p>
+<p>Q. Les noms de fichiers peuvent-ils être récupérés ?
+R. <strong>Récupérer (noms/chemins)</strong> restaure les noms et les dossiers. <strong>Récupérer (signature)</strong> ne restaure que le contenu et nomme les fichiers par numéro d'ordre.</p>
+<p>Q. Mon lecteur fait 114 Go. Dois-je en faire une image complète ?
+R. Une sauvegarde complète est le choix sûr. Si vous manquez de temps, vous pouvez fermer le programme en cours de route et lancer <strong>Récupérer (signature)</strong> sur l'image obtenue jusque-là ; les fichiers sont récupérés à partir de la partie déjà copiée.</p>
+<p>Q. Y a-t-il des cas où la récupération est impossible ?
+R. Oui. Si les données ont été écrasées, ou si la puce mémoire flash elle-même est morte, aucun logiciel ne peut aider. Il faut alors faire appel à un service professionnel de récupération de données.</p>
+<hr />
+<h2 id="10-glossaire">10. Glossaire</h2>
+<table>
+<thead>
+<tr>
+<th>Terme</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image (.img)</td>
+<td>Une copie octet par octet du lecteur dans un seul fichier. Vous travaillez sur cette copie plutôt que sur l'original</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>L'index du système de fichiers est cassé, donc Windows ne peut pas lire le lecteur</td>
+</tr>
+<tr>
+<td>Récupération par signature (carving)</td>
+<td>Récupérer un fichier en retrouvant l'empreinte de son contenu (octets magiques)</td>
+</tr>
+<tr>
+<td>Récupération par noms/chemins (undelete)</td>
+<td>Lire l'index du système de fichiers pour restaurer les fichiers avec leurs noms et leurs chemins</td>
+</tr>
+<tr>
+<td>Secteur défectueux</td>
+<td>Une zone de stockage illisible. La sauvegarde la saute et la consigne</td>
+</tr>
+<tr>
+<td>Secteur et cluster</td>
+<td>La plus petite unité de stockage (généralement 512 octets) et un groupe de secteurs</td>
+</tr>
+<tr>
+<td>Droits d'administrateur</td>
+<td>L'autorisation Windows nécessaire pour accéder directement à un disque</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-langue">11. Langue</h2>
+<p>Le programme démarre en anglais. Pour passer au français, choisissez Français dans la liste des langues en haut à droite de la fenêtre. Le programme mémorise ce choix et démarre dans cette langue la fois suivante.</p>
+<hr />
+<h2 id="12-avertissement">12. Avertissement</h2>
+<p>ReviveUSB est fourni tel quel, sans aucune garantie. La récupération n'est jamais garantie, et les boutons de réparation effacent définitivement les données. Vous utilisez le programme à vos propres risques. L'auteur n'est pas responsable des pertes de données ni de tout autre dommage résultant de son utilisation. Conservez des sauvegardes de tout ce qui est important.</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../fr/revive/index.html">ReviveUSB</a><a href="../../fr/chatda/index.html">Chatda</a><a href="../../fr/about.html">À propos</a><a href="../../fr/donate.html">Faire un don</a><a href="../../fr/privacy.html">Confidentialité</a><a id="contact-link" href="#" hidden>Contact</a></nav><div class="prefs"><span>Langue: <a href="../../revive/help.html" lang="en">English</a> · <a href="../../ko/revive/help.html" lang="ko">한국어</a> · <a href="../../ja/revive/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/revive/help.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/revive/help.html" lang="zh-TW">繁體中文</a> · <a href="../../es/revive/help.html" lang="es">Español</a> · <a href="../../de/revive/help.html" lang="de">Deutsch</a> · <a href="../../fr/revive/help.html" lang="fr" aria-current="true">Français</a> · <a href="../../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/revive/help.html" lang="ru">Русский</a> · <a href="../../vi/revive/help.html" lang="vi">Tiếng Việt</a></span><label>Thème <select id="theme-select"><option value="auto">Par défaut</option><option value="dark">Sombre</option><option value="light">Clair</option></select></label></div><p class="mt-note">Cette page a été traduite automatiquement. Si vous repérez une erreur, n&#x27;hésitez pas à nous le signaler.</p><p>© 2026 Barbellsoft. Logiciel gratuit, fourni tel quel, sans aucune garantie.</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>

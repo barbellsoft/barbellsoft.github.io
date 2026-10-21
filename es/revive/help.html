@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Ayuda de ReviveUSB</title>
+<meta name="description" content="Herramienta gratuita para Windows para una unidad USB que pide ser formateada, aparece como RAW u oculta tus archivos. Copia la unidad de forma segura, recupera los archivos de la copia y después repara la unidad. Si la unidad en sí está fallando, no la repara: saca tus archivos con seguridad y te recomienda sustituirla.">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../es/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Principal"><a href="../../es/revive/index.html" aria-current="page">ReviveUSB</a><a href="../../es/chatda/index.html">Chatda</a><a href="../../es/about.html">Acerca de</a><a href="../../es/donate.html">Donar</a><a href="../../blog/index.html" lang="en">Blog</a></nav></div></header>
+<nav class="subnav" aria-label="Producto"><div class="wrap"><img src="../../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">Inicio</a><a href="download.html">Descargar</a><a href="faq.html">Preguntas frecuentes</a><a href="help.html" aria-current="page">Ayuda</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="manual-de-usuario-de-reviveusb">Manual de usuario de ReviveUSB</h1>
+<p>ReviveUSB recupera archivos de una unidad USB o un disco duro externo que falla y, si quieres, repara la unidad para que puedas volver a usarla. Todo ocurre en una sola ventana: eliges un disco y haces clic en un botón. Sigue este manual de principio a fin.</p>
+<hr />
+<h2 id="0-inicio-rápido">0. Inicio rápido</h2>
+<ol>
+<li>Ejecuta <code>ReviveUSB.exe</code> y concede permisos de administrador cuando Windows lo pida.</li>
+<li>Haz clic en <strong>Actualizar</strong> y luego en tu unidad USB en la lista de discos.</li>
+<li>Haz clic en <strong>Copiar a imagen</strong> y guarda la imagen en otra unidad con espacio libre suficiente.</li>
+<li>Haz clic en <strong>Recuperar (nombres/rutas)</strong>, elige la imagen y selecciona una carpeta en una unidad sana. Si no se recupera nada, haz lo mismo con <strong>Recuperar (firmas)</strong>.</li>
+<li>Solo cuando tengas todos tus archivos, usa uno de los botones de reparación para que la unidad vuelva a funcionar.</li>
+</ol>
+<p>La única regla que importa: si quieres recuperar tus datos, no guardes nada nuevo en la unidad dañada. Crea primero la imagen y recupera desde la imagen.</p>
+<p>Si no necesitas los datos y solo quieres que la unidad vuelva a funcionar, sáltate los pasos 3 y 4. El capítulo 7 trata este caso.</p>
+<hr />
+<h2 id="1-qué-hace-el-programa">1. Qué hace el programa</h2>
+<p>Úsalo cuando una unidad esté en una de estas situaciones:</p>
+<ul>
+<li>Borraste archivos por accidente.</li>
+<li>Al conectar la unidad, Windows dice "Es necesario formatear el disco antes de usarlo". Es un sistema de archivos dañado, que aparece como RAW.</li>
+<li>Una unidad grande aparece como un pequeño trozo RAW o no tiene letra de unidad, porque su partición está dañada.</li>
+<li>La unidad se reconoce, pero tus archivos no se ven.</li>
+</ul>
+<p>Tiene dos objetivos y una sola herramienta se encarga de ambos.</p>
+<table>
+<thead>
+<tr>
+<th>Objetivo</th>
+<th>Qué significa</th>
+<th>Botones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recuperar los datos</td>
+<td>Recuperar archivos eliminados o invisibles</td>
+<td><strong>Copiar a imagen</strong> y después uno de los botones <strong>Recuperar</strong></td>
+</tr>
+<tr>
+<td>Recuperar la unidad</td>
+<td>Volver a formatear la unidad para poder usarla de nuevo</td>
+<td><strong>Revisar (chkdsk)</strong>, <strong>Formatear</strong>, <strong>Reconstruir todo</strong></td>
+</tr>
+</tbody>
+</table>
+<p>El orden es fijo: primero recuperas los datos y después reparas la unidad. Si reparas primero, los datos se pierden para siempre.</p>
+<hr />
+<h2 id="2-reglas-de-seguridad-antes-de-empezar">2. Reglas de seguridad antes de empezar</h2>
+<p>Lo que arruina la recuperación es escribir en la unidad dañada. Ejecutar este programa no es un problema, porque la copia y la recuperación solo leen la unidad.</p>
+<p>Este es el motivo. Cuando borras un archivo, los datos suelen quedarse en la unidad. Solo se elimina la entrada del índice que apunta a ellos, y por eso la recuperación es posible. Si después guardas un archivo nuevo en la unidad, el sistema ve espacio libre donde están tus datos antiguos y puede escribir el archivo nuevo justo encima. Cuando eso ocurre, los datos antiguos ya no se pueden recuperar.</p>
+<p>No hagas nada de esto antes de recuperar:</p>
+<ul>
+<li>Guardar o copiar archivos nuevos en la unidad.</li>
+<li>Formatear la unidad, ya sea en Windows o con los botones de reparación.</li>
+<li>Hacer clic en Sí cuando Windows ofrezca examinar y reparar la unidad.</li>
+</ul>
+<p>Estos botones son seguros, porque solo leen: <strong>Actualizar</strong>, <strong>Revisión de salud</strong>, <strong>Copiar a imagen</strong> y los dos botones <strong>Recuperar</strong>.</p>
+<pre><code>unidad USB dañada --(solo lectura)--&gt; disk2.img (copia) --&gt; recovered\ (tus archivos)
+  original intacto                     trabajas sobre esta copia    resultados
+</code></pre>
+<hr />
+<h2 id="3-qué-necesitas">3. Qué necesitas</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Requisito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 u 11</td>
+<td>Sí. No hace falta Python</td>
+</tr>
+<tr>
+<td>Permisos de administrador</td>
+<td>Necesarios para la copia, para recuperar directamente desde un disco y para reparar</td>
+</tr>
+<tr>
+<td>Espacio libre para la imagen</td>
+<td>Tanto como la capacidad de la unidad, en otra unidad. Una unidad de 128 GB necesita 128 GB libres</td>
+</tr>
+<tr>
+<td>Un lugar sano para los archivos recuperados</td>
+<td>Cualquier unidad excepto la dañada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-iniciar-el-programa">4. Iniciar el programa</h2>
+<h3 id="41-descargar-y-comprobar-el-archivo">4.1 Descargar y comprobar el archivo</h3>
+<p>Descarga <code>ReviveUSB.exe</code> desde la página de descarga. El archivo aún no tiene firma de código, así que Windows SmartScreen o tu antivirus pueden mostrar una advertencia. Antes de ejecutarlo, comprueba que el archivo coincide con el SHA-256 que aparece en la página de descarga. En PowerShell:</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>Si los hashes coinciden y aparece SmartScreen, elige <strong>Más información</strong> y luego <strong>Ejecutar de todas formas</strong>.</p>
+<h3 id="42-permisos-de-administrador">4.2 Permisos de administrador</h3>
+<p>El programa pide permisos de administrador al iniciarse, porque leer un disco en bruto los requiere. Concédelos. La parte superior de la ventana mostrará <strong>Administrador: SÍ</strong>. Si dice NO, haz clic en <strong>Reiniciar como administrador</strong>.</p>
+<h3 id="43-la-ventana">4.3 La ventana</h3>
+<pre><code>+------------------------------------------------------------------------------+
+| Ayuda                                                                        |
++------------------------------------------------------------------------------+
+| Administrador: SÍ                                               [♥ Apoyar ▾] |
+| (1) Selecciona un disco                                                      |
+|     N.º | Nombre | Tamaño | Sistema de archivos | Estado                     |
+|     [Actualizar]   [ ] Mostrar discos internos (precaución)                  |
+| (2) Elige una acción                                                         |
+|     [Revisión de salud]             [Copiar a imagen]                        |
+|     [Recuperar (nombres/rutas)]     [Recuperar (firmas)]                     |
+|     Reparar (borra datos): [Revisar (chkdsk)] [Formatear] [Reconstruir todo] |
+|     Después de reparar: [Probar unidad] [Devolver archivos]                  |
+| barra de progreso, porcentaje, cantidad copiada                              |
+| Progreso: registro de lo que está haciendo el programa                       |
++------------------------------------------------------------------------------+
+</code></pre>
+<p>El menú <strong>Ayuda</strong> de la parte superior de la ventana abre este manual: elige <strong>Ayuda de ReviveUSB</strong> o pulsa <strong>F1</strong>. El manual va dentro del programa, así que se abre en tu navegador aunque no tengas conexión a internet. <strong>Acerca de ReviveUSB...</strong> (<strong>Ctrl+F1</strong>) muestra la versión. <strong>Sitio web de ReviveUSB</strong> abre barbellsoft.com y <strong>Buscar actualizaciones</strong> abre su página de descarga, donde aparece la versión más reciente. <strong>Apoyar</strong> en el mismo menú y el botón <strong>♥ Apoyar</strong> de arriba a la derecha abren la página de Buy Me a Coffee en tu navegador. ReviveUSB es gratuito y donar es opcional; el programa nunca maneja pagos. Cuando recuperas o devuelves archivos con éxito, el registro termina con una línea que muestra estos enlaces de donación.</p>
+<p>Solo se muestran los discos USB. Tus discos internos permanecen ocultos a menos que marques <strong>Mostrar discos internos (precaución)</strong>. Déjalo sin marcar salvo que sepas exactamente lo que haces.</p>
+<p>Mientras se ejecuta una tarea, los botones de acción se ven en gris y la barra de progreso y el registro se siguen actualizando. No hay botón Detener. Para detener una copia, cierra la ventana; el capítulo 5 explica cómo continuar más tarde.</p>
+<hr />
+<h2 id="5-recuperar-una-unidad-en-cinco-pasos">5. Recuperar una unidad en cinco pasos</h2>
+<h3 id="paso-1-selecciona-la-unidad">Paso 1. Selecciona la unidad</h3>
+<p>Conecta la unidad y haz clic en <strong>Actualizar</strong>. Haz clic en tu unidad en la lista. El registro confirma qué disco seleccionaste, por ejemplo <code>Disco 2 seleccionado: SanDisk Ultra</code>.</p>
+<p>Mira la columna <strong>Sistema de archivos</strong>. RAW significa que el sistema de archivos está dañado.</p>
+<p>Ahora puedes hacer clic en <strong>Revisión de salud</strong>. Muestra el estado de la unidad y, si la unidad los expone, contadores SMART como el desgaste y los errores de lectura no corregibles. Muchas unidades USB no transmiten los datos SMART; en ese caso el registro lo indica.</p>
+<h3 id="paso-2-copia-a-una-imagen">Paso 2. Copia a una imagen</h3>
+<p>Haz clic en <strong>Copiar a imagen</strong>. Elige dónde guardar la imagen, en otra unidad con espacio libre suficiente. El nombre sugerido es <code>diskN.img</code>, donde N es el número de disco.</p>
+<p>La unidad original solo se lee. Las zonas defectuosas se saltan rápidamente, así que la copia sigue avanzando en lugar de atascarse. La barra de progreso muestra el porcentaje y cuánto se ha copiado.</p>
+<p>Si algunas zonas no se pudieron leer, el programa pregunta si quieres reintentarlas sector a sector. Reintentar puede rescatar más datos, pero en una unidad muy dañada puede tardar mucho. Si cierras la ventana durante el reintento, vuelve a copiar más tarde al mismo archivo y el reintento continuará. Volver a copiar a una imagen ya terminada nunca lee de nuevo toda la unidad: solo ofrece reintentar las zonas ilegibles. Para empezar de cero, elige un nombre de archivo nuevo.</p>
+<p>Si eliges un lugar en la unidad que estás recuperando, el programa lo rechaza y te pide otra unidad. Guardar ahí podría sobrescribir los archivos que quieres recuperar.</p>
+<p>Puedes detener la copia en cualquier momento cerrando la ventana. El progreso se guarda cada dos segundos. Para continuar, vuelve a iniciar el programa, selecciona la misma unidad, haz clic en <strong>Copiar a imagen</strong> y elige el mismo archivo. Si Windows pregunta si quieres reemplazarlo, responde Sí: el registro muestra <code>Reanudando imagen</code> y la copia continúa donde se quedó. El programa comprueba que se trata de la misma unidad. Si el archivo pertenece a otra unidad, o la unidad ahora indica un tamaño distinto, se detiene en lugar de mezclar o sobrescribir la copia anterior; en ese caso, elige un nombre de archivo nuevo.</p>
+<h3 id="paso-3-recupera-archivos-desde-la-imagen">Paso 3. Recupera archivos desde la imagen</h3>
+<p>Hay dos botones. Prueba primero <strong>Recuperar (nombres/rutas)</strong> y usa <strong>Recuperar (firmas)</strong> si no encuentra nada.</p>
+<ol>
+<li>Haz clic en el botón.</li>
+<li>Selecciona tu archivo de imagen (<code>.img</code>).</li>
+<li>Elige una carpeta para los archivos recuperados, en una unidad sana. Una carpeta en la unidad que estás recuperando se rechaza. Si la unidad tiene varias particiones, los archivos de cada una van a su propia subcarpeta, como <code>volume2_exfat</code>.</li>
+</ol>
+<p>El método de nombres/rutas copia todos los archivos que encuentra, no solo los eliminados. Es lo que necesitas cuando Windows dice que la unidad "no es accesible" o te pide formatearla: los archivos suelen seguir ahí y vuelven con sus nombres. Cuando encuentra archivos actuales y eliminados, los eliminados van a una carpeta aparte, <code>_deleted_files</code>, para que una copia antigua nunca quede junto al archivo actual. La carpeta de destino necesita tanto espacio libre como ocupan los archivos; si no lo tiene, el registro te avisa antes de empezar. En una unidad FAT32 de la que Windows borró archivos, el registro puede listar archivos que «pueden tener un contenido incorrecto»: Windows borró parte de dónde empiezan y en tipos como .bin no hay firma para saber cuál es el sitio correcto. Ábralos antes de confiar en ellos.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Recuperar (nombres/rutas)</th>
+<th>Recuperar (firmas)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qué obtienes</td>
+<td>Nombres de archivo, rutas de carpeta y contenido</td>
+<td>Solo el contenido, con nombres numerados como <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>Funciona con</td>
+<td>NTFS, FAT32 y exFAT</td>
+<td>Cualquier unidad, incluso sin sistema de archivos</td>
+</tr>
+<tr>
+<td>Funciona mejor cuando</td>
+<td>El sistema de archivos aún se puede leer, aunque Windows no abra la unidad</td>
+<td>El propio sistema de archivos está destruido</td>
+</tr>
+<tr>
+<td>Orden</td>
+<td>Pruébalo primero</td>
+<td>Úsalo si el primero no encuentra nada</td>
+</tr>
+</tbody>
+</table>
+<p>Prueba primero el método de nombres/rutas aunque la unidad aparezca como RAW. Windows muestra RAW siempre que no puede montar el sistema de archivos, aunque solo un valor esté mal, y el programa a menudo todavía puede leerlo y recuperar los archivos con sus nombres. Si dice que no detecta el sistema de archivos, o no encuentra nada, usa el método de firmas.</p>
+<p>El método de firmas encuentra archivos JPEG, PNG, GIF, BMP, PDF y ZIP, y también archivos MP4, MOV, 3GP, M4A y HEIC (vídeos de móviles y cámaras de coche, fotos de iPhone). Los archivos de Office como docx, xlsx y pptx son archivos ZIP por dentro, así que se recuperan con nombre <code>.zip</code>; cámbiales el nombre a la extensión correcta. Un vídeo cuyo final nunca se llegó a escribir (una grabación cortada o una unidad que perdió datos) se guarda hasta donde llega, pero la mayoría de los reproductores no pueden reproducirlo sin el final que falta.</p>
+<p>Si hay un disco seleccionado en la lista, el programa pregunta primero si quieres leer ese disco directamente. Haz clic en <strong>No</strong> para elegir tu archivo de imagen, o en <strong>Sí</strong> para leer el disco. Leer el disco requiere permisos de administrador y es más arriesgado para una unidad que falla, así que una imagen es mejor opción.</p>
+<h3 id="paso-4-repara-la-unidad-solo-cuando-hayas-terminado-de-recuperar">Paso 4. Repara la unidad (solo cuando hayas terminado de recuperar)</h3>
+<p>Selecciona la unidad y usa uno de los botones de reparación. El capítulo 7 explica cuál elegir. <strong>Formatear</strong> y <strong>Reconstruir todo</strong> borran datos, así que el programa te pide que escribas exactamente una palabra de confirmación, por ejemplo <code>FORMAT E</code>. Asegúrate de haber recuperado todo antes de usarlos.</p>
+<p>Antes de que <strong>Revisar (chkdsk)</strong>, <strong>Formatear</strong> o <strong>Reconstruir todo</strong> escriban nada, el programa revisa la unidad solo leyendo. Si la unidad muestra señales de que su controlador está fallando, no repara y explica el motivo en el registro. Las señales son: la unidad no responde a las lecturas o indica un tamaño de 0, o no se pudo leer parte de la unidad. En unidades FAT32 también comprueba si el sistema de archivos dice que la unidad es más grande de lo que realmente es, si las dos copias de la tabla de archivos (FAT) no coinciden en muchos lugares y si la mitad o más de los lugares que deberían contener archivos se leen en blanco. En ese caso no hay forma de forzar la reparación. Reparar escribe mucho, y una unidad que está fallando puede dejar de funcionar del todo en medio de una escritura grande. Recupera tus archivos con los pasos 2 y 3 y cambia la unidad. No se bloquea una unidad que aparece como RAW solo porque no se reconoce su sistema de archivos. La misma revisión se hace cuando reparas sin recuperar datos (capítulo 7).</p>
+<h3 id="paso-5-devuelve-los-archivos-después-de-reparar">Paso 5. Devuelve los archivos (después de reparar)</h3>
+<p>El orden completo es: recuperar los datos, guardar los archivos recuperados en tu PC, reparar la unidad y después devolver los archivos a la unidad reparada. Este paso es la última parte. También comprueba que la unidad guarda los datos de verdad antes de volver a confiar en ella.</p>
+<p>Cuando <strong>Formatear</strong> o <strong>Reconstruir todo</strong> termina, el registro dice: haz clic en <strong>Actualizar</strong>, luego en <strong>Probar unidad</strong> y luego en <strong>Devolver archivos</strong>. Los dos botones están en la fila <strong>Después de reparar:</strong> y trabajan sobre la letra de unidad del disco seleccionado. No necesitan permisos de administrador.</p>
+<ol>
+<li>Haz clic en <strong>Actualizar</strong> y selecciona la unidad reparada. Puede que tenga una letra nueva.</li>
+<li>Haz clic en <strong>Probar unidad</strong>. Elige <strong>Sí</strong> para probar todo el espacio libre o <strong>No</strong> para una prueba rápida de 1 GB (<strong>Cancelar</strong> no hace nada). La prueba completa es lenta, pero es la que detecta las unidades que falsean su capacidad. El programa escribe datos de prueba en una carpeta <code>_revive_test</code> de la unidad, los vuelve a leer sin pasar por la caché de Windows, los compara y después borra la carpeta. También borra la carpeta que haya quedado de una prueba anterior interrumpida. Si la unidad se llena, la escritura se detiene ahí y se comprueba lo que se escribió hasta ese momento.</li>
+<li>Lee el resultado en el registro. Si la prueba pasa, indica cuánto se escribió y se volvió a leer sin errores. Si falla, indica cuánto no se leyó correctamente; cambia la unidad. Si los datos escritos más tarde aparecieron en lugar de los escritos antes, el registro dice que la unidad probablemente solo guarda alrededor de cierto tamaño, menos de lo que anuncia. Es una unidad con capacidad falsa. No pongas tus archivos en ella. Si la unidad deja de responder durante la prueba, el registro indica después de cuántos datos se detuvo y que la unidad no puede guardar datos de forma fiable. No pongas tus archivos en ella; cámbiala.</li>
+<li>Haz clic en <strong>Devolver archivos</strong> y selecciona la carpeta de tu PC donde están los archivos recuperados. Una carpeta de la misma unidad se rechaza. Si la unidad no tiene suficiente espacio libre, el programa lo dice antes de escribir nada. Copia todo con la misma estructura de carpetas, excepto las carpetas <code>System Volume Information</code> y <code>$RECYCLE.BIN</code> del nivel superior, que Windows vuelve a crear por su cuenta.</li>
+<li>Después de copiar, el programa vuelve a leer cada archivo desde la unidad, de nuevo sin pasar por la caché, y compara su SHA-256 con el del original. Si todos coinciden, el registro lo indica. Si algunos archivos no se leen igual, el registro los enumera y dice que la unidad no guarda los datos de forma fiable. No guardes archivos importantes en esa unidad.</li>
+</ol>
+<p>Conserva los archivos recuperados en tu PC aunque la copia salga bien, para seguir teniendo una segunda copia.</p>
+<hr />
+<h2 id="6-referencia-de-botones">6. Referencia de botones</h2>
+<table>
+<thead>
+<tr>
+<th>Botón</th>
+<th>Qué hace</th>
+<th class="ta-center">Modifica la unidad</th>
+<th class="ta-center">Administrador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actualizar</strong></td>
+<td>Muestra las unidades USB conectadas (y los discos internos si la casilla está marcada)</td>
+<td class="ta-center">No</td>
+<td class="ta-center">No</td>
+</tr>
+<tr>
+<td><strong>Revisión de salud</strong></td>
+<td>Muestra el estado de la unidad y los contadores SMART si están disponibles. La mayoría de las memorias USB no informan ninguno; en ese caso el registro dice que la revisión no puede saber si la unidad volverá a fallar</td>
+<td class="ta-center">No</td>
+<td class="ta-center">No</td>
+</tr>
+<tr>
+<td><strong>Copiar a imagen</strong></td>
+<td>Copia toda la unidad a un archivo de imagen saltando las zonas defectuosas, ofrece reintentarlas sector a sector y reanuda una copia anterior</td>
+<td class="ta-center">No</td>
+<td class="ta-center">Sí</td>
+</tr>
+<tr>
+<td><strong>Recuperar (nombres/rutas)</strong></td>
+<td>Lee NTFS, FAT32 o exFAT y copia todos los archivos con sus nombres y carpetas: archivos actuales, archivos eliminados y archivos de carpetas eliminadas</td>
+<td class="ta-center">No</td>
+<td class="ta-center">Solo sin imagen</td>
+</tr>
+<tr>
+<td><strong>Recuperar (firmas)</strong></td>
+<td>Encuentra archivos JPEG, PNG, GIF, BMP, PDF, ZIP, MP4, MOV y HEIC por su contenido</td>
+<td class="ta-center">No</td>
+<td class="ta-center">Solo sin imagen</td>
+</tr>
+<tr>
+<td><strong>Revisar (chkdsk)</strong></td>
+<td>Ejecuta chkdsk en modo de reparación sobre la letra de unidad. Antes pregunta Sí o No</td>
+<td class="ta-center">Corrige errores, conserva los datos</td>
+<td class="ta-center">Sí</td>
+</tr>
+<tr>
+<td><strong>Formatear</strong></td>
+<td>Formatea rápidamente el volumen como NTFS con la etiqueta <code>USB</code>. Escribes <code>FORMAT &lt;letra&gt;</code> para confirmar</td>
+<td class="ta-center">Borra los datos</td>
+<td class="ta-center">Sí</td>
+</tr>
+<tr>
+<td><strong>Reconstruir todo</strong></td>
+<td>Borra todo el disco, crea una partición nueva y la formatea rápidamente como NTFS con la etiqueta <code>USB</code>. Escribes <code>ERASE DISK &lt;número&gt;</code> para confirmar</td>
+<td class="ta-center">Borra los datos</td>
+<td class="ta-center">Sí</td>
+</tr>
+<tr>
+<td><strong>Probar unidad</strong></td>
+<td>Escribe datos de prueba en todo el espacio libre o en 1 GB, los vuelve a leer sin pasar por la caché de Windows, los compara y los borra. Detecta unidades que pierden datos o falsean su capacidad</td>
+<td class="ta-center">Escribe datos de prueba y luego los borra</td>
+<td class="ta-center">No</td>
+</tr>
+<tr>
+<td><strong>Devolver archivos</strong></td>
+<td>Copia los archivos recuperados desde una carpeta de tu PC a la unidad con las mismas carpetas, luego vuelve a leer cada uno y compara su SHA-256</td>
+<td class="ta-center">Escribe archivos</td>
+<td class="ta-center">No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reconstruir todo</strong> elige el estilo de partición por ti: MBR para unidades de 2 TB o menos y GPT para las más grandes. El registro indica cuál eligió.</p>
+<hr />
+<h2 id="7-reparar-una-unidad-cuando-no-necesitas-los-datos">7. Reparar una unidad cuando no necesitas los datos</h2>
+<p>Si no necesitas los archivos y solo quieres que una unidad USB o un disco externo que falla vuelva a funcionar, sáltate la copia y la recuperación y repárala directamente.</p>
+<h3 id="71-diagnostica-primero">7.1 Diagnostica primero</h3>
+<p>Haz clic en <strong>Actualizar</strong>, selecciona la unidad y mira la lista y el registro. Un ejemplo real con un disco externo WD: la lista mostraba 3,6 TB, estado <code>Healthy/Online</code> y solo un trozo RAW de 200 MB sin letra de unidad.</p>
+<p>Cómo interpretarlo: un estado <code>Healthy/Online</code> significa que el hardware funciona y que solo está rota la estructura de particiones. Normalmente el software puede repararlo. Si una unidad grande muestra solo un pequeño trozo RAW, o no tiene letra de unidad, su partición principal ha desaparecido.</p>
+<h3 id="72-elegir-una-reparación-de-la-más-suave-a-la-más-fuerte">7.2 Elegir una reparación, de la más suave a la más fuerte</h3>
+<table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Botón</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hay letra de unidad, los archivos están dañados o dan errores de lectura</td>
+<td><strong>Revisar (chkdsk)</strong></td>
+<td>Corrige errores del sistema de archivos y conserva los datos</td>
+</tr>
+<tr>
+<td>Hay letra de unidad y quieres borrarla</td>
+<td><strong>Formatear</strong></td>
+<td>Solo vuelve a formatear el volumen</td>
+</tr>
+<tr>
+<td>RAW, sin letra de unidad, particiones dañadas</td>
+<td><strong>Reconstruir todo</strong></td>
+<td>Borra todo el disco y lo recrea. Es la solución habitual</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Revisar (chkdsk)</strong> y <strong>Formatear</strong> necesitan una letra de unidad. Si la unidad no tiene, el programa te indica que uses <strong>Reconstruir todo</strong>. chkdsk tampoco puede reparar una unidad RAW, porque no queda ningún sistema de archivos que corregir.</p>
+<h3 id="73-revivir-una-unidad-raw">7.3 Revivir una unidad RAW</h3>
+<p>Es el caso más habitual. Selecciona la unidad, haz clic en <strong>Reconstruir todo</strong> y escribe <code>ERASE DISK 2</code> (con tu número de disco) cuando se te pida. Suele tardar entre unos segundos y un minuto. Al terminar, la unidad recibe una letra nueva. Antes de confiarle archivos, haz clic en <strong>Actualizar</strong>, selecciona la unidad y ejecuta <strong>Probar unidad</strong>. El paso 5 del capítulo 5 explica el resultado y cómo devolver tus archivos.</p>
+<p>El nuevo sistema de archivos es NTFS, que Windows lee y escribe. Si necesitas usar la unidad en un Mac u otro dispositivo, vuelve a formatearla después con ese dispositivo o con el propio diálogo de formato de Windows.</p>
+<h3 id="74-limpieza">7.4 Limpieza</h3>
+<p>Si creaste una imagen y ya no la necesitas, borra el archivo de imagen y el archivo de progreso que está a su lado, por ejemplo <code>disk2.img</code> y <code>disk2.img.state.json</code>.</p>
+<h3 id="75-si-la-reparación-falla">7.5 Si la reparación falla</h3>
+<ol>
+<li>Desconecta la unidad, vuelve a conectarla, haz clic en <strong>Actualizar</strong> e inténtalo de nuevo. Puede que Windows tenga el disco bloqueado.</li>
+<li>Cierra cualquier otra cosa que pueda estar usando la unidad, como el antivirus o las vistas previas del Explorador.</li>
+<li>Si sigue fallando, el estado se queda en <code>Unhealthy</code> o la unidad aparece y desaparece una y otra vez, probablemente el hardware esté fallando. El software no puede arreglarlo, así que considera reemplazar la unidad.</li>
+</ol>
+<h3 id="76-reducir-el-riesgo-de-otra-avería">7.6 Reducir el riesgo de otra avería</h3>
+<p>Ningún software puede garantizar que una unidad no vuelva a fallar. <strong>Revisión de salud</strong> lee los contadores que la unidad lleva sobre sí misma: sectores reasignados, errores de lectura y desgaste. Los errores de lectura o escritura no corregibles, o un desgaste alto, indican un riesgo alto de otra avería, y se recomienda reemplazar la unidad.</p>
+<p>Muchas carcasas USB no transmiten los datos SMART por las limitaciones del chip puente. En ese caso, la revisión de salud indica que la unidad no expone datos SMART. Una herramienta dedicada como CrystalDiskInfo quizá pueda leerlos.</p>
+<p>Algunos principios que conviene recordar:</p>
+<ul>
+<li>El software esquiva las celdas que ya se han estropeado. No puede alargar la vida física de la unidad.</li>
+<li>Nunca guardes la única copia de datos importantes en una unidad que ya falló una vez. Guarda siempre una segunda copia.</li>
+<li>Si la unidad vuelve a aparecer como RAW poco después de una reconstrucción, o se desconecta una y otra vez, reemplázala.</li>
+</ul>
+<hr />
+<h2 id="8-solución-de-problemas">8. Solución de problemas</h2>
+<h3 id="la-lista-de-discos-está-vacía">La lista de discos está vacía</h3>
+<p>El registro dice <code>No se encontraron discos</code>. Comprueba que la unidad está conectada y aparece en Administración de discos de Windows, y vuelve a hacer clic en <strong>Actualizar</strong>. Si la unidad no es USB, marca <strong>Mostrar discos internos (precaución)</strong>.</p>
+<h3 id="la-lista-muestra-fallo-de-firmware-modo-rom-o-sin-capacidad-0">La lista muestra "Fallo de firmware (modo ROM)" o "Sin capacidad (0)"</h3>
+<p>El controlador de la memoria USB no pudo cargar su firmware, o la unidad no ofrece almacenamiento. Windows suele mostrar una unidad así como "Sin medios" o como un disco de 0 bytes, y puede preguntar si quieres formatearla; elige Cancelar. Al seleccionar la unidad, se abre un cuadro <strong>Diagnóstico</strong> debajo de la lista de discos. Muestra el ID del dispositivo, el controlador probable y qué hacer a continuación. Mientras la unidad esté en este estado, la copia, la recuperación y la reparación están desactivadas, porque no hay nada que leer ni escribir.</p>
+<ol>
+<li>Desconecta la unidad y vuelve a conectarla. El cuadro vuelve a comprobar solo cada 5 segundos (también puedes hacer clic en <strong>Revisar de nuevo</strong>). Si la unidad vuelve con su nombre normal, no escribas nada en ella; haz primero la copia. El cuadro sigue abierto, indica que ha vuelto y muestra los botones <strong>Copiar a imagen</strong> y <strong>Probar unidad (todo el espacio libre)</strong>. La reparación y <strong>Devolver archivos</strong> siguen desactivadas para esta unidad, aunque cierres el cuadro, hasta que supere <strong>Probar unidad</strong> sobre todo el espacio libre, porque una escritura grande puede volver a detenerla.</li>
+<li>Si no vuelve, ReviveUSB no puede revivirla y sus archivos no se pueden leer. Si los archivos importan, un laboratorio de recuperación de datos quizá pueda leer el chip de memoria directamente; si no, reemplaza la unidad. ReviveUSB no recomienda las herramientas de fábrica (herramientas de producción masiva): no funcionaron en la unidad que probamos y no se distribuyen oficialmente.</li>
+<li>Si volvió en el paso 1 y quieres seguir usándola, haz primero la copia y luego ejecuta <strong>Probar unidad</strong> sobre todo el espacio libre. Cuando la prueba pasa sin errores, la reparación y <strong>Devolver archivos</strong> se activan para esa unidad y el cuadro se cierra solo. Una prueba rápida de 1 GB no las activa.</li>
+</ol>
+<p><strong>Copiar diagnóstico</strong> copia el texto del cuadro para que puedas pegarlo cuando pidas ayuda. Cierra el cuadro con <strong>×</strong>.</p>
+<p>Algunos dispositivos aparecen en gris como "Vacío (0)". Es un dispositivo que el programa no conoce y que indica que no tiene capacidad; una ranura vacía de un lector de tarjetas suele verse así. No es una avería: inserte una tarjeta. Si una memoria USB aparece así, desconéctela y vuelva a conectarla. Mientras tanto, copia de seguridad, recuperación y reparación siguen desactivadas, porque no hay nada que leer.</p>
+<h3 id="la-copia-es-muy-lenta-por-ejemplo-una-estimación-de-100-horas-o-más">La copia es muy lenta (por ejemplo, una estimación de 100 horas o más)</h3>
+<p>El programa ya salta las zonas defectuosas, así que la lentitud suele venir de la unidad o de la conexión. Si la velocidad es baja de principio a fin (unos cientos de KB/s), prueba esto en orden:</p>
+<ol>
+<li>Conecta la unidad directamente a un puerto USB 3.0 (azul) de la parte trasera del PC. Evita hubs y alargadores.</li>
+<li>Cambia el cable.</li>
+<li>Prueba en otro PC.</li>
+</ol>
+<p>Para cambiar de puerto, cierra ReviveUSB, mueve la unidad y vuelve a copiar al mismo archivo de imagen. Continuará donde se detuvo.</p>
+<h3 id="la-unidad-aparece-como-raw">La unidad aparece como RAW</h3>
+<p>Windows no puede leer el sistema de archivos, pero el programa a menudo sí. Copia la unidad a una imagen y prueba primero <strong>Recuperar (nombres/rutas)</strong>; si no encuentra nada, usa <strong>Recuperar (firmas)</strong>. Después de recuperar, devuelve la unidad a la vida con <strong>Reconstruir todo</strong>.</p>
+<h3 id="no-se-pudo-detectar-el-sistema-de-archivos">"No se pudo detectar el sistema de archivos"</h3>
+<p>El método de nombres/rutas solo entiende NTFS, FAT32 y exFAT, y necesita que el índice del sistema de archivos se pueda leer. Usa <strong>Recuperar (firmas)</strong> en su lugar. (El mensaje puede usar nombres de la línea de comandos como <code>carve</code> o <code>--fs</code>; en la ventana, el botón de firmas es lo mismo.)</p>
+<h3 id="esta-acción-necesita-permisos-de-administrador">"Esta acción necesita permisos de administrador"</h3>
+<p>Haz clic en <strong>Sí</strong> para reiniciar el programa como administrador, o ciérralo y vuelve a ejecutarlo aceptando el aviso de Windows.</p>
+<h3 id="los-archivos-recuperados-no-se-abren">Los archivos recuperados no se abren</h3>
+<p>Puede que el archivo estuviera fragmentado y solo se recuperara su primera parte. Prueba los dos botones de recuperación. Las partes de la unidad que no se pudieron leer faltan en la imagen, y los archivos guardados ahí no pueden volver completos.</p>
+<hr />
+<h2 id="9-preguntas-frecuentes">9. Preguntas frecuentes</h2>
+<p>P. Quiero salvar la unidad USB, ¿qué significa "no escribir en ella"?
+R. Significa no guardar datos nuevos en la unidad. Ejecutar este programa no es problema, porque la copia y la recuperación solo leen. Consulta el capítulo 2.</p>
+<p>P. ¿Puede dañar la unidad original?
+R. La copia y la recuperación son de solo lectura. Solo los botones de reparación modifican el original, y antes piden confirmación.</p>
+<p>P. ¿Se pueden recuperar los nombres de archivo?
+R. <strong>Recuperar (nombres/rutas)</strong> restaura nombres y carpetas. <strong>Recuperar (firmas)</strong> restaura solo el contenido y nombra los archivos con un número de secuencia.</p>
+<p>P. Mi unidad tiene 114 GB. ¿Tengo que copiarla entera a la imagen?
+R. Una copia completa es la opción segura. Si tienes poco tiempo, puedes cerrar el programa a medias y ejecutar <strong>Recuperar (firmas)</strong> sobre la imagen que tengas hasta ese momento; recupera archivos de la parte que se copió.</p>
+<p>P. ¿Hay casos en los que la recuperación es imposible?
+R. Sí. Si los datos se sobrescribieron o el propio chip de memoria flash está muerto, el software no puede ayudar. En ese caso, la solución es un servicio profesional de recuperación de datos.</p>
+<hr />
+<h2 id="10-glosario">10. Glosario</h2>
+<table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imagen (.img)</td>
+<td>Una copia byte a byte de la unidad en un solo archivo. Trabajas sobre esta copia en lugar del original</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>El índice del sistema de archivos está roto, así que Windows no puede leer la unidad</td>
+</tr>
+<tr>
+<td>Recuperación por firmas (carving)</td>
+<td>Recuperar un archivo buscando la huella de su contenido (bytes mágicos)</td>
+</tr>
+<tr>
+<td>Recuperación por nombres/rutas (undelete)</td>
+<td>Leer el índice del sistema de archivos para restaurar los archivos con sus nombres y rutas</td>
+</tr>
+<tr>
+<td>Sector defectuoso</td>
+<td>Una zona de almacenamiento que no se puede leer. La copia la salta y la registra</td>
+</tr>
+<tr>
+<td>Sector y clúster</td>
+<td>La unidad mínima de almacenamiento (normalmente 512 bytes) y un grupo de sectores</td>
+</tr>
+<tr>
+<td>Permisos de administrador</td>
+<td>El permiso de Windows necesario para acceder a un disco en bruto</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-idioma">11. Idioma</h2>
+<p>El programa se inicia en inglés. Para cambiar a español, elige Español en el cuadro de idioma de la esquina superior derecha de la ventana. El programa recuerda la elección y la próxima vez se inicia en ese idioma.</p>
+<hr />
+<h2 id="12-aviso-legal">12. Aviso legal</h2>
+<p>ReviveUSB se ofrece tal cual, sin garantía de ningún tipo. La recuperación nunca está garantizada y los botones de reparación borran datos de forma permanente. Usas el programa bajo tu propia responsabilidad. El autor no se hace responsable de la pérdida de datos ni de ningún otro daño derivado de su uso. Guarda copias de seguridad de todo lo importante.</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../es/revive/index.html">ReviveUSB</a><a href="../../es/chatda/index.html">Chatda</a><a href="../../es/about.html">Acerca de</a><a href="../../es/donate.html">Donar</a><a href="../../es/privacy.html">Privacidad</a><a id="contact-link" href="#" hidden>Contacto</a></nav><div class="prefs"><span>Idioma: <a href="../../revive/help.html" lang="en">English</a> · <a href="../../ko/revive/help.html" lang="ko">한국어</a> · <a href="../../ja/revive/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/revive/help.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/revive/help.html" lang="zh-TW">繁體中文</a> · <a href="../../es/revive/help.html" lang="es" aria-current="true">Español</a> · <a href="../../de/revive/help.html" lang="de">Deutsch</a> · <a href="../../fr/revive/help.html" lang="fr">Français</a> · <a href="../../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/revive/help.html" lang="ru">Русский</a> · <a href="../../vi/revive/help.html" lang="vi">Tiếng Việt</a></span><label>Tema <select id="theme-select"><option value="auto">Predeterminado</option><option value="dark">Oscuro</option><option value="light">Claro</option></select></label></div><p class="mt-note">Esta página se tradujo automáticamente. Si ves algún error, avísanos.</p><p>© 2026 Barbellsoft. Software gratuito, ofrecido tal cual, sin garantía.</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>

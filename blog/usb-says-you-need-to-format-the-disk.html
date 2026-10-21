@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>&quot;You need to format the disk&quot; on USB: save your files first | Barbellsoft</title>
+<meta name="description" content="Windows wants to format your USB drive before you can use it. Here is how to copy your files off it safely first, and then make the drive usable again.">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=0a5064bf">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-10-21</p><h1>&quot;You need to format the disk&quot; on USB: save your files first</h1><div class="doc prose"><p>You plug in a USB stick that worked yesterday and Windows says "You need to format the disk in drive E: before you can use it", with a <strong>Format disk</strong> button and a <strong>Cancel</strong> button. Click <strong>Cancel</strong>.</p>
+<p>The message sounds final, but it usually means the filesystem on the drive is damaged, not that the drive is dead. Windows can't read the index that lists your files, so it offers to format the drive. Your files are usually still there. Formatting is what puts them at risk.</p>
+<h2 id="what-is-going-on">What is going on</h2>
+<p>Every drive keeps an index, the filesystem, that says which file lives where. When Windows can't mount that filesystem, it shows the drive as RAW. That happens even when only one value in the index is wrong. If a large drive shows up as a small RAW piece, or has no drive letter at all, the partition itself is damaged.</p>
+<p>This is also why the usual first aid doesn't help. chkdsk repairs a filesystem that exists, and a RAW drive has none it can read, so there is nothing for it to fix.</p>
+<h2 id="what-not-to-do-yet">What not to do yet</h2>
+<p>Until your files are somewhere safe, leave the drive alone:</p>
+<ul>
+<li>Don't format it, in Windows or anywhere else.</li>
+<li>Don't click Yes if Windows offers to scan and fix the drive.</li>
+<li>Don't save or copy anything new onto it.</li>
+</ul>
+<p>When the index is damaged, the data itself normally stays where it was. Write something new and Windows may put it right on top of your old files, and then nothing can bring them back. Reading from the drive is fine.</p>
+<h2 id="getting-your-files-back-with-reviveusb">Getting your files back with ReviveUSB</h2>
+<p>ReviveUSB is a free Windows tool built around that order: copy the drive, recover from the copy, and only then repair the drive. It runs on Windows 10 or 11 (64-bit) and needs administrator rights because it reads the disk directly.</p>
+<p>You'll need free space on another drive as large as the broken one. A 128 GB stick needs 128 GB free.</p>
+<p>ReviveUSB isn't code-signed yet, so SmartScreen may say it doesn't recognize the app. The <a href="../revive/download.html">download page</a> lists the file's SHA-256. Check it in PowerShell with <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code>, and if it matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<h3 id="1-pick-the-drive">1. Pick the drive</h3>
+<p>Run <code>ReviveUSB.exe</code> and allow administrator rights. The top of the window should say <strong>Administrator: ON</strong>. Click <strong>Refresh</strong>, then click your USB drive in the list. The <strong>Filesystem</strong> column will probably say RAW.</p>
+<h3 id="2-copy-the-drive-to-an-image">2. Copy the drive to an image</h3>
+<p>Click <strong>Back up to image</strong> and save the file, named something like <code>disk2.img</code>, on a different drive. ReviveUSB only reads the USB stick here. It skips regions it can't read so the copy doesn't stall, and at the end it asks whether to retry those regions sector by sector.</p>
+<p>You can close the window and continue later: click <strong>Back up to image</strong> again, choose the same file and answer Yes to replace it. The log says <code>Resuming image</code> and the copy picks up where it stopped.</p>
+<p>From here on you work on the image. Reading a failing stick over and over is riskier than reading a copy of it.</p>
+<h3 id="3-recover-files-with-their-names">3. Recover files with their names</h3>
+<p>Click <strong>Recover files (names/paths)</strong>, pick your image file and choose a folder on a healthy drive. ReviveUSB refuses a folder on the drive you're recovering.</p>
+<p>Try this even though Windows says the drive is RAW. It reads NTFS, FAT32 and exFAT, and it can often still read a filesystem that Windows won't mount. When it works, your files come back with their names and folders. It copies all the files it finds, not just deleted files, and anything that was deleted goes into a separate <code>_deleted_files</code> folder.</p>
+<h3 id="4-if-that-finds-nothing-use-the-signature-method">4. If that finds nothing, use the signature method</h3>
+<p>If ReviveUSB says it could not detect the filesystem, or finds nothing, click <strong>Recover files (signature)</strong> and use the same image. This method ignores the filesystem and looks for files by their content. It finds JPEG, PNG, GIF, BMP, PDF and ZIP files, plus MP4, MOV, 3GP, M4A and HEIC (phone and dashcam videos, and phone photos).</p>
+<p>The trade-off is that names are lost. Files come back numbered, like <code>jpg_00001_@...</code>. Documents such as <code>.docx</code>, <code>.xlsx</code> and <code>.pptx</code> are ZIP files inside, so they come back as <code>.zip</code>. Rename them to the right extension.</p>
+<h2 id="fixing-the-usb-stick-afterwards">Fixing the USB stick afterwards</h2>
+<p>Once your files are safe on your PC, you can make the stick usable again. For a RAW drive or one without a drive letter, select it and click <strong>Full rebuild</strong>. It wipes the disk, creates a new partition and formats it as NTFS. You confirm by typing <code>ERASE DISK</code> and the disk number, for example <code>ERASE DISK 2</code>. If the drive still has a letter and you only want to wipe it, <strong>Format</strong> does that.</p>
+<p>Before writing anything, ReviveUSB reads the drive to check whether its controller is failing, for example if parts of it couldn't be read. If it sees those signs, it won't repair the drive and says why in the log. A large write can kill a failing drive halfway through, so in that case keep your recovered files and replace the stick.</p>
+<p>After the rebuild, click <strong>Refresh</strong>, select the drive and click <strong>Test drive</strong>. <strong>Yes</strong> tests all free space, <strong>No</strong> runs a quick 1 GB test. Only the full test catches drives that fake their capacity. If it passes, <strong>Copy files back</strong> puts your recovered folder back on the stick and then reads every file back to compare it with the original. Keep the copy on your PC anyway.</p>
+<h2 id="if-it-doesnt-work">If it doesn't work</h2>
+<h3 id="the-list-shows-firmware-failure-rom-mode-or-no-storage-size-0">The list shows "Firmware failure (ROM mode)" or "No storage (size 0)"</h3>
+<p>The stick's controller isn't loading, and Windows may show it as "No Media" or 0 bytes and still ask you to format. Click Cancel. Unplug it and plug it back in. If it comes back with its normal name, back it up right away. If it doesn't come back, software can't read it. A data recovery lab may be able to read the memory chip directly.</p>
+<h3 id="the-backup-is-extremely-slow">The backup is extremely slow</h3>
+<p>Plug the drive straight into a USB 3.0 port on the back of the PC, without a hub or extension cable. If that doesn't help, try another cable or PC. Backing up to the same image file continues the copy.</p>
+<h3 id="recovered-files-wont-open">Recovered files won't open</h3>
+<p>The file may have been fragmented, so only the first part came back. Try both recovery buttons. Parts of the drive that couldn't be read are missing from the image.</p>
+<h3 id="the-repair-fails">The repair fails</h3>
+<p>Unplug the drive, plug it back in and try again, and close anything that might be using it, such as antivirus or Explorer previews. If the status stays <code>Unhealthy</code> or the drive keeps disconnecting, the hardware is probably failing. Software can't fix that, so replace the drive.</p>
+<h3 id="when-nothing-can-help">When nothing can help</h3>
+<p>Some files can't be recovered. If the data has already been overwritten, or the flash chip itself is dead, no software can help, and a professional recovery service is the remaining option. The <a href="../revive/help.html">ReviveUSB manual</a> explains every button.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · Broken USB? Get your files back for free, and fix the drive. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Download ReviveUSB</a><a class="btn btn-outline" href="../revive/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a></nav><div class="prefs"><span>Language: <a href="../index.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=3866ec0a"></script>
+<script src="../site.js?v=b66a4edc"></script>
+</body>
+</html>

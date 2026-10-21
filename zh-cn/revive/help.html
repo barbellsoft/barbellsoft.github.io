@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>ReviveUSB 帮助</title>
+<meta name="description" content="免费的 Windows 工具，适用于提示需要格式化、显示为 RAW 或文件不见了的 U 盘。它先安全地复制驱动器，再从副本中恢复文件，最后修复驱动器。 如果 U 盘本身正在损坏，就不进行修复，只安全取出文件并建议更换。">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../zh-cn/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主导航"><a href="../../zh-cn/revive/index.html" aria-current="page">ReviveUSB</a><a href="../../zh-cn/chatda/index.html">Chatda</a><a href="../../zh-cn/about.html">关于</a><a href="../../zh-cn/donate.html">捐助</a><a href="../../blog/index.html" lang="en">博客</a></nav></div></header>
+<nav class="subnav" aria-label="产品"><div class="wrap"><img src="../../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">首页</a><a href="download.html">下载</a><a href="faq.html">常见问题</a><a href="help.html" aria-current="page">帮助</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="reviveusb-用户手册">ReviveUSB 用户手册</h1>
+<p>ReviveUSB 可以从故障 U 盘或移动硬盘中恢复文件，并在你需要时修复驱动器，使其可以再次使用。所有操作都在一个窗口中完成：选择磁盘，然后点击按钮。请按本手册从头到尾操作。</p>
+<hr />
+<h2 id="0-快速入门">0. 快速入门</h2>
+<ol>
+<li>运行 <code>ReviveUSB.exe</code>，在 Windows 询问时允许管理员权限。</li>
+<li>点击 <strong>刷新</strong>，然后在磁盘列表中点击你的 U 盘。</li>
+<li>点击 <strong>备份为镜像</strong>，把镜像保存到另一个剩余空间充足的驱动器上。</li>
+<li>点击 <strong>恢复文件（名称/路径）</strong>，选择镜像，再选择一个位于正常驱动器上的文件夹。如果什么都没找回，用 <strong>恢复文件（特征码）</strong> 再做一遍。</li>
+<li>只有在拿回全部文件之后，才使用某个修复按钮让驱动器恢复可用。</li>
+</ol>
+<p>最重要的一条规则：如果想找回数据，就不要往损坏的驱动器上保存任何新内容。先制作镜像，再从镜像中恢复。</p>
+<p>如果你不需要这些数据，只想让驱动器重新能用，可以跳过第 3 步和第 4 步。第 7 章介绍这种情况。</p>
+<hr />
+<h2 id="1-程序的用途">1. 程序的用途</h2>
+<p>当驱动器处于以下某种状态时使用：</p>
+<ul>
+<li>不小心删除了文件。</li>
+<li>插入驱动器时，Windows 提示“使用驱动器中的光盘之前需要将其格式化”。这是文件系统损坏，显示为 RAW。</li>
+<li>大容量驱动器只显示为一小块 RAW 区域，或没有盘符，因为其分区已损坏。</li>
+<li>驱动器能被识别，但看不到你的文件。</li>
+</ul>
+<p>它有两个目标，一个工具即可兼顾。</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>含义</th>
+<th>按钮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>找回数据</td>
+<td>恢复已删除或看不见的文件</td>
+<td><strong>备份为镜像</strong>，然后使用某个 <strong>恢复文件</strong> 按钮</td>
+</tr>
+<tr>
+<td>找回驱动器</td>
+<td>重新格式化驱动器，使其可以再次使用</td>
+<td><strong>检查（chkdsk）</strong>、<strong>格式化</strong>、<strong>完全重建</strong></td>
+</tr>
+</tbody>
+</table>
+<p>顺序是固定的：先恢复数据，再修复驱动器。先修复会让数据永久丢失。</p>
+<hr />
+<h2 id="2-开始之前必读的安全规则">2. 开始之前必读的安全规则</h2>
+<p>真正毁掉恢复的是向损坏的驱动器写入数据。运行本程序没问题，因为备份和恢复只会读取驱动器。</p>
+<p>原因如下。删除文件时，数据本身通常仍留在驱动器上，被删除的只是指向它的索引条目，这正是能够恢复的原因。如果之后再向驱动器保存新文件，系统会把旧数据所在的位置视为空闲空间，并可能把新文件直接写在上面。一旦发生这种情况，旧数据就无法恢复了。</p>
+<p>恢复之前，请不要做以下任何一件事：</p>
+<ul>
+<li>向驱动器保存或复制新文件。</li>
+<li>格式化驱动器，无论是在 Windows 中还是用修复按钮。</li>
+<li>在 Windows 提出扫描并修复驱动器时点击“是”。</li>
+</ul>
+<p>以下按钮是安全的，因为它们只读取：<strong>刷新</strong>、<strong>健康检查</strong>、<strong>备份为镜像</strong>，以及两个 <strong>恢复文件</strong> 按钮。</p>
+<pre><code>损坏的 U 盘 --(只读)--&gt; disk2.img (备份副本) --&gt; recovered\ (你的文件)
+ 原始盘保持不变          在这个副本上操作          结果
+</code></pre>
+<hr />
+<h2 id="3-准备工作">3. 准备工作</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 或 11</td>
+<td>必需。不需要 Python</td>
+</tr>
+<tr>
+<td>管理员权限</td>
+<td>备份、直接从磁盘恢复以及修复时需要</td>
+</tr>
+<tr>
+<td>镜像所需的剩余空间</td>
+<td>与驱动器容量相同，且位于另一个驱动器上。128 GB 的驱动器需要 128 GB 剩余空间</td>
+</tr>
+<tr>
+<td>存放恢复文件的正常位置</td>
+<td>除损坏驱动器以外的任何驱动器</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-启动程序">4. 启动程序</h2>
+<h3 id="41-下载并检查文件">4.1 下载并检查文件</h3>
+<p>从下载页面下载 <code>ReviveUSB.exe</code>。该文件尚未进行代码签名，因此 Windows SmartScreen 或杀毒软件可能会发出警告。运行前，请确认文件与下载页面上显示的 SHA-256 一致。在 PowerShell 中运行：</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>如果哈希值一致并出现 SmartScreen，请选择 <strong>更多信息</strong>，然后选择 <strong>仍要运行</strong>。</p>
+<h3 id="42-管理员权限">4.2 管理员权限</h3>
+<p>程序启动时会请求管理员权限，因为直接读取原始磁盘需要该权限。请允许。窗口顶部随后会显示 <strong>管理员权限：已开启</strong>。如果显示未开启，请点击 <strong>以管理员身份重新启动</strong>。</p>
+<h3 id="43-窗口布局">4.3 窗口布局</h3>
+<pre><code>+--------------------------------------------------------------------+
+| 帮助(H)                                                            |
++--------------------------------------------------------------------+
+| 管理员权限：已开启                                      [♥ 支持 ▾] |
+| ① 选择磁盘                                                         |
+|     编号 | 名称 | 大小 | 文件系统 | 状态                           |
+|     [刷新]   [ ] 显示内置磁盘（慎用）                              |
+| ② 选择操作                                                         |
+|     [健康检查]                      [备份为镜像]                   |
+|     [恢复文件（名称/路径）]         [恢复文件（特征码）]           |
+|     修复（会清除数据）：[检查（chkdsk）] [格式化] [完全重建]       |
+|     修复后：[测试驱动器] [写回文件]                                |
+| 进度条、百分比、已完成量                                           |
+| 进度：显示程序正在做什么的日志                                     |
++--------------------------------------------------------------------+
+</code></pre>
+<p>窗口顶部的 <strong>帮助(H)</strong> 菜单中选择 <strong>ReviveUSB 帮助(H)</strong> 或按 <strong>F1</strong> 键，即可打开本说明书。说明书内置在程序中，没有网络也能在浏览器中打开。版本号可在 <strong>关于本程序...(A)</strong>（<strong>Ctrl+F1</strong>）中查看。<strong>ReviveUSB 主页(W)</strong> 会打开 barbellsoft.com，<strong>检查更新(U)</strong> 会打开列出最新版本的下载页面。同一菜单的 <strong>支持</strong> 和窗口右上角的 <strong>♥ 支持</strong> 按钮会在浏览器中打开 Buy Me a Coffee 页面。ReviveUSB 免费，捐助全凭自愿，程序本身不处理任何付款。文件恢复或写回成功后，日志末尾会显示一行捐助地址。</p>
+<p>列表中只显示 USB 磁盘。除非勾选 <strong>显示内置磁盘（慎用）</strong>，否则内置磁盘会保持隐藏。除非你清楚自己在做什么，否则请不要勾选。</p>
+<p>任务运行期间，操作按钮会变灰，进度条和日志会持续更新。没有“停止”按钮。要停止备份，请关闭窗口；第 5 章说明了之后如何继续。</p>
+<hr />
+<h2 id="5-五步恢复驱动器">5. 五步恢复驱动器</h2>
+<h3 id="第-1-步-选择驱动器">第 1 步. 选择驱动器</h3>
+<p>插入驱动器并点击 <strong>刷新</strong>。在列表中点击你的驱动器。日志会确认你选择了哪个磁盘，例如 <code>已选择磁盘 2：SanDisk Ultra</code>。</p>
+<p>查看 <strong>文件系统</strong> 列。RAW 表示文件系统已损坏。</p>
+<p>此时可以点击 <strong>健康检查</strong>。它会显示驱动器的状态；如果驱动器提供 SMART 数据，还会显示磨损度、无法纠正的读取错误等计数。很多 U 盘不传递 SMART 数据，这时日志会说明这一点。</p>
+<h3 id="第-2-步-备份为镜像">第 2 步. 备份为镜像</h3>
+<p>点击 <strong>备份为镜像</strong>。选择镜像的保存位置，要在另一个剩余空间充足的驱动器上。建议的文件名是 <code>diskN.img</code>，其中 N 是磁盘编号。</p>
+<p>原始驱动器只会被读取。坏区会被快速跳过，因此复制会持续进行而不会卡住。进度条显示百分比和已复制的数据量。</p>
+<p>如果有些区域无法读取，程序会询问是否逐扇区重试。重试可以救回更多数据，但在严重损坏的驱动器上可能需要很长时间。如果在重试过程中关闭了窗口，之后再次备份到同一文件即可继续重试。对已完成的镜像再次备份时，绝不会重新读取整个驱动器：只会提供重试无法读取区域的选项。如要从头开始，请选择新的文件名。</p>
+<p>如果选择的位置在正在恢复的驱动器上，程序会拒绝并要求选择其他驱动器。保存到那里可能会覆盖你想找回的文件。</p>
+<p>你可以随时关闭窗口来停止。进度每两秒保存一次。如要继续，请重新启动程序，选择同一驱动器，点击 <strong>备份为镜像</strong>，并选择同一文件。如果 Windows 询问是否替换，请回答“是”：日志会显示 <code>继续制作镜像</code>，复制会从中断处继续。程序会检查是否为同一驱动器。如果该文件属于其他驱动器，或驱动器现在报告的大小不同，程序会停止，而不会混合或覆盖之前的副本；这种情况下请选择新的文件名。</p>
+<h3 id="第-3-步-从镜像中恢复文件">第 3 步. 从镜像中恢复文件</h3>
+<p>有两个按钮。先尝试 <strong>恢复文件（名称/路径）</strong>，如果它什么都没找到，再使用 <strong>恢复文件（特征码）</strong>。</p>
+<ol>
+<li>点击按钮。</li>
+<li>选择你的镜像文件（<code>.img</code>）。</li>
+<li>在正常驱动器上选择一个存放恢复文件的文件夹。位于正在恢复的驱动器上的文件夹会被拒绝。如果驱动器有多个分区，每个分区的文件会放入各自的子文件夹，例如 <code>volume2_exfat</code>。</li>
+</ol>
+<p>名称/路径方式会复制它能找到的所有文件，而不只是已删除的文件。Windows 提示驱动器“无法访问”或要求格式化时，正该用这种方式：文件通常还在，而且会连同文件名一起恢复。如果同时找到现有文件和已删除文件，已删除的文件会放进单独的 <code>_deleted_files</code> 文件夹，这样旧副本不会和现有文件放在一起。保存用的文件夹需要有与这些文件同样多的可用空间；如果空间不够，开始之前日志会发出警告。如果是在 Windows 中删除过文件的 FAT32 驱动器，日志里可能会列出“内容可能不对”的文件：Windows 抹掉了它们起始位置的一部分，而 .bin 这类没有文件签名的格式无法判断正确位置。使用前请先打开检查。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>恢复文件（名称/路径）</th>
+<th>恢复文件（特征码）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>得到的结果</td>
+<td>文件名、文件夹路径和内容</td>
+<td>只有内容，按序号命名，例如 <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>适用于</td>
+<td>NTFS、FAT32 和 exFAT</td>
+<td>任何驱动器，即使文件系统已不存在</td>
+</tr>
+<tr>
+<td>最适合的情况</td>
+<td>文件系统仍可读取，即使 Windows 打不开该驱动器</td>
+<td>文件系统本身已被破坏</td>
+</tr>
+<tr>
+<td>顺序</td>
+<td>先尝试</td>
+<td>第一种什么都没找到时使用</td>
+</tr>
+</tbody>
+</table>
+<p>即使驱动器显示为 RAW，也请先尝试名称/路径方式。只要 Windows 无法挂载文件系统，哪怕其中只有一个值出错，它也会显示 RAW；而本程序往往仍能读取，并连同文件名一起恢复文件。如果提示无法识别文件系统，或者什么都没找到，请使用特征码方式。</p>
+<p>特征码方式可以找到 JPEG、PNG、GIF、BMP、PDF 和 ZIP 文件，以及 MP4、MOV、3GP、M4A 和 HEIC 文件（手机和行车记录仪的视频、iPhone 照片）。docx、xlsx、pptx 等 Office 文件内部其实是 ZIP 文件，因此恢复后会以 <code>.zip</code> 为扩展名；请把它们改回正确的扩展名。结尾没有写入的视频（录制中途中断，或驱动器丢失了数据）会保存到能读到的位置为止，但缺少结尾时大多数播放器无法播放。</p>
+<p>如果在列表中选中了磁盘，程序会先询问是否直接读取该磁盘。点击 <strong>否</strong> 选择镜像文件，点击 <strong>是</strong> 直接读取磁盘。直接读取磁盘需要管理员权限，而且对故障驱动器风险更大，因此使用镜像是更好的选择。</p>
+<h3 id="第-4-步-修复驱动器仅在恢复完成后">第 4 步. 修复驱动器（仅在恢复完成后）</h3>
+<p>选择驱动器并使用某个修复按钮。第 7 章说明了该选哪一个。<strong>格式化</strong> 和 <strong>完全重建</strong> 会清除数据，因此程序会要求你准确输入一个确认词，例如 <code>FORMAT E</code>。使用之前，请确保已经恢复了所有内容。</p>
+<p>修复按钮（<strong>检查（chkdsk）</strong>、<strong>格式化</strong>、<strong>完全重建</strong>）在写入驱动器之前，会先只读地检查驱动器。如果出现主控正在损坏的迹象，就不进行修复，并在日志中说明原因。这些迹象是：驱动器不响应读取或容量显示为 0，或者驱动器有部分无法读取。如果是 FAT32 驱动器，还会检查文件系统记录的容量是否大于驱动器实际容量、文件分配表（FAT）的两份副本是否在许多位置不一致、本应存有文件的位置是否有一半以上读出来是空值。此时无法强行修复。修复会大量写入，而正在损坏的驱动器可能在大量写入途中彻底停止工作。请先用第 2、3 步取回文件，再更换驱动器。仅因无法识别文件系统而显示为 RAW 的驱动器不会被拦下。不取回数据直接修复时（第 7 章）也会做同样的检查。</p>
+<h3 id="第-5-步-把文件放回去修复之后">第 5 步. 把文件放回去（修复之后）</h3>
+<p>完整的顺序是：恢复数据，把恢复的文件保存在电脑上，修复驱动器，再把文件放回修复好的驱动器。这一步就是最后一环。在你重新信任这个驱动器之前，它还会检查驱动器是否真的能保存数据。</p>
+<p><strong>格式化</strong> 或 <strong>完全重建</strong> 完成后，日志会提示：点击 <strong>刷新</strong>，然后点击 <strong>测试驱动器</strong>，再点击 <strong>写回文件</strong>。这两个按钮位于 <strong>修复后：</strong> 这一行，针对所选磁盘的盘符操作，不需要管理员权限。</p>
+<ol>
+<li>点击 <strong>刷新</strong> 并选择修复好的驱动器。它的盘符可能已经变了。</li>
+<li>点击 <strong>测试驱动器</strong>。选择“是”测试全部可用空间，选择“否”则快速测试 1 GB（选择“取消”则什么也不做）。完整测试很慢，但只有它能发现虚标容量的驱动器。程序会把测试数据写入驱动器上的 <code>_revive_test</code> 文件夹，绕过 Windows 缓存读回并比较，然后删除该文件夹。之前中断的测试留下的文件夹也会一并删除。如果驱动器写满了，写入就在那里停止，并检查已经写入的数据。</li>
+<li>在日志中查看结果。通过时，日志会说明写入并读回了多少数据，没有错误。失败时，日志会说明有多少数据没能正确读回；请更换这个驱动器。如果后写入的数据出现在先写入数据的位置上，日志会说明该驱动器实际大概只能存放多少，比它声称的少。这是虚标容量的驱动器，不要把文件放到上面。如果测试途中驱动器停止响应，日志会说明处理多少数据后停止，并提示这个驱动器无法可靠地保存数据。不要把文件放到上面，请更换驱动器。</li>
+<li>点击 <strong>写回文件</strong>，选择电脑上存放恢复文件的文件夹。程序不接受位于同一驱动器上的文件夹。如果驱动器可用空间不足，程序会在写入任何内容之前提示。它会按原来的文件夹结构复制所有内容，但最上层的 <code>System Volume Information</code> 和 <code>$RECYCLE.BIN</code> 文件夹除外，Windows 会自行重新创建它们。</li>
+<li>复制完成后，程序同样绕过缓存，从驱动器读回每个文件，并将其 SHA-256 与原文件比较。如果全部一致，日志会说明。如果有文件读回的内容不同，日志会列出这些文件，并说明该驱动器无法可靠地保存数据。不要在这个驱动器上保存重要文件。</li>
+</ol>
+<p>即使复制成功，也请把恢复的文件保留在电脑上，这样你还有第二份副本。</p>
+<hr />
+<h2 id="6-按钮说明">6. 按钮说明</h2>
+<table>
+<thead>
+<tr>
+<th>按钮</th>
+<th>作用</th>
+<th class="ta-center">是否修改驱动器</th>
+<th class="ta-center">管理员权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>刷新</strong></td>
+<td>列出已连接的 U 盘（勾选复选框时也列出内置磁盘）</td>
+<td class="ta-center">否</td>
+<td class="ta-center">否</td>
+</tr>
+<tr>
+<td><strong>健康检查</strong></td>
+<td>显示驱动器状态，以及可用时的 SMART 计数。大多数 U 盘不提供这些数据，此时日志会说明此检查无法判断驱动器是否会再次故障</td>
+<td class="ta-center">否</td>
+<td class="ta-center">否</td>
+</tr>
+<tr>
+<td><strong>备份为镜像</strong></td>
+<td>把整个驱动器复制为镜像文件，跳过坏区，提供逐扇区重试，并可继续之前的复制</td>
+<td class="ta-center">否</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>恢复文件（名称/路径）</strong></td>
+<td>读取 NTFS、FAT32 或 exFAT，连同文件名和文件夹一起复制出所有文件：现有文件、已删除文件，以及已删除文件夹中的文件</td>
+<td class="ta-center">否</td>
+<td class="ta-center">仅在不使用镜像时</td>
+</tr>
+<tr>
+<td><strong>恢复文件（特征码）</strong></td>
+<td>根据内容查找 JPEG、PNG、GIF、BMP、PDF、ZIP、MP4、MOV 和 HEIC 文件</td>
+<td class="ta-center">否</td>
+<td class="ta-center">仅在不使用镜像时</td>
+</tr>
+<tr>
+<td><strong>检查（chkdsk）</strong></td>
+<td>对该盘符以修复模式运行 chkdsk。会先询问“是”或“否”</td>
+<td class="ta-center">修复错误，保留数据</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>格式化</strong></td>
+<td>将卷快速格式化为 NTFS，卷标为 <code>USB</code>。需输入 <code>FORMAT &lt;盘符&gt;</code> 进行确认</td>
+<td class="ta-center">清除数据</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>完全重建</strong></td>
+<td>清除整个磁盘，创建新分区，并快速格式化为 NTFS，卷标为 <code>USB</code>。需输入 <code>ERASE DISK &lt;编号&gt;</code> 进行确认</td>
+<td class="ta-center">清除数据</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>测试驱动器</strong></td>
+<td>向全部可用空间或 1 GB 写入测试数据，绕过 Windows 缓存读回并比较，然后删除。可以发现会丢数据或虚标容量的驱动器</td>
+<td class="ta-center">写入测试数据，之后删除</td>
+<td class="ta-center">否</td>
+</tr>
+<tr>
+<td><strong>写回文件</strong></td>
+<td>将电脑上文件夹中的恢复文件按相同的文件夹结构复制到驱动器，然后逐个读回并比较 SHA-256</td>
+<td class="ta-center">写入文件</td>
+<td class="ta-center">否</td>
+</tr>
+</tbody>
+</table>
+<p><strong>完全重建</strong> 会自动选择分区形式：2 TB 或以下的驱动器使用 MBR，更大的使用 GPT。日志会说明选择了哪一种。</p>
+<hr />
+<h2 id="7-不需要数据时修复驱动器">7. 不需要数据时修复驱动器</h2>
+<p>如果你不需要这些文件，只想让故障 U 盘或移动硬盘重新投入使用，可以跳过备份和恢复步骤，直接修复。</p>
+<h3 id="71-先诊断">7.1 先诊断</h3>
+<p>点击 <strong>刷新</strong>，选择驱动器，然后查看列表和日志。一个 WD 移动硬盘的真实例子：列表显示 3.6 TB，状态为 <code>Healthy/Online</code>，只有一块 200 MB 的 RAW 区域且没有盘符。</p>
+<p>如何解读：状态为 <code>Healthy/Online</code> 表示硬件工作正常，只是分区结构损坏。软件通常可以修复。如果大容量驱动器只显示一小块 RAW 区域，或没有盘符，说明其主分区已经没了。</p>
+<h3 id="72-选择修复方式由轻到重">7.2 选择修复方式（由轻到重）</h3>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>按钮</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有盘符，文件损坏或出现读取错误</td>
+<td><strong>检查（chkdsk）</strong></td>
+<td>修复文件系统错误并保留数据</td>
+</tr>
+<tr>
+<td>有盘符，想把它清空</td>
+<td><strong>格式化</strong></td>
+<td>只重新格式化该卷</td>
+</tr>
+<tr>
+<td>RAW、没有盘符、分区损坏</td>
+<td><strong>完全重建</strong></td>
+<td>清除整个磁盘并重新创建。这是常用的修复方法</td>
+</tr>
+</tbody>
+</table>
+<p><strong>检查（chkdsk）</strong> 和 <strong>格式化</strong> 需要盘符。如果驱动器没有盘符，程序会提示你改用 <strong>完全重建</strong>。chkdsk 也无法修复 RAW 驱动器，因为已经没有可修复的文件系统了。</p>
+<h3 id="73-救活-raw-驱动器">7.3 救活 RAW 驱动器</h3>
+<p>这是最常见的情况。选择驱动器，点击 <strong>完全重建</strong>，在提示时输入 <code>ERASE DISK 2</code>（换成你的磁盘编号）。通常需要几秒到一分钟。完成后，驱动器会获得新的盘符。在把文件放上去之前，请点击 <strong>刷新</strong>，选择该驱动器，然后运行 <strong>测试驱动器</strong>。第 5 章的第 5 步说明了如何看结果以及如何把文件放回去。</p>
+<p>新的文件系统是 NTFS，Windows 可以读写。如果需要在 Mac 或其他设备上使用该驱动器，之后请用那台设备或 Windows 自带的格式化对话框重新格式化。</p>
+<h3 id="74-清理">7.4 清理</h3>
+<p>如果之前制作的镜像已不再需要，请删除镜像文件及其旁边的进度文件，例如 <code>disk2.img</code> 和 <code>disk2.img.state.json</code>。</p>
+<h3 id="75-修复失败时">7.5 修复失败时</h3>
+<ol>
+<li>拔下驱动器再重新插入，点击 <strong>刷新</strong>，然后重试。Windows 可能正锁定着该磁盘。</li>
+<li>关闭可能正在使用该驱动器的其他程序，例如杀毒软件或资源管理器的预览。</li>
+<li>如果仍然失败、状态一直是 <code>Unhealthy</code>，或驱动器反复出现又消失，硬件很可能正在损坏。软件无法解决这个问题，请考虑更换驱动器。</li>
+</ol>
+<h3 id="76-降低再次故障的风险">7.6 降低再次故障的风险</h3>
+<p>没有任何软件能保证驱动器不会再次故障。<strong>健康检查</strong> 会读取驱动器自身记录的计数：重新分配的扇区、读取错误和磨损度。出现无法纠正的读取或写入错误，或磨损度很高，意味着再次故障的风险很高，建议更换。</p>
+<p>很多 USB 硬盘盒由于桥接芯片的限制，不会传递 SMART 数据。这时健康检查会提示驱动器不提供 SMART 数据。CrystalDiskInfo 等专用工具也许仍能读取。</p>
+<p>需要记住的几条原则：</p>
+<ul>
+<li>软件只能绕开已经损坏的存储单元，无法延长驱动器的物理寿命。</li>
+<li>切勿把重要数据的唯一副本存放在曾经故障过的驱动器上。务必另做一份备份。</li>
+<li>如果驱动器在重建后很快又变成 RAW，或经常断开连接，请更换它。</li>
+</ul>
+<hr />
+<h2 id="8-故障排除">8. 故障排除</h2>
+<h3 id="磁盘列表为空">磁盘列表为空</h3>
+<p>日志显示 <code>未找到磁盘</code>。请确认驱动器已插好，并且在 Windows 的磁盘管理中能看到，然后再次点击 <strong>刷新</strong>。如果驱动器不是 USB 驱动器，请勾选 <strong>显示内置磁盘（慎用）</strong>。</p>
+<h3 id="列表中显示固件故障rom-模式或无存储空间0">列表中显示“固件故障（ROM 模式）”或“无存储空间（0）”</h3>
+<p>U 盘的主控没能加载固件，或者驱动器不提供存储空间。Windows 通常会把这种驱动器显示为“无媒体”或 0 字节的磁盘，还可能询问是否格式化；此时请选择取消。在列表中选择这个驱动器后，磁盘列表下方会打开 <strong>诊断</strong> 框，显示设备 ID、推测的主控和下一步操作。这种状态下没有可读写的内容，所以备份、恢复和修复按钮会被关闭。</p>
+<ol>
+<li>拔下驱动器再重新插上。诊断框每 5 秒会自动重新检查（也可以点击 <strong>重新检查</strong>）。如果它以原来的名称回来，不要写入任何东西，先备份。诊断框会保持打开并提示它已恢复，同时显示 <strong>备份为镜像</strong> 和 <strong>测试驱动器（全部可用空间）</strong> 按钮。大量写入可能让它再次停止，所以在这个驱动器通过 <strong>测试驱动器</strong>（全部空闲空间）之前，即使关闭诊断框，修复和 <strong>写回文件</strong> 也保持关闭。</li>
+<li>如果重新插上也回不来，ReviveUSB 就无法救活它，也读不出其中的文件。如果文件很重要，数据恢复机构也许能直接读取存储芯片；否则请更换驱动器。ReviveUSB 不推荐工厂工具（量产工具）：它们在我们测试的驱动器上没有成功，而且不是官方发布的。</li>
+<li>如果第 1 步中它回来了，而你还想继续使用，请先备份，再用 <strong>测试驱动器</strong> 测试全部空闲空间。测试无错误通过后，该驱动器的修复和 <strong>写回文件</strong> 会开启，诊断框也会自动关闭。1 GB 快速测试不会开启它们。</li>
+</ol>
+<p><strong>复制诊断</strong> 会复制诊断框的内容，求助时可以粘贴。点击 <strong>×</strong> 关闭诊断框。</p>
+<p>有些设备会以灰色显示“空（0）”。这表示程序不认识的设备报告没有存储空间，没插卡的读卡器插槽通常就是这样。这不是故障，插入存储卡即可。如果 U 盘这样显示，请拔下后重新插入。由于没有可读取的内容，此时备份、恢复和修复按钮都会关闭。</p>
+<h3 id="备份非常慢例如预计需要-100-小时或更久">备份非常慢（例如预计需要 100 小时或更久）</h3>
+<p>程序已经会跳过坏区，因此变慢通常是驱动器或连接造成的。如果速度从头到尾都很低（每秒几百 KB），请按顺序尝试：</p>
+<ol>
+<li>把驱动器直接插到电脑背面的 USB 3.0 接口（蓝色）。避免使用集线器和延长线。</li>
+<li>换一根线。</li>
+<li>换一台电脑。</li>
+</ol>
+<p>如要换接口，请关闭 ReviveUSB，移动驱动器，然后再次备份到同一个镜像文件。它会从中断处继续。</p>
+<h3 id="驱动器显示为-raw">驱动器显示为 RAW</h3>
+<p>Windows 无法读取文件系统，但本程序往往仍能读取。请先备份为镜像，然后先尝试 <strong>恢复文件（名称/路径）</strong>；如果什么都没找到，再使用 <strong>恢复文件（特征码）</strong>。恢复之后，用 <strong>完全重建</strong> 让驱动器恢复可用。</p>
+<h3 id="无法识别文件系统">“无法识别文件系统”</h3>
+<p>名称/路径方式只认识 NTFS、FAT32 和 exFAT，并且需要文件系统索引可读。请改用 <strong>恢复文件（特征码）</strong>。（消息中可能会出现 <code>carve</code> 或 <code>--fs</code> 等命令行名称；在窗口中，它们就是特征码按钮。）</p>
+<h3 id="此操作需要管理员权限">“此操作需要管理员权限”</h3>
+<p>点击 <strong>是</strong> 以管理员身份重新启动程序，或者关闭程序后重新运行，并在 Windows 提示时允许。</p>
+<h3 id="恢复的文件打不开">恢复的文件打不开</h3>
+<p>文件可能是分段存储的，所以只恢复了开头部分。请两个恢复按钮都试一试。驱动器中无法读取的部分在镜像里是缺失的，存放在那里的文件无法完整找回。</p>
+<hr />
+<h2 id="9-常见问题">9. 常见问题</h2>
+<p>问：我想挽救这个 U 盘，“不要写入”是什么意思？
+答：意思是不要往驱动器上保存新数据。运行本程序没问题，因为备份和恢复只读取。请参阅第 2 章。</p>
+<p>问：这会损坏原始驱动器吗？
+答：备份和恢复都是只读的。只有修复按钮会修改原始驱动器，而且会先要求确认。</p>
+<p>问：能恢复文件名吗？
+答：<strong>恢复文件（名称/路径）</strong> 可以还原文件名和文件夹。<strong>恢复文件（特征码）</strong> 只还原内容，并按序号命名文件。</p>
+<p>问：我的驱动器有 114 GB，必须对全部内容制作镜像吗？
+答：完整备份是安全的选择。如果时间紧张，可以中途关闭程序，对目前已有的镜像运行 <strong>恢复文件（特征码）</strong>；它会从已复制的部分中恢复文件。</p>
+<p>问：有没有无法恢复的情况？
+答：有。如果数据已被覆盖，或闪存芯片本身已经损坏，软件就无能为力了。这时只能求助专业的数据恢复服务。</p>
+<hr />
+<h2 id="10-术语表">10. 术语表</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>镜像（.img）</td>
+<td>把驱动器逐字节复制到一个文件中。你在这个副本上操作，而不是在原始驱动器上</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>文件系统索引已损坏，Windows 无法读取驱动器</td>
+</tr>
+<tr>
+<td>特征码恢复（carving）</td>
+<td>通过查找文件内容的特征（魔数）来恢复文件</td>
+</tr>
+<tr>
+<td>名称/路径恢复（undelete）</td>
+<td>读取文件系统索引，连同名称和路径一起还原文件</td>
+</tr>
+<tr>
+<td>坏扇区</td>
+<td>无法读取的存储区域。备份时会跳过并记录</td>
+</tr>
+<tr>
+<td>扇区与簇</td>
+<td>最小存储单位（通常为 512 字节），以及由若干扇区组成的组</td>
+</tr>
+<tr>
+<td>管理员权限</td>
+<td>访问原始磁盘所需的 Windows 权限</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-语言">11. 语言</h2>
+<p>程序以英语启动。要切换为韩语，请在窗口右上角的语言框中选择 한국어。程序会记住这个选择，下次以该语言启动。</p>
+<hr />
+<h2 id="12-免责声明">12. 免责声明</h2>
+<p>ReviveUSB 按“原样”提供，不附带任何形式的担保。恢复从不保证成功，修复按钮会永久清除数据。使用本程序的风险由你自行承担。对于因使用本程序而导致的数据丢失或任何其他损失，作者概不负责。请为重要内容保留备份。</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../zh-cn/revive/index.html">ReviveUSB</a><a href="../../zh-cn/chatda/index.html">Chatda</a><a href="../../zh-cn/about.html">关于</a><a href="../../zh-cn/donate.html">捐助</a><a href="../../zh-cn/privacy.html">隐私</a><a id="contact-link" href="#" hidden>联系</a></nav><div class="prefs"><span>语言: <a href="../../revive/help.html" lang="en">English</a> · <a href="../../ko/revive/help.html" lang="ko">한국어</a> · <a href="../../ja/revive/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/revive/help.html" lang="zh-CN" aria-current="true">简体中文</a> · <a href="../../zh-tw/revive/help.html" lang="zh-TW">繁體中文</a> · <a href="../../es/revive/help.html" lang="es">Español</a> · <a href="../../de/revive/help.html" lang="de">Deutsch</a> · <a href="../../fr/revive/help.html" lang="fr">Français</a> · <a href="../../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/revive/help.html" lang="ru">Русский</a> · <a href="../../vi/revive/help.html" lang="vi">Tiếng Việt</a></span><label>主题 <select id="theme-select"><option value="auto">默认</option><option value="dark">深色</option><option value="light">浅色</option></select></label></div><p class="mt-note">本页面为机器翻译。如发现错误，欢迎告诉我们。</p><p>© 2026 Barbellsoft。免费软件，按“原样”提供，不附带任何担保。</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>

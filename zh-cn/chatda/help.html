@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Chatda 帮助</title>
+<meta name="description" content="适用于 Windows 和 macOS 的免费桌面搜索工具。按名称和文档中的文字，查找电脑、外接驱动器和 NAS 上的文件。">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../zh-cn/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主导航"><a href="../../zh-cn/revive/index.html">ReviveUSB</a><a href="../../zh-cn/chatda/index.html" aria-current="page">Chatda</a><a href="../../zh-cn/about.html">关于</a><a href="../../zh-cn/donate.html">捐助</a><a href="../../blog/index.html" lang="en">博客</a></nav></div></header>
+<nav class="subnav" aria-label="产品"><div class="wrap"><img src="../../img/chatda.png?v=e336d50e" alt="" width="22" height="22"><strong>Chatda</strong><a href="index.html">首页</a><a href="download.html">下载</a><a href="faq.html">常见问题</a><a href="help.html" aria-current="page">帮助</a></div></nav>
+<main id="main"><div class="wrap">
+<p class="callout">此帮助页面为英文。</p><div class="doc"><h1 id="chatda-user-guide">Chatda — User Guide</h1>
+<p>Chatda is a free search app that quickly finds files on your PC, external drives and network folders (NAS) by name and by what's inside the document.</p>
+<blockquote>
+<p>💡 For installation, see the instructions on the download page.
+This guide is for people who <strong>already have Chatda installed</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#at-a-glance">At a glance</a></li>
+<li><a href="#basic-search">Basic search</a></li>
+<li><a href="#search-modes">Search modes — Name + content / Name only / Content only</a></li>
+<li><a href="#filters">Filters — sort · date · file type · folder</a></li>
+<li><a href="#wildcards">Wildcards · search syntax</a></li>
+<li><a href="#results">Working with results</a></li>
+<li><a href="#preview">Preview</a></li>
+<li><a href="#copy">Copy — many files at once</a></li>
+<li><a href="#favorites">Favorites</a></li>
+<li><a href="#saved-searches">Saved searches</a></li>
+<li><a href="#managing-folders">Managing folders</a></li>
+<li><a href="#shortcuts">Keyboard shortcuts</a></li>
+<li><a href="#search-tips">Search tips</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ol>
+<hr />
+<h2 id="at-a-glance">At a glance</h2>
+<p>This is what you see the first time you open Chatda.</p>
+<pre><code>┌───────────────────────────────────────────────────────────────┐
+│ [Search box ] [All locations▾] [Sort▾][Date▾][Search in▾][Types▾] ⋯ ? ⚙ │
+├───────────────────────────────────────────────────────────────┤
+│ Search results                                                │
+│ — Click: preview                                              │
+│ — Double-click: open file                                     │
+│ — Right-click: more actions                                   │
+│                                                               │
+├───────────────────────────────────────────────────────────────┤
+│ 1,234 results                         (progress while indexing) │
+└───────────────────────────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>Search box</strong>: type your search here. Press <code>Ctrl+K</code> from anywhere to jump to it. Search syntax such as quotes and wildcards is listed under <strong>?</strong> Help.</li>
+<li><strong>All locations ▾</strong>: opens a small panel with your folders, favorites, saved searches, Add folder and Connect network folder. Once you pick a folder, its name shows on the button.</li>
+<li><strong>Filter bar</strong>: dropdowns next to the search box — sort, date, search in and file type. Click <strong>⋯</strong> for grouping, Select all, Save search, Export and Copy.</li>
+<li><strong>? · ⚙</strong>: Help and Settings.</li>
+<li><strong>Result list</strong>: your search results. It scrolls smoothly even with thousands of results.</li>
+<li><strong>Status bar at the bottom</strong>: the result count. While indexing, it also shows progress and time left.</li>
+</ul>
+<blockquote>
+<p>💡 To change the display language, go to ⚙ Settings → <strong>Language</strong> and pick Auto (system), 한국어 or English.</p>
+<p>💡 On <strong>Windows</strong>, Chatda <strong>indexes every fixed drive (C:\, D:\ …) right away</strong>, without you picking a folder. <strong>Folders show up in results too</strong>, and English names match in the middle of a word (<code>port</code> → <code>report</code>).
+For a whole drive, only <strong>file names, sizes and dates</strong> are searchable. To search inside documents in a folder (for example Documents or Desktop),
+add it with <strong>+ Add folder</strong> → <a href="#managing-folders">Managing folders</a></p>
+</blockquote>
+<hr />
+<h2 id="basic-search">Basic search</h2>
+<h3 id="1-type-a-word-in-the-search-box">1) Type a word in the search box</h3>
+<pre><code>Search: report
+</code></pre>
+<p>→ Results appear <strong>within 0.2 seconds</strong>.</p>
+<blockquote>
+<p>Chatda searches as you type. <strong>No need to press Enter.</strong>
+While you're composing characters with an input method (e.g. Korean), it waits until each character is complete.</p>
+</blockquote>
+<h3 id="2-reading-the-results">2) Reading the results</h3>
+<p>Results are a table, one file per line:</p>
+<pre><code>Name                          Path                 Content                         Size    Date modified
+📊 2024_Q3_summary.xlsx       …\docs\quarterly    …Q3 summary report completed…    84 KB   2024-10-15 09:12
+</code></pre>
+<ul>
+<li><strong>Name</strong>: the file type icon (📊 Excel, 📄 Word, and so on) and the file name, with your search words highlighted.</li>
+<li><strong>Path</strong>: the folder the file is in.</li>
+<li><strong>Content</strong>: where your search words appear in the document. Empty means the file matched by name only.</li>
+<li><strong>Size · Date modified</strong></li>
+<li><strong>Click a column header</strong> to sort by it; click again to reverse. Clicking «Content» sorts by best match.</li>
+<li><strong>Drag a header border</strong> to resize a column. Chatda remembers the widths.</li>
+</ul>
+<h3 id="3-what-clicking-does">3) What clicking does</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Click</strong></td>
+<td>Opens the preview panel (text or image preview)</td>
+</tr>
+<tr>
+<td><strong>Double-click</strong></td>
+<td>Opens the file in its default app (e.g. Excel for spreadsheets)</td>
+</tr>
+<tr>
+<td><strong>Ctrl+click / Shift+click</strong></td>
+<td>Pick several files / pick a range (⌘+click on Mac)</td>
+</tr>
+<tr>
+<td><strong>Ctrl+Enter</strong></td>
+<td>Shows the file in Explorer/Finder</td>
+</tr>
+<tr>
+<td><strong>Drag and drop</strong></td>
+<td>Drag results into a folder, the desktop, an email or a chat to copy the files (all picked items)</td>
+</tr>
+<tr>
+<td><strong>Ctrl+C / Ctrl+Shift+C</strong></td>
+<td>Copy the picked files to paste into a folder / copy their paths as text</td>
+</tr>
+<tr>
+<td><strong>F2</strong></td>
+<td>Rename (opens with the name before the extension selected) · <strong>Ctrl+Z</strong> to undo (also brings back items you moved to the trash)</td>
+</tr>
+<tr>
+<td><strong>Ctrl+D</strong></td>
+<td>Save the current search (including sort)</td>
+</tr>
+<tr>
+<td><strong>Del</strong> (⌘⌫ on Mac)</td>
+<td>Move to trash — asks first, and you can restore it from the trash</td>
+</tr>
+<tr>
+<td><strong>Shift+right-click</strong> (Windows)</td>
+<td>The real Explorer context menu (Open with, Send to, compress, Properties, and so on)</td>
+</tr>
+<tr>
+<td><strong>Right-click</strong></td>
+<td>Copy path · copy share link · add to favorites, and more</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="search-modes">Search modes</h2>
+<p>Pick a mode from the <strong>Search in</strong> dropdown in the filter bar. The default is "Name + content".</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What it searches</th>
+<th>When to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name + content</strong></td>
+<td>File names and contents</td>
+<td>Everyday searching (default)</td>
+</tr>
+<tr>
+<td><strong>Name only</strong></td>
+<td>File names and paths only</td>
+<td>Fastest. Use it when you know the file name</td>
+</tr>
+<tr>
+<td><strong>Content only</strong></td>
+<td>Content only (name matches left out)</td>
+<td>Finding files by what's inside — the word is in the document but not in its name</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example</h3>
+<p>Searching for <code>budget</code>:
+- <strong>Name + content</strong>: <code>budget_review.xlsx</code> (name) and <code>project_notes.md</code> (has "budget" inside) both show up.
+- <strong>Name only</strong>: just <code>budget_review.xlsx</code>.
+- <strong>Content only</strong>: just <code>project_notes.md</code> (files without "budget" in the name).</p>
+<blockquote>
+<p>💡 To find files where a word is <strong>inside the document but not in the name</strong>, use <strong>Content only</strong>.
+Contents are indexed only for TXT · MD · CSV · DOCX · XLSX · PPTX · PDF · HWPX (other formats match by name only).
+Places added as a whole drive (C:\ and so on) are searched by name only.</p>
+</blockquote>
+<hr />
+<h2 id="filters">Filters</h2>
+<p>Once you type a search, the filter bar appears below the search box. Each item is a dropdown, and anything not at its default is highlighted.</p>
+<h3 id="file-type-filter-all-types">File type filter (<code>All types ▾</code>)</h3>
+<p>Click <code>All types ▾</code> to open a checklist of file types:</p>
+<pre><code>☐ PDF   ☐ DOCX   ☐ XLSX   ☐ HWP   ☐ TXT   ...
+</code></pre>
+<p>Tick a type to show only that format. You can select several at once.
+Once you pick some, the button reads <code>2 types</code>, and <strong>Clear all</strong> at the top of the list turns them all off.</p>
+<h3 id="date-filter">Date filter</h3>
+<pre><code>Date ▾   Any time / Today / Past week / Past month / Past year
+</code></pre>
+<p>Shows only files <strong>modified</strong> within the selected period. <strong>Past year</strong> means the last 365 days, not since January 1.</p>
+<h3 id="folder-filter">Folder filter</h3>
+<p>Click <strong>All locations ▾</strong> and pick a folder to search only inside it.
+Click <strong>All folders</strong> at the top of the same panel to go back to searching all folders.</p>
+<h3 id="grouping">Grouping</h3>
+<pre><code>Group ▾   No grouping / By folder / By type / By version
+</code></pre>
+<ul>
+<li><strong>No grouping</strong>: a flat list (default).</li>
+<li><strong>By folder</strong>: results grouped by folder.</li>
+<li><strong>By type</strong>: results grouped by file type.</li>
+<li><strong>By version</strong>: versions of the same file grouped together (e.g. <code>report_v1.docx</code>, <code>report_v2.docx</code>).</li>
+</ul>
+<h3 id="sorting">Sorting</h3>
+<pre><code>Sort ▾   Best match / Recently modified / Oldest modified / Recently created / Oldest created / Name A→Z / Name Z→A
+</code></pre>
+<ul>
+<li><strong>Best match</strong> (default): by match score. Files that mention your words more often come first.</li>
+<li><strong>Recently modified · Recently created</strong>: newest changes or newest files first.</li>
+<li><strong>Name A→Z</strong>: alphabetical.</li>
+</ul>
+<p>The reverse orders (oldest first, Z→A) are separate items in the list.</p>
+<hr />
+<h2 id="wildcards">Wildcards</h2>
+<h3 id="operators">Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract 2026</code></td>
+<td>Every word must appear</td>
+</tr>
+<tr>
+<td><code>apple OR pear</code></td>
+<td>Either word (see below)</td>
+</tr>
+<tr>
+<td><code>contract !draft</code> · <code>contract -draft</code></td>
+<td>Leave out results with that word</td>
+</tr>
+<tr>
+<td><code>"payment statement"</code></td>
+<td>Words in quotes must appear together, in order</td>
+</tr>
+<tr>
+<td><code>report_final.pdf</code></td>
+<td>Include the extension to match that exact name</td>
+</tr>
+</tbody>
+</table>
+<p>A vertical bar works instead of <code>OR</code>: <code>apple | pear</code></p>
+<h3 id="and-wildcards"><code>*</code> and <code>?</code> — wildcards</h3>
+<pre><code>Search: report*2024
+</code></pre>
+<p>→ Names that start with "report" and end with "2024", whatever is in between.</p>
+<pre><code>Search: v?.docx
+</code></pre>
+<p>→ "v" + any one character + ".docx". <code>%</code> works the same as <code>*</code>.</p>
+<blockquote>
+<p>A word with a wildcard matches the file name (including the extension), and you can mix it with other words, <code>|</code> and <code>!</code> (<code>report*2024 !draft</code>). If the word contains <code>\</code> or <code>/</code>, it matches the full path (<code>projects\*.pdf</code>). In <strong>Name only</strong> mode the whole search is matched against the path as one pattern.</p>
+</blockquote>
+<h3 id="extensions-xlsx">Extensions — <code>*.xlsx</code></h3>
+<pre><code>Search: *.xlsx
+Search: *.{xlsx,docx,pdf}
+Search: report *.xlsx
+</code></pre>
+<p>→ All xlsx files / several extensions at once / only xlsx files containing "report".</p>
+<h3 id="functions">Functions</h3>
+<p>Add these after your search words to narrow the results.</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ext:pdf;docx</code></td>
+<td>Extension is pdf or docx</td>
+</tr>
+<tr>
+<td><code>file:</code> · <code>folder:</code></td>
+<td>Files only · folders only</td>
+</tr>
+<tr>
+<td><code>path:projects</code></td>
+<td>The full path contains that text (case-insensitive, no spaces; use several to require all)</td>
+</tr>
+<tr>
+<td><code>size:…</code></td>
+<td>Size — see the table below</td>
+</tr>
+<tr>
+<td><code>dm:…</code> (or <code>datemodified:</code>)</td>
+<td>Date modified — see the table below</td>
+</tr>
+</tbody>
+</table>
+<h3 id="file-types">File types</h3>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>doc:</code></td>
+<td>Documents (pdf, docx, xlsx, pptx, hwp, txt, md, csv…)</td>
+</tr>
+<tr>
+<td><code>pic:</code> (or <code>image:</code>)</td>
+<td>Pictures (jpg, png, gif, heic, psd…)</td>
+</tr>
+<tr>
+<td><code>video:</code> · <code>audio:</code></td>
+<td>Videos · audio</td>
+</tr>
+<tr>
+<td><code>zip:</code> (or <code>archive:</code>)</td>
+<td>Archives (zip, 7z, rar, alz, egg…)</td>
+</tr>
+<tr>
+<td><code>exe:</code></td>
+<td>Programs (exe, msi, bat, cmd, ps1)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="size">Size</h3>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size:&gt;1mb</code> · <code>size:&lt;=500kb</code> · <code>size:2mb</code></td>
+<td>Operators <code>&gt;</code> <code>&gt;=</code> <code>&lt;</code> <code>&lt;=</code> <code>=</code>, units b, kb, mb, gb, tb</td>
+</tr>
+<tr>
+<td><code>size:1mb..5mb</code></td>
+<td>Range (inclusive)</td>
+</tr>
+<tr>
+<td><code>size:empty</code></td>
+<td>0 bytes</td>
+</tr>
+<tr>
+<td><code>size:tiny</code> · <code>small</code> · <code>medium</code></td>
+<td>Up to 10 KB · 10–100 KB · 100 KB–1 MB</td>
+</tr>
+<tr>
+<td><code>size:large</code> · <code>huge</code> · <code>gigantic</code></td>
+<td>1–16 MB · 16–128 MB · over 128 MB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dates-local-time">Dates (local time)</h3>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dm:today</code> · <code>dm:yesterday</code></td>
+<td>Today · yesterday</td>
+</tr>
+<tr>
+<td><code>dm:thisweek</code> · <code>dm:thismonth</code> · <code>dm:thisyear</code></td>
+<td>This week (from Monday) · this month · this year</td>
+</tr>
+<tr>
+<td><code>dm:2026</code> · <code>dm:2026-03</code> · <code>dm:2026-03-15</code></td>
+<td>That year · month · day</td>
+</tr>
+<tr>
+<td><code>dm:&gt;2025-12-31</code> · <code>dm:&lt;=2026-02</code></td>
+<td>After · up to</td>
+</tr>
+<tr>
+<td><code>dm:2025..2026-02</code></td>
+<td>Range</td>
+</tr>
+</tbody>
+</table>
+<pre><code>Search: quote ext:xlsx dm:thismonth path:clients
+</code></pre>
+<p>→ xlsx files under a "clients" folder, changed this month, that contain "quote".</p>
+<hr />
+<h2 id="results">Results</h2>
+<h3 id="result-count">Result count</h3>
+<p>Shown in the status bar at the bottom:
+- <code>1,234 results</code> — all results are loaded.
+- <code>300+ results</code> — only some are loaded. Scroll down and Chatda fetches more automatically.
+- When you select results, a count such as <code>· 3 selected</code> appears next to it.</p>
+<h3 id="loading-more-infinite-scroll">Loading more — infinite scroll</h3>
+<p>When there are many results, Chatda shows the first 300. Scroll down and more load automatically.</p>
+<h3 id="when-nothing-matches">When nothing matches</h3>
+<pre><code>No matching files
+
+Try this
+- Check whether the file type (▾) filter at the top is on
+- Set &quot;Search in&quot; to Name + content (&quot;Content only&quot; skips file name matches)
+- Wildcards: * (any characters), ? (one character). Example: report*2024
+- Search by file type only: *.xlsx or report *.xlsx
+- Try shorter words or fragments
+</code></pre>
+<p>Chatda shows these tips right in the result list. Following them usually turns up the file.</p>
+<hr />
+<h2 id="preview">Preview</h2>
+<p>Images (jpg, png, gif, heic, …) are shown as pictures. On Windows, videos and PDFs show a thumbnail too.</p>
+<p>Click a search result once to open the preview panel on the right.</p>
+<table>
+<thead>
+<tr>
+<th>File type</th>
+<th>What the preview shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text files such as TXT, MD, CSV, log</td>
+<td>The beginning of the text (search words highlighted)</td>
+</tr>
+<tr>
+<td>PDF</td>
+<td>Document text (up to 30 MB)</td>
+</tr>
+<tr>
+<td>Word · Excel · PowerPoint · Hangul (hwpx)</td>
+<td>Extracted document text (up to 300 MB)</td>
+</tr>
+<tr>
+<td>Other files (photos, videos, etc.)</td>
+<td>No preview — double-click to open</td>
+</tr>
+</tbody>
+</table>
+<p>To close the preview, press <code>Esc</code> or click another result.</p>
+<hr />
+<h2 id="copy">Copy</h2>
+<h3 id="copying-one-file">Copying one file</h3>
+<p>Right-click → "Copy path", or drag the result.</p>
+<h3 id="copying-selected-files">Copying selected files</h3>
+<p>Pick files with Ctrl+click (⌘+click on Mac) or Shift+click → click <strong>Copy</strong> at the right of the filter bar. The button shows how many you picked, like <code>Copy (3)</code>.</p>
+<h3 id="copying-all-results-on-screen">Copying all results on screen</h3>
+<p>Click <strong>Select all</strong>, then <strong>Copy</strong>. Clicking <strong>Copy</strong> with nothing selected also copies every result shown.</p>
+<h3 id="copy-options">Copy options</h3>
+<p>When you copy, you choose:
+- <strong>Destination folder</strong>: where the files go.
+- <strong>Save as</strong>:
+  - Folder: a regular folder copy.
+  - ZIP: a single archive file.
+- <strong>Structure</strong>:
+  - All in one folder: every file goes into one folder.
+  - Keep original folder structure: recreates the original folder tree.
+  - Sort by file type: one folder per file type.</p>
+<hr />
+<h2 id="favorites">Favorites</h2>
+<p>Add files you open often to your favorites and get to them in a second, no search needed.</p>
+<h3 id="adding">Adding</h3>
+<p>Right-click a result → "Add to favorites".</p>
+<h3 id="viewing">Viewing</h3>
+<p>Click <strong>All locations ▾</strong> → "★ Favorites" to list only your favorite files.</p>
+<h3 id="removing">Removing</h3>
+<p>Right-click again → "Remove from favorites".</p>
+<hr />
+<h2 id="saved-searches">Saved searches</h2>
+<p>Save a search you run often — the search words and filters together.</p>
+<h3 id="example_1">Example</h3>
+<ul>
+<li>Search words: <code>meeting notes</code></li>
+<li>Mode: Content only</li>
+<li>File types: docx, md</li>
+<li>Date: Past month</li>
+</ul>
+<p>Save this as "This month's meeting notes" and bring it back with one click under <strong>All locations ▾</strong>.</p>
+<h3 id="saving">Saving</h3>
+<p>Set up your search and filters, click <strong>⋯</strong> in the filter bar → <strong>Save this search</strong> (<code>Ctrl+D</code>), and enter a name.</p>
+<h3 id="using">Using</h3>
+<p>Click the name under <strong>All locations ▾</strong> → "Saved searches". Right-click a name to delete it.</p>
+<hr />
+<h2 id="managing-folders">Managing folders</h2>
+<h3 id="adding-a-folder">Adding a folder</h3>
+<p><strong>All locations ▾</strong> → "+ Add folder" → choose a folder → indexing starts automatically.</p>
+<h3 id="adding-a-network-folder">Adding a network folder</h3>
+<p><strong>All locations ▾</strong> → "Connect network folder" → enter the NAS address and your username and password.</p>
+<h3 id="whole-drives-windows">Whole drives (Windows)</h3>
+<p>If you add a whole drive such as <code>C:\</code>, Chatda indexes <strong>only file names, sizes and dates</strong>.
+- Fixed NTFS drives (C:\, D:\ …) are added automatically and indexed one after another. Remove a drive you don't need with <strong>Remove from list</strong> in the folder menu and it won't come back. Removable drives such as USB sticks aren't added.
+- If you click <strong>Yes</strong> in the administrator prompt, Chatda reads the NTFS file table directly; a drive with 2 million files is done in about 10–20 seconds. If you click <strong>No</strong>, it walks the folders one by one, which takes a few minutes.
+- While indexing, the status bar shows <strong>Reading disk list NN% · time left</strong>. The list is saved, so the next launch loads it again in a second or two.
+- By default, whole-drive indexing skips developer folders (node_modules, .git…) and files starting with «.». To include them, turn on ⚙ Settings → Exclude from index → <strong>Include developer folders … (all files)</strong>. Folders you added yourself aren't affected.
+- If approving every time gets tedious, install ⚙ Settings → <strong>Fast drive indexing (service)</strong>. It indexes quickly without the prompt and catches up on files that changed while Chatda was closed.
+  Once the service is installed, everyone who signs in to that PC can search the <strong>names</strong> of files on the drive.</p>
+<h3 id="folder-menu">Folder menu</h3>
+<p>In the <strong>All locations ▾</strong> panel, hover over a folder and a <strong>⋯</strong> button appears on the right. Click it, or right-click the folder, to open the menu.</p>
+<table>
+<thead>
+<tr>
+<th>Menu item</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Re-index</strong></td>
+<td>Rebuilds the index. Use it when a folder has changed a lot.</td>
+</tr>
+<tr>
+<td><strong>Remove missing files</strong></td>
+<td>Removes files that no longer exist from the index</td>
+</tr>
+<tr>
+<td><strong>Remove from list</strong></td>
+<td>Removes the folder from the list and the index (your actual files are not deleted)</td>
+</tr>
+</tbody>
+</table>
+<p>Marks in front of a folder name:</p>
+<table>
+<thead>
+<tr>
+<th>Mark</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>↻</strong></td>
+<td>Indexing right now</td>
+</tr>
+<tr>
+<td><strong>⚠</strong></td>
+<td>Indexing didn't finish — re-indexing recommended</td>
+</tr>
+<tr>
+<td><strong>🌐</strong></td>
+<td>Network share</td>
+</tr>
+</tbody>
+</table>
+<p>To see whether a NAS cache is in use, hover over the folder and read its tooltip.</p>
+<h3 id="reset-index">Reset index</h3>
+<p>At the bottom of ⚙ Settings, <strong>Reset index</strong> removes all added folders and the whole index. Add your folders again afterwards; Chatda then indexes them from scratch.</p>
+<h3 id="automatic-updates">Automatic updates</h3>
+<p>Chatda <strong>notices automatically</strong> when files in a folder are added, changed or deleted:
+- <strong>Local folders</strong>: reflected in search within about 0.5 seconds.
+- <strong>NAS folders</strong>: reflected within about 5 minutes.</p>
+<p>To refresh by hand, choose <strong>Re-index</strong> from the folder menu (⋯ or right-click).</p>
+<hr />
+<h2 id="shortcuts">Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ctrl + K</strong></td>
+<td>Focus the search box from anywhere</td>
+</tr>
+<tr>
+<td><strong>Tab</strong></td>
+<td>Autocomplete from recent searches (dropdown appears when you click the search box)</td>
+</tr>
+<tr>
+<td><strong>↑ / ↓</strong></td>
+<td>Move up and down the result list</td>
+</tr>
+<tr>
+<td><strong>Enter</strong></td>
+<td>Open the selected result (same as double-click)</td>
+</tr>
+<tr>
+<td><strong>Esc</strong></td>
+<td>Clear the search / close the preview</td>
+</tr>
+<tr>
+<td><strong>Right-click</strong></td>
+<td>More actions (copy path, show location, etc.)</td>
+</tr>
+<tr>
+<td><strong>Ctrl + Shift + Space</strong> (⌘ + ⇧ + Space on Mac)</td>
+<td>Bring up Chatda from anywhere · press again to hide it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recent-and-frequently-opened-files">Recent and frequently opened files</h3>
+<ul>
+<li><strong>Clear the search box</strong> to list every indexed file, <strong>most recently modified first</strong> — handy for "where did the file I just saved go?". Date, type and folder filters still apply.</li>
+<li>Files you open through Chatda get an <strong>open count</strong> and rise in Best match results. Sort by <strong>Most opened</strong> to see them together; right-click → «Clear open count» to reset.</li>
+</ul>
+<h3 id="export">Export</h3>
+<p><strong>Export ▾</strong> in the filter bar → <strong>CSV (Excel)</strong> or <strong>TXT</strong>. Saves <strong>all results</strong> that match the current search, not just the loaded pages. CSV files open in Excel without garbled Korean.</p>
+<h3 id="columns-and-active-filters">Columns and active filters</h3>
+<ul>
+<li><strong>Right-click the table header</strong> to show or hide the Path, Content, Size and Date modified columns.</li>
+<li>Active date, type, folder and search-in filters appear as chips in the <strong>status bar</strong> at the bottom. Click a chip to clear it.</li>
+<li>At the top of the type filter (<code>All types ▾</code>), <strong>Documents · Images · Videos · Audio · Archives</strong> pick a whole group at once.</li>
+</ul>
+<h3 id="exclude-from-index">Exclude from index</h3>
+<p>⚙ Settings → <strong>Exclude from index</strong>: folders and name patterns (<code>*.tmp</code>, <code>~$*</code>, one per line) Chatda shouldn't index, plus an option to skip hidden and system files (Windows). Saving removes matching items from the index right away.</p>
+<h3 id="tray-and-start-at-login">Tray and start at login</h3>
+<p>Closing the window doesn't quit Chatda. It stays in the <strong>tray (the menu bar on Mac)</strong> and keeps indexing. Press <strong>Ctrl + Shift + Space</strong> while using another app and the window pops up with the cursor in the search box. Click the tray icon to open the window, or choose <strong>Quit</strong> from its menu to exit completely.</p>
+<p>You can change this in ⚙ Settings:
+- <strong>When closing the window</strong>: «Keep in tray» or «Quit»
+- <strong>Show window shortcut</strong>: pick one of a few combinations, or turn it off. If another app already uses it, Chatda tells you
+- <strong>Start at login</strong>: when on, Chatda starts in the tray, without a window, when you log in</p>
+<hr />
+<h2 id="search-tips">Search tips</h2>
+<h3 id="1-start-short">1) Start short</h3>
+<p><code>3Q summary</code> finds more than <code>project_2024_Q3_operations_summary_report</code>.</p>
+<h3 id="2-spacing-doesnt-matter-much">2) Spacing doesn't matter much</h3>
+<p><code>meetingnotes</code>, <code>meeting notes</code> and <code>meeting notes 2024</code> all behave about the same.</p>
+<h3 id="3-mix-languages-freely">3) Mix languages freely</h3>
+<p><code>Ctrl 단축키</code>, <code>Excel VLOOKUP</code>, <code>python manual</code> — anything goes.</p>
+<h3 id="4-cant-find-something-by-its-contents">4) Can't find something by its contents?</h3>
+<ul>
+<li>Switch the mode to <strong>Content only</strong>.</li>
+<li>Check that the file is TXT/MD/CSV/DOCX/XLSX/PPTX/PDF/HWPX (other formats aren't indexed for contents).</li>
+<li>If the file is only covered by a whole-drive entry (C:), its contents aren't searched → add its folder separately.</li>
+<li>Try a more general word (<code>bottleneck</code> instead of <code>approval bottleneck</code>).</li>
+</ul>
+<h3 id="5-too-many-results">5) Too many results?</h3>
+<ul>
+<li>Add a file type filter (just <code>xlsx</code>, for example).</li>
+<li>Add a date filter (Past month, for example).</li>
+<li>Narrow down to a folder under <strong>All locations ▾</strong>.</li>
+<li>Use more specific search words.</li>
+</ul>
+<h3 id="6-seeing-several-versions-of-the-same-file">6) Seeing several versions of the same file?</h3>
+<p>Set grouping to <strong>By version</strong> → v1, v2 and v3 of the same file are grouped on one line.</p>
+<h3 id="7-try-different-sorting">7) Try different sorting</h3>
+<ul>
+<li>To see what you worked on most recently, sort by <strong>Recently modified</strong>.</li>
+<li>To list things alphabetically, sort by <strong>Name A→Z</strong>.</li>
+</ul>
+<hr />
+<h2 id="faq">FAQ</h2>
+<p><strong>Q. The same file shows up several times.</strong>
+Often the same file really does exist in several folders on the NAS. Set grouping to <strong>By folder</strong> or <strong>By version</strong> to tidy things up.</p>
+<p><strong>Q. I don't see an excerpt.</strong>
+- The file's format may not support content indexing (e.g. images, ZIP files).
+- If you see the <code>Name</code> badge, its contents aren't indexed.
+- Supported formats: TXT · MD · CSV · DOCX · XLSX · PPTX · PDF · HWPX.
+- Files covered only by a whole-drive entry (C:) are indexed by name only. Add their folder separately to search their contents too.</p>
+<p><strong>Q. I just created a file and it doesn't show up.</strong>
+- In a local folder, wait about 0.5 seconds. Chatda picks it up automatically.
+- On a NAS, it can take up to 5 minutes. In a hurry? Choose <strong>Re-index</strong> from the folder menu.</p>
+<p><strong>Q. Search is slow.</strong>
+- Switch the mode to <strong>Name only</strong> (fastest).
+- Narrow the search with a file type filter.
+- Use the folder filter to search one folder.</p>
+<p><strong>Q. How do I get updates?</strong>
+When a new version is out, a banner like "Version v0.X.X is available [Install]" appears at the top when Chatda starts. Click it and the rest is automatic.</p>
+<p><strong>Q. Do favorites and recent searches sync between PCs?</strong>
+No. Each PC keeps its own.</p>
+<p><strong>Q. I changed my NAS password. What now?</strong>
+Reconnect with the new password from <strong>All locations ▾</strong> → "Connect network folder".</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="no-results">No results</h3>
+<ol>
+<li>Check whether the <strong>file type (▾)</strong> filter is on → clear it.</li>
+<li>Set "Search in" to <strong>Name + content</strong> ("Content only" skips file name matches).</li>
+<li>Click <strong>All locations ▾</strong> → <strong>All folders</strong> at the top (so you're not limited to one folder).</li>
+<li>Make sure the date filter is set to "Any time".</li>
+<li>Use shorter, simpler search words.</li>
+</ol>
+<h3 id="a-nas-folder-shows-up-empty">A NAS folder shows up empty</h3>
+<ul>
+<li>Right-click the folder under <strong>All locations ▾</strong> (or click ⋯) → <strong>Re-index</strong>.</li>
+<li>Check the NAS connection (can you open the NAS address in Explorer/Finder?).</li>
+<li>If you use a work NAS from outside the office, check that your VPN is connected.</li>
+</ul>
+<h3 id="the-app-uses-too-much-memory">The app uses too much memory</h3>
+<ul>
+<li>⚙ Settings → <strong>Reset index</strong> at the bottom → add your folders again (rebuilding the index takes a while).</li>
+<li>Remove folders you don't use.</li>
+</ul>
+<h3 id="cant-add-a-folder">Can't add a folder</h3>
+<ul>
+<li>Check folder permissions (for a NAS, check your username and password and that you have access to that folder).</li>
+</ul>
+<h3 id="still-stuck">Still stuck?</h3>
+<p>Please open an issue under <strong>Issues</strong> on the download page. Including the following helps us fix it faster:
+- Your operating system (Windows / Mac)
+- What you did on which screen, and what happened
+- A screenshot, if you can</p>
+<hr />
+<h2 id="in-one-line">In one line</h2>
+<blockquote>
+<p>Type <strong>a word or two</strong> in the search box → click a result → preview it or double-click to open.
+Nothing found? Try <strong>Content only</strong> mode or the <strong><code>*</code></strong> wildcard.
+Too many results? Narrow them with the <strong>file type</strong> / <strong>date</strong> filters or <strong>grouping</strong>.</p>
+</blockquote>
+<hr />
+<p>As of v0.9</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../zh-cn/revive/index.html">ReviveUSB</a><a href="../../zh-cn/chatda/index.html">Chatda</a><a href="../../zh-cn/about.html">关于</a><a href="../../zh-cn/donate.html">捐助</a><a href="../../zh-cn/privacy.html">隐私</a><a id="contact-link" href="#" hidden>联系</a></nav><div class="prefs"><span>语言: <a href="../../chatda/help.html" lang="en">English</a> · <a href="../../ko/chatda/help.html" lang="ko">한국어</a> · <a href="../../ja/chatda/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/chatda/help.html" lang="zh-CN" aria-current="true">简体中文</a> · <a href="../../zh-tw/chatda/help.html" lang="zh-TW">繁體中文</a> · <a href="../../es/chatda/help.html" lang="es">Español</a> · <a href="../../de/chatda/help.html" lang="de">Deutsch</a> · <a href="../../fr/chatda/help.html" lang="fr">Français</a> · <a href="../../pt-br/chatda/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/chatda/help.html" lang="ru">Русский</a> · <a href="../../vi/chatda/help.html" lang="vi">Tiếng Việt</a></span><label>主题 <select id="theme-select"><option value="auto">默认</option><option value="dark">深色</option><option value="light">浅色</option></select></label></div><p class="mt-note">本页面为机器翻译。如发现错误，欢迎告诉我们。</p><p>© 2026 Barbellsoft。免费软件，按“原样”提供，不附带任何担保。</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>

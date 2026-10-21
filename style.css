@@ -1,0 +1,163 @@
+/* Barbellsoft — 시그니처 색 바벨 레드 #E8380D (시안 A). 글자·버튼은 대비(4.5:1)를 맞춘 짙은 색을 쓴다. */
+:root {
+  --brand: #e8380d;          /* 로고·아이콘·테두리 강조 */
+  --accent: #c42f09;         /* 링크 글자·버튼 바탕(흰 글자 5.6:1) */
+  --accent-hover: #a82708;
+  --on-accent: #ffffff;
+  --ink: #1c1c1c;
+  --body: #3a3a3a;
+  --mute: #646464;
+  --canvas: #f9f7f3;
+  --bone: #f0ece3;
+  --card: #ffffff;
+  --hairline: rgba(28, 28, 28, 0.13);
+  --focus: rgba(59, 130, 246, 0.55);
+  --font: system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", Roboto, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --r: 10px;
+  --gutter: 16px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #ff6b3d; --accent-hover: #ff8a63; --ink: #f2f2f2; --body: #d6d6d6; --mute: #a0a0a0;
+    --canvas: #161616; --bone: #222222; --card: #1e1e1e; --hairline: rgba(255, 255, 255, 0.14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --accent: #ff6b3d; --accent-hover: #ff8a63; --ink: #f2f2f2; --body: #d6d6d6; --mute: #a0a0a0;
+  --canvas: #161616; --bone: #222222; --card: #1e1e1e; --hairline: rgba(255, 255, 255, 0.14);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--canvas); color: var(--body); font: 16px/1.6 var(--font); }
+img { max-width: 100%; height: auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--accent-hover); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { color: var(--ink); line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
+h1 { font-size: 30px; }
+h2 { font-size: 21px; }
+h3 { font-size: 17px; }
+p { margin: 0 0 14px; }
+code { font: 14px/1.45 var(--mono); background: var(--bone); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
+pre { background: #1c1c1c; color: #f5f5f5; padding: 14px 16px; border-radius: var(--r); overflow-x: auto; }
+pre code { background: none; padding: 0; color: inherit; word-break: normal; }
+[hidden] { display: none !important; }
+
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 var(--gutter); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--canvas); padding: 8px 12px; border-radius: 6px; z-index: 10; }
+.skip:focus { left: 8px; }
+main { padding: 28px 0 40px; }
+section { margin-top: 32px; }
+
+/* 머리: 로고 + 프로그램 이름들(반디소프트처럼) */
+.site-header { background: var(--card); border-bottom: 1px solid var(--hairline); }
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 24px; padding-top: 10px; padding-bottom: 10px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 20px; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.brand em { font-style: normal; color: var(--brand); }
+.nav { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+.nav a, .subnav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 15px; padding: 6px 0; border-bottom: 2px solid transparent; }
+.nav a:hover, .subnav a:hover { color: var(--accent); }
+.nav a[aria-current="page"], .subnav a[aria-current="page"] { border-bottom-color: var(--brand); }
+
+/* 프로그램 안 메뉴(홈·다운로드·자주 묻는 질문·도움말) */
+.subnav { background: var(--bone); border-bottom: 1px solid var(--hairline); }
+.subnav .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 18px; padding-top: 6px; padding-bottom: 6px; }
+.subnav strong { color: var(--ink); margin: 0 10px 0 -10px; }
+
+/* 버튼·배지 */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 10px 20px; border-radius: 9999px; border: 1px solid transparent; font: 700 15px/1 var(--font); text-decoration: none; cursor: pointer; }
+.btn-primary { background: #c42f09; color: var(--on-accent); }
+.btn-primary:hover { background: #a82708; color: var(--on-accent); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--hairline); }
+.btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+.btn-small { min-height: 32px; padding: 6px 14px; font-size: 13px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 6px 0 14px; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 9999px; background: var(--bone); border: 1px solid var(--hairline); color: var(--ink); font-size: 13px; font-weight: 700; }
+.callout { border-left: 4px solid var(--brand); background: var(--card); padding: 10px 14px; border-radius: 0 var(--r) var(--r) 0; margin: 0; }
+.meta, .plat { color: var(--mute); font-size: 14px; }
+.tag { font-size: 18px; color: var(--ink); margin-bottom: 18px; }
+.prose { max-width: 42em; }
+
+/* 첫 페이지: 브랜드 한 줄 + 프로그램 줄(반디소프트처럼) */
+.brand-lead { font-size: clamp(20px, 3.4vw, 26px); font-weight: 700; color: var(--ink); line-height: 1.4; margin: 6px 0 26px; max-width: 30em; }
+.product { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 24px; align-items: center; background: var(--card); border: 1px solid var(--hairline); border-radius: 14px; padding: 18px; margin-bottom: 18px; }
+.product h2 { display: flex; align-items: center; gap: 10px; font-size: 24px; }
+.product .tag { margin-bottom: 4px; }
+
+/* 스크린샷 */
+.shot { display: block; border: 1px solid var(--hairline); border-radius: var(--r); overflow: hidden; background: var(--bone); }
+.shot img { display: block; width: 100%; }
+.shot-icon { display: flex; align-items: center; justify-content: center; aspect-ratio: 836 / 689; }
+.shot-icon img { width: 120px; }
+
+/* 프로그램 홈(스크린샷 + 특징 목록, 아래 다운로드 묶음) */
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.features { margin: 0; padding-left: 20px; }
+.features li { margin-bottom: 4px; }
+.dl-block { background: var(--card); border: 1px solid var(--hairline); border-top: 4px solid var(--brand); border-radius: var(--r); padding: 16px 18px; }
+.dl-links { list-style: none; padding: 0; margin: 0 0 8px; font-size: 17px; font-weight: 600; }
+.dl-more { margin: 0 0 4px; font-size: 14px; }
+
+/* 다운로드 페이지 */
+dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 18px; margin: 0 0 16px; }
+dl.facts dt { font-weight: 700; color: var(--ink); }
+dl.facts dd { margin: 0; }
+.hash { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.hash > span { font-weight: 700; color: var(--ink); }
+
+/* 자주 묻는 질문 */
+details { background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); margin-bottom: 8px; }
+summary { cursor: pointer; padding: 12px 16px; font-weight: 600; color: var(--ink); }
+details[open] summary { border-bottom: 1px solid var(--hairline); }
+details > div { padding: 10px 16px 2px; }
+
+/* 도움말(매뉴얼) */
+.doc { max-width: 780px; }
+.doc table { border-collapse: collapse; display: block; overflow-x: auto; margin: 0 0 16px; }
+.doc th, .doc td { border: 1px solid var(--hairline); padding: 6px 10px; text-align: left; vertical-align: top; background: var(--card); }
+.doc th { background: var(--bone); }
+.doc h2 { margin-top: 36px; }
+.doc h3 { margin-top: 24px; }
+.doc .ta-left { text-align: left; }
+.doc .ta-center { text-align: center; }
+.doc .ta-right { text-align: right; }
+.doc blockquote { border-left: 4px solid var(--hairline); margin: 0 0 16px; padding: 4px 16px; color: var(--mute); }
+/* 블로그: 글 목록 한 줄마다 구분선, 글 끝 프로그램 안내 */
+.post-item { padding: 18px 0; border-bottom: 1px solid var(--hairline); }
+.post-item h2 { margin: 0 0 4px; font-size: 1.25rem; }
+.post-item p { margin: 4px 0 0; }
+.post-cta { max-width: 780px; margin-top: 40px; }
+.post-cta .actions { margin-top: 10px; }
+
+/* 바닥: 링크 · 언어 · 테마 */
+.site-footer { border-top: 1px solid var(--hairline); padding: 20px 0 36px; font-size: 14px; color: var(--mute); }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 10px; }
+.site-footer nav a { color: var(--body); }
+.prefs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; margin-bottom: 10px; }
+.prefs a[aria-current="true"] { color: var(--ink); font-weight: 700; text-decoration: none; }
+.prefs select { font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 3px 6px; }
+
+@media (max-width: 720px) {
+  .product, .intro { grid-template-columns: 1fr; }
+  .actions .btn { flex: 1 1 auto; }
+}
+
+.mt-note { font-size: 13px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.file { background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); padding: 12px 16px; margin-bottom: 10px; }
+.file h3 { margin-bottom: 4px; }
+.file .hash { margin: 0; }
+/* 성능 표(Chatda): 좁은 화면에서는 표만 가로로 밀린다 */
+.perf-wrap { overflow-x: auto; margin: 0 0 8px; }
+table.perf { border-collapse: collapse; min-width: 100%; background: var(--card); }
+table.perf th, table.perf td { border: 1px solid var(--hairline); padding: 6px 10px; text-align: left; white-space: nowrap; }
+table.perf thead th { background: var(--bone); color: var(--ink); }
+table.perf tbody th { font-weight: 600; color: var(--ink); white-space: normal; }
+.perf-cond { padding-left: 20px; }
+.perf-cond li { margin-bottom: 4px; }
+

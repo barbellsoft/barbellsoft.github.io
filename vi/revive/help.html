@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Trợ giúp ReviveUSB</title>
+<meta name="description" content="Công cụ miễn phí cho Windows dành cho ổ USB đòi định dạng, hiện là RAW hoặc không thấy tệp. Chương trình sao chép ổ đĩa an toàn, khôi phục tệp từ bản sao, rồi sửa ổ đĩa. Nếu chính ổ đang hỏng thì không sửa: chỉ lấy tệp ra an toàn và khuyên bạn thay ổ.">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua, đến nội dung chính</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../vi/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Chính"><a href="../../vi/revive/index.html" aria-current="page">ReviveUSB</a><a href="../../vi/chatda/index.html">Chatda</a><a href="../../vi/about.html">Giới thiệu</a><a href="../../vi/donate.html">Ủng hộ</a><a href="../../blog/index.html" lang="en">Blog</a></nav></div></header>
+<nav class="subnav" aria-label="Sản phẩm"><div class="wrap"><img src="../../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">Trang chủ</a><a href="download.html">Tải xuống</a><a href="faq.html">Hỏi đáp</a><a href="help.html" aria-current="page">Trợ giúp</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="hướng-dẫn-sử-dụng-reviveusb">Hướng dẫn sử dụng ReviveUSB</h1>
+<p>ReviveUSB khôi phục tệp từ ổ USB hoặc ổ cứng ngoài bị lỗi và, khi bạn muốn, sửa ổ đĩa để có thể dùng lại. Mọi việc diễn ra trong một cửa sổ: chọn đĩa, rồi bấm nút. Hãy làm theo hướng dẫn này từ trên xuống dưới.</p>
+<hr />
+<h2 id="0-bắt-đầu-nhanh">0. Bắt đầu nhanh</h2>
+<ol>
+<li>Chạy <code>ReviveUSB.exe</code> và cho phép quyền quản trị khi Windows hỏi.</li>
+<li>Bấm <strong>Làm mới</strong>, rồi bấm vào ổ USB của bạn trong danh sách đĩa.</li>
+<li>Bấm <strong>Sao lưu ra ảnh đĩa</strong> và lưu ảnh đĩa trên một ổ khác còn đủ dung lượng trống.</li>
+<li>Bấm <strong>Khôi phục tệp (tên/thư mục)</strong>, chọn ảnh đĩa, rồi chọn một thư mục trên ổ còn tốt. Nếu không lấy lại được gì, hãy làm tương tự với <strong>Khôi phục tệp (chữ ký)</strong>.</li>
+<li>Chỉ khi đã có đủ tệp, hãy dùng một trong các nút sửa chữa để ổ đĩa dùng lại được.</li>
+</ol>
+<p>Quy tắc quan trọng duy nhất: nếu muốn lấy lại dữ liệu, đừng lưu gì mới vào ổ bị hỏng. Hãy tạo ảnh đĩa trước và khôi phục từ ảnh đĩa.</p>
+<p>Nếu bạn không cần dữ liệu mà chỉ muốn ổ đĩa hoạt động lại, hãy bỏ qua bước 3 và 4. Chương 7 trình bày việc này.</p>
+<hr />
+<h2 id="1-chương-trình-làm-được-gì">1. Chương trình làm được gì</h2>
+<p>Hãy dùng chương trình khi ổ đĩa ở một trong các tình trạng sau:</p>
+<ul>
+<li>Bạn lỡ xóa tệp.</li>
+<li>Khi cắm ổ vào, Windows báo "Bạn cần định dạng đĩa trước khi có thể sử dụng". Đây là hệ thống tệp bị hỏng, hiển thị là RAW.</li>
+<li>Một ổ dung lượng lớn chỉ hiện ra một phần RAW nhỏ hoặc không có ký tự ổ đĩa, vì phân vùng bị hỏng.</li>
+<li>Ổ đĩa được nhận nhưng không thấy tệp của bạn.</li>
+</ul>
+<p>Chương trình có hai mục tiêu, và một công cụ đảm nhận cả hai.</p>
+<table>
+<thead>
+<tr>
+<th>Mục tiêu</th>
+<th>Ý nghĩa</th>
+<th>Nút</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lấy lại dữ liệu</td>
+<td>Khôi phục tệp đã bị xóa hoặc không nhìn thấy</td>
+<td><strong>Sao lưu ra ảnh đĩa</strong>, rồi một trong các nút <strong>Khôi phục tệp</strong></td>
+</tr>
+<tr>
+<td>Lấy lại ổ đĩa</td>
+<td>Định dạng lại ổ để có thể dùng tiếp</td>
+<td><strong>Kiểm tra (chkdsk)</strong>, <strong>Định dạng</strong>, <strong>Tạo lại toàn bộ</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Thứ tự là cố định: khôi phục dữ liệu trước, sửa ổ đĩa sau. Sửa trước sẽ hủy dữ liệu vĩnh viễn.</p>
+<hr />
+<h2 id="2-quy-tắc-an-toàn-cần-đọc-trước-khi-bắt-đầu">2. Quy tắc an toàn cần đọc trước khi bắt đầu</h2>
+<p>Ghi vào ổ bị hỏng là điều làm hỏng việc khôi phục. Chạy chương trình này thì không sao, vì sao lưu và khôi phục chỉ đọc từ ổ đĩa.</p>
+<p>Lý do như sau. Khi bạn xóa một tệp, bản thân dữ liệu thường vẫn nằm trên ổ. Chỉ mục trỏ đến nó bị gỡ đi, và đó chính là lý do việc khôi phục có thể thực hiện được. Nếu sau đó bạn lưu tệp mới vào ổ, hệ thống thấy chỗ dữ liệu cũ đang nằm là chỗ trống và có thể ghi tệp mới đè ngay lên đó. Khi điều đó xảy ra, dữ liệu cũ không thể khôi phục được nữa.</p>
+<p>Đừng làm bất kỳ việc nào sau đây trước khi khôi phục:</p>
+<ul>
+<li>Lưu hoặc sao chép tệp mới vào ổ.</li>
+<li>Định dạng ổ, dù bằng Windows hay bằng các nút sửa chữa.</li>
+<li>Bấm Có khi Windows đề nghị quét và sửa ổ đĩa.</li>
+</ul>
+<p>Các nút sau là an toàn, vì chúng chỉ đọc: <strong>Làm mới</strong>, <strong>Kiểm tra sức khỏe</strong>, <strong>Sao lưu ra ảnh đĩa</strong>, và cả hai nút <strong>Khôi phục tệp</strong>.</p>
+<pre><code>ổ USB bị hỏng --(chỉ đọc)--&gt; disk2.img (bản sao lưu) --&gt; recovered\ (tệp của bạn)
+  ổ gốc giữ nguyên            làm việc trên bản sao này      kết quả
+</code></pre>
+<hr />
+<h2 id="3-bạn-cần-những-gì">3. Bạn cần những gì</h2>
+<table>
+<thead>
+<tr>
+<th>Mục</th>
+<th>Yêu cầu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 hoặc 11</td>
+<td>Có. Không cần Python</td>
+</tr>
+<tr>
+<td>Quyền quản trị</td>
+<td>Cần cho sao lưu, khôi phục trực tiếp từ đĩa, và sửa chữa</td>
+</tr>
+<tr>
+<td>Dung lượng trống cho ảnh đĩa</td>
+<td>Bằng dung lượng của ổ, trên một ổ khác. Ổ 128 GB cần 128 GB trống</td>
+</tr>
+<tr>
+<td>Một nơi còn tốt để lưu tệp đã khôi phục</td>
+<td>Bất kỳ ổ nào trừ ổ bị hỏng</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-khởi-động-chương-trình">4. Khởi động chương trình</h2>
+<h3 id="41-tải-xuống-và-kiểm-tra-tệp">4.1 Tải xuống và kiểm tra tệp</h3>
+<p>Tải <code>ReviveUSB.exe</code> từ trang Tải xuống. Tệp chưa được ký mã, nên Windows SmartScreen hoặc phần mềm diệt virus có thể cảnh báo. Trước khi chạy, hãy kiểm tra tệp khớp với mã SHA-256 ghi trên trang Tải xuống. Trong PowerShell:</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>Nếu mã băm trùng khớp mà SmartScreen vẫn hiện, hãy chọn <strong>Thông tin khác</strong>, rồi <strong>Vẫn chạy</strong>.</p>
+<h3 id="42-quyền-quản-trị">4.2 Quyền quản trị</h3>
+<p>Chương trình yêu cầu quyền quản trị khi khởi động, vì đọc trực tiếp đĩa thô cần quyền này. Hãy cho phép. Khi đó phía trên cửa sổ sẽ hiện <strong>Quyền quản trị: BẬT</strong>. Nếu hiện TẮT, hãy bấm <strong>Chạy lại với quyền quản trị</strong>.</p>
+<h3 id="43-cửa-sổ-chương-trình">4.3 Cửa sổ chương trình</h3>
+<pre><code>+--------------------------------------------------------------------------------+
+| Trợ giúp                                                                       |
++--------------------------------------------------------------------------------+
+| Quyền quản trị: BẬT                                               [♥ Ủng hộ ▾] |
+| (1) Chọn đĩa                                                                   |
+|     Số | Tên | Dung lượng | Hệ thống tệp | Trạng thái                          |
+|     [Làm mới]   [ ] Hiện đĩa trong (thận trọng)                                |
+| (2) Chọn thao tác                                                              |
+|     [Kiểm tra sức khỏe]             [Sao lưu ra ảnh đĩa]                       |
+|     [Khôi phục tệp (tên/thư mục)]   [Khôi phục tệp (chữ ký)]                   |
+|     Sửa chữa (xóa dữ liệu): [Kiểm tra (chkdsk)] [Định dạng] [Tạo lại toàn bộ]  |
+|     Sau khi sửa: [Kiểm tra ổ] [Chép tệp trở lại]                               |
+| thanh tiến trình, phần trăm, lượng đã xử lý                                    |
+| Tiến trình: nhật ký những gì chương trình đang làm                             |
++--------------------------------------------------------------------------------+
+</code></pre>
+<p>Trình đơn <strong>Trợ giúp</strong> ở đầu cửa sổ mở sách hướng dẫn này: chọn <strong>Trợ giúp ReviveUSB</strong> hoặc nhấn <strong>F1</strong>. Sách hướng dẫn nằm sẵn trong chương trình nên mở được trong trình duyệt kể cả khi không có Internet. <strong>Giới thiệu ReviveUSB...</strong> (<strong>Ctrl+F1</strong>) cho biết phiên bản. <strong>Trang web ReviveUSB</strong> mở barbellsoft.com, còn <strong>Kiểm tra cập nhật</strong> mở trang tải về có phiên bản mới nhất. Mục <strong>Ủng hộ</strong> trong cùng trình đơn và nút <strong>♥ Ủng hộ</strong> ở góc trên bên phải mở trang Buy Me a Coffee trong trình duyệt. ReviveUSB miễn phí, ủng hộ là tùy bạn; chương trình không bao giờ xử lý thanh toán. Khi khôi phục hoặc chép tệp trở lại thành công, nhật ký kết thúc bằng một dòng ghi các liên kết ủng hộ này.</p>
+<p>Chỉ các đĩa USB được liệt kê. Đĩa trong của máy được ẩn đi trừ khi bạn đánh dấu <strong>Hiện đĩa trong (thận trọng)</strong>. Hãy để trống ô này trừ khi bạn biết chính xác mình đang làm gì.</p>
+<p>Khi một tác vụ đang chạy, các nút thao tác bị làm mờ, còn thanh tiến trình và nhật ký liên tục cập nhật. Không có nút Dừng. Để dừng sao lưu, hãy đóng cửa sổ; chương 5 giải thích cách tiếp tục sau đó.</p>
+<hr />
+<h2 id="5-khôi-phục-ổ-đĩa-trong-năm-bước">5. Khôi phục ổ đĩa trong năm bước</h2>
+<h3 id="bước-1-chọn-ổ-đĩa">Bước 1. Chọn ổ đĩa</h3>
+<p>Cắm ổ vào và bấm <strong>Làm mới</strong>. Bấm vào ổ của bạn trong danh sách. Nhật ký xác nhận bạn đã chọn đĩa nào, ví dụ <code>Đã chọn đĩa 2: SanDisk Ultra</code>.</p>
+<p>Hãy xem cột <strong>Hệ thống tệp</strong>. RAW nghĩa là hệ thống tệp đã bị hỏng.</p>
+<p>Bạn có thể bấm <strong>Kiểm tra sức khỏe</strong> ngay lúc này. Nút này cho biết trạng thái ổ đĩa và, nếu ổ có cung cấp, các bộ đếm SMART như độ hao mòn và lỗi đọc không sửa được. Nhiều ổ USB không truyền dữ liệu SMART ra ngoài; khi đó nhật ký sẽ báo như vậy.</p>
+<h3 id="bước-2-sao-lưu-ra-ảnh-đĩa">Bước 2. Sao lưu ra ảnh đĩa</h3>
+<p>Bấm <strong>Sao lưu ra ảnh đĩa</strong>. Chọn nơi lưu ảnh đĩa, trên một ổ khác còn đủ dung lượng trống. Tên gợi ý là <code>diskN.img</code>, trong đó N là số đĩa.</p>
+<p>Ổ gốc chỉ được đọc. Các vùng hỏng được bỏ qua nhanh chóng, nên việc sao chép vẫn tiếp tục thay vì bị treo. Thanh tiến trình cho biết phần trăm và lượng đã sao chép.</p>
+<p>Nếu có vùng không đọc được, chương trình sẽ hỏi có thử lại theo từng sector hay không. Thử lại có thể cứu thêm dữ liệu, nhưng với ổ hỏng nặng có thể mất rất nhiều thời gian. Nếu bạn đóng cửa sổ trong lúc thử lại, hãy sao lưu lại vào cùng tệp sau đó và chương trình sẽ tiếp tục việc thử lại. Sao lưu lại vào một ảnh đĩa đã hoàn tất sẽ không bao giờ đọc lại toàn bộ ổ: chương trình chỉ đề nghị thử lại các vùng không đọc được. Để làm lại từ đầu, hãy chọn tên tệp mới.</p>
+<p>Nếu bạn chọn vị trí nằm trên chính ổ đang khôi phục, chương trình sẽ từ chối và yêu cầu chọn ổ khác. Lưu ở đó có thể ghi đè lên các tệp bạn muốn lấy lại.</p>
+<p>Bạn có thể dừng bất cứ lúc nào bằng cách đóng cửa sổ. Tiến trình được lưu hai giây một lần. Để tiếp tục, hãy khởi động lại chương trình, chọn cùng ổ đĩa, bấm <strong>Sao lưu ra ảnh đĩa</strong>, và chọn cùng tệp. Nếu Windows hỏi có thay thế tệp không, hãy trả lời Có: nhật ký hiện <code>Tiếp tục ảnh đĩa</code> và việc sao chép tiếp tục từ chỗ đã dừng. Chương trình kiểm tra xem có đúng là cùng một ổ không. Nếu tệp thuộc về ổ khác, hoặc ổ giờ báo dung lượng khác, chương trình sẽ dừng thay vì trộn lẫn hay ghi đè bản sao trước; khi đó hãy chọn tên tệp mới.</p>
+<h3 id="bước-3-khôi-phục-tệp-từ-ảnh-đĩa">Bước 3. Khôi phục tệp từ ảnh đĩa</h3>
+<p>Có hai nút. Hãy thử <strong>Khôi phục tệp (tên/thư mục)</strong> trước, và dùng <strong>Khôi phục tệp (chữ ký)</strong> nếu nút đầu không tìm thấy gì.</p>
+<ol>
+<li>Bấm nút.</li>
+<li>Chọn tệp ảnh đĩa (<code>.img</code>).</li>
+<li>Chọn thư mục lưu tệp đã khôi phục, trên một ổ còn tốt. Thư mục nằm trên ổ đang khôi phục sẽ bị từ chối. Nếu ổ có nhiều phân vùng, tệp của mỗi phân vùng được đặt vào thư mục con riêng, chẳng hạn <code>volume2_exfat</code>.</li>
+</ol>
+<p>Cách tên/thư mục sao chép mọi tệp tìm được, không chỉ tệp đã xóa. Đây là cách bạn cần khi Windows báo ổ "không thể truy cập" hoặc yêu cầu định dạng ổ: tệp thường vẫn còn đó và được lấy lại kèm tên. Khi tìm thấy cả tệp hiện có lẫn tệp đã xóa, tệp đã xóa được đặt vào thư mục riêng <code>_deleted_files</code> để bản cũ không bao giờ nằm cạnh tệp hiện tại. Thư mục lưu cần dung lượng trống bằng tổng dung lượng các tệp; nếu không đủ, nhật ký sẽ cảnh báo trước khi bắt đầu. Với ổ FAT32 mà Windows đã xóa tệp, nhật ký có thể liệt kê các tệp "có thể sai nội dung": Windows đã xóa một phần vị trí bắt đầu của chúng, còn các loại như .bin không có chữ ký để tìm đúng chỗ. Hãy mở các tệp đó ra kiểm tra trước khi dùng.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Khôi phục tệp (tên/thư mục)</th>
+<th>Khôi phục tệp (chữ ký)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bạn nhận được</td>
+<td>Tên tệp, đường dẫn thư mục và nội dung</td>
+<td>Chỉ nội dung, được đặt tên theo số thứ tự như <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>Dùng được với</td>
+<td>NTFS, FAT32 và exFAT</td>
+<td>Mọi ổ đĩa, kể cả khi hệ thống tệp đã mất</td>
+</tr>
+<tr>
+<td>Hiệu quả nhất khi</td>
+<td>Hệ thống tệp vẫn còn đọc được, dù Windows không mở được ổ</td>
+<td>Bản thân hệ thống tệp đã bị phá hủy</td>
+</tr>
+<tr>
+<td>Thứ tự</td>
+<td>Thử trước</td>
+<td>Dùng khi cách thứ nhất không tìm thấy gì</td>
+</tr>
+</tbody>
+</table>
+<p>Hãy thử cách tên/thư mục trước, kể cả khi ổ hiện là RAW. Windows hiện RAW mỗi khi không gắn được hệ thống tệp, dù chỉ một giá trị trong đó bị sai, còn chương trình thường vẫn đọc được và lấy lại tệp kèm tên. Nếu cách này báo không nhận ra hệ thống tệp, hoặc không tìm thấy gì, hãy dùng cách chữ ký.</p>
+<p>Cách chữ ký tìm được tệp JPEG, PNG, GIF, BMP, PDF và ZIP, cùng tệp MP4, MOV, 3GP, M4A và HEIC (video từ điện thoại và camera hành trình, ảnh iPhone). Tệp Office như docx, xlsx và pptx thực chất là tệp ZIP, nên chúng được lấy lại với đuôi <code>.zip</code>; hãy đổi tên sang đúng đuôi. Video chưa được ghi phần cuối (bản ghi bị ngắt giữa chừng, hoặc ổ bị mất dữ liệu) được lưu tới chỗ còn đọc được, nhưng phần lớn trình phát không phát được khi thiếu phần cuối.</p>
+<p>Nếu bạn đã chọn một đĩa trong danh sách, chương trình sẽ hỏi trước có đọc trực tiếp đĩa đó không. Bấm <strong>Không</strong> để chọn tệp ảnh đĩa, hoặc <strong>Có</strong> để đọc chính đĩa đó. Đọc trực tiếp đĩa cần quyền quản trị và rủi ro hơn với ổ đang hỏng, nên dùng ảnh đĩa là lựa chọn tốt hơn.</p>
+<h3 id="bước-4-sửa-ổ-đĩa-chỉ-sau-khi-đã-khôi-phục-xong">Bước 4. Sửa ổ đĩa (chỉ sau khi đã khôi phục xong)</h3>
+<p>Chọn ổ đĩa và dùng một trong các nút sửa chữa. Chương 7 giải thích nên chọn nút nào. <strong>Định dạng</strong> và <strong>Tạo lại toàn bộ</strong> sẽ xóa dữ liệu, nên chương trình yêu cầu bạn gõ chính xác một từ xác nhận, ví dụ <code>FORMAT E</code>. Hãy chắc chắn bạn đã khôi phục xong mọi thứ trước khi dùng chúng.</p>
+<p>Trước khi <strong>Kiểm tra (chkdsk)</strong>, <strong>Định dạng</strong> hoặc <strong>Tạo lại toàn bộ</strong> ghi bất cứ thứ gì, chương trình kiểm tra ổ bằng cách chỉ đọc. Nếu ổ có dấu hiệu bộ điều khiển đang hỏng, chương trình không sửa và ghi lý do vào nhật ký. Các dấu hiệu là: ổ không phản hồi khi đọc hoặc báo dung lượng 0, hoặc có phần của ổ không đọc được. Với ổ FAT32, chương trình còn kiểm tra hệ thống tệp có ghi dung lượng lớn hơn thực tế không, hai bản sao của bảng vị trí tệp (FAT) có khác nhau ở nhiều chỗ không, và từ một nửa trở lên các chỗ lẽ ra chứa tệp có đọc ra giá trị trống không. Khi đó không có cách nào buộc sửa. Việc sửa ghi rất nhiều, và một ổ đang hỏng có thể ngừng hẳn giữa lúc ghi lớn. Hãy lấy lại tệp bằng bước 2 và 3 rồi thay ổ. Ổ chỉ hiện là RAW vì không nhận ra hệ thống tệp thì không bị chặn. Việc kiểm tra này cũng chạy khi bạn sửa mà không khôi phục dữ liệu (chương 7).</p>
+<h3 id="bước-5-chép-tệp-trở-lại-sau-khi-sửa">Bước 5. Chép tệp trở lại (sau khi sửa)</h3>
+<p>Thứ tự đầy đủ là: khôi phục dữ liệu, giữ các tệp đã khôi phục trên máy tính, sửa ổ đĩa, rồi chép tệp trở lại ổ đã sửa. Bước này là phần cuối cùng. Nó cũng kiểm tra xem ổ có thực sự lưu được dữ liệu hay không trước khi bạn tin dùng lại.</p>
+<p>Khi <strong>Định dạng</strong> hoặc <strong>Tạo lại toàn bộ</strong> xong, nhật ký sẽ ghi: bấm <strong>Làm mới</strong>, rồi <strong>Kiểm tra ổ</strong>, rồi <strong>Chép tệp trở lại</strong>. Cả hai nút nằm ở hàng <strong>Sau khi sửa:</strong> và làm việc trên ký tự ổ đĩa của đĩa đã chọn. Hai nút này không cần quyền quản trị.</p>
+<ol>
+<li>Bấm <strong>Làm mới</strong> và chọn ổ vừa sửa. Ổ có thể đã có ký tự ổ đĩa mới.</li>
+<li>Bấm <strong>Kiểm tra ổ</strong>. Chọn <strong>Có</strong> để kiểm tra toàn bộ dung lượng trống, hoặc <strong>Không</strong> để kiểm tra nhanh 1 GB (<strong>Hủy</strong> thì không làm gì). Kiểm tra toàn bộ chậm, nhưng đây là cách phát hiện ổ khai man dung lượng. Chương trình ghi dữ liệu thử vào thư mục <code>_revive_test</code> trên ổ, đọc lại mà không qua bộ nhớ đệm của Windows, so sánh, rồi xóa thư mục đó. Thư mục còn sót lại từ một lần kiểm tra trước bị ngắt giữa chừng cũng bị xóa. Nếu ổ đầy, việc ghi dừng lại ở đó và phần dữ liệu đã ghi được sẽ được kiểm tra.</li>
+<li>Xem kết quả trong nhật ký. Nếu đạt, nhật ký cho biết đã ghi và đọc lại bao nhiêu mà không có lỗi. Nếu không đạt, nhật ký cho biết bao nhiêu dữ liệu không đọc lại đúng; hãy thay ổ. Nếu dữ liệu ghi sau lại xuất hiện ở chỗ của dữ liệu ghi trước, nhật ký sẽ báo ổ có lẽ chỉ chứa được khoảng một dung lượng nhất định, ít hơn mức nó công bố. Đó là ổ khai man dung lượng. Đừng chép tệp của bạn lên ổ đó. Nếu ổ ngừng phản hồi trong lúc kiểm tra, nhật ký cho biết ổ dừng sau khi xử lý bao nhiêu dữ liệu và ổ này không giữ dữ liệu đáng tin cậy. Đừng chép tệp lên ổ đó; hãy thay ổ.</li>
+<li>Bấm <strong>Chép tệp trở lại</strong> và chọn thư mục trên máy tính chứa các tệp đã khôi phục. Thư mục nằm trên chính ổ đó sẽ bị từ chối. Nếu ổ không đủ dung lượng trống, chương trình báo trước khi ghi bất cứ thứ gì. Chương trình chép mọi thứ với cùng cấu trúc thư mục, trừ các thư mục <code>System Volume Information</code> và <code>$RECYCLE.BIN</code> ở cấp trên cùng, vì Windows tự tạo lại chúng.</li>
+<li>Sau khi chép, chương trình đọc lại từng tệp từ ổ, cũng không qua bộ nhớ đệm, và so sánh mã SHA-256 với bản gốc. Nếu tất cả khớp, nhật ký sẽ báo như vậy. Nếu có tệp đọc lại không giống bản gốc, nhật ký liệt kê các tệp đó và báo rằng ổ không lưu dữ liệu ổn định. Đừng giữ tệp quan trọng trên ổ đó.</li>
+</ol>
+<p>Ngay cả khi chép thành công, hãy giữ các tệp đã khôi phục trên máy tính để bạn vẫn có một bản sao thứ hai.</p>
+<hr />
+<h2 id="6-bảng-tra-cứu-các-nút">6. Bảng tra cứu các nút</h2>
+<table>
+<thead>
+<tr>
+<th>Nút</th>
+<th>Chức năng</th>
+<th class="ta-center">Thay đổi ổ đĩa</th>
+<th class="ta-center">Quyền quản trị</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Làm mới</strong></td>
+<td>Liệt kê các ổ USB đang kết nối (và đĩa trong khi ô được đánh dấu)</td>
+<td class="ta-center">Không</td>
+<td class="ta-center">Không</td>
+</tr>
+<tr>
+<td><strong>Kiểm tra sức khỏe</strong></td>
+<td>Hiện trạng thái ổ đĩa và các bộ đếm SMART khi có. Phần lớn ổ USB không báo bộ đếm nào; khi đó nhật ký cho biết lần kiểm tra không thể biết ổ có hỏng lại hay không</td>
+<td class="ta-center">Không</td>
+<td class="ta-center">Không</td>
+</tr>
+<tr>
+<td><strong>Sao lưu ra ảnh đĩa</strong></td>
+<td>Sao chép toàn bộ ổ ra tệp ảnh đĩa, bỏ qua vùng hỏng, đề nghị thử lại chúng theo từng sector, và tiếp tục bản sao trước đó</td>
+<td class="ta-center">Không</td>
+<td class="ta-center">Có</td>
+</tr>
+<tr>
+<td><strong>Khôi phục tệp (tên/thư mục)</strong></td>
+<td>Đọc NTFS, FAT32 hoặc exFAT và sao chép mọi tệp kèm tên và thư mục: tệp hiện có, tệp đã xóa và tệp trong thư mục đã xóa</td>
+<td class="ta-center">Không</td>
+<td class="ta-center">Chỉ khi không dùng ảnh đĩa</td>
+</tr>
+<tr>
+<td><strong>Khôi phục tệp (chữ ký)</strong></td>
+<td>Tìm tệp JPEG, PNG, GIF, BMP, PDF, ZIP, MP4, MOV và HEIC theo nội dung</td>
+<td class="ta-center">Không</td>
+<td class="ta-center">Chỉ khi không dùng ảnh đĩa</td>
+</tr>
+<tr>
+<td><strong>Kiểm tra (chkdsk)</strong></td>
+<td>Chạy chkdsk ở chế độ sửa lỗi trên ký tự ổ đĩa. Hỏi Có hoặc Không trước</td>
+<td class="ta-center">Sửa lỗi, giữ dữ liệu</td>
+<td class="ta-center">Có</td>
+</tr>
+<tr>
+<td><strong>Định dạng</strong></td>
+<td>Định dạng nhanh ổ đĩa thành NTFS với nhãn <code>USB</code>. Bạn gõ <code>FORMAT &lt;ký tự&gt;</code> để xác nhận</td>
+<td class="ta-center">Xóa dữ liệu</td>
+<td class="ta-center">Có</td>
+</tr>
+<tr>
+<td><strong>Tạo lại toàn bộ</strong></td>
+<td>Xóa sạch toàn bộ đĩa, tạo phân vùng mới, và định dạng nhanh thành NTFS với nhãn <code>USB</code>. Bạn gõ <code>ERASE DISK &lt;số&gt;</code> để xác nhận</td>
+<td class="ta-center">Xóa dữ liệu</td>
+<td class="ta-center">Có</td>
+</tr>
+<tr>
+<td><strong>Kiểm tra ổ</strong></td>
+<td>Ghi dữ liệu thử vào toàn bộ dung lượng trống hoặc 1 GB, đọc lại mà không qua bộ nhớ đệm của Windows, so sánh rồi xóa đi. Phát hiện ổ làm mất dữ liệu hoặc khai man dung lượng</td>
+<td class="ta-center">Ghi dữ liệu thử, rồi xóa đi</td>
+<td class="ta-center">Không</td>
+</tr>
+<tr>
+<td><strong>Chép tệp trở lại</strong></td>
+<td>Chép các tệp đã khôi phục từ một thư mục trên máy tính sang ổ với cùng cấu trúc thư mục, rồi đọc lại từng tệp và so sánh SHA-256</td>
+<td class="ta-center">Ghi tệp</td>
+<td class="ta-center">Không</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tạo lại toàn bộ</strong> tự chọn kiểu phân vùng cho bạn: MBR cho ổ từ 2 TB trở xuống, GPT cho ổ lớn hơn. Nhật ký cho biết kiểu đã chọn.</p>
+<hr />
+<h2 id="7-sửa-ổ-đĩa-khi-bạn-không-cần-dữ-liệu">7. Sửa ổ đĩa khi bạn không cần dữ liệu</h2>
+<p>Nếu bạn không cần các tệp mà chỉ muốn ổ USB hoặc ổ cứng ngoài bị lỗi hoạt động lại, hãy bỏ qua bước sao lưu và khôi phục, sửa trực tiếp.</p>
+<h3 id="71-chẩn-đoán-trước">7.1 Chẩn đoán trước</h3>
+<p>Bấm <strong>Làm mới</strong>, chọn ổ đĩa, rồi xem danh sách và nhật ký. Một ví dụ thực tế với ổ cứng ngoài WD: danh sách hiện 3.6 TB, trạng thái <code>Healthy/Online</code>, và chỉ có một phần RAW 200 MB không có ký tự ổ đĩa.</p>
+<p>Cách đọc: trạng thái <code>Healthy/Online</code> nghĩa là phần cứng vẫn hoạt động và chỉ cấu trúc phân vùng bị hỏng. Phần mềm thường sửa được trường hợp này. Nếu một ổ lớn chỉ hiện một phần RAW nhỏ, hoặc không có ký tự ổ đĩa, thì phân vùng chính của nó đã mất.</p>
+<h3 id="72-chọn-cách-sửa-từ-nhẹ-nhất-đến-mạnh-nhất">7.2 Chọn cách sửa, từ nhẹ nhất đến mạnh nhất</h3>
+<table>
+<thead>
+<tr>
+<th>Triệu chứng</th>
+<th>Nút</th>
+<th>Chức năng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Có ký tự ổ đĩa, tệp bị hỏng hoặc báo lỗi đọc</td>
+<td><strong>Kiểm tra (chkdsk)</strong></td>
+<td>Sửa lỗi hệ thống tệp và giữ dữ liệu</td>
+</tr>
+<tr>
+<td>Có ký tự ổ đĩa, bạn muốn xóa sạch</td>
+<td><strong>Định dạng</strong></td>
+<td>Chỉ định dạng lại ổ đĩa đó</td>
+</tr>
+<tr>
+<td>RAW, không có ký tự ổ đĩa, phân vùng bị hỏng</td>
+<td><strong>Tạo lại toàn bộ</strong></td>
+<td>Xóa sạch toàn bộ đĩa và tạo lại. Đây là cách sửa thông thường</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kiểm tra (chkdsk)</strong> và <strong>Định dạng</strong> cần ký tự ổ đĩa. Nếu ổ không có, chương trình sẽ bảo bạn dùng <strong>Tạo lại toàn bộ</strong>. chkdsk cũng không sửa được ổ RAW, vì không còn hệ thống tệp nào để sửa.</p>
+<h3 id="73-hồi-sinh-ổ-raw">7.3 Hồi sinh ổ RAW</h3>
+<p>Đây là trường hợp phổ biến nhất. Chọn ổ đĩa, bấm <strong>Tạo lại toàn bộ</strong>, và gõ <code>ERASE DISK 2</code> (với số đĩa của bạn) khi được hỏi. Việc này thường mất từ vài giây đến một phút. Khi xong, ổ đĩa có ký tự ổ mới. Trước khi tin tưởng lưu tệp lên ổ, hãy bấm <strong>Làm mới</strong>, chọn ổ đĩa và chạy <strong>Kiểm tra ổ</strong>. Bước 5 ở chương 5 giải thích kết quả và cách chép tệp trở lại.</p>
+<p>Hệ thống tệp mới là NTFS, Windows đọc và ghi được. Nếu bạn cần dùng ổ trên Mac hoặc thiết bị khác, hãy định dạng lại sau đó bằng thiết bị đó hoặc bằng hộp thoại định dạng của chính Windows.</p>
+<h3 id="74-dọn-dẹp">7.4 Dọn dẹp</h3>
+<p>Nếu trước đó bạn đã tạo ảnh đĩa và không cần nữa, hãy xóa tệp ảnh đĩa và tệp tiến trình nằm cạnh nó, ví dụ <code>disk2.img</code> và <code>disk2.img.state.json</code>.</p>
+<h3 id="75-nếu-sửa-chữa-thất-bại">7.5 Nếu sửa chữa thất bại</h3>
+<ol>
+<li>Rút ổ ra, cắm lại, bấm <strong>Làm mới</strong>, rồi thử lại. Windows có thể đang khóa đĩa.</li>
+<li>Đóng mọi thứ khác có thể đang dùng ổ, chẳng hạn phần mềm diệt virus hoặc bản xem trước của Explorer.</li>
+<li>Nếu vẫn thất bại, trạng thái vẫn là <code>Unhealthy</code>, hoặc ổ cứ xuất hiện rồi biến mất, thì phần cứng có lẽ đang hỏng. Phần mềm không sửa được trường hợp này, nên hãy cân nhắc thay ổ đĩa.</li>
+</ol>
+<h3 id="76-giảm-nguy-cơ-hỏng-lại">7.6 Giảm nguy cơ hỏng lại</h3>
+<p>Không phần mềm nào đảm bảo được ổ đĩa sẽ không hỏng lại. <strong>Kiểm tra sức khỏe</strong> đọc các bộ đếm mà ổ tự ghi về chính nó: sector đã ánh xạ lại, lỗi đọc và độ hao mòn. Lỗi đọc hoặc ghi không sửa được, hay độ hao mòn cao, nghĩa là nguy cơ hỏng lại cao, và nên thay ổ.</p>
+<p>Nhiều hộp đựng USB không truyền dữ liệu SMART ra ngoài, do giới hạn của chip cầu nối. Khi đó kiểm tra sức khỏe sẽ báo ổ đĩa không cung cấp dữ liệu SMART. Một công cụ chuyên dụng như CrystalDiskInfo có thể vẫn đọc được.</p>
+<p>Một vài nguyên tắc cần nhớ:</p>
+<ul>
+<li>Phần mềm chỉ né tránh các ô nhớ đã hỏng. Nó không thể kéo dài tuổi thọ vật lý của ổ đĩa.</li>
+<li>Đừng bao giờ giữ bản duy nhất của dữ liệu quan trọng trên một ổ đã từng hỏng. Luôn giữ thêm một bản sao lưu.</li>
+<li>Nếu ổ lại thành RAW ngay sau khi tạo lại, hoặc cứ bị ngắt kết nối, hãy thay ổ.</li>
+</ul>
+<hr />
+<h2 id="8-xử-lý-sự-cố">8. Xử lý sự cố</h2>
+<h3 id="danh-sách-đĩa-trống">Danh sách đĩa trống</h3>
+<p>Nhật ký báo <code>Không tìm thấy đĩa nào</code>. Hãy kiểm tra ổ đã được cắm và có hiện trong Disk Management (Quản lý Đĩa) của Windows, rồi bấm lại <strong>Làm mới</strong>. Nếu ổ không phải ổ USB, hãy đánh dấu <strong>Hiện đĩa trong (thận trọng)</strong>.</p>
+<h3 id="danh-sách-hiện-lỗi-firmware-chế-độ-rom-hoặc-không-có-dung-lượng-0">Danh sách hiện "Lỗi firmware (chế độ ROM)" hoặc "Không có dung lượng (0)"</h3>
+<p>Bộ điều khiển của USB không nạp được firmware, hoặc ổ không cung cấp dung lượng lưu trữ. Windows thường hiện ổ như vậy là "No Media" hoặc đĩa 0 byte, và có thể hỏi có muốn định dạng không; hãy chọn Hủy. Khi bạn chọn ổ này, hộp <strong>Chẩn đoán</strong> mở ra bên dưới danh sách đĩa. Hộp cho biết ID thiết bị, bộ điều khiển có lẽ đang dùng và việc cần làm tiếp. Trong lúc ổ ở trạng thái này, các nút sao lưu, khôi phục và sửa bị tắt vì không có gì để đọc hay ghi.</p>
+<ol>
+<li>Rút ổ ra rồi cắm lại. Hộp tự kiểm tra lại mỗi 5 giây (bạn cũng có thể bấm <strong>Kiểm tra lại</strong>). Nếu ổ trở lại với tên bình thường, đừng ghi gì lên ổ; hãy sao lưu trước. Hộp vẫn mở, báo ổ đã trở lại và hiện các nút <strong>Sao lưu ra ảnh đĩa</strong> và <strong>Kiểm tra ổ (toàn bộ chỗ trống)</strong>. Nút sửa và <strong>Chép tệp trở lại</strong> vẫn tắt cho ổ này, kể cả khi bạn đóng hộp, cho đến khi ổ đạt <strong>Kiểm tra ổ</strong> trên toàn bộ dung lượng trống, vì một lần ghi lớn có thể làm ổ dừng lại lần nữa.</li>
+<li>Nếu ổ không trở lại, ReviveUSB không thể hồi sinh nó và không đọc được tệp trên đó. Nếu tệp quan trọng, phòng khôi phục dữ liệu có thể đọc trực tiếp chip nhớ; nếu không, hãy thay ổ khác. ReviveUSB không khuyên dùng công cụ xưởng (công cụ sản xuất hàng loạt): chúng không hoạt động trên ổ chúng tôi đã thử và không được phát hành chính thức.</li>
+<li>Nếu ổ đã trở lại ở bước 1 và bạn muốn dùng tiếp, hãy sao lưu trước rồi chạy <strong>Kiểm tra ổ</strong> trên toàn bộ dung lượng trống. Khi kiểm tra đạt mà không có lỗi, nút sửa và <strong>Chép tệp trở lại</strong> sẽ bật cho ổ đó và hộp tự đóng. Kiểm tra nhanh 1 GB không bật chúng.</li>
+</ol>
+<p><strong>Chép chẩn đoán</strong> chép nội dung của hộp để bạn dán khi nhờ giúp đỡ. Đóng hộp bằng <strong>×</strong>.</p>
+<p>Một số thiết bị hiện màu xám là "Trống (0)". Đó là thiết bị chương trình không biết đang báo không có dung lượng; khe trống của đầu đọc thẻ thường trông như vậy. Đây không phải lỗi: hãy cắm thẻ vào. Nếu USB hiện như vậy, hãy rút ra rồi cắm lại. Trong lúc đó các nút sao lưu, khôi phục và sửa chữa vẫn tắt vì không có gì để đọc.</p>
+<h3 id="sao-lưu-rất-chậm-ví-dụ-ước-tính-từ-100-giờ-trở-lên">Sao lưu rất chậm (ví dụ, ước tính từ 100 giờ trở lên)</h3>
+<p>Chương trình đã bỏ qua các vùng hỏng, nên chậm thường là do ổ đĩa hoặc kết nối. Nếu tốc độ thấp từ đầu đến cuối (vài trăm KB/s), hãy thử lần lượt:</p>
+<ol>
+<li>Cắm ổ trực tiếp vào cổng USB 3.0 (màu xanh) ở mặt sau máy tính. Tránh dùng hub và cáp nối dài.</li>
+<li>Đổi cáp.</li>
+<li>Thử máy tính khác.</li>
+</ol>
+<p>Để đổi cổng, hãy đóng ReviveUSB, chuyển ổ sang cổng khác, rồi sao lưu lại vào cùng tệp ảnh đĩa. Chương trình sẽ tiếp tục từ chỗ đã dừng.</p>
+<h3 id="ổ-đĩa-hiện-là-raw">Ổ đĩa hiện là RAW</h3>
+<p>Windows không đọc được hệ thống tệp, nhưng chương trình thường vẫn đọc được. Hãy sao lưu ra ảnh đĩa rồi thử <strong>Khôi phục tệp (tên/thư mục)</strong> trước; nếu không tìm thấy gì, hãy dùng <strong>Khôi phục tệp (chữ ký)</strong>. Sau khi khôi phục, đưa ổ trở lại bằng <strong>Tạo lại toàn bộ</strong>.</p>
+<h3 id="không-nhận-ra-hệ-thống-tệp">"Không nhận ra hệ thống tệp"</h3>
+<p>Cách tên/thư mục chỉ hiểu NTFS, FAT32 và exFAT, và cần chỉ mục hệ thống tệp còn đọc được. Hãy dùng <strong>Khôi phục tệp (chữ ký)</strong>. (Thông báo có thể dùng tên dòng lệnh như <code>carve</code> hay <code>--fs</code>; trong cửa sổ, nút chữ ký chính là chức năng đó.)</p>
+<h3 id="thao-tác-này-cần-quyền-quản-trị">"Thao tác này cần quyền quản trị"</h3>
+<p>Bấm <strong>Có</strong> để khởi động lại chương trình với quyền quản trị, hoặc đóng chương trình rồi chạy lại và cho phép khi Windows hỏi.</p>
+<h3 id="tệp-đã-khôi-phục-không-mở-được">Tệp đã khôi phục không mở được</h3>
+<p>Tệp có thể đã bị phân mảnh, nên chỉ phần đầu được lấy lại. Hãy thử cả hai nút khôi phục. Những phần ổ đĩa không đọc được sẽ bị thiếu trong ảnh đĩa, và các tệp lưu ở đó không thể được lấy lại đầy đủ.</p>
+<hr />
+<h2 id="9-hỏi-đáp">9. Hỏi đáp</h2>
+<p>H. Tôi muốn cứu ổ USB, vậy "đừng ghi vào ổ" nghĩa là gì?
+Đ. Nghĩa là đừng lưu dữ liệu mới vào ổ. Chạy chương trình này thì không sao vì sao lưu và khôi phục chỉ đọc. Xem chương 2.</p>
+<p>H. Chương trình có thể làm hỏng ổ gốc không?
+Đ. Sao lưu và khôi phục chỉ đọc. Chỉ các nút sửa chữa mới thay đổi ổ gốc, và chúng hỏi xác nhận trước.</p>
+<p>H. Có khôi phục được tên tệp không?
+Đ. <strong>Khôi phục tệp (tên/thư mục)</strong> lấy lại tên và thư mục. <strong>Khôi phục tệp (chữ ký)</strong> chỉ lấy lại nội dung và đặt tên tệp theo số thứ tự.</p>
+<p>H. Ổ của tôi 114 GB. Tôi có phải tạo ảnh đĩa toàn bộ không?
+Đ. Sao lưu đầy đủ là lựa chọn an toàn. Nếu không có nhiều thời gian, bạn có thể đóng chương trình giữa chừng và chạy <strong>Khôi phục tệp (chữ ký)</strong> trên phần ảnh đĩa đã có; nó khôi phục tệp từ phần đã được sao chép.</p>
+<p>H. Có trường hợp nào không thể khôi phục không?
+Đ. Có. Nếu dữ liệu đã bị ghi đè, hoặc bản thân chip nhớ flash đã chết, phần mềm không thể giúp được. Khi đó hãy tìm đến dịch vụ khôi phục dữ liệu chuyên nghiệp.</p>
+<hr />
+<h2 id="10-thuật-ngữ">10. Thuật ngữ</h2>
+<table>
+<thead>
+<tr>
+<th>Thuật ngữ</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ảnh đĩa (.img)</td>
+<td>Bản sao từng byte của ổ đĩa trong một tệp. Bạn làm việc trên bản sao này thay vì ổ gốc</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>Chỉ mục hệ thống tệp đã hỏng, nên Windows không đọc được ổ</td>
+</tr>
+<tr>
+<td>Khôi phục theo chữ ký (carving)</td>
+<td>Khôi phục tệp bằng cách tìm dấu vân tay nội dung của nó (magic bytes)</td>
+</tr>
+<tr>
+<td>Khôi phục theo tên/thư mục (undelete)</td>
+<td>Đọc chỉ mục hệ thống tệp để lấy lại tệp kèm tên và đường dẫn</td>
+</tr>
+<tr>
+<td>Sector hỏng</td>
+<td>Vùng lưu trữ không đọc được. Khi sao lưu, chương trình bỏ qua và ghi lại vùng này</td>
+</tr>
+<tr>
+<td>Sector và cluster</td>
+<td>Đơn vị lưu trữ nhỏ nhất (thường là 512 byte) và một nhóm sector</td>
+</tr>
+<tr>
+<td>Quyền quản trị</td>
+<td>Quyền Windows cần có để truy cập đĩa thô</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-ngôn-ngữ">11. Ngôn ngữ</h2>
+<p>Chương trình khởi động bằng tiếng Anh. Để chuyển sang tiếng Việt, hãy chọn Tiếng Việt trong ô ngôn ngữ ở góc trên bên phải cửa sổ. Chương trình ghi nhớ lựa chọn này và lần sau sẽ khởi động bằng ngôn ngữ đó.</p>
+<hr />
+<h2 id="12-miễn-trừ-trách-nhiệm">12. Miễn trừ trách nhiệm</h2>
+<p>ReviveUSB được cung cấp nguyên trạng, không kèm bất kỳ bảo hành nào. Việc khôi phục không bao giờ được đảm bảo, và các nút sửa chữa xóa dữ liệu vĩnh viễn. Bạn tự chịu rủi ro khi sử dụng chương trình. Tác giả không chịu trách nhiệm về mất mát dữ liệu hay bất kỳ thiệt hại nào khác phát sinh từ việc sử dụng. Hãy luôn sao lưu những gì quan trọng.</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../vi/revive/index.html">ReviveUSB</a><a href="../../vi/chatda/index.html">Chatda</a><a href="../../vi/about.html">Giới thiệu</a><a href="../../vi/donate.html">Ủng hộ</a><a href="../../vi/privacy.html">Quyền riêng tư</a><a id="contact-link" href="#" hidden>Liên hệ</a></nav><div class="prefs"><span>Ngôn ngữ: <a href="../../revive/help.html" lang="en">English</a> · <a href="../../ko/revive/help.html" lang="ko">한국어</a> · <a href="../../ja/revive/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/revive/help.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/revive/help.html" lang="zh-TW">繁體中文</a> · <a href="../../es/revive/help.html" lang="es">Español</a> · <a href="../../de/revive/help.html" lang="de">Deutsch</a> · <a href="../../fr/revive/help.html" lang="fr">Français</a> · <a href="../../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/revive/help.html" lang="ru">Русский</a> · <a href="../../vi/revive/help.html" lang="vi" aria-current="true">Tiếng Việt</a></span><label>Giao diện <select id="theme-select"><option value="auto">Mặc định</option><option value="dark">Tối</option><option value="light">Sáng</option></select></label></div><p class="mt-note">Trang này được dịch bằng máy. Nếu bạn thấy chỗ nào chưa đúng, xin hãy cho chúng tôi biết.</p><p>© 2026 Barbellsoft. Phần mềm miễn phí, cung cấp nguyên trạng, không kèm bảo hành.</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>

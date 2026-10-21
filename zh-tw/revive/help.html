@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>ReviveUSB 說明</title>
+<meta name="description" content="免費的 Windows 工具，適用於要求格式化、顯示為 RAW，或檔案消失的 USB 隨身碟。它會先安全地複製磁碟機，從副本救回檔案，再修復磁碟機。 如果隨身碟本身正在損壞，就不進行修復，只安全取出檔案並建議更換。">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=0a5064bf">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../zh-tw/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主選單"><a href="../../zh-tw/revive/index.html" aria-current="page">ReviveUSB</a><a href="../../zh-tw/chatda/index.html">Chatda</a><a href="../../zh-tw/about.html">關於</a><a href="../../zh-tw/donate.html">贊助</a><a href="../../blog/index.html" lang="en">部落格</a></nav></div></header>
+<nav class="subnav" aria-label="產品"><div class="wrap"><img src="../../img/revive.svg?v=7cef9b23" alt="" width="22" height="22"><strong>ReviveUSB</strong><a href="index.html">首頁</a><a href="download.html">下載</a><a href="faq.html">常見問題</a><a href="help.html" aria-current="page">說明</a></div></nav>
+<main id="main"><div class="wrap">
+<div class="doc"><h1 id="reviveusb-使用手冊">ReviveUSB 使用手冊</h1>
+<p>ReviveUSB 可以從故障的 USB 隨身碟或外接硬碟救回檔案，需要時還能修復磁碟機，讓它重新可用。所有操作都在同一個視窗中完成：選擇磁碟，再按下按鈕即可。請依照本手冊從頭到尾操作。</p>
+<hr />
+<h2 id="0-快速入門">0. 快速入門</h2>
+<ol>
+<li>執行 <code>ReviveUSB.exe</code>，Windows 詢問時允許系統管理員權限。</li>
+<li>按 <strong>🔄 重新整理</strong>，然後在磁碟清單中點選你的 USB 磁碟機。</li>
+<li>按 <strong>備份為映像檔</strong>，把映像檔存到另一個空間足夠的磁碟機。</li>
+<li>按 <strong>復原檔案(名稱/路徑)</strong>，選擇映像檔，再選擇健康磁碟機上的資料夾。如果什麼都沒救回，改用 <strong>復原檔案(簽章)</strong> 做一次同樣的步驟。</li>
+<li>確定所有檔案都救回後，才用其中一個修復按鈕讓磁碟機重新可用。</li>
+</ol>
+<p>最重要的一條規則：如果想救回資料，就不要把任何新東西存到損壞的磁碟機。先建立映像檔，再從映像檔復原。</p>
+<p>如果你不需要資料，只想讓磁碟機恢復可用，可以跳過步驟 3 和 4。第 7 章會說明。</p>
+<hr />
+<h2 id="1-這個程式能做什麼">1. 這個程式能做什麼</h2>
+<p>磁碟機出現以下狀況時可以使用：</p>
+<ul>
+<li>不小心刪除了檔案。</li>
+<li>插上磁碟機時，Windows 顯示「您必須先將磁碟格式化，才能使用。」這表示檔案系統損毀，會顯示為 RAW。</li>
+<li>大容量磁碟機只顯示成一小塊 RAW，或沒有磁碟機代號，因為分割區已損毀。</li>
+<li>系統認得磁碟機，但看不到你的檔案。</li>
+</ul>
+<p>它有兩個目標，一個工具就能處理。</p>
+<table>
+<thead>
+<tr>
+<th>目標</th>
+<th>意思</th>
+<th>按鈕</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>救回資料</td>
+<td>復原已刪除或看不到的檔案</td>
+<td>先按 <strong>備份為映像檔</strong>，再按其中一個 <strong>復原檔案</strong> 按鈕</td>
+</tr>
+<tr>
+<td>救回磁碟機</td>
+<td>重新格式化磁碟機，讓它能再次使用</td>
+<td><strong>檢查(chkdsk)</strong>、<strong>格式化</strong>、<strong>完整重建</strong></td>
+</tr>
+</tbody>
+</table>
+<p>順序是固定的：先救回資料，再修復磁碟機。先修復的話，資料就永遠消失了。</p>
+<hr />
+<h2 id="2-開始前必讀的安全守則">2. 開始前必讀的安全守則</h2>
+<p>真正毀掉復原機會的，是寫入損壞的磁碟機。執行這個程式沒有問題，因為備份與復原只會讀取磁碟機。</p>
+<p>原因如下。刪除檔案時，資料本身通常仍留在磁碟機上，被移除的只是指向它的索引項目，這也是復原之所以可能的原因。如果之後你又把新檔案存到磁碟機，系統會把舊資料所在的位置視為可用空間，可能直接把新檔案寫在上面。一旦發生，舊資料就無法復原。</p>
+<p>復原之前，請不要做以下任何一件事：</p>
+<ul>
+<li>把新檔案存到或複製到磁碟機。</li>
+<li>格式化磁碟機，不論是在 Windows 中，還是用修復按鈕。</li>
+<li>Windows 提議掃描並修復磁碟機時按「是」。</li>
+</ul>
+<p>以下按鈕是安全的，因為它們只會讀取：<strong>🔄 重新整理</strong>、<strong>健康檢查</strong>、<strong>備份為映像檔</strong>，以及兩個 <strong>復原檔案</strong> 按鈕。</p>
+<pre><code>損壞的 USB 磁碟機 --(唯讀)--&gt; disk2.img（備份副本） --&gt; recovered\（你的檔案）
+   原始磁碟不受影響            在這份副本上作業            結果
+</code></pre>
+<hr />
+<h2 id="3-需要準備的東西">3. 需要準備的東西</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>需求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 或 11</td>
+<td>必要。不需要 Python</td>
+</tr>
+<tr>
+<td>系統管理員權限</td>
+<td>備份、直接從磁碟復原及修復時需要</td>
+</tr>
+<tr>
+<td>存放映像檔的可用空間</td>
+<td>與磁碟機容量相同，且在另一個磁碟機上。128 GB 的磁碟機需要 128 GB 可用空間</td>
+</tr>
+<tr>
+<td>存放復原檔案的健康位置</td>
+<td>損壞的磁碟機以外的任何磁碟機</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-啟動程式">4. 啟動程式</h2>
+<h3 id="41-下載並檢查檔案">4.1 下載並檢查檔案</h3>
+<p>從下載頁面下載 <code>ReviveUSB.exe</code>。這個檔案尚未進行程式碼簽署，因此 Windows SmartScreen 或防毒軟體可能會發出警告。執行前，請確認檔案與下載頁面上顯示的 SHA-256 相符。在 PowerShell 中執行：</p>
+<pre><code class="language-powershell">Get-FileHash .\ReviveUSB.exe -Algorithm SHA256
+</code></pre>
+<p>如果雜湊值相符而 SmartScreen 出現，請選擇 <strong>其他資訊</strong>，再選擇 <strong>仍要執行</strong>。</p>
+<h3 id="42-系統管理員權限">4.2 系統管理員權限</h3>
+<p>程式啟動時會要求系統管理員權限，因為讀取原始磁碟需要這個權限。請允許。之後視窗上方會顯示 <strong>系統管理員：開啟</strong>。如果顯示關閉，請按 <strong>以系統管理員身分重新啟動</strong>。</p>
+<h3 id="43-視窗">4.3 視窗</h3>
+<pre><code>+--------------------------------------------------------------------+
+| 說明(H)                                                            |
++--------------------------------------------------------------------+
+| 系統管理員：開啟                                        [♥ 支持 ▾] |
+| ① 選擇磁碟                                                         |
+|     編號 | 名稱 | 大小 | 檔案系統 | 狀態                           |
+|     [🔄 重新整理]   [ ] 顯示內接磁碟（請小心）                     |
+| ② 選擇動作                                                         |
+|     [健康檢查]                      [備份為映像檔]                 |
+|     [復原檔案(名稱/路徑)]           [復原檔案(簽章)]               |
+|     修復（會清除資料）： [檢查(chkdsk)] [格式化] [完整重建]        |
+|     修復後： [測試磁碟機] [寫回檔案]                               |
+| 進度列、百分比、已處理量                                           |
+| 進度：顯示程式目前動作的記錄                                       |
++--------------------------------------------------------------------+
+</code></pre>
+<p>在視窗頂端的 <strong>說明(H)</strong> 選單中選擇 <strong>ReviveUSB 說明(H)</strong> 或按 <strong>F1</strong> 鍵，就會開啟這份說明書。說明書內建在程式裡，沒有網路也能在瀏覽器中開啟。版本可在 <strong>關於本程式...(A)</strong>（<strong>Ctrl+F1</strong>）中查看。<strong>ReviveUSB 首頁(W)</strong> 會開啟 barbellsoft.com，<strong>檢查更新(U)</strong> 會開啟列出最新版本的下載頁面。同一選單的 <strong>支持</strong> 和視窗右上角的 <strong>♥ 支持</strong> 按鈕會在瀏覽器中開啟 Buy Me a Coffee 頁面。ReviveUSB 免費，贊助全憑自願，程式本身不處理任何付款。檔案復原或寫回成功後，記錄最後會顯示一行贊助網址。</p>
+<p>清單中只會列出 USB 磁碟。除非勾選 <strong>顯示內接磁碟（請小心）</strong>，否則內接磁碟會保持隱藏。除非你很清楚自己在做什麼，否則請不要勾選。</p>
+<p>工作執行期間，動作按鈕會變成灰色，進度列與記錄會持續更新。沒有停止按鈕。要停止備份，請關閉視窗；第 5 章會說明之後如何接續。</p>
+<hr />
+<h2 id="5-五個步驟救回磁碟機">5. 五個步驟救回磁碟機</h2>
+<h3 id="步驟-1-選擇磁碟機">步驟 1. 選擇磁碟機</h3>
+<p>插上磁碟機並按 <strong>🔄 重新整理</strong>，在清單中點選你的磁碟機。記錄會確認你選了哪個磁碟，例如 <code>已選擇磁碟 2：SanDisk Ultra</code>。</p>
+<p>請看 <strong>檔案系統</strong> 欄。RAW 表示檔案系統已損毀。</p>
+<p>現在可以按 <strong>健康檢查</strong>。它會顯示磁碟機的狀態；如果磁碟機有提供，還會顯示 SMART 計數器，例如磨損度與無法更正的讀取錯誤。許多 USB 磁碟機不會傳遞 SMART 資料，這時記錄會加以說明。</p>
+<h3 id="步驟-2-備份為映像檔">步驟 2. 備份為映像檔</h3>
+<p>按 <strong>備份為映像檔</strong>。選擇映像檔的儲存位置，必須是另一個空間足夠的磁碟機。建議的檔名是 <code>diskN.img</code>，N 為磁碟編號。</p>
+<p>原始磁碟機只會被讀取。壞區會被快速略過，所以複製會持續進行而不會卡住。進度列會顯示百分比與已複製的量。</p>
+<p>如果有區域無法讀取，程式會詢問是否要逐磁區重試。重試可以救回更多資料，但在嚴重損壞的磁碟機上可能需要很長時間。如果在重試期間關閉視窗，之後再次備份到同一個檔案，就會接著重試。對已完成的映像檔再次備份時，絕不會重新讀取整個磁碟機，只會詢問是否重試無法讀取的區域。若要重新開始，請選擇新的檔名。</p>
+<p>如果你選的位置在要復原的磁碟機上，程式會拒絕並要求你換一個磁碟機。存在那裡可能會覆寫你想救回的檔案。</p>
+<p>你可以隨時關閉視窗來停止。進度每兩秒儲存一次。若要繼續，請重新啟動程式，選擇同一個磁碟機，按 <strong>備份為映像檔</strong>，再選擇同一個檔案。如果 Windows 詢問是否要取代，請按「是」：記錄會顯示 <code>繼續建立映像檔</code>，並從中斷處繼續複製。程式會檢查是否為同一個磁碟機。如果檔案屬於其他磁碟機，或磁碟機回報的大小已經不同，程式會停止，而不會混用或覆寫先前的副本；這時請選擇新的檔名。</p>
+<h3 id="步驟-3-從映像檔復原檔案">步驟 3. 從映像檔復原檔案</h3>
+<p>有兩個按鈕。請先試 <strong>復原檔案(名稱/路徑)</strong>，如果什麼都沒找到，再用 <strong>復原檔案(簽章)</strong>。</p>
+<ol>
+<li>按下按鈕。</li>
+<li>選擇映像檔（<code>.img</code>）。</li>
+<li>選擇存放復原檔案的資料夾，必須在健康的磁碟機上。位於要復原之磁碟機上的資料夾會被拒絕。如果磁碟機有多個分割區，各分割區的檔案會放進各自的子資料夾，例如 <code>volume2_exfat</code>。</li>
+</ol>
+<p>名稱/路徑方式會複製它能找到的所有檔案，不只是已刪除的檔案。Windows 顯示磁碟機「無法存取」或要求格式化時，正適合用這種方式：檔案通常都還在，而且會連同名稱一起救回。如果同時找到現有檔案和已刪除檔案，已刪除的檔案會放進另外的 <code>_deleted_files</code> 資料夾，舊的副本就不會和現有檔案放在一起。儲存用的資料夾需要和這些檔案一樣多的可用空間；空間不足時，開始前記錄會先發出警告。如果是在 Windows 中刪除過檔案的 FAT32 磁碟機，記錄裡可能會列出「內容可能不對」的檔案：Windows 抹掉了它們起始位置的一部分，而 .bin 這類沒有檔案簽章的格式無法判斷正確位置。使用前請先開啟檢查。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>復原檔案(名稱/路徑)</th>
+<th>復原檔案(簽章)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>救回的內容</td>
+<td>檔案名稱、資料夾路徑與內容</td>
+<td>只有內容，以流水號命名，例如 <code>jpg_00001_@...</code></td>
+</tr>
+<tr>
+<td>適用對象</td>
+<td>NTFS、FAT32 與 exFAT</td>
+<td>任何磁碟機，即使檔案系統已經不見</td>
+</tr>
+<tr>
+<td>最適合的情況</td>
+<td>檔案系統仍可讀取，即使 Windows 打不開磁碟機</td>
+<td>檔案系統本身已毀損</td>
+</tr>
+<tr>
+<td>順序</td>
+<td>先試這個</td>
+<td>第一種找不到時使用</td>
+</tr>
+</tbody>
+</table>
+<p>即使磁碟機顯示為 RAW，也請先試試名稱/路徑方式。只要 Windows 無法掛接檔案系統，即使其中只有一個值出錯，也會顯示為 RAW；而本程式往往仍能讀取，並連同名稱一起救回檔案。如果顯示無法偵測檔案系統，或什麼都沒找到，再改用簽章方式。</p>
+<p>簽章方式可找出 JPEG、PNG、GIF、BMP、PDF 與 ZIP 檔，以及 MP4、MOV、3GP、M4A 與 HEIC 檔（手機與行車記錄器的影片、iPhone 照片）。docx、xlsx、pptx 等 Office 檔案內部其實是 ZIP 檔，所以會以 <code>.zip</code> 名稱救回；請把副檔名改回正確的名稱。結尾沒有寫入的影片（錄影中途中斷，或磁碟機遺失了資料）會儲存到讀得到的地方為止，但少了結尾，多數播放器無法播放。</p>
+<p>如果在清單中選了磁碟，程式會先詢問是否直接讀取該磁碟。按 <strong>否</strong> 選擇映像檔，按 <strong>是</strong> 直接讀取磁碟。直接讀取磁碟需要系統管理員權限，而且對故障中的磁碟機風險較高，所以使用映像檔是比較好的選擇。</p>
+<h3 id="步驟-4-修復磁碟機僅在復原完成後">步驟 4. 修復磁碟機（僅在復原完成後）</h3>
+<p>選擇磁碟機，使用其中一個修復按鈕。要選哪一個，請看第 7 章。<strong>格式化</strong> 與 <strong>完整重建</strong> 會清除資料，所以程式會要求你準確輸入確認文字，例如 <code>FORMAT E</code>。使用前請確定所有檔案都已救回。</p>
+<p>修復按鈕（<strong>檢查(chkdsk)</strong>、<strong>格式化</strong>、<strong>完整重建</strong>）在寫入磁碟機之前，會先以唯讀方式檢查磁碟機。如果出現控制器正在故障的跡象，就不進行修復，並在記錄中說明原因。這些跡象是：磁碟機不回應讀取或容量顯示為 0，或者磁碟機有部分無法讀取。如果是 FAT32 磁碟機，還會檢查檔案系統記錄的容量是否大於磁碟機實際容量、檔案配置表（FAT）的兩份副本是否在許多位置不一致、應該存有檔案的位置是否有一半以上讀出來是空值。此時無法強制修復。修復會大量寫入，而正在故障的磁碟機可能在大量寫入途中完全停止運作。請先用步驟 2、3 取回檔案，再更換磁碟機。只因無法辨識檔案系統而顯示為 RAW 的磁碟機不會被擋下。不取回資料直接修復時（第 7 章）也會做同樣的檢查。</p>
+<h3 id="步驟-5-把檔案放回去修復之後">步驟 5. 把檔案放回去（修復之後）</h3>
+<p>完整的順序是：救回資料，把救回的檔案保存在電腦上，修復磁碟機，再把檔案放回修復好的磁碟機。這個步驟就是最後一環。在你重新信任這台磁碟機之前，它也會檢查磁碟機是否真的能保存資料。</p>
+<p><strong>格式化</strong> 或 <strong>完整重建</strong> 完成後，記錄會提示：按 <strong>🔄 重新整理</strong>，接著按 <strong>測試磁碟機</strong>，再按 <strong>寫回檔案</strong>。這兩個按鈕位於 <strong>修復後：</strong> 這一列，會針對所選磁碟的磁碟機代號操作，不需要系統管理員權限。</p>
+<ol>
+<li>按 <strong>🔄 重新整理</strong>，選擇修復好的磁碟機。磁碟機代號可能已經改變。</li>
+<li>按 <strong>測試磁碟機</strong>。選「是」會測試全部可用空間，選「否」則快速測試 1 GB（選「取消」則不做任何事）。完整測試很慢，但只有它能找出虛報容量的磁碟機。程式會把測試資料寫入磁碟機上的 <code>_revive_test</code> 資料夾，不經過 Windows 快取讀回並比對，然後刪除該資料夾。先前中斷的測試留下的資料夾也會一併刪除。如果磁碟機寫滿了，寫入就在那裡停止，並檢查已寫入的資料。</li>
+<li>在記錄中查看結果。通過時，記錄會顯示寫入並讀回了多少資料，沒有錯誤。失敗時，記錄會顯示有多少資料沒能正確讀回；請更換這台磁碟機。如果後寫入的資料出現在先寫入資料的位置，記錄會說明這台磁碟機實際上大約只能存放多少，比它宣稱的少。這是虛報容量的磁碟機，不要把檔案放上去。如果測試途中磁碟機停止回應，記錄會說明處理多少資料後停止，並提示這台磁碟機無法可靠地保存資料。不要把檔案放上去，請更換磁碟機。</li>
+<li>按 <strong>寫回檔案</strong>，選擇電腦上存放救回檔案的資料夾。程式不接受位於同一台磁碟機上的資料夾。如果磁碟機的可用空間不足，程式會在寫入任何內容之前告知。它會依原本的資料夾結構複製所有內容，但最上層的 <code>System Volume Information</code> 與 <code>$RECYCLE.BIN</code> 資料夾除外，Windows 會自行重新建立它們。</li>
+<li>複製完成後，程式同樣不經過快取，從磁碟機讀回每個檔案，並將其 SHA-256 與原始檔案比對。如果全部相符，記錄會說明。如果有檔案讀回的內容不同，記錄會列出這些檔案，並說明這台磁碟機無法可靠地保存資料。不要在這台磁碟機上存放重要檔案。</li>
+</ol>
+<p>即使複製成功，也請把救回的檔案留在電腦上，這樣你仍有第二份副本。</p>
+<hr />
+<h2 id="6-按鈕說明">6. 按鈕說明</h2>
+<table>
+<thead>
+<tr>
+<th>按鈕</th>
+<th>功能</th>
+<th class="ta-center">會變更磁碟機</th>
+<th class="ta-center">系統管理員</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🔄 重新整理</strong></td>
+<td>列出已連接的 USB 磁碟機（勾選方塊時也會列出內接磁碟）</td>
+<td class="ta-center">否</td>
+<td class="ta-center">否</td>
+</tr>
+<tr>
+<td><strong>健康檢查</strong></td>
+<td>顯示磁碟機狀態，可用時一併顯示 SMART 計數器。大多數 USB 隨身碟不提供這些數值，這時記錄會說明此檢查無法判斷磁碟機是否會再次故障</td>
+<td class="ta-center">否</td>
+<td class="ta-center">否</td>
+</tr>
+<tr>
+<td><strong>備份為映像檔</strong></td>
+<td>將整個磁碟機複製成映像檔，略過壞區，詢問是否逐磁區重試，並可接續先前的複製</td>
+<td class="ta-center">否</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>復原檔案(名稱/路徑)</strong></td>
+<td>讀取 NTFS、FAT32 或 exFAT，連同名稱與資料夾複製出所有檔案：現有檔案、已刪除檔案，以及已刪除資料夾中的檔案</td>
+<td class="ta-center">否</td>
+<td class="ta-center">僅在不使用映像檔時</td>
+</tr>
+<tr>
+<td><strong>復原檔案(簽章)</strong></td>
+<td>依內容找出 JPEG、PNG、GIF、BMP、PDF、ZIP、MP4、MOV 與 HEIC 檔</td>
+<td class="ta-center">否</td>
+<td class="ta-center">僅在不使用映像檔時</td>
+</tr>
+<tr>
+<td><strong>檢查(chkdsk)</strong></td>
+<td>對磁碟機代號以修復模式執行 chkdsk。執行前會先詢問是或否</td>
+<td class="ta-center">修正錯誤，保留資料</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>格式化</strong></td>
+<td>將磁碟區快速格式化為 NTFS，標籤為 <code>USB</code>。需輸入 <code>FORMAT &lt;letter&gt;</code> 確認</td>
+<td class="ta-center">清除資料</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>完整重建</strong></td>
+<td>清除整個磁碟、建立新的分割區，並快速格式化為 NTFS，標籤為 <code>USB</code>。需輸入 <code>ERASE DISK &lt;number&gt;</code> 確認</td>
+<td class="ta-center">清除資料</td>
+<td class="ta-center">是</td>
+</tr>
+<tr>
+<td><strong>測試磁碟機</strong></td>
+<td>在全部可用空間或 1 GB 寫入測試資料，不經過 Windows 快取讀回並比對，然後刪除。可找出會遺失資料或虛報容量的磁碟機</td>
+<td class="ta-center">寫入測試資料，之後刪除</td>
+<td class="ta-center">否</td>
+</tr>
+<tr>
+<td><strong>寫回檔案</strong></td>
+<td>把電腦上資料夾中的救回檔案依相同的資料夾結構複製到磁碟機，然後逐一讀回並比對 SHA-256</td>
+<td class="ta-center">寫入檔案</td>
+<td class="ta-center">否</td>
+</tr>
+</tbody>
+</table>
+<p><strong>完整重建</strong> 會自動選擇分割樣式：2 TB 以下的磁碟機用 MBR，更大的用 GPT。記錄會顯示選了哪一種。</p>
+<hr />
+<h2 id="7-不需要資料時修復磁碟機">7. 不需要資料時修復磁碟機</h2>
+<p>如果你不需要裡面的檔案，只想讓故障的 USB 磁碟機或外接硬碟恢復可用，可以跳過備份與復原步驟，直接修復。</p>
+<h3 id="71-先診斷">7.1 先診斷</h3>
+<p>按 <strong>🔄 重新整理</strong>，選擇磁碟機，查看清單與記錄。以一台 WD 外接硬碟的實際例子來說：清單顯示 3.6 TB、狀態 <code>Healthy/Online</code>，而且只有一塊沒有磁碟機代號的 200 MB RAW 區塊。</p>
+<p>解讀方式：狀態為 <code>Healthy/Online</code> 表示硬體運作正常，只有分割結構損壞，這通常可以用軟體修復。如果大容量磁碟機只顯示一小塊 RAW，或沒有磁碟機代號，表示主要分割區已經不見了。</p>
+<h3 id="72-選擇修復方式由輕到重">7.2 選擇修復方式（由輕到重）</h3>
+<table>
+<thead>
+<tr>
+<th>症狀</th>
+<th>按鈕</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有磁碟機代號，但檔案損毀或出現讀取錯誤</td>
+<td><strong>檢查(chkdsk)</strong></td>
+<td>修正檔案系統錯誤並保留資料</td>
+</tr>
+<tr>
+<td>有磁碟機代號，想要清空</td>
+<td><strong>格式化</strong></td>
+<td>只重新格式化該磁碟區</td>
+</tr>
+<tr>
+<td>RAW、沒有磁碟機代號、分割區損毀</td>
+<td><strong>完整重建</strong></td>
+<td>清除整個磁碟並重新建立。這是最常用的解法</td>
+</tr>
+</tbody>
+</table>
+<p><strong>檢查(chkdsk)</strong> 與 <strong>格式化</strong> 需要磁碟機代號。如果磁碟機沒有代號，程式會提示改用 <strong>完整重建</strong>。chkdsk 也無法修復 RAW 磁碟機，因為已經沒有可修復的檔案系統。</p>
+<h3 id="73-救活-raw-磁碟機">7.3 救活 RAW 磁碟機</h3>
+<p>這是最常見的情況。選擇磁碟機，按 <strong>完整重建</strong>，出現提示時輸入 <code>ERASE DISK 2</code>（換成你的磁碟編號）。通常只需要幾秒到一分鐘。完成後，磁碟機會取得新的磁碟機代號。把檔案放上去之前，請按 <strong>🔄 重新整理</strong>，選擇磁碟機，然後執行 <strong>測試磁碟機</strong>。結果怎麼看以及如何把檔案放回去，請看第 5 章的步驟 5。</p>
+<p>新的檔案系統是 NTFS，Windows 可以讀寫。如果需要在 Mac 或其他裝置上使用，之後再用該裝置或 Windows 內建的格式化對話方塊重新格式化即可。</p>
+<h3 id="74-清理">7.4 清理</h3>
+<p>如果先前建立的映像檔已經不需要，請刪除映像檔以及旁邊的進度檔，例如 <code>disk2.img</code> 與 <code>disk2.img.state.json</code>。</p>
+<h3 id="75-如果修復失敗">7.5 如果修復失敗</h3>
+<ol>
+<li>拔下磁碟機再插回去，按 <strong>🔄 重新整理</strong>，然後再試一次。Windows 可能正鎖定該磁碟。</li>
+<li>關閉其他可能正在使用磁碟機的程式，例如防毒軟體或檔案總管的預覽。</li>
+<li>如果仍然失敗、狀態一直是 <code>Unhealthy</code>，或磁碟機反覆出現又消失，硬體很可能正在故障。軟體無法修好這種情況，請考慮更換磁碟機。</li>
+</ol>
+<h3 id="76-降低再次故障的風險">7.6 降低再次故障的風險</h3>
+<p>沒有任何軟體能保證磁碟機不會再壞。<strong>健康檢查</strong> 會讀取磁碟機自己記錄的計數器：重新配置的磁區、讀取錯誤與磨損度。出現無法更正的讀取或寫入錯誤，或磨損度偏高，代表再次故障的風險高，建議更換。</p>
+<p>許多 USB 外接盒因為橋接晶片的限制，不會傳遞 SMART 資料。這時健康檢查會顯示磁碟機不提供 SMART 資料。CrystalDiskInfo 等專用工具或許仍能讀取。</p>
+<p>請記住以下幾個原則：</p>
+<ul>
+<li>軟體只能避開已經損壞的記憶單元，無法延長磁碟機的實體壽命。</li>
+<li>不要把重要資料的唯一一份副本放在曾經故障過的磁碟機上。務必另外備份一份。</li>
+<li>如果重建後不久磁碟機又變成 RAW，或一直斷線，請更換。</li>
+</ul>
+<hr />
+<h2 id="8-疑難排解">8. 疑難排解</h2>
+<h3 id="磁碟清單是空的">磁碟清單是空的</h3>
+<p>記錄顯示 <code>找不到磁碟</code>。請確認磁碟機已插好，並且在 Windows 的磁碟管理中看得到，然後再按一次 <strong>🔄 重新整理</strong>。如果磁碟機不是 USB 磁碟機，請勾選 <strong>顯示內接磁碟（請小心）</strong>。</p>
+<h3 id="清單中顯示韌體故障rom-模式或無儲存空間0">清單中顯示「韌體故障（ROM 模式）」或「無儲存空間（0）」</h3>
+<p>隨身碟的控制器沒能載入韌體，或磁碟機不提供儲存空間。Windows 通常會把這種磁碟機顯示為「沒有媒體」或 0 位元組的磁碟，也可能詢問是否要格式化；這時請選擇取消。在清單中選擇這台磁碟機後，磁碟清單下方會開啟 <strong>診斷</strong> 方塊，顯示裝置 ID、推測的控制器和下一步該做的事。這種狀態下沒有可讀寫的內容，因此備份、復原和修復按鈕會被關閉。</p>
+<ol>
+<li>拔下磁碟機再重新插上。方塊每 5 秒會自動重新檢查（也可以按 <strong>重新檢查</strong>）。如果它以原本的名稱回來，不要寫入任何東西，先備份。方塊會保持開啟並告訴你它已恢復，同時顯示 <strong>備份為映像檔</strong> 和 <strong>測試磁碟機（全部可用空間）</strong> 按鈕。大量寫入可能讓它再次停止，所以在這個磁碟機通過 <strong>測試磁碟機</strong>（全部可用空間）之前，即使關閉方塊，修復和 <strong>寫回檔案</strong> 也維持關閉。</li>
+<li>如果重新插上也回不來，ReviveUSB 就無法救回它，也讀不出其中的檔案。如果檔案很重要，資料救援公司或許能直接讀取記憶體晶片；否則請更換磁碟機。ReviveUSB 不推薦工廠工具（量產工具）：它們在我們測試的磁碟機上沒有成功，而且不是官方發布的。</li>
+<li>如果步驟 1 中它回來了，而你還想繼續使用，請先備份，再用 <strong>測試磁碟機</strong> 測試全部可用空間。測試無錯誤通過後，該磁碟機的修復和 <strong>寫回檔案</strong> 會開啟，方塊也會自動關閉。1 GB 快速測試不會開啟它們。</li>
+</ol>
+<p><strong>複製診斷</strong> 會複製方塊的內容，求助時可以貼上。按 <strong>×</strong> 關閉方塊。</p>
+<p>有些裝置會以灰色顯示「空（0）」。這表示程式不認識的裝置回報沒有儲存空間，沒插卡的讀卡機插槽通常就是這樣。這不是故障，插入記憶卡即可。如果隨身碟這樣顯示，請拔下後重新插入。由於沒有可讀取的內容，此時備份、復原和修復按鈕都會關閉。</p>
+<h3 id="備份非常慢例如預估要-100-小時以上">備份非常慢（例如預估要 100 小時以上）</h3>
+<p>程式已經會略過壞區，所以變慢通常是磁碟機或連線造成的。如果從頭到尾速度都很低（每秒幾百 KB），請依序嘗試：</p>
+<ol>
+<li>把磁碟機直接插在電腦背面的 USB 3.0 連接埠（藍色）。避免使用集線器與延長線。</li>
+<li>更換傳輸線。</li>
+<li>改用另一台電腦。</li>
+</ol>
+<p>要換連接埠時，請關閉 ReviveUSB，移動磁碟機，再次備份到同一個映像檔。它會從中斷處繼續。</p>
+<h3 id="磁碟機顯示為-raw">磁碟機顯示為 RAW</h3>
+<p>Windows 無法讀取檔案系統，但本程式往往仍讀得到。請先備份為映像檔，再先試試 <strong>復原檔案(名稱/路徑)</strong>；如果什麼都沒找到，再使用 <strong>復原檔案(簽章)</strong>。復原完成後，再用 <strong>完整重建</strong> 讓磁碟機恢復可用。</p>
+<h3 id="無法偵測檔案系統">「無法偵測檔案系統」</h3>
+<p>名稱/路徑方式只認得 NTFS、FAT32 與 exFAT，而且需要能讀取檔案系統索引。請改用 <strong>復原檔案(簽章)</strong>。（訊息中可能會出現 <code>carve</code> 或 <code>--fs</code> 等命令列名稱；在視窗中，簽章按鈕就是同一個功能。）</p>
+<h3 id="此操作需要系統管理員權限">「此操作需要系統管理員權限」</h3>
+<p>按 <strong>是</strong>，以系統管理員身分重新啟動程式；或關閉程式後重新執行，並允許 Windows 的提示。</p>
+<h3 id="復原的檔案打不開">復原的檔案打不開</h3>
+<p>檔案可能原本就分散存放，所以只救回了前半段。兩個復原按鈕都試試看。磁碟機上無法讀取的部分，映像檔中也不會有，存放在那裡的檔案無法完整救回。</p>
+<hr />
+<h2 id="9-常見問題">9. 常見問題</h2>
+<p>Q. 我想救回 USB 磁碟機，「不要寫入」是什麼意思？
+A. 意思是不要把新資料存到磁碟機。執行這個程式沒有問題，因為備份與復原只會讀取。請參閱第 2 章。</p>
+<p>Q. 這會損壞原始磁碟機嗎？
+A. 備份與復原都是唯讀的。只有修復按鈕會變更原始磁碟機，而且會先要求確認。</p>
+<p>Q. 檔案名稱救得回來嗎？
+A. <strong>復原檔案(名稱/路徑)</strong> 會還原名稱與資料夾。<strong>復原檔案(簽章)</strong> 只還原內容，並以流水號為檔案命名。</p>
+<p>Q. 我的磁碟機有 114 GB，一定要整個做成映像檔嗎？
+A. 完整備份是最安全的做法。如果時間不夠，可以中途關閉程式，對目前已有的映像檔執行 <strong>復原檔案(簽章)</strong>；它會從已複製的部分救回檔案。</p>
+<p>Q. 有沒有無法復原的情況？
+A. 有。如果資料已被覆寫，或快閃記憶體晶片本身已經損壞，軟體就無能為力。這時請找專業的資料救援服務。</p>
+<hr />
+<h2 id="10-名詞解釋">10. 名詞解釋</h2>
+<table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>意思</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>映像檔（.img）</td>
+<td>將磁碟機逐位元組複製成的單一檔案。你在這份副本上作業，而不是原始磁碟機</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>檔案系統索引已損壞，Windows 無法讀取磁碟機</td>
+</tr>
+<tr>
+<td>簽章復原（carving）</td>
+<td>透過找出檔案內容的特徵（magic bytes）來救回檔案</td>
+</tr>
+<tr>
+<td>名稱/路徑復原（undelete）</td>
+<td>讀取檔案系統索引，連同名稱與路徑還原檔案</td>
+</tr>
+<tr>
+<td>壞軌</td>
+<td>無法讀取的儲存區域。備份時會略過並加以記錄</td>
+</tr>
+<tr>
+<td>磁區與叢集</td>
+<td>最小的儲存單位（通常為 512 位元組），以及由多個磁區組成的群組</td>
+</tr>
+<tr>
+<td>系統管理員權限</td>
+<td>存取原始磁碟所需的 Windows 權限</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-語言">11. 語言</h2>
+<p>程式啟動時預設為英文。若要切換成繁體中文，請在視窗右上角的語言方塊中選擇「繁體中文」。程式會記住這個選擇，下次就以該語言啟動。</p>
+<hr />
+<h2 id="12-免責聲明">12. 免責聲明</h2>
+<p>ReviveUSB 依現狀提供，不附任何形式的保證。復原結果無法保證，修復按鈕會永久清除資料。使用本程式的風險由你自行承擔。對於使用本程式所造成的資料遺失或任何其他損害，作者概不負責。重要資料請務必備份。</p></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../zh-tw/revive/index.html">ReviveUSB</a><a href="../../zh-tw/chatda/index.html">Chatda</a><a href="../../zh-tw/about.html">關於</a><a href="../../zh-tw/donate.html">贊助</a><a href="../../zh-tw/privacy.html">隱私權</a><a id="contact-link" href="#" hidden>聯絡</a></nav><div class="prefs"><span>語言: <a href="../../revive/help.html" lang="en">English</a> · <a href="../../ko/revive/help.html" lang="ko">한국어</a> · <a href="../../ja/revive/help.html" lang="ja">日本語</a> · <a href="../../zh-cn/revive/help.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/revive/help.html" lang="zh-TW" aria-current="true">繁體中文</a> · <a href="../../es/revive/help.html" lang="es">Español</a> · <a href="../../de/revive/help.html" lang="de">Deutsch</a> · <a href="../../fr/revive/help.html" lang="fr">Français</a> · <a href="../../pt-br/revive/help.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/revive/help.html" lang="ru">Русский</a> · <a href="../../vi/revive/help.html" lang="vi">Tiếng Việt</a></span><label>主題 <select id="theme-select"><option value="auto">預設</option><option value="dark">深色</option><option value="light">淺色</option></select></label></div><p class="mt-note">本頁為機器翻譯。若發現錯誤，歡迎告訴我們。</p><p>© 2026 Barbellsoft。免費軟體，依現狀提供，不附任何保證。</p></div></footer>
+<script src="../../config.js?v=3866ec0a"></script>
+<script src="../../site.js?v=b66a4edc"></script>
+</body>
+</html>
