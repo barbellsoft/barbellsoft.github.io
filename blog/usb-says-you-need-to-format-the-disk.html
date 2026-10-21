@@ -8,7 +8,7 @@
 <meta name="description" content="Windows wants to format your USB drive before you can use it. Here is how to copy your files off it safely first, and then make the drive usable again.">
 <meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
 <link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
-<link rel="stylesheet" href="../style.css?v=ec4a974b">
+<link rel="stylesheet" href="../style.css?v=0753ba71">
 <script src="../theme.js?v=fd2f7cbd"></script>
 </head>
 <body>
@@ -16,7 +16,8 @@
 <header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en" aria-current="page">Blog</a></nav></div></header>
 
 <main id="main"><div class="wrap">
-<p class="meta"><a href="index.html">Blog</a> · 2026-10-21</p><h1>&quot;You need to format the disk&quot; on USB: save your files first</h1><div class="doc prose"><p>You plug in a USB stick that worked yesterday and Windows says "You need to format the disk in drive E: before you can use it", with a <strong>Format disk</strong> button and a <strong>Cancel</strong> button. Click <strong>Cancel</strong>.</p>
+<p class="meta"><a href="index.html">Blog</a> · 2026-10-21</p><h1>&quot;You need to format the disk&quot; on USB: save your files first</h1><div class="doc prose"><p>Prefer to watch? <a href="https://youtu.be/u7bKxa6YXw0">See the 1-minute walkthrough on YouTube</a>.</p>
+<p>You plug in a USB stick that worked yesterday and Windows says "You need to format the disk in drive E: before you can use it", with a <strong>Format disk</strong> button and a <strong>Cancel</strong> button. Click <strong>Cancel</strong>.</p>
 <p>The message sounds final, but it usually means the filesystem on the drive is damaged, not that the drive is dead. Windows can't read the index that lists your files, so it offers to format the drive. Your files are usually still there. Formatting is what puts them at risk.</p>
 <h2 id="what-is-going-on">What is going on</h2>
 <p>Every drive keeps an index, the filesystem, that says which file lives where. When Windows can't mount that filesystem, it shows the drive as RAW. That happens even when only one value in the index is wrong. If a large drive shows up as a small RAW piece, or has no drive letter at all, the partition itself is damaged.</p>
