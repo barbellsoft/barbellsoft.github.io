@@ -164,3 +164,13 @@ table.perf tbody th { font-weight: 600; color: var(--ink); white-space: normal; 
 .perf-cond { padding-left: 20px; }
 .perf-cond li { margin-bottom: 4px; }
 
+
+/* 피드백 양식 */
+.feedback-form form { display: grid; gap: 12px; max-width: 40em; margin: 8px 0 24px; }
+.feedback-form label { display: grid; gap: 4px; font-weight: 600; color: var(--ink); }
+.feedback-form textarea, .feedback-form input, .feedback-form select { font: inherit; padding: 8px 10px; border: 1px solid var(--hairline); border-radius: var(--r); background: var(--card); color: var(--body); }
+.feedback-form button { justify-self: start; }
+.feedback-form .hp { position: absolute; left: -10000px; width: 1px; height: 1px; }
+.sent-note { display: none; }
+.sent-note:target { display: block; border-left: 4px solid var(--brand); background: var(--card); padding: 10px 14px; color: var(--ink); font-weight: 600; }
+:lang(ko) { word-break: keep-all; }
