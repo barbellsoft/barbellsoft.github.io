@@ -68,9 +68,23 @@
     new Image().src = url + "?" + q.join("&");
   }
 
+  // 내려받기 버튼을 누르면 «/download/파일이름» 이벤트를 한 번 더 센다 — 어느 나라에서 받는지 보려고(쿠키 없음, 같은 조건).
+  function countDownloads() {
+    var url = cfg.STATS_URL;
+    if (!isHttps(url) || location.protocol !== "https:" || navigator.doNotTrack === "1") return;
+    document.addEventListener("click", function (ev) {
+      var a = ev.target.closest && ev.target.closest('a[href*="/releases/download/"]');
+      if (!a) return;
+      var name = a.getAttribute("href").split("/").pop();
+      new Image().src = url + "?e=true&p=" + encodeURIComponent("/download/" + name) +
+        "&t=" + encodeURIComponent(name) + "&rnd=" + Math.random().toString(36).slice(2);
+    });
+  }
+
   initTheme();
   initDonate();
   initContact();
   initCopy();
   countVisit();
+  countDownloads();
 })();
