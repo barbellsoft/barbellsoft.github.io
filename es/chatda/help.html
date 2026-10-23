@@ -67,7 +67,7 @@ This guide is for people who <strong>already have Chatda installed</strong>.</p>
 <li><strong>Status bar at the bottom</strong>: the result count. While indexing, it also shows progress and time left.</li>
 </ul>
 <blockquote>
-<p>💡 To change the display language, go to ⚙ Settings → <strong>Language</strong> and pick Auto (system), 한국어 or English.</p>
+<p>💡 To change the display language, go to ⚙ Settings → <strong>Language</strong> and pick Auto (system), 한국어, English or 日本語.</p>
 <p>💡 On <strong>Windows</strong>, Chatda <strong>indexes every fixed drive (C:\, D:\ …) right away</strong>, without you picking a folder. <strong>Folders show up in results too</strong>, and English names match in the middle of a word (<code>port</code> → <code>report</code>).
 For a whole drive, only <strong>file names, sizes and dates</strong> are searchable. To search inside documents in a folder (for example Documents or Desktop),
 add it with <strong>+ Add folder</strong> → <a href="#managing-folders">Managing folders</a></p>
@@ -273,6 +273,7 @@ Search: *.{xlsx,docx,pdf}
 Search: report *.xlsx
 </code></pre>
 <p>→ All xlsx files / several extensions at once / only xlsx files containing "report".</p>
+<p>With <code>OR</code>, an extension applies only to its own side: <code>report *.pdf OR invoice</code> finds PDF files containing "report", plus any file containing "invoice". A minus in front leaves a file type out: <code>report -*.pdf</code>.</p>
 <h3 id="functions">Functions</h3>
 <p>Add these after your search words to narrow the results.</p>
 <table>
