@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Narrow file search results with wildcards, size and dates | Barbellsoft</title>
+<meta name="description" content="Too many results for a simple word? File types, wildcards, size and date filters take you from hundreds of matches to the one file you need.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=320a3fb0">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-10-23</p><h1>Narrow file search results with wildcards, size and dates</h1><div class="doc prose"><p>You type <code>report</code> and get two thousand results. Every monthly report, every draft, every copy someone saved to the shared drive. The file you want is in there somewhere, and scrolling is not a plan.</p>
+<p>A few extra words in the search box fix most of this. The examples below are for Chatda, a free file search app for Windows 10 and 11 and macOS, but the ideas carry over: say what kind of file it is, roughly when it changed, roughly how big it is, and where it lives.</p>
+<h2 id="say-which-words-must-be-there-and-which-must-not">Say which words must be there, and which must not</h2>
+<p>Several words mean all of them have to appear: <code>contract 2026</code> only finds files with both. To leave something out, put a minus or an exclamation mark in front of it. <code>contract -draft</code> and <code>contract !draft</code> both hide anything that contains "draft".</p>
+<p>Words in quotes have to appear together and in that order, so <code>"payment statement"</code> won't match a file that says "statement of payment".</p>
+<p><code>OR</code> (or a vertical bar) gives you either one: <code>apple OR pear</code>, <code>apple | pear</code>.</p>
+<h2 id="wildcards-and">Wildcards: <code>*</code> and <code>?</code></h2>
+<p>A star stands for any run of characters. <code>report*2024</code> finds names that start with "report" and end with "2024", whatever sits in between. A question mark is exactly one character: <code>v?.docx</code> finds <code>v1.docx</code> and <code>v2.docx</code>.</p>
+<p>A word with a wildcard is matched against the file name, extension included. If the word has a <code>\</code> or <code>/</code> in it, it's matched against the full path instead, so <code>projects\*.pdf</code> finds PDFs in a "projects" folder.</p>
+<h2 id="file-types">File types</h2>
+<p><code>*.xlsx</code> limits the results to Excel files. Put several in braces to allow any of them: <code>*.{xlsx,docx,pdf}</code>. Add a word in front and you get files of that type with the word in them: <code>report *.xlsx</code>.</p>
+<p>The same thing written as a function is <code>ext:pdf;docx</code>. If you don't remember which extensions belong to a kind of file, there are shortcuts:</p>
+<table>
+<thead>
+<tr>
+<th>Type this</th>
+<th>To get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>doc:</code></td>
+<td>Documents (pdf, docx, xlsx, pptx, hwp, txt, md, csv and more)</td>
+</tr>
+<tr>
+<td><code>pic:</code></td>
+<td>Pictures (jpg, png, gif, heic, psd and more)</td>
+</tr>
+<tr>
+<td><code>video:</code> or <code>audio:</code></td>
+<td>Video or audio files</td>
+</tr>
+<tr>
+<td><code>zip:</code></td>
+<td>Archives (zip, 7z, rar and more)</td>
+</tr>
+<tr>
+<td><code>exe:</code></td>
+<td>Programs (exe, msi, bat, cmd, com, ps1)</td>
+</tr>
+</tbody>
+</table>
+<p>File types also work with <code>OR</code>, and then they only apply to their own side. <code>report *.pdf OR invoice</code> finds PDF files that contain "report", plus any file that contains "invoice". A minus in front of a type leaves it out: <code>report -*.pdf</code> shows every report except the PDFs.</p>
+<p><code>file:</code> keeps only files and <code>folder:</code> keeps only folders.</p>
+<h2 id="size">Size</h2>
+<p>Size is useful when you remember that a file was "the big one" or that it came out empty.</p>
+<table>
+<thead>
+<tr>
+<th>Type this</th>
+<th>To get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size:&gt;10mb</code></td>
+<td>Larger than 10 MB (also <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, and units b, kb, mb, gb, tb)</td>
+</tr>
+<tr>
+<td><code>size:1mb..5mb</code></td>
+<td>Between 1 MB and 5 MB</td>
+</tr>
+<tr>
+<td><code>size:empty</code></td>
+<td>0 bytes</td>
+</tr>
+<tr>
+<td><code>size:tiny</code>, <code>small</code>, <code>medium</code></td>
+<td>Up to 10 KB, 10 to 100 KB, 100 KB to 1 MB</td>
+</tr>
+<tr>
+<td><code>size:large</code>, <code>huge</code>, <code>gigantic</code></td>
+<td>1 to 16 MB, 16 to 128 MB, over 128 MB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="date-modified">Date modified</h2>
+<p><code>dm:</code> filters by when a file last changed, in your local time. <code>datemodified:</code> works too.</p>
+<table>
+<thead>
+<tr>
+<th>Type this</th>
+<th>To get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dm:today</code>, <code>dm:yesterday</code></td>
+<td>Changed today or yesterday</td>
+</tr>
+<tr>
+<td><code>dm:thisweek</code>, <code>dm:thismonth</code>, <code>dm:thisyear</code></td>
+<td>This week (from Monday), this month, this year</td>
+</tr>
+<tr>
+<td><code>dm:2026-03</code></td>
+<td>Any day in March 2026 (also a year, or a single day like <code>dm:2026-03-15</code>)</td>
+</tr>
+<tr>
+<td><code>dm:&gt;2025-12-31</code></td>
+<td>After the end of 2025</td>
+</tr>
+<tr>
+<td><code>dm:2025..2026-02</code></td>
+<td>From the start of 2025 to the end of February 2026</td>
+</tr>
+</tbody>
+</table>
+<p>If you'd rather click, the <strong>Date</strong> dropdown above the results offers today, the past week, month and year. "Past year" there means the last 365 days, not since January 1.</p>
+<h2 id="where-it-lives">Where it lives</h2>
+<p><code>path:clients</code> keeps results whose full path contains "clients". Use it more than once and every one has to match. Or pick one folder under <strong>All locations ▾</strong> at the top to search only inside it.</p>
+<h2 id="putting-it-together">Putting it together</h2>
+<p>These combine freely. One search can say all of it at once:</p>
+<pre><code>quote ext:xlsx dm:thismonth path:clients
+</code></pre>
+<p>That finds Excel files under a "clients" folder, changed this month, that contain "quote".</p>
+<p>A few more that tend to come up:</p>
+<ul>
+<li><code>invoice *.pdf dm:thisyear -draft</code> for this year's invoices without the drafts.</li>
+<li><code>pic: size:&gt;5mb</code> for large pictures that are filling up a folder.</li>
+<li><code>"meeting notes" dm:thisweek</code> for this week's notes, wherever they were saved.</li>
+<li><code>report*2024 OR summary *.docx</code> for 2024 reports of any type, plus summaries in Word.</li>
+</ul>
+<p>If a search comes back empty, take one condition away at a time until results appear. The last one you removed is usually the one that didn't fit. The <a href="../chatda/help.html">help page</a> lists every operator, and you can open it inside the app from the <strong>?</strong> button.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Find files by name and by what&#x27;s inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../index.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=687b7b47"></script>
+</body>
+</html>
