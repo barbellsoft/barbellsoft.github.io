@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>How to search for text inside PDF files on Windows | Barbellsoft</title>
+<meta name="description" content="You remember a line from a PDF but not its name. How to search the text of PDFs across folders for free, and what to check if one won&#x27;t show up.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=320a3fb0">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-10-23</p><h1>How to search for text inside PDF files on Windows</h1><div class="doc prose"><p>You know the document exists. You remember a phrase from it, maybe a client's name or a line from page 12, but not what the file was called or which folder it ended up in. The search box in File Explorer is built around file names, so typing that phrase usually gets you nothing useful.</p>
+<p>What you need is a search that reads the text inside the PDFs. This post shows how to do that with Chatda, a free search app for Windows 10 and 11 (it runs on macOS too), and what to check when a PDF still refuses to show up.</p>
+<h2 id="first-check-that-the-pdf-has-text-in-it">First, check that the PDF has text in it</h2>
+<p>Some PDFs are really photos of paper. A scanner or a phone app saved each page as a picture, and there are no letters in the file for any search tool to read.</p>
+<p>Open the PDF and try to select a sentence with your mouse. If you can highlight words, the text is there and it can be searched. If the whole page highlights as one block, or nothing highlights at all, the page is an image. You'll only find that file by its name.</p>
+<h2 id="set-up-the-search-once">Set up the search once</h2>
+<p>Download Chatda from the <a href="../chatda/download.html">download page</a> and install it. Installing asks for administrator approval, because Chatda installs for all users together with its drive indexing service.</p>
+<p>Chatda isn't code-signed yet, so Windows SmartScreen may say it doesn't recognize the app. The download page lists the file's SHA-256 checksum and shows how to compare it in PowerShell. If the value matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<p>On Windows, Chatda adds every fixed drive (C:\, D:\ and so on) by itself. For a whole drive it only keeps file names, sizes and dates, so you can find any file by name right away, but not by what's written inside it.</p>
+<p>To search inside documents, add the folders where they live:</p>
+<ol>
+<li>Click <strong>All locations ▾</strong> at the top.</li>
+<li>Choose <strong>+ Add folder</strong> and pick a folder, for example Documents or Desktop.</li>
+<li>Indexing starts on its own. The status bar at the bottom shows the progress and the time left.</li>
+</ol>
+<p>Chatda reads the text of PDF, Word, Excel, PowerPoint, HWPX, TXT, Markdown and CSV files. Other formats can still be found by name. If your PDFs are on a NAS, use <strong>Connect network folder</strong> in the same panel and enter the address, your username and your password.</p>
+<h2 id="search-for-the-phrase">Search for the phrase</h2>
+<p>Type a word or two into the search box. You don't need to press Enter: results show up as you type, usually within 0.2 seconds.</p>
+<p>Each result has a <strong>Content</strong> column that shows where your words appear in the document. If it's empty, the file matched by its name only. Click a result once and the preview panel on the right shows the text of the PDF (for PDFs up to 30 MB). Double-click to open the file in your usual PDF reader.</p>
+<p>A few things make a big difference when you're hunting for one document:</p>
+<ul>
+<li><strong>Content only.</strong> In the <strong>Search in</strong> dropdown, switch from "Name + content" to <strong>Content only</strong>. Files that merely have your word in their name drop out, and you're left with the ones where the word is inside the document.</li>
+<li><strong>Exact phrases.</strong> Put the words in quotes, like <code>"payment statement"</code>, to find them together and in that order.</li>
+<li><strong>Only PDFs.</strong> Add <code>*.pdf</code> to the search, or tick PDF in the <strong>All types ▾</strong> list. <code>contract *.pdf</code> finds PDFs that contain "contract".</li>
+<li><strong>Leave a word out.</strong> <code>contract -draft</code> hides results that contain "draft".</li>
+<li><strong>Recent files.</strong> The <strong>Date</strong> dropdown can limit results to today, the past week, month or year. Sorting by <strong>Recently modified</strong> puts what you worked on lately at the top.</li>
+</ul>
+<p>If you're not sure of the exact wording, start short. Two distinctive words usually find more than a long sentence you half remember.</p>
+<h2 id="new-and-changed-pdfs">New and changed PDFs</h2>
+<p>You don't have to re-index after saving a file. In a local folder Chatda picks up new and changed files within about half a second. On a NAS it can take up to five minutes. If you're in a hurry, choose <strong>Re-index</strong> from the folder's menu.</p>
+<h2 id="when-a-pdf-still-doesnt-show-up">When a PDF still doesn't show up</h2>
+<p>Go through these in order:</p>
+<ol>
+<li><strong>Is the text selectable?</strong> If the page is a scanned image, there's nothing to search inside it (see the first section).</li>
+<li><strong>Is the folder added by itself?</strong> A file that is only covered by a whole-drive entry like C:\ is searched by name only. Add its folder with <strong>+ Add folder</strong>.</li>
+<li><strong>Is the mode right?</strong> Try <strong>Content only</strong> and a shorter, more general word. Searching for <code>bottleneck</code> finds more than <code>approval bottleneck</code>.</li>
+<li><strong>Is it really a PDF?</strong> Check the extension. Formats outside the list above match by name only.</li>
+<li><strong>Did indexing finish?</strong> A ⚠ mark in front of a folder means indexing didn't finish. Choose <strong>Re-index</strong> from its menu.</li>
+</ol>
+<p>The <a href="../chatda/help.html">help page</a> explains every filter and search operator, and the <a href="../chatda/faq.html">FAQ</a> covers the questions that come up most.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Find files by name and by what&#x27;s inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../index.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=687b7b47"></script>
+</body>
+</html>
