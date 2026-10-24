@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Find a file you just saved or downloaded on Windows | Barbellsoft</title>
+<meta name="description" content="You saved or downloaded a file a minute ago and now you can&#x27;t find it. Where files usually end up, and how to find any file on your PC by name.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=320a3fb0">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-10-24</p><h1>Find a file you just saved or downloaded on Windows</h1><div class="doc prose"><p>You clicked Save, or a download finished, and a minute later you have no idea where the file went. Now you're opening Documents, Desktop and Downloads one after another.</p>
+<p>It happens to everyone. Many programs save to whatever folder you used last time, so a file can land in a place you haven't opened for weeks. This post covers the quick places to check first, and then how to find any file on your PC by a piece of its name with Chatda, a free search app for Windows 10 and 11 that also runs on macOS.</p>
+<h2 id="check-the-usual-places-first">Check the usual places first</h2>
+<p>Start with the Downloads folder. Web browsers save there unless someone changed the setting. Open it in File Explorer and click the <strong>Date modified</strong> column header until the newest files are at the top.</p>
+<p>Your browser's download list is the next stop, since it can open the folder that holds each file. File Explorer's start page (Home or Quick access, depending on your version of Windows) also lists recent files.</p>
+<p>If none of that turns it up, you need a search. The search box in File Explorer only looks inside the folder you have open and the folders below it, so you have to guess where to start, and outside your own user folders it can be slow.</p>
+<h2 id="let-a-search-app-keep-a-list-of-every-file">Let a search app keep a list of every file</h2>
+<p>Chatda keeps a list of the files on your drives, so a search doesn't have to walk through folders while you wait.</p>
+<p>Download it from the <a href="../chatda/download.html">download page</a> and install it. Installing asks for administrator approval because Chatda installs for all users together with its drive indexing service. Chatda isn't code-signed yet, so Windows SmartScreen may say it doesn't recognize the app. The download page lists the file's SHA-256 checksum so you can check it first. If it matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<p>You don't have to choose any folders. On Windows, Chatda adds every fixed drive (C:\, D:\ and so on) by itself and reads the names, sizes and dates of the files on it. If you click <strong>Yes</strong> when Chatda asks for administrator rights, it reads the NTFS file table directly, and a drive with 2 million files takes about 10 to 20 seconds. The fast drive indexing service does the same without asking each time. Without administrator rights it goes through the folders one by one, which takes a few minutes. The status bar at the bottom shows <strong>Reading disk list</strong> with a percentage and the time left. Chatda saves the list, so the next time it starts the list is back in a second or two.</p>
+<h2 id="show-the-newest-files-first">Show the newest files first</h2>
+<p>Leave the search box empty. Chatda then lists every file it knows about, with the most recently modified at the top. A file you saved a minute ago is usually in the first few lines, and the <strong>Path</strong> column tells you which folder it's in.</p>
+<p>You don't need to refresh anything for that to work. Chatda notices files being added, changed and deleted while it runs, and new and downloaded files show up in search within seconds, even on large drives.</p>
+<p>When the list is busy, set the <strong>Date</strong> dropdown to <strong>Today</strong>. A file copied from a USB stick or another computer may keep the date it was last edited there, which can be weeks old. For those, choose <strong>Recently created</strong> in the <strong>Sort</strong> dropdown, which puts the newest arrivals on your PC at the top.</p>
+<h2 id="search-by-any-part-of-the-name">Search by any part of the name</h2>
+<p>If you remember part of the name, type it. Results appear as you type, usually within 0.2 seconds, and you don't need to press Enter. Words can match the middle of a name, so <code>port</code> finds <code>report</code>, and folders show up in the results as well.</p>
+<p>Short searches work better than long ones. <code>invoice 2026</code> finds more than a full file name you're only half sure of. If you know the type of file, add it: <code>*.pdf</code> lists PDF files, and <code>invoice *.pdf</code> narrows that to PDFs that match "invoice". Typing <code>dm:today</code> after your words keeps only files modified today.</p>
+<h2 id="use-the-file-from-the-results">Use the file from the results</h2>
+<p>Once you've found the file, you can work with it from the results. Double-click to open it. <strong>Ctrl+Enter</strong> shows it in File Explorer. Drag it into an email, a chat or a folder to copy it there. <strong>F2</strong> renames it, and <strong>Del</strong> moves it to the trash after asking you first. If you change your mind, <strong>Ctrl+Z</strong> brings it back.</p>
+<h2 id="keep-it-one-shortcut-away">Keep it one shortcut away</h2>
+<p>Closing the Chatda window doesn't quit the app. It stays in the tray and keeps its list up to date. The next time a file goes missing, press <strong>Ctrl+Shift+Space</strong> in any app and the window pops up with the cursor in the search box. Press it again to hide it. If you turn on <strong>Start at login</strong> in ⚙ Settings, Chatda starts in the tray when you sign in, without opening a window.</p>
+<h2 id="when-the-file-still-doesnt-show-up">When the file still doesn't show up</h2>
+<p>Go through these in order:</p>
+<ol>
+<li><strong>Was it saved to a USB stick, an external disk or a network drive?</strong> Chatda adds fixed drives by itself, but not those. When you connect one, Chatda asks whether to add it to search. You can also add it later from <strong>All locations ▾</strong> with <strong>+ Add folder</strong>, or <strong>Connect network folder</strong> for a NAS. Changes on a NAS can take up to five minutes to show up.</li>
+<li><strong>Is a filter still on?</strong> Active date, type, folder and search-in filters appear as chips in the status bar. Click a chip to clear it. In <strong>All locations ▾</strong>, choose <strong>All folders</strong> so you're not searching just one folder.</li>
+<li><strong>Is it inside a developer folder or a dot file?</strong> Whole-drive indexing skips folders such as node_modules and .git, and files whose names start with a dot. To include them, turn on <strong>Include developer folders … (all files)</strong> under ⚙ Settings → <strong>Exclude from index</strong>.</li>
+<li><strong>Was Chatda closed when you saved it?</strong> With the fast drive indexing service installed, Chatda catches up on files that changed while it was closed. Without it, choose <strong>Re-index</strong> from the drive's menu in <strong>All locations ▾</strong>.</li>
+<li><strong>Do you remember what's in it rather than its name?</strong> For a whole drive, Chatda keeps only names, sizes and dates. Add the folder where the file probably is with <strong>+ Add folder</strong>, and Chatda also reads the text inside PDF, Word, Excel, PowerPoint, HWPX, TXT, Markdown and CSV files there.</li>
+</ol>
+<p>On a Mac, Chatda doesn't add whole drives by itself. Add the folders you work in, such as Downloads and Documents, with <strong>+ Add folder</strong>, and the rest works the same way. The shortcut is ⌘+⇧+Space.</p>
+<p>Every menu and setting mentioned here is described in the <a href="../chatda/help.html">user guide</a>.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Find files by name and by what&#x27;s inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../index.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=687b7b47"></script>
+</body>
+</html>
