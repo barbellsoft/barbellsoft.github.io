@@ -81,8 +81,23 @@
     });
   }
 
+  // 다운로드 링크를 누르면 숨겨 둔 후원 안내(#dl-thanks)를 보인다. 파일만 받아지고 페이지는 그대로라 그 자리에 남는다.
+  // 다운로드 페이지에선 누른 단추 바로 아래로 옮긴다(맥 설치 안내가 길어 맨 아래에 두면 Windows 단추에서 안 보인다).
+  function initThanks() {
+    var box = $("dl-thanks");
+    if (!box) return;
+    document.addEventListener("click", function (ev) {
+      var a = ev.target.closest && ev.target.closest('a[href*="/releases/download/"]');
+      if (!a) return;
+      var row = a.closest(".actions");
+      if (row) row.parentNode.insertBefore(box, row.nextSibling);
+      box.hidden = false;
+    });
+  }
+
   initTheme();
   initDonate();
+  initThanks();
   initContact();
   initCopy();
   countVisit();
