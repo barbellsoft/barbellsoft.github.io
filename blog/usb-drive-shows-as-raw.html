@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>USB drive or SD card shows as RAW: recover files first | Barbellsoft</title>
+<meta name="description" content="Disk Management says your USB drive or SD card is RAW: here is what that means and how to get the files out before you repair it.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=320a3fb0">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" lang="en" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-10-26</p><h1>USB drive or SD card shows as RAW: recover files first</h1><div class="doc prose"><p>You open Disk Management because a USB stick or SD card stopped opening, and the File System column says RAW. Don't format it yet. RAW means Windows can't read the index of files on the drive. The files themselves are usually still there.</p>
+<h2 id="what-raw-means">What RAW means</h2>
+<p>Every drive carries a filesystem, an index that says which file lives where and under what name. When Windows can't mount that index, it labels the volume RAW. That happens even when only one value in the index is wrong.</p>
+<p>Disk Management shows two versions of this. In the first, the volume is still there, maybe even with a drive letter, and File System says RAW. Often the boot sector at the start of the volume is damaged, a common reason Windows asks you to format a drive.</p>
+<p>In the second, the partition itself is damaged. A large drive shows up as a small RAW piece, or with no drive letter, and the rest is unallocated. The ReviveUSB manual has an example from an external drive: 3.6 TB, status Healthy/Online, and only a 200 MB RAW piece without a letter. Healthy/Online means the hardware works and only the partition structure is broken, which software can usually repair.</p>
+<h2 id="why-chkdsk-and-formatting-dont-help">Why chkdsk and formatting don't help</h2>
+<p>chkdsk refuses to run on a RAW drive, and rightly so: it repairs a filesystem that exists, and a RAW drive has none it can read.</p>
+<p>Formatting writes a fresh, empty index over the drive. Your old files' data stays on the flash until something overwrites it, but the names and folders are gone. After a quick format, ReviveUSB's names-and-folders recovery finds nothing and points you to signature recovery, which brought back photos, documents and videos in testing, but without their names.</p>
+<p>So until your files are somewhere safe:</p>
+<ul>
+<li>Don't format, in Disk Management, File Explorer or any repair tool.</li>
+<li>Don't click Yes when Windows offers to scan and repair the drive.</li>
+<li>Don't save or copy anything onto it.</li>
+</ul>
+<p>Reading is fine. If it's an SD card, move it from the camera or phone to a card reader, so nothing else writes to it.</p>
+<h2 id="getting-the-files-out-with-reviveusb">Getting the files out with ReviveUSB</h2>
+<p>ReviveUSB is a free Windows tool built around one rule: copy the drive first, recover from the copy, and repair the drive last. It runs on Windows 10 or 11 (64-bit), is a single exe with nothing to install, and needs administrator rights because it reads the disk directly. You also need free space on another drive equal to the broken one. A 128 GB drive needs 128 GB free.</p>
+<p>It isn't code-signed yet, so SmartScreen may say it doesn't recognize the app. The <a href="../revive/download.html">download page</a> lists the file's SHA-256. Check it in PowerShell with <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code>, and if it matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<h3 id="1-select-the-drive">1. Select the drive</h3>
+<p>Run <code>ReviveUSB.exe</code>, allow administrator rights, and check that the top of the window says <strong>Administrator: ON</strong>. Click <strong>Refresh</strong> and click your drive in the list. The <strong>Filesystem</strong> column will say RAW. Only USB disks are listed, and an SD card in a USB reader counts as one. If your card is in a laptop's built-in reader and doesn't appear, tick <strong>Show internal disks (caution)</strong> and take care to pick the card, not your system disk.</p>
+<h3 id="2-back-up-to-an-image">2. Back up to an image</h3>
+<p>Click <strong>Back up to image</strong> and save the file on a different drive. ReviveUSB only reads the drive, skips regions it can't read, and asks at the end whether to retry them sector by sector. You can close the window and continue later: click <strong>Back up to image</strong> again, choose the same file, answer Yes when Windows asks whether to replace it, and the log says <code>Resuming image</code>. From here on, every step works on the image, so a failing card is read only once.</p>
+<h3 id="3-recover-files-with-their-names">3. Recover files with their names</h3>
+<p>Click <strong>Recover files (names/paths)</strong>, pick the image, and choose a folder on a healthy drive. Do this even though Windows says RAW. ReviveUSB reads NTFS, FAT32 and exFAT itself and can often read an index that Windows won't mount. If the boot sector at the start of the volume is damaged, it reads the backup copy that Windows keeps. If the partition table at the start of a GPT drive is damaged, it reads the backup copy at the end of the drive.</p>
+<p>When it works, your files come back with their names and folders. It copies all the files it can find, not only deleted files, and anything that had been deleted goes into a separate <code>_deleted_files</code> folder.</p>
+<h3 id="4-if-that-finds-nothing-recover-by-signature">4. If that finds nothing, recover by signature</h3>
+<p>If ReviveUSB says it couldn't detect the filesystem, or finds nothing, click <strong>Recover files (signature)</strong> on the same image. It finds files by their content: JPEG, PNG, GIF, BMP, PDF and ZIP, plus MP4, MOV, 3GP, M4A and HEIC, which covers phone and dashcam video and iPhone photos.</p>
+<p>Names are lost this way. Files come back numbered, like <code>jpg_00001_@...</code>. Office documents are ZIP files inside, so they arrive as <code>.zip</code>; rename them. A video whose end was never written is saved as far as it goes, but most players won't play it.</p>
+<h2 id="repairing-the-drive-only-now">Repairing the drive, only now</h2>
+<p>Once the recovered folder is on your PC, repair the drive. For a RAW drive or one with no letter, select it and click <strong>Full rebuild</strong>. It wipes the disk, creates a new partition and quick-formats it as NTFS, after you type <code>ERASE DISK</code> and the disk number to confirm. If the drive still has a letter and only the volume is broken, <strong>Format</strong> is enough. If the card goes back into a camera or another device, reformat it there afterwards.</p>
+<p>Before writing anything, ReviveUSB reads the drive to check whether its controller is failing, and if it sees signs of that, it won't repair the drive and says why in the log. A drive that is RAW only because its filesystem can't be recognized is not blocked. After the rebuild, click <strong>Refresh</strong>, select the drive and run <strong>Test drive</strong>; the full test is slow but catches drives that fake their capacity. If it passes, <strong>Copy files back</strong> returns the recovered folder to the drive and checks every file against the original. Keep the copy on your PC anyway.</p>
+<h2 id="if-it-doesnt-work">If it doesn't work</h2>
+<p>If the list shows "Firmware failure (ROM mode)" or "No storage (size 0)", there is nothing to read. Unplug it and plug it back in. If it comes back with its normal name, back it up at once. If it doesn't, a data recovery lab may be able to read the memory chip directly.</p>
+<p>If recovered files won't open, they may have been fragmented, so only the first part came back, or they sat in regions that couldn't be read. Try both recovery buttons.</p>
+<p>If the drive turns RAW again soon after a rebuild, or keeps disconnecting, replace it. And if the data was overwritten, or the flash chip itself is dead, no software can help. A professional recovery service is the remaining option. The <a href="../revive/help.html">manual</a> explains every button, and the <a href="../revive/faq.html">FAQ</a> covers the common RAW questions.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · Broken USB? Get your files back for free, and fix the drive. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Download ReviveUSB</a><a class="btn btn-outline" href="../revive/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../index.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=1a7d0f58"></script>
+</body>
+</html>
