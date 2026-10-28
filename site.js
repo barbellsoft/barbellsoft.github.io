@@ -68,16 +68,45 @@
     new Image().src = url + "?" + q.join("&");
   }
 
-  // 내려받기 버튼을 누르면 «/download/파일이름» 이벤트를 한 번 더 센다 — 어느 나라에서 받는지 보려고(쿠키 없음, 같은 조건).
-  function countDownloads() {
+  // 이벤트 한 번 세기(쿠키 없음, 방문과 같은 조건)
+  function countEvent(p, t) {
     var url = cfg.STATS_URL;
     if (!isHttps(url) || location.protocol !== "https:" || navigator.doNotTrack === "1") return;
+    new Image().src = url + "?e=true&p=" + encodeURIComponent(p) +
+      "&t=" + encodeURIComponent(t) + "&rnd=" + Math.random().toString(36).slice(2);
+  }
+
+  // 내려받기 버튼을 누르면 «/download/파일이름» 이벤트를 한 번 더 센다 — 어느 나라에서 받는지 보려고.
+  function countDownloads() {
     document.addEventListener("click", function (ev) {
       var a = ev.target.closest && ev.target.closest('a[href*="/releases/download/"]');
       if (!a) return;
       var name = a.getAttribute("href").split("/").pop();
-      new Image().src = url + "?e=true&p=" + encodeURIComponent("/download/" + name) +
-        "&t=" + encodeURIComponent(name) + "&rnd=" + Math.random().toString(36).slice(2);
+      countEvent("/download/" + name, name);
+    });
+  }
+
+  // 휴대폰으로 열면 «컴퓨터용이라 설치할 수 없음» 안내와 «내게 링크 보내기»(공유 창, 없으면 주소 복사)를 보이고
+  // 다운로드 단추는 보조 모양으로 낮춘다 — 휴대폰에서 강조할 행동은 링크 보내기 하나. 누르면 «/send-link» 로 센다.
+  function initPhone() {
+    var box = $("dl-phone"), btn = $("dl-phone-send");
+    if (!box || !btn || !/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+    box.hidden = false;
+    Array.prototype.forEach.call(document.querySelectorAll('.actions a.btn-primary[href*="/releases/download/"]'), function (a) {
+      a.className = a.className.replace("btn-primary", "btn-outline");
+    });
+    btn.addEventListener("click", function () {
+      countEvent("/send-link", location.pathname);
+      if (navigator.share) {
+        navigator.share({ title: document.title, url: location.href }).catch(function () { /* 공유 창을 닫음 */ });
+        return;
+      }
+      function fail() { btn.textContent = btn.getAttribute("data-fail"); }
+      try {
+        navigator.clipboard.writeText(location.href).then(function () {
+          btn.textContent = btn.getAttribute("data-done");
+        }, fail);
+      } catch (e) { fail(); }
     });
   }
 
@@ -98,6 +127,7 @@
   initTheme();
   initDonate();
   initThanks();
+  initPhone();
   initContact();
   initCopy();
   countVisit();
