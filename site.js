@@ -88,9 +88,12 @@
 
   // 휴대폰으로 열면 «컴퓨터용이라 설치할 수 없음» 안내와 «내게 링크 보내기»(공유 창, 없으면 주소 복사)를 보이고
   // 다운로드 단추는 보조 모양으로 낮춘다 — 휴대폰에서 강조할 행동은 링크 보내기 하나. 누르면 «/send-link» 로 센다.
+  // 프로그램 홈에선 다운로드 묶음이 두 화면 아래라, 안내를 소개 문구(.tag) 바로 아래로 올린다(10-29 실측 1477px).
   function initPhone() {
-    var box = $("dl-phone"), btn = $("dl-phone-send");
+    var box = $("dl-phone"), btn = $("dl-phone-send"), tag = document.querySelector("main .tag");
     if (!box || !btn || !/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+    if (tag && box.closest(".dl-block")) tag.parentNode.insertBefore(box, tag.nextSibling);
+    document.documentElement.classList.add("phone");
     box.hidden = false;
     Array.prototype.forEach.call(document.querySelectorAll('.actions a.btn-primary[href*="/releases/download/"]'), function (a) {
       a.className = a.className.replace("btn-primary", "btn-outline");

@@ -105,6 +105,8 @@ section { margin-top: 32px; }
 .dl-block { background: var(--card); border: 1px solid var(--hairline); border-top: 4px solid var(--brand); border-radius: var(--r); padding: 16px 18px; }
 .dl-links { list-style: none; padding: 0; margin: 0 0 8px; font-size: 17px; font-weight: 600; }
 .dl-more { margin: 0 0 4px; font-size: 14px; }
+.phone .dl-links { font-size: 15px; font-weight: 400; }  /* 휴대폰: 강조는 «내게 링크 보내기» 하나(site.js initPhone) */
+.phone main > .wrap > .dl-phone { margin: 0 0 20px; }
 
 /* 다운로드 페이지 */
 dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 18px; margin: 0 0 16px; }
