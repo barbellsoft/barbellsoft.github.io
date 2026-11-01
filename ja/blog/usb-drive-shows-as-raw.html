@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>USBメモリ・SDカードがRAWになったら、修復の前にデータを復元 | Barbellsoft</title>
+<meta name="description" content="ディスクの管理でUSBメモリやSDカードがRAWと表示されたとき、それが何を意味するのか、修復する前にファイルを取り出すにはどうすればよいかを説明します。">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=f87c66a1">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../ja/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/feedback.html">フィードバック</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/blog/index.html" aria-current="page">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">ブログ</a> · 2026-11-01</p><h1>USBメモリ・SDカードがRAWになったら、修復の前にデータを復元</h1><div class="doc prose"><p>USB メモリや SD カードが開けなくなってディスクの管理を開いたら、ファイル システムの列に RAW と表示されていた。まだフォーマットしないでください。RAW とは、Windows がドライブ上のファイルの索引を読めないという意味です。ファイルそのものはたいていまだ残っています。</p>
+<h2 id="raw">RAW とは何か</h2>
+<p>どのドライブにも、どのファイルがどこにどんな名前で置かれているかを記録した索引、つまりファイルシステムがあります。Windows はこの索引をマウントできないと、そのボリュームを RAW と表示します。索引の中の値が 1 つ違うだけでもそうなります。</p>
+<p>ディスクの管理では、これが 2 通りの形で表示されます。1 つ目は、ボリュームはまだあり、ドライブ文字が付いていることさえあるのに、ファイル システムが RAW になっている形です。多くの場合、ボリュームの先頭にあるブートセクターが損傷しています。Windows がフォーマットを求めてくるよくある原因の 1 つです。</p>
+<p>2 つ目は、パーティション自体が損傷している形です。大容量のドライブが小さな RAW 領域として表示される、またはドライブ文字がなく、残りが未割り当てになっています。ReviveUSB のマニュアルには外付けドライブの例が載っています。3.6 TB、状態は Healthy/Online で、ドライブ文字のない 200 MB の RAW 領域が 1 つだけ、というものです。Healthy/Online は、ハードウェアは動いていて壊れているのはパーティション構造だけ、という意味で、これはたいていソフトウェアで修復できます。</p>
+<h2 id="chkdsk">chkdsk やフォーマットで直らない理由</h2>
+<p>chkdsk は RAW ドライブでは実行を拒否します。それも当然で、chkdsk は存在するファイルシステムを修復するものであり、RAW ドライブには読めるファイルシステムがないからです。</p>
+<p>フォーマットは、新しい空の索引をドライブに書き込みます。古いファイルのデータは何かに上書きされるまでフラッシュメモリに残りますが、名前とフォルダーは失われます。クイックフォーマットのあとでは、ReviveUSB の名前・フォルダー付きの復元は何も見つけられず、シグネチャでの復元を案内します。シグネチャでの復元はテストで写真、文書、動画を取り戻しましたが、名前は戻りませんでした。</p>
+<p>ですから、ファイルを安全な場所に移すまでは次のことを守ってください。</p>
+<ul>
+<li>ディスクの管理でも、エクスプローラーでも、どんな修復ツールでもフォーマットしない。</li>
+<li>Windows に「スキャンして修復しますか?」と聞かれても、「スキャンおよび修復」をクリックしない。</li>
+<li>何も保存したりコピーしたりしない。</li>
+</ul>
+<p>読み取るだけなら問題ありません。SD カードなら、カメラやスマートフォンから取り出してカードリーダーに挿してください。ほかの機器が何かを書き込まないようにするためです。</p>
+<h2 id="reviveusb">ReviveUSB でファイルを取り出す</h2>
+<p>ReviveUSB は、まずドライブをコピーし、そのコピーから復元し、ドライブの修復は最後、という 1 つのルールに沿って作られた無料の Windows ツールです。Windows 10 または 11 (64 ビット) で動き、インストール不要の exe ファイル 1 つで、ディスクを直接読み取るため管理者権限が必要です。壊れたドライブと同じだけの空き容量も、別のドライブに必要です。128 GB のドライブなら 128 GB の空きが要ります。</p>
+<p>まだコード署名されていないため、SmartScreen が「認識されないアプリ」として警告することがあります。<a href="../revive/download.html">ダウンロードページ</a>にファイルの SHA-256 が載っています。PowerShell で <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code> を実行して確認し、一致したら <strong>詳細情報</strong>、続けて <strong>実行</strong> を選んでください。</p>
+<h3 id="1">1. ドライブを選ぶ</h3>
+<p><code>ReviveUSB.exe</code> を実行して管理者権限を許可し、ウィンドウの上部に <strong>管理者権限: オン</strong> と表示されていることを確かめます。<strong>更新</strong> をクリックし、一覧でドライブをクリックします。<strong>ファイルシステム</strong> の列は RAW になっています。一覧に出るのは USB ディスクだけですが、USB カードリーダーに挿した SD カードもこれに含まれます。ノート PC の内蔵カードリーダーに挿したカードが表示されない場合は、<strong>内蔵ディスクも表示(注意)</strong> にチェックを入れ、システムディスクではなくカードを選ぶよう注意してください。</p>
+<h3 id="2">2. イメージにバックアップする</h3>
+<p><strong>イメージにバックアップ</strong> をクリックし、別のドライブにファイルを保存します。ReviveUSB はドライブを読み取るだけで、読み取れない領域は飛ばし、最後にその領域をセクター単位で再試行するか尋ねます。ウィンドウを閉じて後で続けることもできます。もう一度 <strong>イメージにバックアップ</strong> をクリックし、同じファイルを選んで、置き換えるか Windows に聞かれたら「はい」と答えると、ログに <code>イメージ作成を再開</code> と表示されます。ここから先の手順はすべてイメージを使うので、壊れかけたカードを読むのは 1 回だけで済みます。</p>
+<h3 id="3">3. 名前付きでファイルを復元する</h3>
+<p><strong>ファイル復元(名前・パス)</strong> をクリックし、イメージを選んで、正常なドライブ上のフォルダーを指定します。Windows が RAW と表示していても、これを実行してください。ReviveUSB は NTFS、FAT32、exFAT を自分で読み取り、Windows がマウントしない索引でも読めることがよくあります。ボリュームの先頭にあるブートセクターが損傷していれば、Windows が保持しているバックアップのコピーを読みます。GPT ドライブの先頭にあるパーティションテーブルが損傷していれば、ドライブの末尾にあるバックアップのコピーを読みます。</p>
+<p>うまくいけば、ファイルは名前とフォルダーごと戻ります。削除したファイルだけでなく、見つけられたファイルをすべてコピーし、削除されていたものは別の <code>_deleted_files</code> フォルダーに入ります。</p>
+<h3 id="4">4. 何も見つからなければシグネチャで復元する</h3>
+<p>ReviveUSB がファイルシステムを認識できなかったと表示する、または何も見つからない場合は、同じイメージで <strong>ファイル復元(シグネチャ)</strong> をクリックします。中身からファイルを探す方法で、対象は JPEG、PNG、GIF、BMP、PDF、ZIP と、MP4、MOV、3GP、M4A、HEIC です。スマートフォンやドライブレコーダーの動画、iPhone の写真がこれに当たります。</p>
+<p>この方法では名前が失われます。ファイルは <code>jpg_00001_@...</code> のような通し番号付きで戻ります。Office の文書は中身が ZIP ファイルなので <code>.zip</code> として届きます。名前を変えてください。終わりの部分が書き込まれなかった動画は残っているところまで保存されますが、ほとんどのプレーヤーでは再生できません。</p>
+<h2 id="_1">ドライブの修復は、ここで初めて</h2>
+<p>復元したフォルダーが PC に入ったら、ドライブを修復します。RAW のドライブやドライブ文字のないドライブは、選択して <strong>完全再構築</strong> をクリックします。確認のために <code>ERASE DISK</code> とディスク番号を入力すると、ディスクを消去して新しいパーティションを作り、NTFS でクイックフォーマットします。ドライブ文字が残っていて、壊れているのがボリュームだけなら、<strong>フォーマット</strong> で十分です。カードをカメラなどの機器に戻して使う場合は、そのあとでその機器でフォーマットし直してください。</p>
+<p>ReviveUSB は書き込む前にドライブを読み取ってコントローラーが壊れかけていないか確認し、その兆候があれば修復はせず、理由をログに表示します。ファイルシステムを認識できないために RAW になっているだけのドライブは止めません。再構築が終わったら、<strong>更新</strong> をクリックしてドライブを選び、<strong>ドライブテスト</strong> を実行します。全体のテストは時間がかかりますが、容量を偽装したドライブを見つけられます。合格したら、<strong>ファイルを書き戻す</strong> で復元したフォルダーをドライブに戻し、すべてのファイルを元のファイルと照合します。それでも PC 上のコピーは残しておいてください。</p>
+<h2 id="_2">うまくいかないとき</h2>
+<p>一覧に「ファームウェア故障(ROM モード)」または「容量なし(0)」と表示される場合は、読み取れるものがありません。抜いて差し直してください。元の名前で戻ってきたら、すぐにバックアップします。戻らない場合は、データ復旧業者ならメモリチップを直接読み取れることがあります。</p>
+<p>復元したファイルが開けない場合は、断片化していて先頭部分しか戻らなかったか、読み取れなかった領域にあった可能性があります。両方の復元ボタンを試してください。</p>
+<p>再構築してすぐにまた RAW になる、または接続が何度も切れる場合は、ドライブを交換してください。データが上書きされている場合や、フラッシュチップそのものが壊れている場合は、どんなソフトウェアでも手の打ちようがありません。残る手段はデータ復旧の専門業者です。各ボタンの説明は<a href="../revive/help.html">マニュアル</a>に、RAW についてよくある疑問は<a href="../revive/faq.html">よくある質問</a>にあります。</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · 壊れた USB から大切なファイルを無料で取り戻し、USB も直します (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">無料ダウンロード</a><a class="btn btn-outline" href="../revive/index.html">詳しく見る</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/privacy.html">プライバシー</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../../blog/usb-drive-shows-as-raw.html" lang="en">English</a> · <a href="../../ko/blog/usb-drive-shows-as-raw.html" lang="ko">한국어</a> · <a href="../../ja/blog/usb-drive-shows-as-raw.html" lang="ja" aria-current="true">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/usb-drive-shows-as-raw.html" lang="de">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 無料ソフトウェアです。現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>USB·SD 카드가 RAW로 뜰 때: 고치기 전에 파일부터 복구하세요 | Barbellsoft</title>
+<meta name="description" content="디스크 관리에서 USB나 SD 카드가 RAW로 나오나요? RAW가 무슨 뜻인지, 그리고 드라이브를 고치기 전에 파일을 꺼내는 방법을 정리했습니다.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=f87c66a1">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../ko/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="주 메뉴"><a href="../../ko/revive/index.html">ReviveUSB</a><a href="../../ko/chatda/index.html">Chatda</a><a href="../../ko/revivefix/index.html">ReviveFix</a><a href="../../ko/pastefit/index.html">PasteFit</a><a href="../../ko/about.html">만든 사람</a><a href="../../ko/feedback.html">피드백</a><a href="../../ko/donate.html">기부</a><a href="../../ko/blog/index.html" aria-current="page">블로그</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">블로그</a> · 2026-11-01</p><h1>USB·SD 카드가 RAW로 뜰 때: 고치기 전에 파일부터 복구하세요</h1><div class="doc prose"><p>USB 메모리나 SD 카드가 열리지 않아 디스크 관리를 열어 보니 파일 시스템 열에 RAW라고 나옵니다. 아직 포맷하지 마세요. RAW는 Windows가 드라이브의 파일 색인을 읽지 못한다는 뜻입니다. 파일 자체는 대개 그대로 남아 있습니다.</p>
+<h2 id="raw">RAW가 뜻하는 것</h2>
+<p>모든 드라이브에는 파일시스템이 있습니다. 어떤 파일이 어디에 어떤 이름으로 있는지 적어 둔 색인입니다. Windows는 이 색인을 마운트하지 못하면 볼륨에 RAW라고 표시합니다. 색인 안의 값이 하나만 틀려도 그렇습니다.</p>
+<p>디스크 관리에서는 이 상태가 두 가지로 보입니다. 첫째는 볼륨이 그대로 있고 드라이브 문자까지 붙어 있기도 한데, 파일 시스템이 RAW로 나오는 경우입니다. 이때는 볼륨 맨 앞의 부트 섹터가 망가진 경우가 많고, Windows가 드라이브를 포맷하라고 하는 흔한 이유도 이것입니다.</p>
+<p>둘째는 파티션 자체가 망가진 경우입니다. 용량이 큰 드라이브가 작은 RAW 조각으로 보이거나 드라이브 문자가 없고, 나머지는 할당되지 않음으로 나옵니다. ReviveUSB 설명서에 외장 드라이브 사례가 있습니다. 3.6 TB, 상태 Healthy/Online에 드라이브 문자 없는 200 MB짜리 RAW 조각 하나만 보였습니다. Healthy/Online은 하드웨어는 정상이고 파티션 구조만 망가졌다는 뜻이며, 이런 경우는 대개 소프트웨어로 고칠 수 있습니다.</p>
+<h2 id="chkdsk">chkdsk와 포맷이 답이 아닌 이유</h2>
+<p>chkdsk는 RAW 드라이브에서는 실행을 거부하는데, 그게 맞습니다. chkdsk는 있는 파일시스템을 고치는 도구이고, RAW 드라이브에는 읽을 수 있는 파일시스템이 없기 때문입니다.</p>
+<p>포맷은 비어 있는 새 색인을 드라이브에 덮어씁니다. 예전 파일의 데이터는 무언가가 그 위에 쓰기 전까지 플래시에 남아 있지만, 이름과 폴더는 사라집니다. 빠른 포맷을 하고 나면 ReviveUSB의 이름·폴더 복구는 아무것도 찾지 못하고 시그니처 복구를 쓰라고 안내합니다. 시그니처 복구는 시험에서 사진, 문서, 동영상을 되살렸지만 이름은 붙지 않았습니다.</p>
+<p>그러니 파일을 안전한 곳에 옮기기 전까지는 다음을 지키세요.</p>
+<ul>
+<li>디스크 관리에서든 파일 탐색기에서든 어떤 수리 도구에서든 포맷하지 마세요.</li>
+<li>Windows가 드라이브를 검사하고 복구하겠다고 해도 진행하지 마세요.</li>
+<li>아무것도 저장하거나 복사해 넣지 마세요.</li>
+</ul>
+<p>읽는 것은 괜찮습니다. SD 카드라면 카메라나 휴대폰에서 빼서 카드 리더에 꽂으세요. 그래야 다른 기기가 카드에 무언가를 쓰지 않습니다.</p>
+<h2 id="reviveusb">ReviveUSB로 파일 꺼내기</h2>
+<p>ReviveUSB는 규칙 하나에 맞춰 만든 무료 Windows 프로그램입니다. 드라이브를 먼저 복사하고, 그 사본에서 복구하고, 드라이브 수리는 맨 나중에 합니다. Windows 10 또는 11(64비트)에서 실행되고, 설치할 필요 없는 exe 파일 하나이며, 디스크를 직접 읽기 때문에 관리자 권한이 필요합니다. 고장 난 드라이브만큼의 빈 공간도 다른 드라이브에 있어야 합니다. 128 GB 드라이브라면 128 GB가 비어 있어야 합니다.</p>
+<p>아직 코드 서명이 되어 있지 않아서 SmartScreen이 인식할 수 없는 앱이라고 경고할 수 있습니다. <a href="../revive/download.html">다운로드 페이지</a>에 파일의 SHA-256 값이 적혀 있습니다. PowerShell에서 <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code> 을 실행해 확인하고, 값이 같으면 <strong>추가 정보</strong>를 누른 다음 <strong>실행</strong>을 누르세요.</p>
+<h3 id="1">1. 드라이브 고르기</h3>
+<p><code>ReviveUSB.exe</code> 를 실행하고 관리자 권한을 허용한 뒤, 창 위쪽에 <strong>관리자 권한: 켜짐</strong>이 나오는지 확인합니다. <strong>새로고침</strong>을 누르고 목록에서 드라이브를 클릭합니다. <strong>파일시스템</strong> 열에 RAW라고 나옵니다. 목록에는 USB 디스크만 나오며, USB 리더에 꽂은 SD 카드도 USB 디스크로 나옵니다. 노트북 내장 리더에 꽂은 카드가 보이지 않으면 <strong>내장 디스크도 보기(주의)</strong>에 체크하고, 시스템 디스크가 아니라 카드를 고르도록 조심하세요.</p>
+<h3 id="2">2. 이미지로 백업하기</h3>
+<p><strong>이미지 백업</strong>을 누르고 다른 드라이브에 파일을 저장합니다. ReviveUSB는 드라이브를 읽기만 하고, 읽지 못하는 구간은 건너뛰며, 끝에 가서 그 구간을 섹터 단위로 다시 읽을지 묻습니다. 창을 닫았다가 나중에 이어서 해도 됩니다. <strong>이미지 백업</strong>을 다시 누르고 같은 파일을 고른 뒤 Windows가 바꿀지 물으면 예를 누르세요. 로그에 <code>이미지 이어받기</code> 가 나옵니다. 여기서부터는 모든 단계를 이미지로 하므로, 고장 나 가는 카드는 한 번만 읽게 됩니다.</p>
+<h3 id="3">3. 이름 그대로 파일 복구하기</h3>
+<p><strong>파일 복구(이름·경로)</strong>를 누르고 이미지를 고른 뒤, 멀쩡한 드라이브에서 폴더를 고릅니다. Windows가 RAW라고 해도 이 방법을 쓰세요. ReviveUSB는 NTFS, FAT32, exFAT를 직접 읽으며, Windows가 마운트하지 못하는 색인도 읽어 내는 경우가 많습니다. 볼륨 맨 앞의 부트 섹터가 망가졌다면 Windows가 남겨 둔 백업 사본을 읽습니다. GPT 드라이브 맨 앞의 파티션 표가 망가졌다면 드라이브 끝에 있는 백업 사본을 읽습니다.</p>
+<p>성공하면 파일이 이름과 폴더 그대로 돌아옵니다. 지운 파일만이 아니라 찾을 수 있는 파일을 모두 복사하고, 지워졌던 파일은 <code>_deleted_files</code> 폴더에 따로 넣습니다.</p>
+<h3 id="4">4. 아무것도 못 찾으면 시그니처로 복구하기</h3>
+<p>ReviveUSB가 파일시스템을 인식하지 못했다고 하거나 아무것도 찾지 못하면, 같은 이미지로 <strong>파일 복구(시그니처)</strong>를 누르세요. 파일 내용을 보고 파일을 찾습니다. JPEG, PNG, GIF, BMP, PDF, ZIP과 MP4, MOV, 3GP, M4A, HEIC를 찾으므로 휴대폰·블랙박스 동영상과 iPhone 사진까지 다룹니다.</p>
+<p>이 방식으로는 이름을 잃습니다. 파일은 <code>jpg_00001_@...</code> 처럼 번호가 붙어 돌아옵니다. Office 문서는 속이 ZIP 파일이라 <code>.zip</code> 으로 돌아오니 이름을 바꿔 주세요. 끝부분이 기록되지 않은 동영상은 남은 데까지 저장되지만, 대부분의 플레이어에서 재생되지 않습니다.</p>
+<h2 id="_1">드라이브 수리는 이제부터</h2>
+<p>복구한 폴더를 PC에 옮겼다면 드라이브를 고칩니다. RAW 드라이브나 드라이브 문자가 없는 드라이브라면 목록에서 고르고 <strong>완전 복구(rebuild)</strong>를 누르세요. <code>ERASE DISK</code> 와 디스크 번호를 입력해 확인하면 디스크를 지우고 새 파티션을 만든 뒤 NTFS로 빠른 포맷합니다. 드라이브 문자가 아직 있고 볼륨만 망가졌다면 <strong>포맷</strong>으로 충분합니다. 카드를 다시 카메라나 다른 기기에 넣어 쓸 거라면 나중에 그 기기에서 다시 포맷하세요.</p>
+<p>ReviveUSB는 무언가를 쓰기 전에 드라이브를 읽어 컨트롤러가 고장 나 가는지 확인하고, 그런 징후가 보이면 드라이브를 고치지 않고 그 이유를 로그에 적습니다. 파일시스템을 알아보지 못해 RAW로 보일 뿐인 드라이브는 막지 않습니다. 다시 만든 뒤에는 <strong>새로고침</strong>을 누르고 드라이브를 골라 <strong>드라이브 시험</strong>을 하세요. 전체 시험은 오래 걸리지만 용량을 속이는 드라이브를 잡아냅니다. 통과하면 <strong>파일 되돌려 넣기</strong>가 복구한 폴더를 드라이브에 되돌려 넣고 파일마다 원본과 비교합니다. 그래도 PC에 있는 사본은 지우지 말고 두세요.</p>
+<h2 id="_2">그래도 안 될 때</h2>
+<p>목록에 '펌웨어 고장(ROM 모드)'이나 '저장 공간 없음(0)'이 나오면 읽을 것이 없는 상태입니다. 뽑았다가 다시 꽂아 보세요. 원래 이름으로 돌아오면 곧바로 백업하세요. 돌아오지 않는다면 데이터 복구 업체가 메모리 칩을 직접 읽어 낼 수도 있습니다.</p>
+<p>복구한 파일이 열리지 않는다면 파일이 조각나 저장되어 앞부분만 돌아왔거나, 읽지 못한 구간에 있었을 수 있습니다. 복구 버튼 두 개를 모두 써 보세요.</p>
+<p>완전 복구 뒤 얼마 안 가 드라이브가 다시 RAW가 되거나 연결이 자꾸 끊기면 드라이브를 바꾸세요. 데이터가 덮어써졌거나 플래시 칩 자체가 죽었다면 어떤 소프트웨어로도 안 됩니다. 남은 방법은 전문 복구 업체입니다. 버튼마다 하는 일은 <a href="../revive/help.html">설명서</a>에, RAW에 관해 자주 묻는 질문은 <a href="../revive/faq.html">FAQ</a>에 있습니다.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · 망가진 USB, 소중한 파일을 무료로 되살리고 USB도 고쳐 드립니다 (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">무료 다운로드</a><a class="btn btn-outline" href="../revive/index.html">자세히</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../ko/revive/index.html">ReviveUSB</a><a href="../../ko/chatda/index.html">Chatda</a><a href="../../ko/revivefix/index.html">ReviveFix</a><a href="../../ko/pastefit/index.html">PasteFit</a><a href="../../ko/about.html">만든 사람</a><a href="../../ko/donate.html">기부</a><a href="../../ko/privacy.html">개인정보</a><a id="contact-link" href="#" hidden>연락</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>언어: <a href="../../blog/usb-drive-shows-as-raw.html" lang="en">English</a> · <a href="../../ko/blog/usb-drive-shows-as-raw.html" lang="ko" aria-current="true">한국어</a> · <a href="../../ja/blog/usb-drive-shows-as-raw.html" lang="ja">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/usb-drive-shows-as-raw.html" lang="de">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>테마 <select id="theme-select"><option value="auto">기본</option><option value="dark">다크</option><option value="light">라이트</option></select></label></div><p>© 2026 바벨소프트. 무료 소프트웨어이며 어떤 보증도 하지 않습니다.</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>

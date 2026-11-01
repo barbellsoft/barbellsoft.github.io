@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>USBメモリに「フォーマットする必要があります」と出たら、先にデータを救出 | Barbellsoft</title>
+<meta name="description" content="USBメモリを挿すと「フォーマットする必要があります」と表示される。フォーマットせずにファイルを安全に取り出し、そのあとでUSBメモリを使える状態に戻す方法を説明します。">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=f87c66a1">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../ja/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/feedback.html">フィードバック</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/blog/index.html" aria-current="page">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">ブログ</a> · 2026-11-01</p><h1>USBメモリに「フォーマットする必要があります」と出たら、先にデータを救出</h1><div class="doc prose"><p>動画で見たい方は <a href="https://youtu.be/u7bKxa6YXw0">1 分の解説動画を YouTube で見る</a>。</p>
+<p>昨日まで使えていた USB メモリを挿したら、Windows に「ドライブ E: を使うにはフォーマットする必要があります。フォーマットしますか?」と表示され、<strong>ディスクのフォーマット</strong> と <strong>キャンセル</strong> のボタンが出た。そんなときは <strong>キャンセル</strong> をクリックしてください。</p>
+<p>もう手遅れのように聞こえるメッセージですが、たいていはドライブそのものが壊れたのではなく、ドライブ上のファイルシステムが傷んでいるという意味です。Windows はファイルの一覧を記録した索引を読めないので、フォーマットを勧めてくるのです。ファイルはたいていまだ残っています。ファイルを危険にさらすのは、むしろフォーマットのほうです。</p>
+<h2 id="_1">何が起きているのか</h2>
+<p>どのドライブにも、どのファイルがどこにあるかを記録した索引があります。これがファイルシステムです。Windows はこのファイルシステムをマウントできないと、ドライブを RAW と表示します。索引の中の値が 1 つ違うだけでもそうなります。大容量のドライブが小さな RAW 領域として表示される、またはドライブ文字がまったくない場合は、パーティション自体が損傷しています。</p>
+<p>いつもの応急処置が効かないのもこのためです。chkdsk は存在するファイルシステムを修復するものですが、RAW ドライブには chkdsk が読めるファイルシステムがないので、直す対象がありません。</p>
+<h2 id="_2">まだしてはいけないこと</h2>
+<p>ファイルを安全な場所に移すまでは、ドライブに手を加えないでください。</p>
+<ul>
+<li>Windows でもほかの場所でも、フォーマットしない。</li>
+<li>Windows に「スキャンして修復しますか?」と聞かれても、「スキャンおよび修復」をクリックしない。</li>
+<li>新しいものを保存したりコピーしたりしない。</li>
+</ul>
+<p>索引が損傷しても、データそのものは普通は元の場所に残っています。そこに何か新しいものを書き込むと、Windows が古いファイルのちょうど上に置いてしまうことがあり、そうなるともう何をしても戻りません。ドライブから読み取るだけなら問題ありません。</p>
+<h2 id="reviveusb">ReviveUSB でファイルを取り戻す</h2>
+<p>ReviveUSB は、ドライブをコピーし、そのコピーから復元し、ドライブの修復はそのあと、という順番を前提に作られた無料の Windows ツールです。Windows 10 または 11 (64 ビット) で動き、ディスクを直接読み取るため管理者権限が必要です。</p>
+<p>壊れたドライブと同じだけの空き容量が、別のドライブに必要です。128 GB の USB メモリなら 128 GB の空きが要ります。</p>
+<p>ReviveUSB はまだコード署名されていないため、SmartScreen が「認識されないアプリ」として警告することがあります。<a href="../revive/download.html">ダウンロードページ</a>にファイルの SHA-256 が載っています。PowerShell で <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code> を実行して確認し、一致したら <strong>詳細情報</strong>、続けて <strong>実行</strong> を選んでください。</p>
+<h3 id="1">1. ドライブを選ぶ</h3>
+<p><code>ReviveUSB.exe</code> を実行し、管理者権限を許可します。ウィンドウの上部に <strong>管理者権限: オン</strong> と表示されるはずです。<strong>更新</strong> をクリックし、一覧で USB メモリをクリックします。<strong>ファイルシステム</strong> の列はおそらく RAW になっています。</p>
+<h3 id="2">2. ドライブをイメージにコピーする</h3>
+<p><strong>イメージにバックアップ</strong> をクリックし、<code>disk2.img</code> のような名前で別のドライブに保存します。ここで ReviveUSB は USB メモリを読み取るだけです。読み取れない領域は飛ばすのでコピーが止まらず、最後にその領域をセクター単位で再試行するか尋ねます。</p>
+<p>ウィンドウを閉じて、後で続きをすることもできます。もう一度 <strong>イメージにバックアップ</strong> をクリックし、同じファイルを選んで、置き換えるか聞かれたら「はい」と答えます。ログに <code>イメージ作成を再開</code> と表示され、止まったところからコピーが続きます。</p>
+<p>ここから先はイメージを使って作業します。壊れかけた USB メモリを何度も読むより、そのコピーを読むほうが安全です。</p>
+<h3 id="3">3. 名前付きでファイルを復元する</h3>
+<p><strong>ファイル復元(名前・パス)</strong> をクリックし、イメージファイルを選んで、正常なドライブ上のフォルダーを指定します。復元中のドライブ上のフォルダーは ReviveUSB が受け付けません。</p>
+<p>Windows が RAW と表示していても、これを試してください。ReviveUSB は NTFS、FAT32、exFAT を読み取れ、Windows がマウントしないファイルシステムでも読めることがよくあります。うまくいけば、ファイルは名前とフォルダーごと戻ります。削除したファイルだけでなく見つかったファイルをすべてコピーし、削除されていたものは別の <code>_deleted_files</code> フォルダーに入ります。</p>
+<h3 id="4">4. 何も見つからなければシグネチャ方式を使う</h3>
+<p>ReviveUSB がファイルシステムを認識できなかったと表示する、または何も見つからない場合は、<strong>ファイル復元(シグネチャ)</strong> をクリックし、同じイメージを使います。この方法はファイルシステムを無視し、中身からファイルを探します。見つけられるのは JPEG、PNG、GIF、BMP、PDF、ZIP ファイルと、MP4、MOV、3GP、M4A、HEIC (スマートフォンやドライブレコーダーの動画、スマートフォンの写真) です。</p>
+<p>その代わり、名前は失われます。ファイルは <code>jpg_00001_@...</code> のような通し番号付きで戻ります。<code>.docx</code>、<code>.xlsx</code>、<code>.pptx</code> などの文書は中身が ZIP ファイルなので、<code>.zip</code> として戻ります。正しい拡張子に名前を変えてください。</p>
+<h2 id="usb">そのあとで USB メモリを直す</h2>
+<p>ファイルが PC に無事に保存できたら、USB メモリを使える状態に戻せます。RAW のドライブやドライブ文字のないドライブは、選択して <strong>完全再構築</strong> をクリックします。ディスクを消去して新しいパーティションを作り、NTFS でフォーマットします。確認のため <code>ERASE DISK</code> とディスク番号を入力します (例: <code>ERASE DISK 2</code>)。ドライブ文字が残っていて、中身を消すだけでよい場合は <strong>フォーマット</strong> で足ります。</p>
+<p>ReviveUSB は書き込む前にドライブを読み取り、コントローラーが壊れかけていないか確認します。一部が読み取れなかった場合などがそうです。その兆候があれば修復はせず、理由をログに表示します。壊れかけたドライブは大きな書き込みの途中で完全に止まることがあるので、その場合は復元したファイルを手元に残し、USB メモリは交換してください。</p>
+<p>再構築が終わったら、<strong>更新</strong> をクリックしてドライブを選び、<strong>ドライブテスト</strong> をクリックします。<strong>はい</strong> なら空き領域全体を、<strong>いいえ</strong> なら 1 GB の簡易テストを行います。容量を偽装したドライブを見つけられるのは全体のテストだけです。合格したら、<strong>ファイルを書き戻す</strong> で復元したフォルダーを USB メモリに戻し、すべてのファイルを読み戻して元のファイルと比べます。それでも PC 上のコピーは残しておいてください。</p>
+<h2 id="_3">うまくいかないとき</h2>
+<h3 id="rom-0">一覧に「ファームウェア故障(ROM モード)」または「容量なし(0)」と表示される</h3>
+<p>USB メモリのコントローラーが起動していません。Windows では「メディアなし」や 0 バイトと表示され、それでもフォーマットを求められることがあります。「キャンセル」をクリックしてください。抜いて差し直します。元の名前で戻ってきたら、すぐにバックアップしてください。戻らない場合、ソフトウェアでは読み取れません。データ復旧業者ならメモリチップを直接読み取れることがあります。</p>
+<h3 id="_4">バックアップがとても遅い</h3>
+<p>ハブや延長ケーブルを使わず、PC 背面の USB 3.0 ポートに直接差してください。それでも改善しなければ、別のケーブルや別の PC で試します。同じイメージファイルにもう一度バックアップすれば、コピーの続きから再開します。</p>
+<h3 id="_5">復元したファイルが開けない</h3>
+<p>ファイルが断片化していて、先頭部分しか戻らなかった可能性があります。両方の復元ボタンを試してください。ドライブの読み取れなかった部分はイメージに含まれていません。</p>
+<h3 id="_6">修復に失敗する</h3>
+<p>ドライブを抜いて差し直してからもう一度試し、ウイルス対策ソフトやエクスプローラーのプレビューなど、ドライブを使っていそうなものを閉じてください。状態が <code>Unhealthy</code> のまま、またはドライブの接続が何度も切れる場合は、ハードウェアが故障しかけている可能性が高いです。ソフトウェアでは直せないので、ドライブを交換してください。</p>
+<h3 id="_7">どうにもならないとき</h3>
+<p>復元できないファイルもあります。データがすでに上書きされている場合や、フラッシュチップそのものが壊れている場合は、どんなソフトウェアでも手の打ちようがなく、残る手段はデータ復旧の専門業者です。各ボタンの説明は <a href="../revive/help.html">ReviveUSB のマニュアル</a>にあります。</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · 壊れた USB から大切なファイルを無料で取り戻し、USB も直します (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">無料ダウンロード</a><a class="btn btn-outline" href="../revive/index.html">詳しく見る</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/privacy.html">プライバシー</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../../blog/usb-says-you-need-to-format-the-disk.html" lang="en">English</a> · <a href="../../ko/blog/usb-says-you-need-to-format-the-disk.html" lang="ko">한국어</a> · <a href="../../ja/blog/usb-says-you-need-to-format-the-disk.html" lang="ja" aria-current="true">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/usb-says-you-need-to-format-the-disk.html" lang="de">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 無料ソフトウェアです。現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>

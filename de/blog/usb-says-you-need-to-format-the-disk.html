@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>„Sie müssen den Datenträger formatieren“: erst Daten retten | Barbellsoft</title>
+<meta name="description" content="Windows will Ihren USB-Stick formatieren? So kopieren Sie zuerst Ihre Dateien sicher herunter und machen den Stick danach wieder nutzbar.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=f87c66a1">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../de/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Hauptmenü"><a href="../../de/revive/index.html">ReviveUSB</a><a href="../../de/chatda/index.html">Chatda</a><a href="../../de/revivefix/index.html">ReviveFix</a><a href="../../de/pastefit/index.html">PasteFit</a><a href="../../de/about.html">Über uns</a><a href="../../de/feedback.html">Feedback</a><a href="../../de/donate.html">Spenden</a><a href="../../de/blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-01</p><h1>„Sie müssen den Datenträger formatieren“: erst Daten retten</h1><div class="doc prose"><p>Lieber ein Video? <a href="https://youtu.be/u7bKxa6YXw0">Hier geht es zur 1-minütigen Anleitung auf YouTube</a>.</p>
+<p>Sie stecken einen USB-Stick ein, der gestern noch funktioniert hat, und Windows meldet „Sie müssen den Datenträger in Laufwerk E: formatieren, bevor Sie ihn verwenden können.“ Darunter stehen die Schaltflächen <strong>Datenträger formatieren</strong> und <strong>Abbrechen</strong>. Klicken Sie auf <strong>Abbrechen</strong>.</p>
+<p>Die Meldung klingt endgültig, bedeutet aber meist, dass das Dateisystem auf dem Laufwerk beschädigt ist, nicht dass das Laufwerk kaputt ist. Windows kann den Index nicht lesen, in dem Ihre Dateien verzeichnet sind, und bietet deshalb an, das Laufwerk zu formatieren. Ihre Dateien sind meist noch da. Erst das Formatieren bringt sie in Gefahr.</p>
+<h2 id="was-dahintersteckt">Was dahintersteckt</h2>
+<p>Jedes Laufwerk führt einen Index, das Dateisystem, der festhält, welche Datei wo liegt. Kann Windows dieses Dateisystem nicht einbinden, zeigt es das Laufwerk als RAW an. Das passiert schon, wenn nur ein einziger Wert im Index falsch ist. Erscheint ein großes Laufwerk als kleines RAW-Stück oder hat es gar keinen Laufwerksbuchstaben, ist die Partition selbst beschädigt.</p>
+<p>Deshalb hilft auch die übliche Erste Hilfe nicht. chkdsk repariert ein vorhandenes Dateisystem, und ein RAW-Laufwerk hat keins, das es lesen könnte. Es gibt also nichts, was chkdsk reparieren kann.</p>
+<h2 id="was-sie-jetzt-noch-nicht-tun-sollten">Was Sie jetzt noch nicht tun sollten</h2>
+<p>Solange Ihre Dateien nicht in Sicherheit sind, lassen Sie das Laufwerk in Ruhe:</p>
+<ul>
+<li>Formatieren Sie es nicht, weder in Windows noch anderswo.</li>
+<li>Klicken Sie nicht auf Ja, wenn Windows anbietet, das Laufwerk zu prüfen und zu reparieren.</li>
+<li>Speichern oder kopieren Sie nichts Neues darauf.</li>
+</ul>
+<p>Ist der Index beschädigt, bleiben die Daten selbst normalerweise, wo sie waren. Schreiben Sie etwas Neues auf das Laufwerk, legt Windows es womöglich direkt über Ihre alten Dateien, und dann kann sie nichts mehr zurückholen. Vom Laufwerk zu lesen ist dagegen unbedenklich.</p>
+<h2 id="dateien-mit-reviveusb-zuruckholen">Dateien mit ReviveUSB zurückholen</h2>
+<p>ReviveUSB ist ein kostenloses Windows-Programm, das genau dieser Reihenfolge folgt: Laufwerk kopieren, aus der Kopie wiederherstellen und erst danach das Laufwerk reparieren. Es läuft unter Windows 10 oder 11 (64-Bit) und braucht Administratorrechte, weil es direkt vom Datenträger liest.</p>
+<p>Sie brauchen auf einem anderen Laufwerk so viel freien Speicher, wie das defekte Laufwerk groß ist. Ein 128-GB-Stick braucht 128 GB freien Speicher.</p>
+<p>ReviveUSB ist noch nicht codesigniert, daher meldet SmartScreen möglicherweise, dass es die App nicht erkennt. Auf der <a href="../revive/download.html">Download-Seite</a> steht der SHA-256 der Datei. Prüfen Sie ihn in PowerShell mit <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code>. Stimmt er überein, wählen Sie <strong>Weitere Informationen</strong> und dann <strong>Trotzdem ausführen</strong>.</p>
+<h3 id="1-laufwerk-auswahlen">1. Laufwerk auswählen</h3>
+<p>Starten Sie <code>ReviveUSB.exe</code> und erlauben Sie Administratorrechte. Oben im Fenster sollte <strong>Administrator: EIN</strong> stehen. Klicken Sie auf <strong>Aktualisieren</strong> und dann in der Liste auf Ihr USB-Laufwerk. In der Spalte <strong>Dateisystem</strong> steht wahrscheinlich RAW.</p>
+<h3 id="2-laufwerk-in-ein-image-kopieren">2. Laufwerk in ein Image kopieren</h3>
+<p>Klicken Sie auf <strong>Als Image sichern</strong> und speichern Sie die Datei, etwa unter dem Namen <code>disk2.img</code>, auf einem anderen Laufwerk. ReviveUSB liest dabei nur vom USB-Stick. Bereiche, die es nicht lesen kann, überspringt es, damit die Kopie nicht hängen bleibt, und am Ende fragt es, ob es diese Bereiche sektorweise erneut versuchen soll.</p>
+<p>Sie können das Fenster schließen und später weitermachen: Klicken Sie wieder auf <strong>Als Image sichern</strong>, wählen Sie dieselbe Datei und antworten Sie mit Ja, wenn gefragt wird, ob sie ersetzt werden soll. Das Protokoll zeigt <code>Image wird fortgesetzt</code>, und die Kopie macht dort weiter, wo sie aufgehört hat.</p>
+<p>Ab hier arbeiten Sie mit dem Image. Einen ausfallenden Stick immer wieder zu lesen ist riskanter, als eine Kopie davon zu lesen.</p>
+<h3 id="3-dateien-mit-ihren-namen-retten">3. Dateien mit ihren Namen retten</h3>
+<p>Klicken Sie auf <strong>Dateien retten (Namen/Pfade)</strong>, wählen Sie Ihre Image-Datei und einen Ordner auf einem intakten Laufwerk. Einen Ordner auf dem Laufwerk, das Sie gerade retten, lehnt ReviveUSB ab.</p>
+<p>Versuchen Sie das, auch wenn Windows das Laufwerk als RAW anzeigt. Das Programm liest NTFS, FAT32 und exFAT und kann ein Dateisystem, das Windows nicht einbindet, oft trotzdem lesen. Klappt es, kommen Ihre Dateien mit ihren Namen und Ordnern zurück. Es kopiert alle Dateien, die es findet, nicht nur gelöschte, und alles, was gelöscht war, landet in einem eigenen Ordner <code>_deleted_files</code>.</p>
+<h3 id="4-findet-das-nichts-die-signatur-methode-verwenden">4. Findet das nichts, die Signatur-Methode verwenden</h3>
+<p>Meldet ReviveUSB, dass es das Dateisystem nicht erkennen konnte, oder findet es nichts, klicken Sie auf <strong>Dateien retten (Signatur)</strong> und nehmen dasselbe Image. Diese Methode ignoriert das Dateisystem und sucht Dateien anhand ihres Inhalts. Sie findet JPEG-, PNG-, GIF-, BMP-, PDF- und ZIP-Dateien sowie MP4, MOV, 3GP, M4A und HEIC (Videos von Handys und Dashcams sowie Handyfotos).</p>
+<p>Der Haken: Die Namen gehen verloren. Die Dateien kommen nummeriert zurück, etwa als <code>jpg_00001_@...</code>. Dokumente wie <code>.docx</code>, <code>.xlsx</code> und <code>.pptx</code> sind im Inneren ZIP-Dateien und kommen deshalb als <code>.zip</code> zurück. Benennen Sie sie in die richtige Endung um.</p>
+<h2 id="den-usb-stick-danach-reparieren">Den USB-Stick danach reparieren</h2>
+<p>Sobald Ihre Dateien sicher auf dem PC liegen, können Sie den Stick wieder nutzbar machen. Bei einem RAW-Laufwerk oder einem ohne Laufwerksbuchstaben wählen Sie es aus und klicken auf <strong>Neu aufbauen</strong>. Das löscht den Datenträger, legt eine neue Partition an und formatiert sie als NTFS. Zur Bestätigung tippen Sie <code>ERASE DISK</code> und die Datenträgernummer ein, zum Beispiel <code>ERASE DISK 2</code>. Hat das Laufwerk noch einen Buchstaben und wollen Sie es nur leeren, erledigt das <strong>Formatieren</strong>.</p>
+<p>Bevor es etwas schreibt, liest ReviveUSB das Laufwerk und prüft, ob der Controller ausfällt, zum Beispiel wenn Teile davon nicht gelesen werden konnten. Sieht es solche Anzeichen, repariert es das Laufwerk nicht und nennt den Grund im Protokoll. Ein großer Schreibvorgang kann ein ausfallendes Laufwerk mittendrin endgültig lahmlegen. Behalten Sie in diesem Fall Ihre geretteten Dateien und ersetzen Sie den Stick.</p>
+<p>Klicken Sie nach dem Neuaufbau auf <strong>Aktualisieren</strong>, wählen Sie das Laufwerk und klicken Sie auf <strong>Laufwerk testen</strong>. <strong>Ja</strong> testet den ganzen freien Speicher, <strong>Nein</strong> führt einen schnellen 1-GB-Test aus. Nur der volle Test erkennt Laufwerke, die eine falsche Kapazität vortäuschen. Ist der Test bestanden, bringt <strong>Dateien zurückkopieren</strong> Ihren geretteten Ordner zurück auf den Stick, liest danach jede Datei wieder ein und vergleicht sie mit dem Original. Behalten Sie die Kopie auf Ihrem PC trotzdem.</p>
+<h2 id="wenn-es-nicht-klappt">Wenn es nicht klappt</h2>
+<h3 id="die-liste-zeigt-firmware-fehler-rom-modus-oder-kein-speicher-0">Die Liste zeigt „Firmware-Fehler (ROM-Modus)“ oder „Kein Speicher (0)“</h3>
+<p>Der Controller des Sticks lädt nicht. Windows zeigt ihn womöglich als „Kein Medium“ oder mit 0 Byte an und verlangt trotzdem, ihn zu formatieren. Klicken Sie auf Abbrechen. Ziehen Sie den Stick ab und stecken Sie ihn wieder ein. Kommt er mit seinem normalen Namen zurück, sichern Sie ihn sofort. Kommt er nicht zurück, kann keine Software ihn lesen. Ein Datenrettungslabor kann den Speicherchip eventuell direkt auslesen.</p>
+<h3 id="die-sicherung-ist-extrem-langsam">Die Sicherung ist extrem langsam</h3>
+<p>Stecken Sie das Laufwerk direkt in einen USB-3.0-Anschluss an der Rückseite des PCs, ohne Hub oder Verlängerungskabel. Hilft das nicht, versuchen Sie ein anderes Kabel oder einen anderen PC. Wenn Sie wieder in dieselbe Image-Datei sichern, wird die Kopie fortgesetzt.</p>
+<h3 id="gerettete-dateien-lassen-sich-nicht-offnen">Gerettete Dateien lassen sich nicht öffnen</h3>
+<p>Die Datei war womöglich fragmentiert, sodass nur ihr erster Teil zurückkam. Probieren Sie beide Schaltflächen zum Retten aus. Bereiche des Laufwerks, die nicht gelesen werden konnten, fehlen im Image.</p>
+<h3 id="die-reparatur-schlagt-fehl">Die Reparatur schlägt fehl</h3>
+<p>Ziehen Sie das Laufwerk ab, stecken Sie es wieder ein und versuchen Sie es erneut. Schließen Sie alles, was das Laufwerk gerade verwenden könnte, etwa Virenscanner oder Explorer-Vorschauen. Bleibt der Status <code>Unhealthy</code> oder trennt sich das Laufwerk immer wieder, ist wahrscheinlich die Hardware defekt. Das kann Software nicht beheben, also ersetzen Sie das Laufwerk.</p>
+<h3 id="wenn-nichts-mehr-hilft">Wenn nichts mehr hilft</h3>
+<p>Manche Dateien lassen sich nicht retten. Wurden die Daten bereits überschrieben oder ist der Flash-Chip selbst defekt, hilft keine Software mehr, und es bleibt nur ein professioneller Datenrettungsdienst. Das <a href="../revive/help.html">ReviveUSB-Handbuch</a> erklärt jede Schaltfläche.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · USB-Stick kaputt? Holen Sie Ihre Dateien kostenlos zurück und reparieren Sie das Laufwerk. (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Kostenloser Download</a><a class="btn btn-outline" href="../revive/index.html">Mehr erfahren</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../de/revive/index.html">ReviveUSB</a><a href="../../de/chatda/index.html">Chatda</a><a href="../../de/revivefix/index.html">ReviveFix</a><a href="../../de/pastefit/index.html">PasteFit</a><a href="../../de/about.html">Über uns</a><a href="../../de/donate.html">Spenden</a><a href="../../de/privacy.html">Datenschutz</a><a id="contact-link" href="#" hidden>Kontakt</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Sprache: <a href="../../blog/usb-says-you-need-to-format-the-disk.html" lang="en">English</a> · <a href="../../ko/blog/usb-says-you-need-to-format-the-disk.html" lang="ko">한국어</a> · <a href="../../ja/blog/usb-says-you-need-to-format-the-disk.html" lang="ja">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/usb-says-you-need-to-format-the-disk.html" lang="de" aria-current="true">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Design <select id="theme-select"><option value="auto">Standard</option><option value="dark">Dunkel</option><option value="light">Hell</option></select></label></div><p class="mt-note">Diese Seite wurde maschinell übersetzt. Wenn Ihnen ein Fehler auffällt, sagen Sie uns bitte Bescheid.</p><p>© 2026 Barbellsoft. Kostenlose Software, bereitgestellt wie besehen, ohne Gewähr.</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>
