@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>AIチャットボットに「まずドライブのイメージを作る」と言われたら、その手順 | Barbellsoft</title>
+<meta name="description" content="フォーマットを求めてくるUSBメモリについて、AIアシスタントに相談しましたか。的確な回答は、ドライブをイメージにコピーし、そのコピーから復元するよう勧めます。それをWindowsで無料で行う方法を説明します。">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=f87c66a1">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../ja/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/feedback.html">フィードバック</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/blog/index.html" aria-current="page">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">ブログ</a> · 2026-11-03</p><h1>AIチャットボットに「まずドライブのイメージを作る」と言われたら、その手順</h1><div class="doc prose"><p>USB メモリに「ドライブ E: を使うにはフォーマットする必要があります」と表示された。中には写真が入っている。そこで ChatGPT や Gemini、Copilot にどうすればよいか聞いてみた。</p>
+<p>2026年11月、私たちは 2 つの AI アシスタントにまったく同じ質問をしてみました。どちらも的確な助言をくれました。</p>
+<ul>
+<li>ドライブをフォーマットしない。ドライブに何もコピーしない。</li>
+<li>ファイルが安全になるまで chkdsk は控える。</li>
+<li>先にファイルを復元し、別のドライブに保存する。</li>
+<li>USB メモリをフォーマットしてテストするのは、そのあと。また失敗するなら交換する。</li>
+</ul>
+<p>うち 1 つは、いちばん確実にデータを守る手順も付け加えていました。まずドライブをセクター単位でイメージ化し、USB メモリそのものではなく、そのコピーから復元するという手順です。ただ、普通の Windows PC でそのイメージをどう作るかは、どちらも説明していませんでした。この記事ではそこを説明します。</p>
+<h2 id="_1">順番が大事な理由</h2>
+<p>ドライブはたいてい壊れていません。各ファイルがどこにあるかを記録した索引を、Windows が読めないだけです。ファイルそのものは、何かで上書きされない限り、普通はまだドライブに残っています。</p>
+<p>「まだしてはいけない」ことは、どれもドライブに書き込みます。</p>
+<ul>
+<li><strong>フォーマット</strong> は、新しい空のファイルテーブルを作ります。Microsoft のドキュメントでは、クイックフォーマットはファイルテーブルとルートディレクトリを削除すると説明されています。これこそ、ファイルを名前付きで取り戻すのに必要な地図です。</li>
+<li><strong>chkdsk /f</strong> は、修復の途中でドライブを書き換えます。Microsoft によると、FAT ドライブ (USB メモリや SD カードの多くがこれです) の修復では通常ファイル アロケーション テーブルが変更され、データが失われることもあります。</li>
+<li><strong>diskpart clean</strong> はパーティション情報を削除します。<code>clean all</code> はすべてのセクターをゼロにするので、中身はすべて消えます。</li>
+</ul>
+<p>ドライブを読み取るだけなら安全です。イメージはドライブ全体をセクター単位でコピーしたもので、読み取りだけで作れます。一度作っておけば、USB メモリが完全に壊れても、復元に使えるものが手元に残ります。</p>
+<h2 id="reviveusb">ReviveUSB でイメージを作る</h2>
+<p>ReviveUSB は、これらの回答が示した順番を前提に作られた無料の Windows ツールです。ドライブをコピーし、そのコピーから復元し、修復はそのあと、という順番です。Windows 10 または 11 (64 ビット) で動き、インストールは要りません。ディスクを直接読み取るため、管理者権限が必要です。</p>
+<p>USB メモリと同じだけの空き容量が、別のドライブに必要です。64 GB の USB メモリなら 64 GB の空きが要ります。</p>
+<ol>
+<li><code>ReviveUSB.exe</code> を実行して管理者権限を許可し、<strong>更新</strong> をクリックして USB メモリを選びます。<strong>ファイルシステム</strong> の列はおそらく RAW になっています。</li>
+<li><strong>イメージにバックアップ</strong> をクリックし、<code>disk2.img</code> などの名前で PC 本体のドライブに保存します。ここで ReviveUSB は USB メモリを読み取るだけです。読み取れない領域は飛ばすのでコピーが止まらず、最後にその領域をセクター単位で再試行するか尋ねます。</li>
+<li>コピーが途中で中断されたら、もう一度 <strong>イメージにバックアップ</strong> をクリックし、同じファイルを選びます。止まったところから続きます。</li>
+</ol>
+<h2 id="_2">イメージから復元する</h2>
+<ol>
+<li><strong>ファイル復元(名前・パス)</strong> をクリックし、イメージファイルを選んで、正常なドライブ上のフォルダーを指定します。NTFS、FAT32、exFAT を読み取れ、Windows が RAW と表示していても読めることがよくあります。ファイルは名前とフォルダーごと戻ります。</li>
+<li>何も見つからなければ、同じイメージで <strong>ファイル復元(シグネチャ)</strong> をクリックします。写真、動画、PDF などのファイルを中身から探します。この方法では名前が失われるので、ファイルは通し番号付きで戻ります。</li>
+</ol>
+<p>復元したファイルの保存先は PC で、USB メモリには戻しません。復元中のドライブへの保存は、ReviveUSB が受け付けません。</p>
+<h2 id="usb">そのあとで USB メモリを直す</h2>
+<p>ファイルが安全な場所に移ったら、修復ボタンで USB メモリを消去し、また使える状態に戻します。RAW のドライブには <strong>完全再構築</strong>、ドライブ文字が残っているドライブには <strong>フォーマット</strong> を使います。確認のため、たとえば <code>ERASE DISK 2</code> と入力します。そのあと <strong>ドライブテスト</strong> で空き領域を確認します。テストに失敗したら、チャットボットが言ったとおり交換してください。</p>
+<p>バックアップがとても遅いときや、ドライブが 0 バイトと表示されるときの対処も含めた詳しい手順は、<a href="usb-says-you-need-to-format-the-disk.html">「フォーマットする必要があります」の解説記事</a>にあります。</p>
+<h2 id="_3">チャットボットには見えないこと</h2>
+<p>AI アシスタントにわかるのは、あなたが伝えたことだけです。USB メモリが本来の容量を表示しているか、読み取りに失敗していないか、コントローラーが「メディアなし」や 0 バイトと表示される状態に陥っていないか。そうしたことは見えません。ReviveUSB は、何かを書き込む前にこれらの兆候を確認します。ドライブが壊れかけているように見えれば修復はせず、その旨をログに表示します。</p>
+<p>USB メモリが 0 バイトと表示される、または認識されなくなり、差し直しても戻らない場合は、どんなソフトウェアでも読み取れません。残る手段はデータ復旧の専門業者で、それでも必ず復元できるとは限りません。</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · 壊れた USB から大切なファイルを無料で取り戻し、USB も直します (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">無料ダウンロード</a><a class="btn btn-outline" href="../revive/index.html">詳しく見る</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/privacy.html">プライバシー</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../../blog/ai-said-image-the-usb-drive-first.html" lang="en">English</a> · <a href="../../ko/blog/ai-said-image-the-usb-drive-first.html" lang="ko">한국어</a> · <a href="../../ja/blog/ai-said-image-the-usb-drive-first.html" lang="ja" aria-current="true">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/ai-said-image-the-usb-drive-first.html" lang="de">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 無料ソフトウェアです。現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Ein KI-Chatbot rät „erst ein Image vom Laufwerk erstellen“. So geht das | Barbellsoft</title>
+<meta name="description" content="Sie haben einen KI-Assistenten gefragt, weil Ihr USB-Stick formatiert werden will? Gute Antworten raten, das Laufwerk in ein Image zu kopieren und aus der Kopie wiederherzustellen. Hier sehen Sie, wie das unter Windows kostenlos geht.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=f87c66a1">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../de/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Hauptmenü"><a href="../../de/revive/index.html">ReviveUSB</a><a href="../../de/chatda/index.html">Chatda</a><a href="../../de/revivefix/index.html">ReviveFix</a><a href="../../de/pastefit/index.html">PasteFit</a><a href="../../de/about.html">Über uns</a><a href="../../de/feedback.html">Feedback</a><a href="../../de/donate.html">Spenden</a><a href="../../de/blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-03</p><h1>Ein KI-Chatbot rät „erst ein Image vom Laufwerk erstellen“. So geht das</h1><div class="doc prose"><p>Ihr USB-Stick meldet „Sie müssen den Datenträger in Laufwerk E: formatieren, bevor Sie ihn verwenden können.“, und es sind Fotos darauf. Also haben Sie ChatGPT, Gemini oder Copilot gefragt, was zu tun ist.</p>
+<p>Wir haben im November 2026 zwei KI-Assistenten genau diese Frage gestellt. Beide gaben vernünftige Ratschläge:</p>
+<ul>
+<li>Formatieren Sie das Laufwerk nicht und kopieren Sie nichts darauf.</li>
+<li>Warten Sie mit chkdsk, bis Ihre Dateien in Sicherheit sind.</li>
+<li>Retten Sie zuerst die Dateien und speichern Sie sie auf einem anderen Laufwerk.</li>
+<li>Erst danach formatieren und testen Sie den Stick. Fällt er wieder aus, ersetzen Sie ihn.</li>
+</ul>
+<p>Einer der beiden nannte zusätzlich den Schritt, der Sie am besten schützt: zuerst ein sektorweises Image des Laufwerks erstellen und dann aus dieser Kopie wiederherstellen statt vom Stick selbst. Wie man dieses Image auf einem normalen Windows-PC erstellt, sagte keiner von beiden. Genau darum geht es in diesem Beitrag.</p>
+<h2 id="warum-die-reihenfolge-wichtig-ist">Warum die Reihenfolge wichtig ist</h2>
+<p>Meist ist das Laufwerk nicht kaputt. Windows kann nur den Index nicht lesen, in dem steht, wo jede Datei liegt. Die Dateien selbst sind normalerweise noch auf dem Laufwerk, bis etwas sie überschreibt.</p>
+<p>Alles auf der Liste „noch nicht tun“ schreibt auf das Laufwerk:</p>
+<ul>
+<li><strong>Formatieren</strong> legt eine neue, leere Dateitabelle an. Laut der Dokumentation von Microsoft löscht die Schnellformatierung die Dateitabelle und das Stammverzeichnis, also genau die Übersicht, die Sie brauchen, um Ihre Dateien mit ihren Namen zurückzubekommen.</li>
+<li><strong>chkdsk /f</strong> verändert das Laufwerk, während es repariert. Microsoft weist darauf hin, dass Reparaturen auf FAT-Laufwerken (den meisten USB-Sticks und SD-Karten) in der Regel die Dateizuordnungstabelle ändern und manchmal zu Datenverlust führen.</li>
+<li><strong>diskpart clean</strong> entfernt die Partitionsinformationen, und <code>clean all</code> setzt jeden Sektor auf null und löscht damit alles.</li>
+</ul>
+<p>Vom Laufwerk zu lesen ist unbedenklich. Ein Image ist eine sektorweise Kopie des ganzen Laufwerks, die nur durch Lesen entsteht. Sobald Sie es haben, kann der Stick komplett ausfallen, und Sie haben trotzdem noch etwas, aus dem Sie wiederherstellen können.</p>
+<h2 id="das-image-mit-reviveusb-erstellen">Das Image mit ReviveUSB erstellen</h2>
+<p>ReviveUSB ist ein kostenloses Windows-Programm, das genau der Reihenfolge folgt, die diese Antworten beschreiben: Laufwerk kopieren, aus der Kopie wiederherstellen und erst danach reparieren. Es läuft unter Windows 10 oder 11 (64-Bit), muss nicht installiert werden und braucht Administratorrechte, weil es direkt vom Datenträger liest.</p>
+<p>Sie brauchen auf einem anderen Laufwerk so viel freien Speicher, wie der Stick groß ist. Ein 64-GB-Stick braucht 64 GB freien Speicher.</p>
+<ol>
+<li>Starten Sie <code>ReviveUSB.exe</code>, erlauben Sie Administratorrechte, klicken Sie auf <strong>Aktualisieren</strong> und wählen Sie Ihr USB-Laufwerk aus. In der Spalte <strong>Dateisystem</strong> steht wahrscheinlich RAW.</li>
+<li>Klicken Sie auf <strong>Als Image sichern</strong> und speichern Sie die Datei, etwa als <code>disk2.img</code>, auf dem eigenen Laufwerk Ihres PCs. ReviveUSB liest dabei nur vom Stick. Bereiche, die es nicht lesen kann, überspringt es, damit die Kopie nicht hängen bleibt, und bietet am Ende an, sie sektorweise erneut zu versuchen.</li>
+<li>Wird die Kopie unterbrochen, klicken Sie wieder auf <strong>Als Image sichern</strong> und wählen dieselbe Datei. Die Kopie macht dort weiter, wo sie aufgehört hat.</li>
+</ol>
+<h2 id="aus-dem-image-wiederherstellen">Aus dem Image wiederherstellen</h2>
+<ol>
+<li>Klicken Sie auf <strong>Dateien retten (Namen/Pfade)</strong>, wählen Sie die Image-Datei und einen Ordner auf einem intakten Laufwerk. Diese Methode liest NTFS, FAT32 und exFAT, oft auch dann, wenn Windows das Laufwerk als RAW anzeigt, und holt Dateien mit ihren Namen und Ordnern zurück.</li>
+<li>Findet sie nichts, klicken Sie mit demselben Image auf <strong>Dateien retten (Signatur)</strong>. Diese Methode sucht Fotos, Videos, PDFs und andere Dateien anhand ihres Inhalts. Die Namen gehen dabei verloren, die Dateien kommen nummeriert zurück.</li>
+</ol>
+<p>Ihre geretteten Dateien landen auf Ihrem PC und nie wieder auf dem Stick. Einen Speicherort auf dem Laufwerk, das Sie gerade retten, lehnt ReviveUSB ab.</p>
+<h2 id="danach-den-stick-reparieren">Danach den Stick reparieren</h2>
+<p>Sobald Ihre Dateien sicher sind, löschen die Reparatur-Schaltflächen (<strong>Neu aufbauen</strong> bei einem RAW-Laufwerk, <strong>Formatieren</strong> bei einem Laufwerk, das noch einen Buchstaben hat) den Stick und machen ihn wieder nutzbar. Zur Bestätigung tippen Sie etwa <code>ERASE DISK 2</code> ein. Danach prüft <strong>Laufwerk testen</strong> den freien Speicher. Schlägt der Test fehl, tun Sie, was der Chatbot gesagt hat, und ersetzen Sie den Stick.</p>
+<p>Die ausführliche Anleitung, auch dazu, was Sie tun können, wenn die Sicherung sehr langsam ist oder das Laufwerk 0 Byte anzeigt, finden Sie in <a href="usb-says-you-need-to-format-the-disk.html">unserem Ratgeber zur Formatierungsmeldung</a>.</p>
+<h2 id="was-ein-chatbot-nicht-sehen-kann">Was ein Chatbot nicht sehen kann</h2>
+<p>Ein KI-Assistent weiß nur, was Sie ihm erzählen. Er sieht nicht, ob der Stick seine echte Kapazität anzeigt, ob Lesevorgänge fehlschlagen oder ob der Controller in einen Zustand gefallen ist, in dem das Laufwerk als „Kein Medium“ oder mit 0 Byte erscheint. ReviveUSB prüft diese Anzeichen, bevor es etwas schreibt. Sieht das Laufwerk nach einem Ausfall aus, repariert es das Laufwerk nicht und sagt das im Protokoll.</p>
+<p>Zeigt der Stick 0 Byte an oder verschwindet er und kommt auch nach dem erneuten Einstecken nicht zurück, kann keine Software ihn lesen. Dann bleibt nur ein professioneller Datenrettungsdienst, und eine Wiederherstellung ist nie garantiert.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · USB-Stick kaputt? Holen Sie Ihre Dateien kostenlos zurück und reparieren Sie das Laufwerk. (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Kostenloser Download</a><a class="btn btn-outline" href="../revive/index.html">Mehr erfahren</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../de/revive/index.html">ReviveUSB</a><a href="../../de/chatda/index.html">Chatda</a><a href="../../de/revivefix/index.html">ReviveFix</a><a href="../../de/pastefit/index.html">PasteFit</a><a href="../../de/about.html">Über uns</a><a href="../../de/donate.html">Spenden</a><a href="../../de/privacy.html">Datenschutz</a><a id="contact-link" href="#" hidden>Kontakt</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Sprache: <a href="../../blog/ai-said-image-the-usb-drive-first.html" lang="en">English</a> · <a href="../../ko/blog/ai-said-image-the-usb-drive-first.html" lang="ko">한국어</a> · <a href="../../ja/blog/ai-said-image-the-usb-drive-first.html" lang="ja">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/ai-said-image-the-usb-drive-first.html" lang="de" aria-current="true">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Design <select id="theme-select"><option value="auto">Standard</option><option value="dark">Dunkel</option><option value="light">Hell</option></select></label></div><p class="mt-note">Diese Seite wurde maschinell übersetzt. Wenn Ihnen ein Fehler auffällt, sagen Sie uns bitte Bescheid.</p><p>© 2026 Barbellsoft. Kostenlose Software, bereitgestellt wie besehen, ohne Gewähr.</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>
