@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Mapped network drive shows a red X: how to reconnect it | Barbellsoft</title>
+<meta name="description" content="A network drive with a red X in File Explorer has lost its connection to the server. Here is why it happens and how to reconnect it safely.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=f87c66a1">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-02</p><h1>Mapped network drive shows a red X: how to reconnect it</h1><div class="doc prose"><p>You open File Explorer and your Z: drive has a red X on it. Double-click it and Windows thinks for a while, then gives up with something like "An error occurred while reconnecting Z:" or "The network path was not found". It worked yesterday.</p>
+<p>A mapped drive is a drive letter that points to a folder on a NAS or server. The files aren't on your PC. So the red X is about the connection: Windows couldn't reach that folder the last time it tried. By itself it doesn't tell you anything has happened to the files.</p>
+<h2 id="what-is-going-on">What is going on</h2>
+<p>When you sign in, Windows tries to reconnect your mapped drives. If that attempt fails, the letter stays in File Explorer with a red X on it.</p>
+<p>The harmless version of this is timing. Windows tried before the network was ready, because the Wi-Fi connected a few seconds later or the VPN wasn't running yet. In that case the drive often opens the moment you double-click it.</p>
+<p>The less harmless versions take more work to sort out:</p>
+<ul>
+<li>The NAS or server is switched off or asleep.</li>
+<li>The PC is on a different network from the server.</li>
+<li>The server was renamed or was given a new address.</li>
+<li>The shared folder was renamed or removed.</li>
+<li>Your account lost its permission to the folder.</li>
+<li>Your password changed, and the password Windows saved no longer works.</li>
+</ul>
+<h2 id="safe-things-to-try-first">Safe things to try first</h2>
+<p>None of these steps touch the files on the server.</p>
+<h3 id="double-click-the-drive-then-press-f5">Double-click the drive, then press F5</h3>
+<p>If the network came up late, this may be all you need.</p>
+<h3 id="check-the-network">Check the network</h3>
+<p>Make sure the NAS is on and the PC is on the same network as the server. If the server is at your office and you're working from home, connect your VPN first.</p>
+<h3 id="open-the-folder-by-its-address">Open the folder by its address</h3>
+<p>File Explorer shows the server beside the drive name, for example <code>documents (\\nas) (Z:)</code>. Type the full address in the File Explorer address bar, for example <code>\\nas\documents</code>, and press Enter. If the folder opens, the server is fine and it's the drive letter that needs reconnecting. If it doesn't, the problem is further along: the server, the network or your sign-in.</p>
+<h3 id="map-the-drive-again">Map the drive again</h3>
+<p>Write down the address first. Right-click the drive and choose <strong>Disconnect</strong>. Then right-click <strong>This PC</strong> and choose <strong>Map network drive</strong>. On Windows 11, either command may be under <strong>Show more options</strong>. Pick the same letter, type the address and tick <strong>Reconnect at sign-in</strong>. Disconnecting removes the letter from this PC and leaves the files on the server alone.</p>
+<h3 id="clear-an-old-saved-password">Clear an old saved password</h3>
+<p>If you changed your password recently, open <strong>Control Panel</strong>, then <strong>Credential Manager</strong>, then <strong>Windows Credentials</strong>. Remove the entry for that server, then open the folder again so Windows asks you to sign in.</p>
+<h2 id="reconnecting-the-drive-with-revivefix">Reconnecting the drive with ReviveFix</h2>
+<p>ReviveFix is a free tool for Windows 10 or 11 (64-bit) that checks your network drives, reconnects them when it can and tells you which step failed when it can't. It's one exe file of about 8 MB with no installation. It's still a beta.</p>
+<h3 id="1-download-and-start-it">1. Download and start it</h3>
+<p>Get it from the <a href="../revivefix/download.html">download page</a>. ReviveFix isn't code-signed yet, so SmartScreen may say it doesn't recognize the app. The download page lists the file's SHA-256. Check it in PowerShell with <code>Get-FileHash .\ReviveFix.exe -Algorithm SHA256</code>. If it matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<p>ReviveFix starts without administrator rights. If a fix needs them, Windows asks once. Choose No and nothing changes, and that item stays marked ⚠.</p>
+<h3 id="2-click-find-and-fix-problems">2. Click Find and fix problems</h3>
+<p>You don't need to know what's broken. Drives already connected to the PC, like your Z: drive, are always checked. If you also have a folder you open by its address, type that address in the box first, for example <code>\\nas\documents</code>, and then click <strong>Find and fix problems</strong>.</p>
+<h3 id="3-read-the-marks">3. Read the marks</h3>
+<p>Each line gets one of four marks:</p>
+<ul>
+<li>✓ means it works normally.</li>
+<li>✔ means it was broken and ReviveFix fixed it.</li>
+<li>⚠ means it can be fixed after you confirm. Click <strong>Fix</strong>.</li>
+<li>✗ means it can't be fixed from this PC.</li>
+</ul>
+<p>For a drive with a red X, ReviveFix asks Windows to reconnect it with the address and account Windows remembers. If the server answers, the drive opens again and its line shows ✔. If not, ReviveFix tells you which step failed: the server name, the network connection, the shared folder or the sign-in.</p>
+<p>When the saved password is the problem, ReviveFix removes only the saved password for that server and opens the folder. Windows then asks you in its own sign-in window. ReviveFix never asks for or reads your password, and it doesn't see what you type. It doesn't send anything over the internet either.</p>
+<h2 id="if-it-still-wont-open">If it still won't open</h2>
+<p>What to do next depends on the reason ReviveFix gives.</p>
+<h3 id="the-server-name-cant-be-found">The server name can't be found</h3>
+<p>Check the spelling of the address. If it's correct, the server may have been renamed, so ask whoever manages it for the current name.</p>
+<h3 id="the-server-cant-be-reached">The server can't be reached</h3>
+<p>Go back to the basics: is the NAS on, is the PC on the right network, is the VPN connected?</p>
+<h3 id="the-shared-folder-doesnt-exist">The shared folder doesn't exist</h3>
+<p>It may have been renamed, moved or removed on the server. Only the person who manages the server can tell you the new address.</p>
+<h3 id="you-dont-have-permission">You don't have permission</h3>
+<p>This is set on the server, so the NAS administrator has to give your account access.</p>
+<h3 id="the-saved-password-no-longer-works">The saved password no longer works</h3>
+<p>After ReviveFix removes it, sign in when Windows asks. If your new password is refused too, ask the administrator to check your account.</p>
+<h3 id="an-old-nas-needs-smb1-or-guest-access">An old NAS needs SMB1 or guest access</h3>
+<p>ReviveFix won't turn these on, because they make the whole PC easier to attack. It explains the problem instead. I wouldn't turn them on by hand to get a drive back either. The better fix belongs on the NAS.</p>
+<h3 id="it-cant-be-fixed-from-this-pc">It can't be fixed from this PC</h3>
+<p>ReviveFix can't fix the NAS itself, and it doesn't change settings your company manages. On a ✗ line, click <strong>Copy for IT</strong> and send the text to whoever looks after the NAS. <strong>Copy diagnosis</strong> copies the results, recent fixes and your Windows version to paste into an email or chat. It includes server, drive and printer names but no passwords. The <a href="../revivefix/help.html">ReviveFix help</a> and <a href="../revivefix/faq.html">FAQ</a> cover the rest.</p></div><aside class="callout post-cta"><p><strong>ReviveFix</strong> · Shared folder or printer stopped working? One click finds the cause and fixes it. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revivefix/download.html">Download ReviveFix</a><a class="btn btn-outline" href="../revivefix/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/mapped-network-drive-red-x.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Free software, provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=761fe63d"></script>
+</body>
+</html>
