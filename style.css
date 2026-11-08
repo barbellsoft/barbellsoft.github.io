@@ -101,10 +101,16 @@ section { margin-top: 32px; }
 .shot-icon { display: flex; align-items: center; justify-content: center; aspect-ratio: 836 / 689; }
 .shot-icon img { width: 120px; }
 
-/* 프로그램 홈(스크린샷 + 특징 목록, 아래 다운로드 묶음) */
-.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
-.features { margin: 0; padding-left: 20px; }
-.features li { margin-bottom: 4px; }
+/* 프로그램 홈(다운로드 단추 → 큰 화면 → 기능 격자, 아래 다운로드 묶음) */
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin: 4px 0 24px; }
+.phone .hero-actions .btn-primary { display: none; }  /* 휴대폰: 강조는 «내게 링크 보내기» 하나(site.js initPhone) */
+.hero-shot { max-width: 720px; margin: 0 0 40px; }
+.hero-shot .shot:not(.shot-icon) { display: inline-block; max-width: 100%; }  /* 원본보다 키우지 않음(PasteFit 430px·런처 640px) */
+.hero-shot .shot:not(.shot-icon) img { width: auto; max-width: 100%; }
+.feature-grid { list-style: none; padding: 0; margin: 0 0 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px 32px; }
+.feature-grid li { display: flex; flex-direction: column; gap: 4px; }
+.feature-grid strong { color: var(--ink); font-weight: 600; }
+.more { margin: 0 0 40px; font-size: 14px; }
 .dl-block { background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); padding: 16px 20px; }
 .dl-links { list-style: none; padding: 0; margin: 0 0 8px; font-size: 17px; font-weight: 600; }
 .dl-more { margin: 0 0 4px; font-size: 14px; }
@@ -151,7 +157,7 @@ details > div { padding: 10px 16px 2px; }
 .prefs select { font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 3px 6px; }
 
 @media (max-width: 720px) {
-  .product, .intro { grid-template-columns: 1fr; }
+  .product { grid-template-columns: 1fr; }
   .actions .btn { flex: 1 1 auto; }
 }
 
