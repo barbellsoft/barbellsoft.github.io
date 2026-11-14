@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>How to recover deleted files from a USB flash drive | Barbellsoft</title>
+<meta name="description" content="Files deleted from a USB flash drive skip the Recycle Bin but usually stay on the drive, and here is how to get them back safely.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=61605d01">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-09</p><h1>How to recover deleted files from a USB flash drive</h1><div class="doc prose"><p>You deleted a folder from a USB stick, opened the Recycle Bin to restore it, and it isn't there. That's normal. Windows doesn't send files deleted from a USB flash drive to the Recycle Bin. They are deleted right away, the same as Shift+Delete on any drive.</p>
+<p>That doesn't mean the files are gone. In most cases they are still on the drive, and what you do next decides how much of them comes back.</p>
+<h2 id="what-deleting-a-file-really-does">What deleting a file really does</h2>
+<p>A drive keeps an index, the filesystem, that records which file is stored where and under what name. When you delete a file, the data itself usually stays on the drive. Only the index entry that points to it is removed, which is why recovery is possible at all.</p>
+<p>The catch is that the space your file occupies now counts as free. If you save a new file to the drive, Windows may write it right on top of the old data, and once that happens the old data can't be recovered. The more you write to the drive after deleting, the less you get back.</p>
+<h2 id="what-to-do-right-now">What to do right now</h2>
+<p>Don't save or copy anything to the drive until your files are somewhere safe. That includes the recovery program and the files you recover. Don't format it either, and if Windows offers to scan and repair the drive, don't click Yes.</p>
+<p>Reading from the drive is fine. If you aren't ready to start yet, eject it and leave it unplugged so nothing writes to it in the meantime.</p>
+<h2 id="getting-the-files-back-with-reviveusb">Getting the files back with ReviveUSB</h2>
+<p>ReviveUSB is a free Windows program that works in a fixed order: it copies the whole drive to an image file first, then recovers files from that copy. Backing up and recovering only read the drive. It runs on Windows 10 or 11 (64-bit), is a single exe with nothing to install, and needs administrator rights because it reads the disk directly.</p>
+<p>The image is a full copy, so you need free space on another drive as large as the USB drive. A 128 GB drive needs 128 GB free. The recovered files need room too, on any drive except the USB one.</p>
+<p>ReviveUSB isn't code-signed yet, so Windows SmartScreen or your antivirus may warn you. The <a href="../revive/download.html">download page</a> shows the file's SHA-256. Check it in PowerShell with <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code>, and if the values match, choose <strong>More info</strong>, then <strong>Run anyway</strong>. Save the download to your PC, not to the USB drive.</p>
+<h3 id="1-select-the-drive">1. Select the drive</h3>
+<p>Run <code>ReviveUSB.exe</code> and allow administrator rights. The top of the window should say <strong>Administrator: ON</strong>. If it says OFF, click <strong>Restart as administrator</strong>. Plug in the USB drive, click <strong>Refresh</strong>, and click your drive in the list. Only USB disks are listed, so your internal disks stay out of the way.</p>
+<h3 id="2-back-up-to-an-image">2. Back up to an image</h3>
+<p>Click <strong>Back up to image</strong> and save the image on another drive with enough free space. The suggested name is <code>diskN.img</code>, where N is the disk number. If you pick a place on the USB drive itself, ReviveUSB refuses and asks for a different drive, because saving there could overwrite the files you want back.</p>
+<p>You can close the window at any time. To continue later, start the program again, select the same drive, click <strong>Back up to image</strong>, choose the same file, and answer Yes when Windows asks whether to replace it. The log shows <code>Resuming image</code> and the copy picks up where it stopped.</p>
+<p>From here on you work on the image, and the USB drive isn't read again.</p>
+<h3 id="3-recover-files-namespaths">3. Recover files (names/paths)</h3>
+<p>Click <strong>Recover files (names/paths)</strong>. Because a disk is selected in the list, ReviveUSB first asks whether to read that disk directly. Click <strong>No</strong> and select your <code>.img</code> file; the image is the better choice. Then choose a folder for the results on a healthy drive.</p>
+<p>This method reads NTFS, FAT32 and exFAT. It copies every file it can find with its name and folder, including deleted files and files that were inside deleted folders. When it finds both current and deleted files, the deleted ones go into a separate <code>_deleted_files</code> folder, so an old copy never sits next to the current file. That's the first place to look.</p>
+<p>The destination folder needs as much free space as the files. If it doesn't have it, the log warns you before anything starts.</p>
+<p>On a FAT32 drive, the log may list some files that "may be wrong inside". When Windows deleted them, it erased part of the information about where they start, and for types like .bin there is no signature to tell the right spot. Open those files before you rely on them.</p>
+<h3 id="4-if-nothing-comes-back-recover-by-signature">4. If nothing comes back, recover by signature</h3>
+<p>If names/paths finds nothing, or says it can't detect the filesystem, run <strong>Recover files (signature)</strong> on the same image. It finds files by their content, so it works even when the filesystem is gone. It looks for JPEG, PNG, GIF, BMP, PDF and ZIP files, plus MP4, MOV, 3GP, M4A and HEIC, which covers phone and dashcam video and iPhone photos.</p>
+<p>You lose the names this way. Files come back numbered, like <code>jpg_00001_@...</code>. Office files such as docx, xlsx and pptx are ZIP files inside, so they arrive with a <code>.zip</code> name. Rename them to the right extension.</p>
+<h2 id="the-drive-doesnt-need-repairing">The drive doesn't need repairing</h2>
+<p>Deleting files doesn't break a drive. The repair buttons (<strong>Check (chkdsk)</strong>, <strong>Format</strong> and <strong>Full rebuild</strong>) are for drives Windows can't open, and <strong>Format</strong> and <strong>Full rebuild</strong> erase data. Leave them alone here.</p>
+<p>Open the recovered files on your PC and check them. Once you have what you need, copy them back onto the USB drive the usual way and keep using it, but keep a copy on your PC as well. You can then delete the image file and the progress file next to it, for example <code>disk2.img</code> and <code>disk2.img.state.json</code>.</p>
+<h2 id="if-it-doesnt-work">If it doesn't work</h2>
+<p>If a recovered file won't open, it may have been fragmented, so only its first part came back. Try both recovery buttons on the image.</p>
+<p>If the backup is very slow, the cause is usually the drive or the connection, since ReviveUSB already skips bad regions. Plug the drive straight into a USB 3.0 port on the back of the PC instead of a hub, swap the cable, or try another PC. Back up again to the same image file and it continues where it stopped. If you're short on time, close the program partway and run <strong>Recover files (signature)</strong> on the image you have so far. It recovers files from the part that was copied.</p>
+<p>If nothing comes back at all, new data may have been written over the deleted files. Overwritten data can't be recovered by any software, and neither can data on a flash chip that has died. A professional data recovery service is the remaining option then.</p>
+<p>The <a href="../revive/help.html">manual</a> describes every button, and the <a href="../revive/faq.html">FAQ</a> answers the common recovery questions.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · Broken USB? Get your files back for free, and fix the drive. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Download ReviveUSB</a><a class="btn btn-outline" href="../revive/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/recover-deleted-files-from-usb-drive.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=761fe63d"></script>
+</body>
+</html>
