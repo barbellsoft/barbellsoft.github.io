@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Recover photos and videos from an SD card that won&#x27;t open | Barbellsoft</title>
+<meta name="description" content="Your camera, phone or dashcam SD card stopped opening. Here is how to copy it safely and get the JPG, MP4, MOV and HEIC files back.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=61605d01">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-14</p><h1>Recover photos and videos from an SD card that won&#x27;t open</h1><div class="doc prose"><p>The camera says "card error", the dashcam beeps, or you put the SD card in your PC and Windows asks you to format it. Don't format it, in the camera or in Windows. When a card stops opening, the usual cause is a damaged filesystem, the index of which file sits where. The pictures themselves are often still on the card.</p>
+<h2 id="take-the-card-out-of-the-device-first">Take the card out of the device first</h2>
+<p>A camera, phone or dashcam is the worst place to leave a card you want to recover from. Many offer to format a card they can't read, and a dashcam that keeps recording may write new clips over the space your old ones occupy. Once something is written over a file, no software gets it back.</p>
+<p>So turn the device off, take the card out and put it in a card reader on a Windows PC. Until your files are somewhere safe:</p>
+<ul>
+<li>Don't format the card in the device, File Explorer, Disk Management or any repair tool.</li>
+<li>Don't click Yes when Windows offers to scan and repair it.</li>
+<li>Don't save or copy anything onto it.</li>
+</ul>
+<p>Reading the card is fine. If Windows says it is RAW, the post on <a href="usb-drive-shows-as-raw.html">drives that show as RAW</a> explains what that means.</p>
+<h2 id="what-you-need">What you need</h2>
+<p>ReviveUSB is a free Windows tool that copies the card to an image file first, recovers from the copy, and repairs the card last. It runs on Windows 10 or 11 (64-bit), is a single exe with nothing to install, and needs administrator rights because it reads the disk directly.</p>
+<p>The image is a full copy, so you need free space on another drive equal to the card's capacity. A 128 GB card needs 128 GB free. The recovered files need room too, anywhere except the card.</p>
+<p>ReviveUSB isn't code-signed yet, so SmartScreen may say it doesn't recognize the app. The <a href="../revive/download.html">download page</a> lists the file's SHA-256. Check it in PowerShell with <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code>, and if it matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<h2 id="step-by-step">Step by step</h2>
+<h3 id="1-find-the-card-in-the-list">1. Find the card in the list</h3>
+<p>Run <code>ReviveUSB.exe</code>, allow administrator rights, and check that the top of the window says <strong>Administrator: ON</strong>. Click <strong>Refresh</strong> and click the card in the list.</p>
+<p>Only USB disks are listed. If the card is in a laptop's built-in reader and doesn't appear, tick <strong>Show internal disks (caution)</strong>. Your system disk will show up as well, so compare the sizes and pick the card. A gray "Empty (0)" entry usually means an empty card reader slot: insert the card and click <strong>Refresh</strong>.</p>
+<h3 id="2-back-up-to-an-image">2. Back up to an image</h3>
+<p>Click <strong>Back up to image</strong> and save the file on a different drive. ReviveUSB only reads the card, skips regions it can't read instead of stalling, and at the end asks whether to retry them sector by sector.</p>
+<p>You can close the window and continue later. Click <strong>Back up to image</strong> again, choose the same file, and answer Yes when Windows asks whether to replace it. The log says <code>Resuming image</code>. It first checks that it is the same card. From here on, every step works on the image.</p>
+<h3 id="3-recover-files-with-their-names">3. Recover files with their names</h3>
+<p>Click <strong>Recover files (names/paths)</strong>, pick the image, and choose a folder on a healthy drive. ReviveUSB reads NTFS, FAT32 and exFAT itself, and FAT12/16 on cards of 2 GB or less. It can often read an index that Windows won't mount.</p>
+<p>When this works, you get the photos and clips back with their original names and folders. It copies every file it can find, whatever its type, so raw photo files from a camera come back this way too. Anything that had been deleted goes into a separate <code>_deleted_files</code> folder.</p>
+<h3 id="4-if-that-finds-nothing-recover-by-signature">4. If that finds nothing, recover by signature</h3>
+<p>If ReviveUSB says it couldn't detect the filesystem, or finds nothing, click <strong>Recover files (signature)</strong> on the same image. It finds files by their content: JPEG, PNG, GIF, BMP, MP4, MOV, 3GP, AVI and HEIC, which covers phone and dashcam video and iPhone photos, plus audio such as M4A, MP3 and WAV, and PDF and ZIP files. Raw photo formats aren't on that list.</p>
+<p>Names and folders are lost this way. Files come back numbered, like <code>jpg_00001_@...</code>, so you'll be sorting them by opening them.</p>
+<p>If a recording was cut off, because the battery died, the card was pulled or the dashcam lost power, the end of the file was never written. ReviveUSB saves such a video as far as it goes, but most players can't play it without the missing end.</p>
+<h2 id="using-the-card-again">Using the card again</h2>
+<p>Once the recovered files are on your PC and you've opened a few, you can check whether the card is still safe to use. Select it in ReviveUSB and click <strong>Full rebuild</strong>. It wipes the card, creates a new partition and quick-formats it as NTFS, after you type <code>ERASE DISK</code> and the disk number to confirm. If the card shows signs of a failing controller, it refuses and says why in the log. After the rebuild, click <strong>Refresh</strong>, select the card and run <strong>Test drive</strong>. The full test is slow but catches cards that fake their capacity or lose data.</p>
+<p>If the card passes, put it back in the camera, phone or dashcam and format it there. A camera or dashcam may not read a card formatted as NTFS. Keep the recovered photos and videos on your PC and make a second copy somewhere else.</p>
+<h2 id="if-it-doesnt-work">If it doesn't work</h2>
+<p>If the backup is very slow from start to finish, the cause is usually the reader or the connection. Plug the reader straight into a USB 3.0 port on the back of the PC instead of a hub, or try another PC, then back up again to the same image file to continue. If you're short on time, close it partway and run <strong>Recover files (signature)</strong> on the image so far. It recovers files from the part that was copied.</p>
+<p>If recovered photos or videos won't open, they may have been fragmented, so only the first part came back, or they sat in a region that couldn't be read. Try both recovery buttons.</p>
+<p>If the list shows "Firmware failure (ROM mode)" or "No storage (size 0)", there is nothing to read. Unplug the card and plug it back in; if it comes back normally, back it up at once. If the data was overwritten, or the flash chip itself is dead, no software can help, and a professional data recovery service is the remaining option. The <a href="../revive/help.html">manual</a> explains every button, and the <a href="../revive/faq.html">FAQ</a> covers the common questions.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · Broken USB? Get your files back for free, and fix the drive. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Download ReviveUSB</a><a class="btn btn-outline" href="../revive/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/recover-photos-videos-from-sd-card.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=761fe63d"></script>
+</body>
+</html>
