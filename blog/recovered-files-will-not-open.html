@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Recovered files won&#x27;t open or look corrupted: what to try | Barbellsoft</title>
+<meta name="description" content="Files came back from a USB drive or SD card but won&#x27;t open. Here is why that happens, which cases can be fixed, and which can&#x27;t.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=61605d01">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-14</p><h1>Recovered files won&#x27;t open or look corrupted: what to try</h1><div class="doc prose"><p>You got your files back from a USB drive or SD card, and some of them won't open. A photo turns grey halfway down, a PDF reader says the file is damaged, a video won't play, or a Word document shows up as a ZIP. This is common after recovery, and the reason behind it decides whether anything can be done. Sometimes renaming the file is enough. Sometimes the data is simply gone.</p>
+<h2 id="why-recovered-files-come-back-broken">Why recovered files come back broken</h2>
+<h3 id="the-data-was-overwritten">The data was overwritten</h3>
+<p>When a file is deleted, its data usually stays on the drive and only the index entry pointing to it is removed. The space it occupies now counts as free, though. If anything was saved to the drive afterwards, it may have landed on top of the old file. A recovery tool can still find the old entry, but the contents now belong to some other file. No software can bring that data back.</p>
+<h3 id="the-file-was-stored-in-pieces">The file was stored in pieces</h3>
+<p>A drive doesn't always keep a file in one continuous run. When a file is split into fragments, the filesystem index is what records where each piece went. If a file is found by its content rather than through that index, there is no record of where the rest of it went, and you may get only the first part. It is the first cause the ReviveUSB manual lists when a recovered file won't open.</p>
+<h3 id="part-of-the-drive-couldnt-be-read">Part of the drive couldn't be read</h3>
+<p>A failing stick or card often has regions that return read errors. Whatever was stored there is missing from any copy of the drive, so a file that sat partly in those regions can't come back complete.</p>
+<h3 id="the-file-is-fine-but-labelled-wrong-or-unfinished">The file is fine, but labelled wrong or unfinished</h3>
+<p>Office files such as docx, xlsx and pptx are ZIP files inside, so a tool that finds files by content saves them as <code>.zip</code>. Videos are different. If a recording was cut off, or the drive lost the part where its end was written, the file has no proper ending, and most players won't play it.</p>
+<h2 id="before-you-try-again">Before you try again</h2>
+<p>If you still have the original drive, leave it as it is until you're finished. Don't save anything to it or format it, and if Windows offers to scan and repair it, don't click Yes. A second, better attempt depends on the data still being there. Keep the recovered files on a different, healthy drive, and experiment on copies of them rather than the only ones you have.</p>
+<h2 id="trying-again-with-reviveusb">Trying again with ReviveUSB</h2>
+<p>ReviveUSB is a free Windows tool for this job. It is a 64-bit exe for Windows 10 or 11 and needs administrator rights, because it reads the disk directly. It isn't code-signed yet, so SmartScreen may warn you. The <a href="../revive/download.html">download page</a> lists the file's SHA-256 so you can check it before you choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<h3 id="1-work-from-an-image-and-retry-the-unreadable-parts">1. Work from an image and retry the unreadable parts</h3>
+<p>Click <strong>Refresh</strong>, select the drive, click <strong>Back up to image</strong> and save the image on another drive. ReviveUSB only reads the drive, and it skips regions it can't read so the copy doesn't stall. At the end it asks whether to retry them sector by sector. On a badly damaged drive that can take a long time, but it can rescue more of your data, so say yes if you can wait.</p>
+<p>Only go back to the drive if nothing has been formatted, rebuilt or saved on it since the image was made. Otherwise skip to step 2 and work with the image you have.</p>
+<p>If you already made an image, you don't have to start over. Click <strong>Back up to image</strong> again, choose the same file, and answer Yes when Windows asks whether to replace it. On a finished image it doesn't read the whole drive again. It only offers to retry the regions it couldn't read. The more of the drive the image holds, the more files can come back whole.</p>
+<h3 id="2-use-both-recovery-buttons">2. Use both recovery buttons</h3>
+<p>The two buttons find files in different ways, so run both on the image, each into its own folder on a healthy drive.</p>
+<p><strong>Recover files (names/paths)</strong> reads the NTFS, FAT32 or exFAT index and copies files out with their names and folders. It copies current files as well as deleted ones, and the deleted ones go into a separate <code>_deleted_files</code> folder. It works whenever the filesystem can still be read, even if Windows won't open the drive.</p>
+<p><strong>Recover files (signature)</strong> finds files by their content: JPEG, PNG, GIF, BMP, PDF, ZIP, MP4, MOV, 3GP, M4A and HEIC. Version 0.2.13 added HWP, older Office files (doc, xls, ppt), MP3, AVI and WAV. It works even when the filesystem is gone, but the names are lost, and files come back numbered like <code>jpg_00001_@...</code>.</p>
+<p>The manual's advice for files that won't open is to try both buttons. If a file is broken in one result folder, look for it in the other.</p>
+<h3 id="3-read-the-log-for-warnings">3. Read the log for warnings</h3>
+<p>ReviveUSB warns you about some files it can't vouch for. On FAT32, exFAT and NTFS drives, deleted files whose space was later used by newer files are listed with a warning that their contents are probably wrong. After names/paths recovery from a FAT32 drive that Windows deleted files from, the log may list files that "may be wrong inside", because Windows erased part of where they start. Open those files before you rely on them.</p>
+<h3 id="4-fix-the-ones-that-are-only-mislabelled">4. Fix the ones that are only mislabelled</h3>
+<p>In the signature results, rename <code>.zip</code> files that are really Office documents to <code>.docx</code>, <code>.xlsx</code> or <code>.pptx</code>, then open them again. A video without its end is saved as far as it goes, but most players can't play it without the missing end. ReviveUSB doesn't repair damaged files. What it recovers is what was on the drive.</p>
+<h2 id="if-they-still-wont-open">If they still won't open</h2>
+<p>Some files won't come back whole, and it helps to know that before you spend hours on more scans. If the data was overwritten, or the flash chip itself is dead, software can't help. For files that matter that much, a professional data recovery service is the remaining option.</p>
+<p>There is one more case. If the files opened fine on your PC but break after you put them on a repaired drive, the drive is at fault. After a repair, <strong>Test drive</strong> writes test data and reads it back, and <strong>Copy files back</strong> compares every copied file with the original by SHA-256 and lists any that don't match. Don't keep your files on a drive that fails either check, and keep the recovered copies on your PC either way.</p>
+<p>The <a href="../revive/help.html">manual</a> explains every button, and the <a href="../revive/faq.html">FAQ</a> covers the common recovery questions.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · Broken USB? Get your files back for free, and fix the drive. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Download ReviveUSB</a><a class="btn btn-outline" href="../revive/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/recovered-files-will-not-open.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=761fe63d"></script>
+</body>
+</html>
