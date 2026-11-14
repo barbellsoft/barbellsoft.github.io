@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>USB drive shows 0 bytes or No Media: what you can recover | Barbellsoft</title>
+<meta name="description" content="What 0 bytes, No Media or a missing drive letter means on a USB drive, what you can still try, and when only a recovery lab can help.">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=61605d01">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-14</p><h1>USB drive shows 0 bytes or No Media: what you can recover</h1><div class="doc prose"><p>You plug in a USB stick and nothing opens. Disk Management lists the disk, but as "No Media", or with a size of 0 bytes. Windows may even offer to format it. Choose Cancel.</p>
+<p>If the drive really reports no storage, no software can read it, ReviveUSB included. A few things are still worth trying, though, and there is a similar-looking case with much better odds.</p>
+<h2 id="two-problems-that-look-alike">Two problems that look alike</h2>
+<p>Start with the size Windows shows.</p>
+<p>If it says 0 bytes or No Media, the small chip that runs the stick, its controller, could not load its own firmware, or the drive reports no storage at all. Until that changes, there is nothing for any program to read.</p>
+<p>If the drive shows its real capacity but has no drive letter, or nothing appears in File Explorer, the drive is answering, and the damage is usually in the partition or the filesystem. The ReviveUSB manual has an example from an external drive: 3.6 TB, status Healthy/Online, and only a 200 MB RAW piece without a drive letter. Healthy/Online means the hardware is working and only the partition structure is broken, which software can usually handle.</p>
+<h2 id="what-reviveusb-shows-for-a-0-byte-drive">What ReviveUSB shows for a 0-byte drive</h2>
+<p>ReviveUSB is a free Windows tool for failing USB drives. It runs on Windows 10 or 11 (64-bit), is one exe with nothing to install, and needs administrator rights because it reads disks directly. It isn't code-signed yet, so SmartScreen may warn you. The <a href="../revive/download.html">download page</a> lists the file's SHA-256 so you can check it with <code>Get-FileHash .\ReviveUSB.exe -Algorithm SHA256</code> in PowerShell before choosing <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<p>Click <strong>Refresh</strong> and look at the disk list. A stick in this state shows as "Firmware failure (ROM mode)" or "No storage (size 0)". Select it and a <strong>Diagnosis</strong> box opens below the list with the device ID, the likely controller and what to do next. <strong>Copy diagnosis</strong> copies that text if you want to ask someone for help.</p>
+<p>Backup, recovery and repair are all turned off for this drive, because there is nothing to read or write.</p>
+<p>If the list shows "Empty (0)" in gray instead, that is often an empty card reader slot. Insert a card. If a USB stick shows it, unplug it and plug it back in.</p>
+<h2 id="what-you-can-still-try">What you can still try</h2>
+<p>Unplug the drive and plug it back in. The <strong>Diagnosis</strong> box checks again every 5 seconds by itself, or you can click <strong>Check again</strong>.</p>
+<p>If the drive comes back with its normal name, don't write anything to it, and don't run a repair. Back it up straight away:</p>
+<ol>
+<li>Click <strong>Back up to image</strong> and save the image on a different drive with as much free space as the stick's capacity. ReviveUSB only reads the drive and skips regions it can't read instead of stalling. If you have to stop, close the window; backing up again to the same file later picks up where it left off.</li>
+<li>Click <strong>Recover files (names/paths)</strong>, pick the image, and choose a folder on a healthy drive. Your files come back with their names and folders if the filesystem can be read. If it finds nothing, use <strong>Recover files (signature)</strong> on the same image, which finds photos, videos, PDFs and ZIP files by their content but without their names.</li>
+</ol>
+<p>Only after your files are safe should you think about using the stick again. Repair and <strong>Copy files back</strong> stay off for a drive that came back from this state until it passes <strong>Test drive</strong> on the whole free space. A quick 1 GB test doesn't turn them on. A large write can make a drive like this stop again, which is why the full test comes first.</p>
+<h2 id="when-a-recovery-lab-is-the-only-option">When a recovery lab is the only option</h2>
+<p>If the drive does not come back, ReviveUSB can't revive it, and its files can't be read by software. If the files matter, a data recovery lab may be able to read the memory chip directly. If they don't, replace the drive.</p>
+<p>You may find advice to run factory tools (mass production tools) on the stick. ReviveUSB doesn't recommend them: they did not work on the drive we tested, and they are not officially distributed.</p>
+<p>The same limit applies more widely. If the data has been overwritten, or the flash chip itself is dead, software cannot help, and a professional recovery service is what's left.</p>
+<h2 id="if-the-size-is-right-but-theres-no-drive-letter">If the size is right but there's no drive letter</h2>
+<p>Here you have more options. Start with plain Windows: open Disk Management and look at the volume. If it shows a normal filesystem and only lacks a letter, you can right-click it, choose Change Drive Letter and Paths, and add one. That doesn't touch your files. If Windows asks you to format at any point, choose Cancel.</p>
+<p>If the volume shows as RAW, or a large drive shows only a small RAW piece with the rest unallocated, the partition or filesystem is damaged. Then use the same order as above: <strong>Back up to image</strong>, then <strong>Recover files (names/paths)</strong> on the image. ReviveUSB reads NTFS, FAT32 and exFAT itself and can often read a filesystem that Windows refuses to mount. It copies all the files it finds, not only deleted ones, and anything that had been deleted goes into a separate <code>_deleted_files</code> folder. If that finds nothing, try <strong>Recover files (signature)</strong>.</p>
+<p>Once your files are on your PC, you can repair the drive. For a RAW drive with damaged partitions, <strong>Full rebuild</strong> is the usual fix. It wipes the whole disk, so it asks you to type <code>ERASE DISK</code> and the disk number first. <strong>Check (chkdsk)</strong> and <strong>Format</strong> need a drive letter, and chkdsk can't repair a RAW drive anyway. Before any repair writes to the drive, ReviveUSB reads it to look for signs that the controller is failing, such as the drive not responding or reporting a size of 0. If it finds them, it won't repair and says why in the log.</p>
+<h2 id="if-it-still-doesnt-work">If it still doesn't work</h2>
+<p>If recovered files won't open, they may have been fragmented, so only the first part came back, or they sat in regions that couldn't be read. Try both recovery buttons.</p>
+<p>If the drive keeps appearing and disappearing, or turns RAW again soon after a rebuild, the hardware is probably failing. Replace it, and keep a second copy of anything that matters. The <a href="../revive/help.html">manual</a> explains every button, and the <a href="../revive/faq.html">FAQ</a> covers the common questions.</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · Broken USB? Get your files back for free, and fix the drive. (Windows 10 / 11). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">Download ReviveUSB</a><a class="btn btn-outline" href="../revive/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/usb-drive-not-recognized-or-zero-size.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=761fe63d"></script>
+</body>
+</html>
