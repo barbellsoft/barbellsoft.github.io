@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-75c47dcd0d84e9ea53a7b8fc' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
+<title>字数统计：含空格和不含空格的字数、词数、行数，并整理空格</title>
+<meta name="description" content="统计含空格和不含空格的字数、词数、行数和字节数。可删除多余的空格和空行，也可把从 PDF 复制时断开的行接起来。">
+<link rel="canonical" href="https://barbellsoft.com/zh-cn/text-counter.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/text-counter.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/text-counter.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/text-counter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/text-counter.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/text-counter.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/text-counter.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/text-counter.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/text-counter.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/text-counter.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/text-counter.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/text-counter.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/text-counter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="字数统计：含空格和不含空格的字数、词数、行数，并整理空格">
+<meta property="og:description" content="统计含空格和不含空格的字数、词数、行数和字节数。可删除多余的空格和空行，也可把从 PDF 复制时断开的行接起来。">
+<meta property="og:url" content="https://barbellsoft.com/zh-cn/text-counter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字数统计：含空格和不含空格的字数、词数、行数，并整理空格">
+<meta name="twitter:description" content="统计含空格和不含空格的字数、词数、行数和字节数。可删除多余的空格和空行，也可把从 PDF 复制时断开的行接起来。">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "字数统计：含空格和不含空格的字数、词数、行数，并整理空格", "description": "统计含空格和不含空格的字数、词数、行数和字节数。可删除多余的空格和空行，也可把从 PDF 复制时断开的行接起来。", "inLanguage": "zh-CN", "url": "https://barbellsoft.com/zh-cn/text-counter.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=741674ce">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script async nonce="75c47dcd0d84e9ea53a7b8fc" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="75c47dcd0d84e9ea53a7b8fc" src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../zh-cn/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主导航"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/feedback.html">反馈</a><a href="../zh-cn/donate.html">捐助</a><a href="../blog/index.html" lang="en">博客</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>字数统计：含空格和不含空格的字数、词数、行数，并整理空格</h1><p class="prose">粘贴文字后，输入时会随时更新统计结果。</p><div class="calc tool"><label for="tx-in">文字</label><textarea id="tx-in" rows="10"></textarea><table class="perf" id="tx-out" aria-live="polite"><tbody><tr><th scope="row">字数（含空格）</th><td data-k="chars">0</td></tr><tr><th scope="row">字数（不含空格）</th><td data-k="noSpace">0</td></tr><tr><th scope="row">词数</th><td data-k="words">0</td></tr><tr><th scope="row">行数</th><td data-k="lines">0</td></tr><tr><th scope="row">字节数（UTF-8）</th><td data-k="bytes">0</td></tr></tbody></table><label class="check"><input type="checkbox" id="tx-join"> 连接段落内的换行（从 PDF 复制的文字）</label><div class="actions"><button class="btn btn-primary" type="button" id="tx-clean">整理</button><button class="btn btn-outline" type="button" id="tx-copy" data-done="已复制" data-fail="请选中文字后手动复制">复制</button></div></div><section class="prose" aria-labelledby="tx-h"><h2 id="tx-h">统计和整理规则</h2><ul><li>“整理”会删除每行开头和结尾的空格，把连续的空格合并为一个，段落之间只保留一个空行。</li><li>连接行时，行尾被连字符拆开的英文单词会重新拼合，中文和日文的行直接相连，不加空格。</li><li>换行在“字数（含空格）”中算作一个字，在“字数（不含空格）”中不计算。</li><li>字节数按 UTF-8 计算。有些输入框按 GBK 把一个汉字算作 2 个字节，显示的数字可能不同。</li></ul><p class="meta">此工具在浏览器中运行，不会把你的文件或文字上传到任何地方。</p><p>如果想在 Windows 上每次粘贴时自动修复 PDF 中断开的行： <a href="pastefit/index.html">PasteFit</a></p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/donate.html">捐助</a><a href="../zh-cn/privacy.html">隐私</a><a href="../zh-cn/terms.html">使用条款</a><a href="../zh-cn/refund.html">退款</a><a href="../zh-cn/tools.html">免费工具</a><a id="contact-link" href="#" hidden>联系</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>语言: <a href="../text-counter.html" lang="en">English</a> · <a href="../ko/text-counter.html" lang="ko">한국어</a> · <a href="../ja/text-counter.html" lang="ja">日本語</a> · <a href="../zh-cn/text-counter.html" lang="zh-CN" aria-current="true">简体中文</a> · <a href="../zh-tw/text-counter.html" lang="zh-TW">繁體中文</a> · <a href="../es/text-counter.html" lang="es">Español</a> · <a href="../de/text-counter.html" lang="de">Deutsch</a> · <a href="../fr/text-counter.html" lang="fr">Français</a> · <a href="../pt-br/text-counter.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/text-counter.html" lang="ru">Русский</a> · <a href="../vi/text-counter.html" lang="vi">Tiếng Việt</a></span><label>主题 <select id="theme-select"><option value="auto">默认</option><option value="dark">深色</option><option value="light">浅色</option></select></label></div><p class="mt-note">本页面为机器翻译。如发现错误，欢迎告诉我们。</p><p>© 2026 Barbellsoft。按“原样”提供，不附带任何担保。</p></div></footer>
+<script nonce="75c47dcd0d84e9ea53a7b8fc" src="../config.js?v=69a915c9"></script>
+<script nonce="75c47dcd0d84e9ea53a7b8fc" src="../site.js?v=877e3be7"></script>
+<script nonce="75c47dcd0d84e9ea53a7b8fc" src="../textclean.js?v=89c2f4a3"></script>
+</body>
+</html>

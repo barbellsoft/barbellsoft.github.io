@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-8cd74112943250227dfa0b43' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
+<title>文字数カウント：スペース込み・なしの文字数、単語数・行数と空白の整理</title>
+<meta name="description" content="スペース込み・なしの文字数、単語数、行数、バイト数を数えます。余分な空白や空行を削除し、PDF からコピーして途中で切れた行をつなぎます。">
+<link rel="canonical" href="https://barbellsoft.com/ja/text-counter.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/text-counter.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/text-counter.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/text-counter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/text-counter.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/text-counter.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/text-counter.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/text-counter.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/text-counter.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/text-counter.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/text-counter.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/text-counter.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/text-counter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="文字数カウント：スペース込み・なしの文字数、単語数・行数と空白の整理">
+<meta property="og:description" content="スペース込み・なしの文字数、単語数、行数、バイト数を数えます。余分な空白や空行を削除し、PDF からコピーして途中で切れた行をつなぎます。">
+<meta property="og:url" content="https://barbellsoft.com/ja/text-counter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文字数カウント：スペース込み・なしの文字数、単語数・行数と空白の整理">
+<meta name="twitter:description" content="スペース込み・なしの文字数、単語数、行数、バイト数を数えます。余分な空白や空行を削除し、PDF からコピーして途中で切れた行をつなぎます。">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "文字数カウント：スペース込み・なしの文字数、単語数・行数と空白の整理", "description": "スペース込み・なしの文字数、単語数、行数、バイト数を数えます。余分な空白や空行を削除し、PDF からコピーして途中で切れた行をつなぎます。", "inLanguage": "ja", "url": "https://barbellsoft.com/ja/text-counter.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=741674ce">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script async nonce="8cd74112943250227dfa0b43" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="8cd74112943250227dfa0b43" src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../ja/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../ja/launcher/index.html">Barbell Launcher</a><a href="../ja/revive/index.html">ReviveUSB</a><a href="../ja/chatda/index.html">Chatda</a><a href="../ja/revivefix/index.html">ReviveFix</a><a href="../ja/pastefit/index.html">PasteFit</a><a href="../ja/about.html">概要</a><a href="../ja/feedback.html">フィードバック</a><a href="../ja/donate.html">寄付</a><a href="../ja/blog/index.html">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>文字数カウント：スペース込み・なしの文字数、単語数・行数と空白の整理</h1><p class="prose">テキストを貼り付けてください。入力すると、すぐに数えます。</p><div class="calc tool"><label for="tx-in">テキスト</label><textarea id="tx-in" rows="10"></textarea><table class="perf" id="tx-out" aria-live="polite"><tbody><tr><th scope="row">文字数 (スペース込み)</th><td data-k="chars">0</td></tr><tr><th scope="row">文字数 (スペースなし)</th><td data-k="noSpace">0</td></tr><tr><th scope="row">単語数</th><td data-k="words">0</td></tr><tr><th scope="row">行数</th><td data-k="lines">0</td></tr><tr><th scope="row">バイト数 (UTF-8)</th><td data-k="bytes">0</td></tr></tbody></table><label class="check"><input type="checkbox" id="tx-join"> 段落内の改行をつなぐ (PDF からコピーしたテキスト)</label><div class="actions"><button class="btn btn-primary" type="button" id="tx-clean">整理</button><button class="btn btn-outline" type="button" id="tx-copy" data-done="コピーしました" data-fail="テキストを選択してコピーしてください">コピー</button></div></div><section class="prose" aria-labelledby="tx-h"><h2 id="tx-h">数え方と整理のルール</h2><ul><li>「整理」は各行の先頭と末尾の空白を削除し、連続した空白を 1 つにまとめ、段落の間の空行を 1 行だけ残します。</li><li>行をつなぐとき、行末のハイフンで分かれた英単語は元の 1 語に戻し、日本語や中国語の行はスペースを入れずにつなぎます。</li><li>改行は「文字数 (スペース込み)」では 1 文字として数え、「文字数 (スペースなし)」では数えません。</li><li>バイト数は UTF-8 で数えます。全角文字を 2 バイト (Shift_JIS) として数える入力欄とは、数字が異なることがあります。</li></ul><p class="meta">このツールはブラウザーの中で動作し、ファイルやテキストをどこにも送信しません。</p><p>Windows で貼り付けるたびに PDF の崩れた改行を整えるには: <a href="pastefit/index.html">PasteFit</a></p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../ja/launcher/index.html">Barbell Launcher</a><a href="../ja/revive/index.html">ReviveUSB</a><a href="../ja/chatda/index.html">Chatda</a><a href="../ja/revivefix/index.html">ReviveFix</a><a href="../ja/pastefit/index.html">PasteFit</a><a href="../ja/about.html">概要</a><a href="../ja/donate.html">寄付</a><a href="../ja/privacy.html">プライバシー</a><a href="../ja/terms.html">利用規約</a><a href="../ja/refund.html">返金</a><a href="../ja/tools.html">無料ツール</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../text-counter.html" lang="en">English</a> · <a href="../ko/text-counter.html" lang="ko">한국어</a> · <a href="../ja/text-counter.html" lang="ja" aria-current="true">日本語</a> · <a href="../zh-cn/text-counter.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/text-counter.html" lang="zh-TW">繁體中文</a> · <a href="../es/text-counter.html" lang="es">Español</a> · <a href="../de/text-counter.html" lang="de">Deutsch</a> · <a href="../fr/text-counter.html" lang="fr">Français</a> · <a href="../pt-br/text-counter.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/text-counter.html" lang="ru">Русский</a> · <a href="../vi/text-counter.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script nonce="8cd74112943250227dfa0b43" src="../config.js?v=69a915c9"></script>
+<script nonce="8cd74112943250227dfa0b43" src="../site.js?v=877e3be7"></script>
+<script nonce="8cd74112943250227dfa0b43" src="../textclean.js?v=89c2f4a3"></script>
+</body>
+</html>

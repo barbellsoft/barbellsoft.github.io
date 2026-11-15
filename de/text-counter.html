@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-9a32b0f0b0f7fe89b4d78bac' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
+<title>Zeichenzähler: Zeichen, Wörter und Zeilen zählen, Leerzeichen bereinigen</title>
+<meta name="description" content="Zählt Zeichen mit und ohne Leerzeichen, Wörter, Zeilen und Bytes. Entfernt überflüssige Leerzeichen und Leerzeilen oder fügt Zeilen zusammen, die beim Kopieren aus einem PDF zerrissen wurden.">
+<link rel="canonical" href="https://barbellsoft.com/de/text-counter.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/text-counter.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/text-counter.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/text-counter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/text-counter.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/text-counter.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/text-counter.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/text-counter.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/text-counter.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/text-counter.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/text-counter.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/text-counter.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/text-counter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Zeichenzähler: Zeichen, Wörter und Zeilen zählen, Leerzeichen bereinigen">
+<meta property="og:description" content="Zählt Zeichen mit und ohne Leerzeichen, Wörter, Zeilen und Bytes. Entfernt überflüssige Leerzeichen und Leerzeilen oder fügt Zeilen zusammen, die beim Kopieren aus einem PDF zerrissen wurden.">
+<meta property="og:url" content="https://barbellsoft.com/de/text-counter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeichenzähler: Zeichen, Wörter und Zeilen zählen, Leerzeichen bereinigen">
+<meta name="twitter:description" content="Zählt Zeichen mit und ohne Leerzeichen, Wörter, Zeilen und Bytes. Entfernt überflüssige Leerzeichen und Leerzeilen oder fügt Zeilen zusammen, die beim Kopieren aus einem PDF zerrissen wurden.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Zeichenzähler: Zeichen, Wörter und Zeilen zählen, Leerzeichen bereinigen", "description": "Zählt Zeichen mit und ohne Leerzeichen, Wörter, Zeilen und Bytes. Entfernt überflüssige Leerzeichen und Leerzeilen oder fügt Zeilen zusammen, die beim Kopieren aus einem PDF zerrissen wurden.", "inLanguage": "de", "url": "https://barbellsoft.com/de/text-counter.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=741674ce">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script async nonce="9a32b0f0b0f7fe89b4d78bac" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="9a32b0f0b0f7fe89b4d78bac" src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../de/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Hauptmenü"><a href="../de/launcher/index.html">Barbell Launcher</a><a href="../de/revive/index.html">ReviveUSB</a><a href="../de/chatda/index.html">Chatda</a><a href="../de/revivefix/index.html">ReviveFix</a><a href="../de/pastefit/index.html">PasteFit</a><a href="../de/about.html">Über uns</a><a href="../de/feedback.html">Feedback</a><a href="../de/donate.html">Spenden</a><a href="../de/blog/index.html">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>Zeichenzähler: Zeichen, Wörter und Zeilen zählen, Leerzeichen bereinigen</h1><p class="prose">Fügen Sie Ihren Text ein. Die Zahlen aktualisieren sich während der Eingabe.</p><div class="calc tool"><label for="tx-in">Text</label><textarea id="tx-in" rows="10"></textarea><table class="perf" id="tx-out" aria-live="polite"><tbody><tr><th scope="row">Zeichen</th><td data-k="chars">0</td></tr><tr><th scope="row">Zeichen ohne Leerzeichen</th><td data-k="noSpace">0</td></tr><tr><th scope="row">Wörter</th><td data-k="words">0</td></tr><tr><th scope="row">Zeilen</th><td data-k="lines">0</td></tr><tr><th scope="row">Bytes (UTF-8)</th><td data-k="bytes">0</td></tr></tbody></table><label class="check"><input type="checkbox" id="tx-join"> Zeilen innerhalb von Absätzen zusammenfügen (aus PDF kopierter Text)</label><div class="actions"><button class="btn btn-primary" type="button" id="tx-clean">Bereinigen</button><button class="btn btn-outline" type="button" id="tx-copy" data-done="Kopiert" data-fail="Markieren Sie den Text und kopieren Sie ihn">Kopieren</button></div></div><section class="prose" aria-labelledby="tx-h"><h2 id="tx-h">So wird gezählt und bereinigt</h2><ul><li>Bereinigen entfernt Leerzeichen am Anfang und Ende jeder Zeile, fasst mehrere Leerzeichen zu einem zusammen und lässt zwischen Absätzen genau eine Leerzeile stehen.</li><li>Beim Zusammenfügen werden Wörter, die am Zeilenende mit Bindestrich getrennt wurden, wieder zusammengesetzt, und chinesische und japanische Zeilen werden ohne Leerzeichen verbunden.</li><li>Ein Zeilenumbruch zählt bei „Zeichen“ als ein Zeichen und wird bei „Zeichen ohne Leerzeichen“ nicht mitgezählt.</li><li>Bytes werden in UTF-8 gezählt. Formulare, die mit einer älteren Kodierung wie Windows-1252 zählen, können eine andere Zahl anzeigen.</li></ul><p class="meta">Dieses Tool läuft in Ihrem Browser und überträgt Ihre Dateien und Texte nirgendwohin.</p><p>Um zerrissene Zeilen aus PDFs unter Windows bei jedem Einfügen zu reparieren: <a href="pastefit/index.html">PasteFit</a></p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../de/launcher/index.html">Barbell Launcher</a><a href="../de/revive/index.html">ReviveUSB</a><a href="../de/chatda/index.html">Chatda</a><a href="../de/revivefix/index.html">ReviveFix</a><a href="../de/pastefit/index.html">PasteFit</a><a href="../de/about.html">Über uns</a><a href="../de/donate.html">Spenden</a><a href="../de/privacy.html">Datenschutz</a><a href="../de/terms.html">Nutzungsbedingungen</a><a href="../de/refund.html">Erstattung</a><a href="../de/tools.html">Kostenlose Tools</a><a id="contact-link" href="#" hidden>Kontakt</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Sprache: <a href="../text-counter.html" lang="en">English</a> · <a href="../ko/text-counter.html" lang="ko">한국어</a> · <a href="../ja/text-counter.html" lang="ja">日本語</a> · <a href="../zh-cn/text-counter.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/text-counter.html" lang="zh-TW">繁體中文</a> · <a href="../es/text-counter.html" lang="es">Español</a> · <a href="../de/text-counter.html" lang="de" aria-current="true">Deutsch</a> · <a href="../fr/text-counter.html" lang="fr">Français</a> · <a href="../pt-br/text-counter.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/text-counter.html" lang="ru">Русский</a> · <a href="../vi/text-counter.html" lang="vi">Tiếng Việt</a></span><label>Design <select id="theme-select"><option value="auto">Standard</option><option value="dark">Dunkel</option><option value="light">Hell</option></select></label></div><p class="mt-note">Diese Seite wurde maschinell übersetzt. Wenn Ihnen ein Fehler auffällt, sagen Sie uns bitte Bescheid.</p><p>© 2026 Barbellsoft. Bereitgestellt wie besehen, ohne Gewähr.</p></div></footer>
+<script nonce="9a32b0f0b0f7fe89b4d78bac" src="../config.js?v=69a915c9"></script>
+<script nonce="9a32b0f0b0f7fe89b4d78bac" src="../site.js?v=877e3be7"></script>
+<script nonce="9a32b0f0b0f7fe89b4d78bac" src="../textclean.js?v=89c2f4a3"></script>
+</body>
+</html>

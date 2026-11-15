@@ -201,3 +201,19 @@ dl.guide dd { margin: 2px 0 0; }
 .calc label { font-weight: 600; color: var(--ink); }
 .calc input { font: inherit; font-size: 20px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--hairline); border-radius: var(--r); background: var(--canvas); color: var(--ink); }
 .calc output { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+
+/* 무료 웹 도구(11-15): .calc 를 그대로 쓰고 입력 종류만 더한다. 강조는 결과 하나(마진은 필요한 판매가, 나머지는 저장 단추) */
+.calc.tool { max-width: 40em; }
+.calc h2 { margin: 0; }
+.calc textarea, .calc select { font: inherit; min-height: 44px; padding: 8px 10px; border: 1px solid var(--hairline); border-radius: var(--r); background: var(--canvas); color: var(--ink); }
+.calc textarea { resize: vertical; line-height: 1.5; }
+.calc input[type="file"] { font-size: 15px; padding: 8px; }
+.calc .check { display: flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 400; color: var(--body); }
+.calc .check input { min-height: 0; width: 20px; height: 20px; margin: 0; padding: 0; }
+.calc.tool output { font-size: 16px; font-weight: 600; line-height: 1.5; }
+.calc .need { margin: 0; font-weight: 600; color: var(--ink); }
+.calc .need output { display: block; font-size: 26px; font-weight: 700; }
+.calc .actions { margin: 0; }
+.calc ol { margin: 0; padding-left: 22px; }
+.preview canvas, canvas.preview { display: block; max-width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 4px; }
+.tool-list li { margin-bottom: 12px; }

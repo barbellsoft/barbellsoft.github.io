@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-599a3e7124de8e175b0d7bec' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
+<title>賣家利潤計算器：利潤、利潤率與目標售價</title>
+<meta name="description" content="輸入售價、商品成本、平台手續費和運費，就能算出撥款金額、利潤和利潤率，也能算出達到目標利潤率所需的售價。">
+<link rel="canonical" href="https://barbellsoft.com/zh-tw/seller-margin-calculator.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/seller-margin-calculator.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/seller-margin-calculator.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/seller-margin-calculator.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/seller-margin-calculator.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/seller-margin-calculator.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/seller-margin-calculator.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/seller-margin-calculator.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/seller-margin-calculator.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/seller-margin-calculator.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/seller-margin-calculator.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/seller-margin-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/seller-margin-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="賣家利潤計算器：利潤、利潤率與目標售價">
+<meta property="og:description" content="輸入售價、商品成本、平台手續費和運費，就能算出撥款金額、利潤和利潤率，也能算出達到目標利潤率所需的售價。">
+<meta property="og:url" content="https://barbellsoft.com/zh-tw/seller-margin-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="賣家利潤計算器：利潤、利潤率與目標售價">
+<meta name="twitter:description" content="輸入售價、商品成本、平台手續費和運費，就能算出撥款金額、利潤和利潤率，也能算出達到目標利潤率所需的售價。">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "賣家利潤計算器：利潤、利潤率與目標售價", "description": "輸入售價、商品成本、平台手續費和運費，就能算出撥款金額、利潤和利潤率，也能算出達到目標利潤率所需的售價。", "inLanguage": "zh-TW", "url": "https://barbellsoft.com/zh-tw/seller-margin-calculator.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=741674ce">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script async nonce="599a3e7124de8e175b0d7bec" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="599a3e7124de8e175b0d7bec" src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../zh-tw/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主選單"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/feedback.html">意見回饋</a><a href="../zh-tw/donate.html">贊助</a><a href="../blog/index.html" lang="en">部落格</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>賣家利潤計算器：利潤、利潤率與目標售價</h1><p class="prose">金額直接以你使用的貨幣輸入。手續費率請填寫平台撥款明細上的比例：不同平台和類別的費率不同，所以本頁不預先填入。</p><div class="calc tool" id="mg" data-dec="."><label for="mg-price">售價</label><input id="mg-price" type="text" inputmode="decimal" autocomplete="off" value=""><label for="mg-cost">商品成本</label><input id="mg-cost" type="text" inputmode="decimal" autocomplete="off" value=""><label for="mg-fee">平台手續費（%）</label><input id="mg-fee" type="text" inputmode="decimal" autocomplete="off" value=""><label for="mg-ship">賣家負擔的運費</label><input id="mg-ship" type="text" inputmode="decimal" autocomplete="off" value="0"><label for="mg-other">其他費用（包裝、廣告）</label><input id="mg-other" type="text" inputmode="decimal" autocomplete="off" value="0"><table class="perf" aria-live="polite"><tbody><tr><th scope="row">手續費</th><td data-k="fee">—</td></tr><tr><th scope="row">撥款金額</th><td data-k="payout">—</td></tr><tr><th scope="row">利潤</th><td data-k="profit">—</td></tr><tr><th scope="row">利潤率（%）</th><td data-k="margin">—</td></tr></tbody></table><label for="mg-target">目標利潤率（%）</label><input id="mg-target" type="text" inputmode="decimal" autocomplete="off" value="20"><p class="need">達到目標利潤率所需的售價<output for="mg-target" data-k="need" aria-live="polite">—</output></p></div><section class="prose" aria-labelledby="mg-h"><h2 id="mg-h">計算方式</h2><ul><li>手續費 = 售價 × 手續費率。利潤 = 售價 − 手續費 − 成本 − 運費 − 其他費用。利潤率 = 利潤 ÷ 售價。</li><li>所需售價 = (成本 + 運費 + 其他費用) ÷ (1 − 手續費率 − 目標利潤率)。如果手續費率與目標利潤率加起來達到 100% 以上，任何售價都無法達到。</li><li>未計入營業稅、所得稅等稅金。請向會計師確認。</li></ul><p class="meta">此工具在瀏覽器中執行，不會把你的檔案或文字上傳到任何地方。</p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/donate.html">贊助</a><a href="../zh-tw/privacy.html">隱私權</a><a href="../zh-tw/terms.html">使用條款</a><a href="../zh-tw/refund.html">退款</a><a href="../zh-tw/tools.html">免費工具</a><a id="contact-link" href="#" hidden>聯絡</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>語言: <a href="../seller-margin-calculator.html" lang="en">English</a> · <a href="../ko/seller-margin-calculator.html" lang="ko">한국어</a> · <a href="../ja/seller-margin-calculator.html" lang="ja">日本語</a> · <a href="../zh-cn/seller-margin-calculator.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/seller-margin-calculator.html" lang="zh-TW" aria-current="true">繁體中文</a> · <a href="../es/seller-margin-calculator.html" lang="es">Español</a> · <a href="../de/seller-margin-calculator.html" lang="de">Deutsch</a> · <a href="../fr/seller-margin-calculator.html" lang="fr">Français</a> · <a href="../pt-br/seller-margin-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/seller-margin-calculator.html" lang="ru">Русский</a> · <a href="../vi/seller-margin-calculator.html" lang="vi">Tiếng Việt</a></span><label>主題 <select id="theme-select"><option value="auto">預設</option><option value="dark">深色</option><option value="light">淺色</option></select></label></div><p class="mt-note">本頁為機器翻譯。若發現錯誤，歡迎告訴我們。</p><p>© 2026 Barbellsoft。依現狀提供，不附任何保證。</p></div></footer>
+<script nonce="599a3e7124de8e175b0d7bec" src="../config.js?v=69a915c9"></script>
+<script nonce="599a3e7124de8e175b0d7bec" src="../site.js?v=877e3be7"></script>
+<script nonce="599a3e7124de8e175b0d7bec" src="../margin.js?v=1f431427"></script>
+</body>
+</html>
