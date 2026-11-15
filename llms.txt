@@ -1,0 +1,39 @@
+# Barbellsoft
+
+> Barbellsoft is a one-person software studio that makes small, free tools for Windows and macOS. The two main products are ReviveUSB, which recovers files from a USB drive or SD card that won't open and then repairs the drive, and Chatda, a desktop search app that finds files by name and by the text inside documents.
+
+Last updated: 2026-11-15. The site is in English at the top level, with the same pages in Korean, Japanese, Chinese (Simplified and Traditional), Spanish, German, French, Portuguese (Brazil), Russian and Vietnamese under /ko/, /ja/, /zh-cn/, /zh-tw/, /es/, /de/, /fr/, /pt-br/, /ru/ and /vi/.
+
+## ReviveUSB
+
+- Purpose: recover files from a USB flash drive, SD card or external disk that Windows asks to format, shows as RAW, or won't open, then repair the drive.
+- Order of work: it copies the whole drive to an image file first (resuming if interrupted), recovers files from that copy, and only then offers repair (check, format or full rebuild). Backup and recovery only read the original drive.
+- File systems: NTFS, FAT32 and exFAT, current and deleted files with their names and folders. When names are gone, photos, videos (MP4, MOV), PDFs and ZIP files are found by signature.
+- If the drive itself is failing, it does not repair it: it gets the files out and recommends replacing the drive.
+- Platform: Windows 10 and 11, 64-bit. Needs administrator rights because it reads the drive directly.
+- Download: one exe of about 8.8 MB, no installation. 11 interface languages.
+- Latest version: 0.2.15 (2026-11-07). Not code-signed yet, so Windows SmartScreen may warn on first run; SHA-256 values are on the download page.
+- Price: free, with no ads and no account. Donations are optional.
+- Pages: https://barbellsoft.com/revive/ · https://barbellsoft.com/revive/download.html · https://barbellsoft.com/revive/faq.html · https://barbellsoft.com/revive/help.html
+
+## Chatda
+
+- Purpose: find a file by its name, or by a word written inside it when the name is forgotten.
+- Content search: reads the text inside TXT, MD, CSV, DOCX, XLSX, PPTX, PDF and HWPX files in folders you add. Other formats are found by name only.
+- Scope: on Windows it indexes the names on every fixed drive automatically; network folders (NAS) can be added.
+- Interface: one results table you can sort, filter and group; previews; rename, copy, drag out or move to the trash from the results; Ctrl+Shift+Space opens it from anywhere; updates itself.
+- Platform: Windows 10 and 11 (64-bit) and macOS (Apple silicon and Intel). App languages: English, Korean, Japanese.
+- Measured speed (one PC: Windows 10 Pro, AMD Ryzen 5 8500G, 31 GB RAM, NVMe SSD; the whole C: drive, about 11.8 million files): first index 16–17 s against 47–48 s for another file search program ("Program A"); one-letter search 87–92 ms against 115–128 ms; index file 125–132 MB against 381 MB. Results differ on other PCs; full conditions are on the Chatda page.
+- Known limits: files covered only by a whole-drive entry such as C:\ are searched by name; a new file on a NAS can take about 5 minutes to appear; favorites and recent searches don't sync between computers. The Windows build isn't code-signed and the Mac build isn't notarized yet.
+- Latest version: 9.34.8 (2026-11-15).
+- Price: free, with no ads and no account.
+- Pages: https://barbellsoft.com/chatda/ · https://barbellsoft.com/chatda/download.html · https://barbellsoft.com/chatda/faq.html · https://barbellsoft.com/chatda/help.html
+
+## Other tools
+
+- [Barbell Launcher](https://barbellsoft.com/launcher/) · [ReviveFix](https://barbellsoft.com/revivefix/) · [PasteFit](https://barbellsoft.com/pastefit/)
+
+## More
+
+- [About](https://barbellsoft.com/about.html) · [Blog](https://barbellsoft.com/blog/) · [Sitemap](https://barbellsoft.com/sitemap.xml)
+- Contact: softbarbell@gmail.com

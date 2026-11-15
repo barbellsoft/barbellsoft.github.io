@@ -83,6 +83,13 @@ section { margin-top: 32px; }
 .tag { font-size: 18px; color: var(--ink); margin-bottom: 18px; }
 .video-link a { display: inline-flex; align-items: center; gap: 14px; margin: 0 0 20px; font-weight: 600; text-decoration: none; }
 .video-link img { border-radius: var(--r); border: 1px solid var(--hairline); max-width: 45vw; height: auto; }
+h1 .h1-sub { display: block; font-size: 17px; font-weight: 500; color: var(--mute); margin-top: 6px; letter-spacing: 0; }
+.proof { display: flex; flex-wrap: wrap; gap: 14px 32px; margin: -4px 0 20px; }
+.proof div { margin: 0; }
+.proof dt { font-size: 13px; color: var(--mute); }
+.proof dd { margin: 2px 0 0; font-size: 20px; font-weight: 600; color: var(--ink); }
+.perf-lead { max-width: 46em; margin: 0 0 12px; line-height: 1.7; word-break: keep-all; }
+.limits { margin: 0 0 16px; padding-left: 20px; line-height: 1.7; max-width: 46em; word-break: keep-all; }
 .promise { max-width: 46em; margin: -6px 0 20px; color: var(--body); font-size: 16px; line-height: 1.7; border-left: 3px solid var(--brand); padding-left: 12px; word-break: keep-all; }
 .prose { max-width: 42em; }
 

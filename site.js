@@ -91,7 +91,10 @@
   // 프로그램 홈에선 다운로드 묶음이 두 화면 아래라, 안내를 소개 문구(.tag) 바로 아래로 올린다(10-29 실측 1477px).
   function initPhone() {
     var box = $("dl-phone"), btn = $("dl-phone-send"), tag = document.querySelector("main .tag");
-    if (!box || !btn || !/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+    // iPadOS 13 부터는 UA 가 Macintosh 라 터치 지점 수로 함께 판별한다(11-15)
+    var phone = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    if (!box || !btn || !phone) return;
     if (tag && box.closest(".dl-block")) tag.parentNode.insertBefore(box, tag.nextSibling);
     document.documentElement.classList.add("phone");
     box.hidden = false;
@@ -104,12 +107,22 @@
         navigator.share({ title: document.title, url: location.href }).catch(function () { /* 공유 창을 닫음 */ });
         return;
       }
-      function fail() { btn.textContent = btn.getAttribute("data-fail"); }
+      function done() { btn.textContent = btn.getAttribute("data-done"); }
+      function legacy() {  // 클립보드 API 가 막힌 브라우저(구형 웹뷰)용
+        var t = document.createElement("textarea"), ok = false;
+        t.value = location.href;
+        t.setAttribute("readonly", "");
+        t.style.position = "fixed";
+        t.style.top = "-1000px";
+        document.body.appendChild(t);
+        t.select();
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(t);
+        btn.textContent = btn.getAttribute(ok ? "data-done" : "data-fail");
+      }
       try {
-        navigator.clipboard.writeText(location.href).then(function () {
-          btn.textContent = btn.getAttribute("data-done");
-        }, fail);
-      } catch (e) { fail(); }
+        navigator.clipboard.writeText(location.href).then(done, legacy);
+      } catch (e) { legacy(); }
     });
   }
 
