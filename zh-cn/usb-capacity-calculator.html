@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-95e25ec6a529b140aae44fc6' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
 <title>U 盘容量计算器：为什么 64 GB 的驱动器显示 59.6 GB</title>
 <meta name="description" content="输入包装上的容量，看看 Windows 会显示多少。说明 1000 与 1024 的差别、文件系统占用的空间，以及如何检查驱动器是否虚标容量。">
 <link rel="canonical" href="https://barbellsoft.com/zh-cn/usb-capacity-calculator.html">
@@ -34,7 +34,9 @@
 <meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
 <link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
 <link rel="stylesheet" href="../style.css?v=1bd48275">
-<script src="../theme.js?v=fd2f7cbd"></script>
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script async nonce="95e25ec6a529b140aae44fc6" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="95e25ec6a529b140aae44fc6" src="../theme.js?v=fd2f7cbd"></script>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -44,8 +46,8 @@
 <h1>U 盘容量计算器：为什么 64 GB 的驱动器显示 59.6 GB</h1><p class="prose">驱动器厂商把 1 GB 算作 1,000,000,000 字节。Windows 以 1,073,741,824 字节（1024 × 1024 × 1024）为单位计算，却仍然称之为 GB。因此同一个驱动器在 Windows 中显示的数字更小，但并没有少任何东西。</p><div class="calc"><label for="calc-gb">包装上的容量（GB）</label><input id="calc-gb" type="text" inputmode="decimal" autocomplete="off" value="64"><output id="calc-out" for="calc-gb" aria-live="polite" data-tpl="包装上的 {gb} GB ≈ Windows 中的 {gib} GB" data-empty="请输入大于 0 的数字。" data-dec=".">包装上的 64 GB ≈ Windows 中的 59.6 GB</output></div><p class="meta prose">这是整个驱动器的大小。格式化后看到的可用空间还会再小一点，因为文件系统自己要占用一些空间。许多驱动器报告的容量也会比包装上的整数略小。</p><section aria-labelledby="sizes"><h2 id="sizes">常见容量</h2><div class="perf-wrap"><table class="perf"><thead><tr><th scope="col">包装上的容量</th><th scope="col">Windows 大约显示</th></tr></thead><tbody><tr><th scope="row">8 GB</th><td>7.5 GB</td></tr><tr><th scope="row">16 GB</th><td>14.9 GB</td></tr><tr><th scope="row">32 GB</th><td>29.8 GB</td></tr><tr><th scope="row">64 GB</th><td>59.6 GB</td></tr><tr><th scope="row">128 GB</th><td>119.2 GB</td></tr><tr><th scope="row">256 GB</th><td>238.4 GB</td></tr><tr><th scope="row">512 GB</th><td>476.8 GB</td></tr><tr><th scope="row">1000 GB (1 TB)</th><td>931.3 GB</td></tr><tr><th scope="row">2000 GB (2 TB)</th><td>1862.6 GB</td></tr></tbody></table></div></section><section class="prose" aria-labelledby="fake"><h2 id="fake">什么时候该怀疑虚标容量</h2><ul><li>Windows 显示的数字和本计算器差不多，但后来复制的文件丢失或打不开，尤其是大文件或驱动器快满时复制的文件。</li><li>价格远低于同容量的其他驱动器。</li><li>把驱动器装满后，文件夹名或文件名变成乱码。</li></ul><p>虚标驱动器在 Windows 中显示的就是标称容量，所以本计算器发现不了。要检查，请使用写入并读取校验的工具：它用测试数据填满全部空闲空间，再读回来。如果后写入的数据替换了先写入的数据，这个驱动器就是虚标的。在 Windows 上，选择测试全部空闲空间时，ReviveUSB 的 “测试驱动器” 就会做这件事。</p></section><p><a href="usb-sd-error-guide.html">更多 U 盘和 SD 卡错误提示</a></p>
 </div></main>
 <footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/donate.html">捐助</a><a href="../zh-cn/privacy.html">隐私</a><a href="../zh-cn/terms.html">使用条款</a><a href="../zh-cn/refund.html">退款</a><a href="../zh-cn/usb-sd-error-guide.html">U 盘错误指南</a><a href="../zh-cn/usb-capacity-calculator.html">U 盘容量计算器</a><a id="contact-link" href="#" hidden>联系</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>语言: <a href="../usb-capacity-calculator.html" lang="en">English</a> · <a href="../ko/usb-capacity-calculator.html" lang="ko">한국어</a> · <a href="../ja/usb-capacity-calculator.html" lang="ja">日本語</a> · <a href="../zh-cn/usb-capacity-calculator.html" lang="zh-CN" aria-current="true">简体中文</a> · <a href="../zh-tw/usb-capacity-calculator.html" lang="zh-TW">繁體中文</a> · <a href="../es/usb-capacity-calculator.html" lang="es">Español</a> · <a href="../de/usb-capacity-calculator.html" lang="de">Deutsch</a> · <a href="../fr/usb-capacity-calculator.html" lang="fr">Français</a> · <a href="../pt-br/usb-capacity-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/usb-capacity-calculator.html" lang="ru">Русский</a> · <a href="../vi/usb-capacity-calculator.html" lang="vi">Tiếng Việt</a></span><label>主题 <select id="theme-select"><option value="auto">默认</option><option value="dark">深色</option><option value="light">浅色</option></select></label></div><p class="mt-note">本页面为机器翻译。如发现错误，欢迎告诉我们。</p><p>© 2026 Barbellsoft。按“原样”提供，不附带任何担保。</p></div></footer>
-<script src="../config.js?v=69a915c9"></script>
-<script src="../site.js?v=877e3be7"></script>
-<script src="../calc.js?v=e234efda"></script>
+<script nonce="95e25ec6a529b140aae44fc6" src="../config.js?v=69a915c9"></script>
+<script nonce="95e25ec6a529b140aae44fc6" src="../site.js?v=877e3be7"></script>
+<script nonce="95e25ec6a529b140aae44fc6" src="../calc.js?v=e234efda"></script>
 </body>
 </html>

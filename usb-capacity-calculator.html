@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-ad6cf445e07a159caa83d994' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
 <title>USB capacity calculator: why a 64 GB drive shows 59.6 GB</title>
 <meta name="description" content="Enter the capacity on the package and see what Windows will show. Explains the 1000 vs 1024 difference, file system overhead and how to check a drive for fake capacity.">
 <link rel="canonical" href="https://barbellsoft.com/usb-capacity-calculator.html">
@@ -34,7 +34,9 @@
 <meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
 <link rel="icon" href="img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
 <link rel="stylesheet" href="style.css?v=1bd48275">
-<script src="theme.js?v=fd2f7cbd"></script>
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script async nonce="ad6cf445e07a159caa83d994" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="ad6cf445e07a159caa83d994" src="theme.js?v=fd2f7cbd"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -44,8 +46,8 @@
 <h1>USB capacity calculator: why a 64 GB drive shows 59.6 GB</h1><p class="prose">Drive makers count 1 GB as 1,000,000,000 bytes. Windows counts in units of 1,073,741,824 bytes (1024 × 1024 × 1024) but still calls them GB. The same drive therefore shows a smaller number in Windows, and nothing is missing.</p><div class="calc"><label for="calc-gb">Capacity on the package (GB)</label><input id="calc-gb" type="text" inputmode="decimal" autocomplete="off" value="64"><output id="calc-out" for="calc-gb" aria-live="polite" data-tpl="{gb} GB on the package ≈ {gib} GB in Windows" data-empty="Enter a number greater than 0." data-dec=".">64 GB on the package ≈ 59.6 GB in Windows</output></div><p class="meta prose">This is the size of the whole drive. The free space you see after formatting is a little smaller again, because the file system uses some space for itself. Many drives also report slightly less than the round number on the package.</p><section aria-labelledby="sizes"><h2 id="sizes">Common sizes</h2><div class="perf-wrap"><table class="perf"><thead><tr><th scope="col">On the package</th><th scope="col">Windows shows about</th></tr></thead><tbody><tr><th scope="row">8 GB</th><td>7.5 GB</td></tr><tr><th scope="row">16 GB</th><td>14.9 GB</td></tr><tr><th scope="row">32 GB</th><td>29.8 GB</td></tr><tr><th scope="row">64 GB</th><td>59.6 GB</td></tr><tr><th scope="row">128 GB</th><td>119.2 GB</td></tr><tr><th scope="row">256 GB</th><td>238.4 GB</td></tr><tr><th scope="row">512 GB</th><td>476.8 GB</td></tr><tr><th scope="row">1000 GB (1 TB)</th><td>931.3 GB</td></tr><tr><th scope="row">2000 GB (2 TB)</th><td>1862.6 GB</td></tr></tbody></table></div></section><section class="prose" aria-labelledby="fake"><h2 id="fake">When to suspect fake capacity</h2><ul><li>Windows shows about the number from this calculator, but files copied later go missing or won&#x27;t open, especially large files or files copied when the drive was nearly full.</li><li>The price is far below what other drives of the same size cost.</li><li>Folders or file names turn into garbled text after you fill the drive.</li></ul><p>A fake drive shows the advertised size in Windows, so this calculator can&#x27;t catch it. To check, use a write-and-read verification tool: it fills all free space with test data and reads it back. If the data written later replaced earlier data, the drive is fake. ReviveUSB&#x27;s Test drive does this on Windows when you choose to test all free space.</p></section><p><a href="usb-sd-error-guide.html">More USB and SD card error messages</a></p>
 </div></main>
 <footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="launcher/index.html">Barbell Launcher</a><a href="revive/index.html">ReviveUSB</a><a href="chatda/index.html">Chatda</a><a href="revivefix/index.html">ReviveFix</a><a href="pastefit/index.html">PasteFit</a><a href="about.html">About</a><a href="donate.html">Donate</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a><a href="usb-sd-error-guide.html">USB error guide</a><a href="usb-capacity-calculator.html">USB capacity calculator</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="usb-capacity-calculator.html" lang="en" aria-current="true">English</a> · <a href="ko/usb-capacity-calculator.html" lang="ko">한국어</a> · <a href="ja/usb-capacity-calculator.html" lang="ja">日本語</a> · <a href="zh-cn/usb-capacity-calculator.html" lang="zh-CN">简体中文</a> · <a href="zh-tw/usb-capacity-calculator.html" lang="zh-TW">繁體中文</a> · <a href="es/usb-capacity-calculator.html" lang="es">Español</a> · <a href="de/usb-capacity-calculator.html" lang="de">Deutsch</a> · <a href="fr/usb-capacity-calculator.html" lang="fr">Français</a> · <a href="pt-br/usb-capacity-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="ru/usb-capacity-calculator.html" lang="ru">Русский</a> · <a href="vi/usb-capacity-calculator.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
-<script src="config.js?v=69a915c9"></script>
-<script src="site.js?v=877e3be7"></script>
-<script src="calc.js?v=e234efda"></script>
+<script nonce="ad6cf445e07a159caa83d994" src="config.js?v=69a915c9"></script>
+<script nonce="ad6cf445e07a159caa83d994" src="site.js?v=877e3be7"></script>
+<script nonce="ad6cf445e07a159caa83d994" src="calc.js?v=e234efda"></script>
 </body>
 </html>
