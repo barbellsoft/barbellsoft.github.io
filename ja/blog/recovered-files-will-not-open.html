@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>復元したファイルが開けない・壊れているときに試すこと | Barbellsoft</title>
+<meta name="description" content="USBメモリやSDカードから取り戻したファイルが開けない。なぜそうなるのか、直せるケースと直せないケースを説明します。">
+<link rel="canonical" href="https://barbellsoft.com/ja/blog/recovered-files-will-not-open.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/blog/recovered-files-will-not-open.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/blog/recovered-files-will-not-open.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/blog/recovered-files-will-not-open.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/blog/recovered-files-will-not-open.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/blog/recovered-files-will-not-open.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="復元したファイルが開けない・壊れているときに試すこと | Barbellsoft">
+<meta property="og:description" content="USBメモリやSDカードから取り戻したファイルが開けない。なぜそうなるのか、直せるケースと直せないケースを説明します。">
+<meta property="og:url" content="https://barbellsoft.com/ja/blog/recovered-files-will-not-open.html">
+<meta property="og:image" content="https://barbellsoft.com/img/og/screenshot-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="復元したファイルが開けない・壊れているときに試すこと | Barbellsoft">
+<meta name="twitter:description" content="USBメモリやSDカードから取り戻したファイルが開けない。なぜそうなるのか、直せるケースと直せないケースを説明します。">
+<meta name="twitter:image" content="https://barbellsoft.com/img/og/screenshot-ja.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "復元したファイルが開けない・壊れているときに試すこと", "description": "USBメモリやSDカードから取り戻したファイルが開けない。なぜそうなるのか、直せるケースと直せないケースを説明します。", "datePublished": "2026-11-15", "inLanguage": "ja", "url": "https://barbellsoft.com/ja/blog/recovered-files-will-not-open.html", "image": "https://barbellsoft.com/img/screenshot-ja.png", "author": {"@id": "https://barbellsoft.com/#org"}, "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=1bd48275">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../ja/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../../ja/launcher/index.html">Barbell Launcher</a><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/feedback.html">フィードバック</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/blog/index.html" aria-current="page">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">ブログ</a> · 2026-11-15</p><h1>復元したファイルが開けない・壊れているときに試すこと</h1><div class="doc prose"><p>USB メモリや SD カードからファイルを取り戻したのに、一部が開けない。写真が途中から灰色になる、PDF リーダーがファイルが壊れていると表示する、動画が再生されない、Word の文書が ZIP として表示される。これは復元のあとによくあることで、その原因によって、何か手を打てるかどうかが決まります。名前を変えるだけで済むこともあれば、データがもう残っていないこともあります。</p>
+<h2 id="_1">復元したファイルが壊れて戻る理由</h2>
+<h3 id="_2">データが上書きされていた</h3>
+<p>ファイルを削除しても、データはたいていドライブに残り、消えるのはそれを指している索引の項目だけです。ただし、そのファイルが占めていた領域は空き領域として扱われるようになります。そのあとドライブに何かが保存されると、古いファイルの上に書き込まれたかもしれません。復元ツールは古い項目をまだ見つけられますが、中身はもう別のファイルのものになっています。どんなソフトウェアでも、そのデータは取り戻せません。</p>
+<h3 id="_3">ファイルが分割して保存されていた</h3>
+<p>ドライブは、ファイルを必ずしも 1 つの連続した領域に保存するわけではありません。ファイルが断片に分かれているとき、それぞれの断片がどこにあるかを記録しているのはファイルシステムの索引です。その索引を通さずに中身からファイルを見つけた場合、残りの部分がどこにあるかの記録がないので、先頭部分しか得られないことがあります。復元したファイルが開けないとき、ReviveUSB のマニュアルが最初に挙げている原因がこれです。</p>
+<h3 id="_4">ドライブの一部が読み取れなかった</h3>
+<p>故障しかけた USB メモリやカードには、読み取りエラーを返す領域があることがよくあります。そこに保存されていたものは、ドライブのどのコピーにも含まれないので、一部がその領域にあったファイルは完全な形では戻りません。</p>
+<h3 id="_5">ファイルは無事だが、名前が違うか、未完成</h3>
+<p>docx、xlsx、pptx のような Office のファイルは中身が ZIP ファイルなので、中身からファイルを探すツールは <code>.zip</code> として保存します。動画は事情が違います。録画が途中で切れた場合や、ドライブがファイルの終わりを書き込んだ部分を失った場合、ファイルには正しい終わりがなく、ほとんどのプレーヤーでは再生できません。</p>
+<h2 id="_6">もう一度試す前に</h2>
+<p>元のドライブがまだ手元にあるなら、作業が終わるまでそのままにしておいてください。何も保存せず、フォーマットもせず、Windows にスキャンして修復するか聞かれても「はい」をクリックしないでください。2 回目にもっとうまく復元できるかどうかは、データがまだ残っているかどうかにかかっています。復元したファイルは別の正常なドライブに置き、手元に 1 つしかないファイルではなく、そのコピーで試してください。</p>
+<h2 id="reviveusb">ReviveUSB でもう一度試す</h2>
+<p>ReviveUSB は、この作業のための無料の Windows ツールです。Windows 10 または 11 用の 64 ビット exe で、ディスクを直接読み取るため管理者権限が必要です。まだコード署名されていないため、SmartScreen が警告することがあります。<a href="../revive/download.html">ダウンロードページ</a>にファイルの SHA-256 が載っているので、<strong>詳細情報</strong>、続けて <strong>実行</strong> を選ぶ前に確認できます。</p>
+<h3 id="1">1. イメージを使って作業し、読み取れなかった部分を再試行する</h3>
+<p><strong>更新</strong> をクリックしてドライブを選び、<strong>イメージにバックアップ</strong> をクリックして、別のドライブにイメージを保存します。ReviveUSB はドライブを読み取るだけで、コピーが止まらないよう、読み取れない領域は飛ばします。最後に、その領域をセクター単位で再試行するか尋ねます。損傷のひどいドライブではかなり時間がかかることがありますが、より多くのデータを救える可能性があるので、待てるなら「はい」と答えてください。</p>
+<p>ドライブに戻るのは、イメージを作ってから一度もフォーマット、再構築、保存をしていない場合だけにしてください。そうでなければ手順 2 に進み、手元のイメージで作業します。</p>
+<p>すでにイメージを作ってあるなら、最初からやり直す必要はありません。もう一度 <strong>イメージにバックアップ</strong> をクリックし、同じファイルを選んで、置き換えるか Windows に聞かれたら「はい」と答えます。完成したイメージの場合、ドライブ全体をもう一度読むことはありません。読み取れなかった領域の再試行だけを提案します。イメージに含まれるドライブの範囲が広いほど、完全な形で戻るファイルが増えます。</p>
+<h3 id="2">2. 両方の復元ボタンを使う</h3>
+<p>2 つのボタンはそれぞれ別の方法でファイルを探すので、イメージに対して両方を実行し、それぞれ正常なドライブ上の別々のフォルダーに保存してください。</p>
+<p><strong>ファイル復元(名前・パス)</strong> は NTFS、FAT32、exFAT の索引を読み取り、ファイルを名前とフォルダーごとコピーします。削除されたファイルだけでなく現在のファイルもコピーし、削除されたものは別の <code>_deleted_files</code> フォルダーに入ります。Windows がドライブを開けなくても、ファイルシステムがまだ読み取れるなら使えます。</p>
+<p><strong>ファイル復元(シグネチャ)</strong> は中身からファイルを探します。対象は JPEG、PNG、GIF、BMP、PDF、ZIP、MP4、MOV、3GP、M4A、HEIC です。バージョン 0.2.13 で HWP、古い Office のファイル(doc、xls、ppt)、MP3、AVI、WAV が加わりました。ファイルシステムがなくなっていても使えますが、名前は失われ、ファイルは <code>jpg_00001_@...</code> のような通し番号付きで戻ります。</p>
+<p>開けないファイルについてマニュアルが勧めているのは、両方のボタンを試すことです。一方の結果フォルダーでファイルが壊れていたら、もう一方を探してみてください。</p>
+<h3 id="3">3. ログの警告を確認する</h3>
+<p>ReviveUSB は、内容を保証できない一部のファイルについて警告します。FAT32、exFAT、NTFS のドライブでは、削除後にその領域が新しいファイルに使われた削除済みファイルが、内容が正しくない可能性が高いという警告とともに一覧表示されます。Windows がファイルを削除した FAT32 のドライブから名前・パスで復元したあとは、「中身が違う可能性があります」というファイルがログに表示されることがあります。Windows がファイルの開始位置の情報の一部を消したためです。そうしたファイルは、使う前に開いて確認してください。</p>
+<h3 id="4">4. 名前が違うだけのファイルを直す</h3>
+<p>シグネチャでの復元結果のうち、実際には Office の文書である <code>.zip</code> ファイルは、<code>.docx</code>、<code>.xlsx</code>、<code>.pptx</code> に名前を変えてから、もう一度開いてみてください。終わりのない動画は残っているところまで保存されていますが、ほとんどのプレーヤーは失われた終わりの部分がないと再生できません。ReviveUSB は壊れたファイルを修復しません。復元されるのは、ドライブにあったものです。</p>
+<h2 id="_7">それでも開けないとき</h2>
+<p>完全な形では戻らないファイルもあります。何時間もかけてスキャンを繰り返す前に、それを知っておくと役に立ちます。データが上書きされている場合や、フラッシュチップそのものが壊れている場合は、ソフトウェアでは手の打ちようがありません。それほど大事なファイルなら、残る手段はデータ復旧の専門業者です。</p>
+<p>もう 1 つのケースがあります。PC では問題なく開けたファイルが、修復したドライブに入れたあとで壊れる場合は、ドライブに原因があります。修復のあと、<strong>ドライブテスト</strong> はテストデータを書き込んで読み戻し、<strong>ファイルを書き戻す</strong> はコピーしたファイルをすべて SHA-256 で元のファイルと比べ、一致しないものを一覧表示します。どちらかの確認で不合格になったドライブにはファイルを保存せず、いずれにしても復元したファイルのコピーは PC に残しておいてください。</p>
+<p>各ボタンの説明は<a href="../revive/help.html">マニュアル</a>に、復元についてよくある疑問は<a href="../revive/faq.html">よくある質問</a>にあります。</p></div><aside class="callout post-cta"><p><strong>ReviveUSB</strong> · 壊れた USB から大切なファイルを無料で取り戻し、USB も直します (Windows 10 / 11)</p><div class="actions"><a class="btn btn-primary" href="../revive/download.html">無料ダウンロード</a><a class="btn btn-outline" href="../revive/index.html">詳しく見る</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../ja/launcher/index.html">Barbell Launcher</a><a href="../../ja/revive/index.html">ReviveUSB</a><a href="../../ja/chatda/index.html">Chatda</a><a href="../../ja/revivefix/index.html">ReviveFix</a><a href="../../ja/pastefit/index.html">PasteFit</a><a href="../../ja/about.html">概要</a><a href="../../ja/donate.html">寄付</a><a href="../../ja/privacy.html">プライバシー</a><a href="../../ja/terms.html">利用規約</a><a href="../../ja/refund.html">返金</a><a href="../../ja/usb-sd-error-guide.html">USB エラーガイド</a><a href="../../ja/usb-capacity-calculator.html">USB 容量計算ツール</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../../blog/recovered-files-will-not-open.html" lang="en">English</a> · <a href="../../ko/blog/recovered-files-will-not-open.html" lang="ko">한국어</a> · <a href="../../ja/blog/recovered-files-will-not-open.html" lang="ja" aria-current="true">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/blog/recovered-files-will-not-open.html" lang="de">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=877e3be7"></script>
+</body>
+</html>
