@@ -192,3 +192,12 @@ table.perf tbody th { font-weight: 600; color: var(--ink); white-space: normal; 
 .sent-note { display: none; }
 .sent-note:target { display: block; border-left: 4px solid var(--brand); background: var(--card); padding: 10px 14px; color: var(--ink); font-weight: 600; }
 :lang(ko) { word-break: keep-all; }
+
+/* 오류 해결 가이드·용량 계산기(11-15). 계산기에서 강조는 결과 한 줄뿐 */
+dl.guide { max-width: 42em; margin: 0 0 8px; }
+dl.guide dt { font-weight: 600; color: var(--ink); margin-top: 12px; }
+dl.guide dd { margin: 2px 0 0; }
+.calc { display: grid; gap: 8px; max-width: 28em; margin: 16px 0; padding: 16px; background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); }
+.calc label { font-weight: 600; color: var(--ink); }
+.calc input { font: inherit; font-size: 20px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--hairline); border-radius: var(--r); background: var(--canvas); color: var(--ink); }
+.calc output { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.35; }

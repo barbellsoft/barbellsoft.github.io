@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Калькулятор ёмкости USB: почему накопитель на 64 ГБ показывает 59,6 ГБ</title>
+<meta name="description" content="Введите ёмкость с упаковки и узнайте, что покажет Windows. Объясняем разницу между 1000 и 1024, место под файловую систему и как проверить накопитель на поддельную ёмкость.">
+<link rel="canonical" href="https://barbellsoft.com/ru/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/usb-capacity-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Калькулятор ёмкости USB: почему накопитель на 64 ГБ показывает 59,6 ГБ">
+<meta property="og:description" content="Введите ёмкость с упаковки и узнайте, что покажет Windows. Объясняем разницу между 1000 и 1024, место под файловую систему и как проверить накопитель на поддельную ёмкость.">
+<meta property="og:url" content="https://barbellsoft.com/ru/usb-capacity-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Калькулятор ёмкости USB: почему накопитель на 64 ГБ показывает 59,6 ГБ">
+<meta name="twitter:description" content="Введите ёмкость с упаковки и узнайте, что покажет Windows. Объясняем разницу между 1000 и 1024, место под файловую систему и как проверить накопитель на поддельную ёмкость.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Калькулятор ёмкости USB: почему накопитель на 64 ГБ показывает 59,6 ГБ", "description": "Введите ёмкость с упаковки и узнайте, что покажет Windows. Объясняем разницу между 1000 и 1024, место под файловую систему и как проверить накопитель на поддельную ёмкость.", "inLanguage": "ru", "url": "https://barbellsoft.com/ru/usb-capacity-calculator.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=1bd48275">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержимому</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../ru/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Основное"><a href="../ru/launcher/index.html">Barbell Launcher</a><a href="../ru/revive/index.html">ReviveUSB</a><a href="../ru/chatda/index.html">Chatda</a><a href="../ru/revivefix/index.html">ReviveFix</a><a href="../ru/pastefit/index.html">PasteFit</a><a href="../ru/about.html">О нас</a><a href="../ru/feedback.html">Отзывы</a><a href="../ru/donate.html">Поддержать</a><a href="../blog/index.html" lang="en">Блог</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>Калькулятор ёмкости USB: почему накопитель на 64 ГБ показывает 59,6 ГБ</h1><p class="prose">Производители накопителей считают 1 ГБ равным 1 000 000 000 байт. Windows считает в единицах по 1 073 741 824 байта (1024 × 1024 × 1024), но всё равно называет их ГБ. Поэтому в Windows тот же накопитель показывает меньшее число, и при этом ничего не пропало.</p><div class="calc"><label for="calc-gb">Ёмкость на упаковке (ГБ)</label><input id="calc-gb" type="text" inputmode="decimal" autocomplete="off" value="64"><output id="calc-out" for="calc-gb" aria-live="polite" data-tpl="{gb} ГБ на упаковке ≈ {gib} ГБ в Windows" data-empty="Введите число больше 0." data-dec=",">64 ГБ на упаковке ≈ 59,6 ГБ в Windows</output></div><p class="meta prose">Это размер всего накопителя. Свободное место, которое вы увидите после форматирования, ещё немного меньше, потому что файловая система занимает часть места под себя. Кроме того, многие накопители сообщают чуть меньше круглого числа на упаковке.</p><section aria-labelledby="sizes"><h2 id="sizes">Распространённые размеры</h2><div class="perf-wrap"><table class="perf"><thead><tr><th scope="col">На упаковке</th><th scope="col">Windows показывает около</th></tr></thead><tbody><tr><th scope="row">8 GB</th><td>7,5 GB</td></tr><tr><th scope="row">16 GB</th><td>14,9 GB</td></tr><tr><th scope="row">32 GB</th><td>29,8 GB</td></tr><tr><th scope="row">64 GB</th><td>59,6 GB</td></tr><tr><th scope="row">128 GB</th><td>119,2 GB</td></tr><tr><th scope="row">256 GB</th><td>238,4 GB</td></tr><tr><th scope="row">512 GB</th><td>476,8 GB</td></tr><tr><th scope="row">1000 GB (1 TB)</th><td>931,3 GB</td></tr><tr><th scope="row">2000 GB (2 TB)</th><td>1862,6 GB</td></tr></tbody></table></div></section><section class="prose" aria-labelledby="fake"><h2 id="fake">Когда подозревать поддельную ёмкость</h2><ul><li>Windows показывает примерно то же число, что и этот калькулятор, но файлы, скопированные позже, пропадают или не открываются, особенно большие файлы или файлы, скопированные, когда накопитель был почти заполнен.</li><li>Цена намного ниже, чем у других накопителей того же объёма.</li><li>После заполнения накопителя названия папок или имена файлов превращаются в бессмысленные символы.</li></ul><p>Поддельный накопитель показывает в Windows заявленный размер, поэтому этот калькулятор его не выявит. Для проверки используйте программу проверки записью и чтением: она заполняет всё свободное место тестовыми данными и читает их обратно. Если данные, записанные позже, заменили более ранние, накопитель поддельный. «Проверить накопитель» в ReviveUSB делает это в Windows, если выбрать проверку всего свободного места.</p></section><p><a href="usb-sd-error-guide.html">Другие сообщения об ошибках флешек и SD-карт</a></p>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../ru/launcher/index.html">Barbell Launcher</a><a href="../ru/revive/index.html">ReviveUSB</a><a href="../ru/chatda/index.html">Chatda</a><a href="../ru/revivefix/index.html">ReviveFix</a><a href="../ru/pastefit/index.html">PasteFit</a><a href="../ru/about.html">О нас</a><a href="../ru/donate.html">Поддержать</a><a href="../ru/privacy.html">Конфиденциальность</a><a href="../ru/terms.html">Условия</a><a href="../ru/refund.html">Возврат</a><a href="../ru/usb-sd-error-guide.html">Справочник ошибок USB</a><a href="../ru/usb-capacity-calculator.html">Калькулятор ёмкости USB</a><a id="contact-link" href="#" hidden>Контакты</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Язык: <a href="../usb-capacity-calculator.html" lang="en">English</a> · <a href="../ko/usb-capacity-calculator.html" lang="ko">한국어</a> · <a href="../ja/usb-capacity-calculator.html" lang="ja">日本語</a> · <a href="../zh-cn/usb-capacity-calculator.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/usb-capacity-calculator.html" lang="zh-TW">繁體中文</a> · <a href="../es/usb-capacity-calculator.html" lang="es">Español</a> · <a href="../de/usb-capacity-calculator.html" lang="de">Deutsch</a> · <a href="../fr/usb-capacity-calculator.html" lang="fr">Français</a> · <a href="../pt-br/usb-capacity-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/usb-capacity-calculator.html" lang="ru" aria-current="true">Русский</a> · <a href="../vi/usb-capacity-calculator.html" lang="vi">Tiếng Việt</a></span><label>Тема <select id="theme-select"><option value="auto">Системная</option><option value="dark">Тёмная</option><option value="light">Светлая</option></select></label></div><p class="mt-note">Эта страница переведена автоматически. Если заметите ошибку, пожалуйста, сообщите нам.</p><p>© 2026 Barbellsoft. Предоставляется «как есть», без каких-либо гарантий.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../calc.js?v=e234efda"></script>
+</body>
+</html>

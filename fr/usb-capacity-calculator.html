@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Calculateur de capacité USB : pourquoi une clé de 64 Go affiche 59,6 Go</title>
+<meta name="description" content="Saisissez la capacité indiquée sur l&#x27;emballage et voyez ce que Windows affichera. Explique la différence entre 1000 et 1024, l&#x27;espace pris par le système de fichiers et comment vérifier si un lecteur a une fausse capacité.">
+<link rel="canonical" href="https://barbellsoft.com/fr/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/usb-capacity-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/usb-capacity-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Calculateur de capacité USB : pourquoi une clé de 64 Go affiche 59,6 Go">
+<meta property="og:description" content="Saisissez la capacité indiquée sur l&#x27;emballage et voyez ce que Windows affichera. Explique la différence entre 1000 et 1024, l&#x27;espace pris par le système de fichiers et comment vérifier si un lecteur a une fausse capacité.">
+<meta property="og:url" content="https://barbellsoft.com/fr/usb-capacity-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculateur de capacité USB : pourquoi une clé de 64 Go affiche 59,6 Go">
+<meta name="twitter:description" content="Saisissez la capacité indiquée sur l&#x27;emballage et voyez ce que Windows affichera. Explique la différence entre 1000 et 1024, l&#x27;espace pris par le système de fichiers et comment vérifier si un lecteur a une fausse capacité.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Calculateur de capacité USB : pourquoi une clé de 64 Go affiche 59,6 Go", "description": "Saisissez la capacité indiquée sur l'emballage et voyez ce que Windows affichera. Explique la différence entre 1000 et 1024, l'espace pris par le système de fichiers et comment vérifier si un lecteur a une fausse capacité.", "inLanguage": "fr", "url": "https://barbellsoft.com/fr/usb-capacity-calculator.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=1bd48275">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../fr/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Principal"><a href="../fr/launcher/index.html">Barbell Launcher</a><a href="../fr/revive/index.html">ReviveUSB</a><a href="../fr/chatda/index.html">Chatda</a><a href="../fr/revivefix/index.html">ReviveFix</a><a href="../fr/pastefit/index.html">PasteFit</a><a href="../fr/about.html">À propos</a><a href="../fr/feedback.html">Avis</a><a href="../fr/donate.html">Faire un don</a><a href="../blog/index.html" lang="en">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>Calculateur de capacité USB : pourquoi une clé de 64 Go affiche 59,6 Go</h1><p class="prose">Les fabricants comptent 1 Go comme 1 000 000 000 octets. Windows compte en unités de 1 073 741 824 octets (1024 × 1024 × 1024), mais les appelle quand même Go. Le même lecteur affiche donc un nombre plus petit dans Windows, et rien ne manque.</p><div class="calc"><label for="calc-gb">Capacité sur l&#x27;emballage (Go)</label><input id="calc-gb" type="text" inputmode="decimal" autocomplete="off" value="64"><output id="calc-out" for="calc-gb" aria-live="polite" data-tpl="{gb} Go sur l&#x27;emballage ≈ {gib} Go dans Windows" data-empty="Saisissez un nombre supérieur à 0." data-dec=",">64 Go sur l&#x27;emballage ≈ 59,6 Go dans Windows</output></div><p class="meta prose">Il s&#x27;agit de la taille du lecteur entier. L&#x27;espace libre affiché après formatage est encore un peu plus petit, car le système de fichiers utilise un peu d&#x27;espace pour lui-même. Beaucoup de lecteurs annoncent aussi un peu moins que le nombre rond indiqué sur l&#x27;emballage.</p><section aria-labelledby="sizes"><h2 id="sizes">Tailles courantes</h2><div class="perf-wrap"><table class="perf"><thead><tr><th scope="col">Sur l&#x27;emballage</th><th scope="col">Windows affiche environ</th></tr></thead><tbody><tr><th scope="row">8 GB</th><td>7,5 GB</td></tr><tr><th scope="row">16 GB</th><td>14,9 GB</td></tr><tr><th scope="row">32 GB</th><td>29,8 GB</td></tr><tr><th scope="row">64 GB</th><td>59,6 GB</td></tr><tr><th scope="row">128 GB</th><td>119,2 GB</td></tr><tr><th scope="row">256 GB</th><td>238,4 GB</td></tr><tr><th scope="row">512 GB</th><td>476,8 GB</td></tr><tr><th scope="row">1000 GB (1 TB)</th><td>931,3 GB</td></tr><tr><th scope="row">2000 GB (2 TB)</th><td>1862,6 GB</td></tr></tbody></table></div></section><section class="prose" aria-labelledby="fake"><h2 id="fake">Quand soupçonner une fausse capacité</h2><ul><li>Windows affiche à peu près le nombre donné par ce calculateur, mais des fichiers copiés plus tard disparaissent ou ne s&#x27;ouvrent pas, surtout les gros fichiers ou ceux copiés quand le lecteur était presque plein.</li><li>Le prix est très inférieur à celui des autres lecteurs de même taille.</li><li>Des dossiers ou des noms de fichiers deviennent des caractères illisibles après que vous avez rempli le lecteur.</li></ul><p>Un faux lecteur affiche dans Windows la taille annoncée, ce calculateur ne peut donc pas le détecter. Pour vérifier, utilisez un outil de vérification par écriture et lecture : il remplit tout l&#x27;espace libre de données de test et les relit. Si les données écrites plus tard ont remplacé des données antérieures, le lecteur est faux. « Tester le lecteur » de ReviveUSB fait cela sous Windows lorsque vous choisissez de tester tout l&#x27;espace libre.</p></section><p><a href="usb-sd-error-guide.html">Autres messages d&#x27;erreur des clés USB et cartes SD</a></p>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../fr/launcher/index.html">Barbell Launcher</a><a href="../fr/revive/index.html">ReviveUSB</a><a href="../fr/chatda/index.html">Chatda</a><a href="../fr/revivefix/index.html">ReviveFix</a><a href="../fr/pastefit/index.html">PasteFit</a><a href="../fr/about.html">À propos</a><a href="../fr/donate.html">Faire un don</a><a href="../fr/privacy.html">Confidentialité</a><a href="../fr/terms.html">Conditions</a><a href="../fr/refund.html">Remboursements</a><a href="../fr/usb-sd-error-guide.html">Guide des erreurs USB</a><a href="../fr/usb-capacity-calculator.html">Calculateur de capacité USB</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Langue: <a href="../usb-capacity-calculator.html" lang="en">English</a> · <a href="../ko/usb-capacity-calculator.html" lang="ko">한국어</a> · <a href="../ja/usb-capacity-calculator.html" lang="ja">日本語</a> · <a href="../zh-cn/usb-capacity-calculator.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/usb-capacity-calculator.html" lang="zh-TW">繁體中文</a> · <a href="../es/usb-capacity-calculator.html" lang="es">Español</a> · <a href="../de/usb-capacity-calculator.html" lang="de">Deutsch</a> · <a href="../fr/usb-capacity-calculator.html" lang="fr" aria-current="true">Français</a> · <a href="../pt-br/usb-capacity-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/usb-capacity-calculator.html" lang="ru">Русский</a> · <a href="../vi/usb-capacity-calculator.html" lang="vi">Tiếng Việt</a></span><label>Thème <select id="theme-select"><option value="auto">Par défaut</option><option value="dark">Sombre</option><option value="light">Clair</option></select></label></div><p class="mt-note">Cette page a été traduite automatiquement. Si vous repérez une erreur, n&#x27;hésitez pas à nous le signaler.</p><p>© 2026 Barbellsoft. Fourni tel quel, sans aucune garantie.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../calc.js?v=e234efda"></script>
+</body>
+</html>

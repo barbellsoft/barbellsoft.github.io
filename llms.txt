@@ -35,5 +35,7 @@ Last updated: 2026-11-15. The site is in English at the top level, with the same
 
 ## More
 
+- [USB and SD card error message guide](https://barbellsoft.com/usb-sd-error-guide.html) · [USB capacity calculator](https://barbellsoft.com/usb-capacity-calculator.html)
 - [About](https://barbellsoft.com/about.html) · [Blog](https://barbellsoft.com/blog/) · [Sitemap](https://barbellsoft.com/sitemap.xml)
 - Contact: softbarbell@gmail.com
+- Ads: the programs have no ads. This website may show Google AdSense ads, which can use cookies; pages with download buttons have no ads. Details: https://barbellsoft.com/privacy.html
