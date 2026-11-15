@@ -33,9 +33,19 @@ Last updated: 2026-11-15. The site is in English at the top level, with the same
 
 - [Barbell Launcher](https://barbellsoft.com/launcher/) · [ReviveFix](https://barbellsoft.com/revivefix/) · [PasteFit](https://barbellsoft.com/pastefit/)
 
+## Free web tools
+
+- These run in the browser; the tools do not send the text or files you enter.
+- [All free tools](https://barbellsoft.com/tools.html)
+- [Character and word counter](https://barbellsoft.com/text-counter.html): counts characters, words, lines and UTF-8 bytes, and cleans up spacing and line breaks.
+- [Seller margin calculator](https://barbellsoft.com/seller-margin-calculator.html): profit and margin from price, fee rate and costs, and the price needed for a target margin. Taxes are not included.
+- [Image compressor](https://barbellsoft.com/image-compressor.html): saves a photo again as WebP or JPG with a lower quality or size.
+- [PDF merge and page extract](https://barbellsoft.com/pdf-merge-split.html): joins PDFs into one or saves selected pages. Password-protected PDFs are not processed.
+- [QR code generator](https://barbellsoft.com/qr-code-generator.html): turns a link or text into a QR code, saved as PNG or SVG.
+- [USB and SD card error message guide](https://barbellsoft.com/usb-sd-error-guide.html) · [USB capacity calculator](https://barbellsoft.com/usb-capacity-calculator.html)
+
 ## More
 
-- [USB and SD card error message guide](https://barbellsoft.com/usb-sd-error-guide.html) · [USB capacity calculator](https://barbellsoft.com/usb-capacity-calculator.html)
 - [About](https://barbellsoft.com/about.html) · [Blog](https://barbellsoft.com/blog/) · [Sitemap](https://barbellsoft.com/sitemap.xml)
 - Contact: softbarbell@gmail.com
-- Ads: the programs have no ads. This website may show Google AdSense ads, which can use cookies; pages with download buttons have no ads. Details: https://barbellsoft.com/privacy.html
+- Ads: the programs have no ads. This website may show Google AdSense ads, which can use cookies; pages with download buttons, the about, donate, terms, refund and privacy pages, and all free web tools (character counter, margin, image, PDF, QR, USB capacity calculator) have no ads. Details: https://barbellsoft.com/privacy.html

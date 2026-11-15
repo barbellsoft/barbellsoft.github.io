@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-cfbb3d2a65083b36c5742efa' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
 <title>字數計算：含空格與不含空格的字數、字詞數、行數，並整理空格</title>
 <meta name="description" content="計算含空格與不含空格的字數、字詞數、行數和位元組數。可刪除多餘的空格和空行，也能把從 PDF 複製時斷開的行接起來。">
 <link rel="canonical" href="https://barbellsoft.com/zh-tw/text-counter.html">
@@ -33,21 +33,20 @@
 <meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
 <meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
 <link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
-<link rel="stylesheet" href="../style.css?v=741674ce">
+<link rel="stylesheet" href="../style.css?v=e99b47a1">
 <meta name="google-adsense-account" content="ca-pub-3954424837501873">
-<script async nonce="cfbb3d2a65083b36c5742efa" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
-<script nonce="cfbb3d2a65083b36c5742efa" src="../theme.js?v=fd2f7cbd"></script>
+<script src="../theme.js?v=fd2f7cbd"></script>
 </head>
 <body>
 <a class="skip" href="#main">跳到主要內容</a>
 <header class="site-header"><div class="wrap"><a class="brand" href="../zh-tw/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主選單"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/feedback.html">意見回饋</a><a href="../zh-tw/donate.html">贊助</a><a href="../blog/index.html" lang="en">部落格</a></nav></div></header>
 
 <main id="main"><div class="wrap">
-<h1>字數計算：含空格與不含空格的字數、字詞數、行數，並整理空格</h1><p class="prose">貼上文字後，輸入時會隨時更新計算結果。</p><div class="calc tool"><label for="tx-in">文字</label><textarea id="tx-in" rows="10"></textarea><table class="perf" id="tx-out" aria-live="polite"><tbody><tr><th scope="row">字數（含空格）</th><td data-k="chars">0</td></tr><tr><th scope="row">字數（不含空格）</th><td data-k="noSpace">0</td></tr><tr><th scope="row">字詞數</th><td data-k="words">0</td></tr><tr><th scope="row">行數</th><td data-k="lines">0</td></tr><tr><th scope="row">位元組數（UTF-8）</th><td data-k="bytes">0</td></tr></tbody></table><label class="check"><input type="checkbox" id="tx-join"> 連接段落內的換行（從 PDF 複製的文字）</label><div class="actions"><button class="btn btn-primary" type="button" id="tx-clean">整理</button><button class="btn btn-outline" type="button" id="tx-copy" data-done="已複製" data-fail="請選取文字後手動複製">複製</button></div></div><section class="prose" aria-labelledby="tx-h"><h2 id="tx-h">計算與整理規則</h2><ul><li>「整理」會刪除每行開頭和結尾的空格，把連續的空格合併為一個，段落之間只保留一個空行。</li><li>連接行時，行尾被連字號拆開的英文單字會重新拼合，中文和日文的行直接相連，不加空格。</li><li>換行在「字數（含空格）」中算一個字，在「字數（不含空格）」中不計算。</li><li>位元組數以 UTF-8 計算。有些輸入欄位以 Big5 把一個中文字算成 2 個位元組，顯示的數字可能不同。</li></ul><p class="meta">此工具在瀏覽器中執行，不會把你的檔案或文字上傳到任何地方。</p><p>如果想在 Windows 上每次貼上時自動修正 PDF 中斷開的行： <a href="pastefit/index.html">PasteFit</a></p></section>
+<h1>字數計算：含空格與不含空格的字數、字詞數、行數，並整理空格</h1><p class="prose">貼上文字後，輸入時會隨時更新計算結果。</p><div class="calc tool"><label for="tx-in">文字</label><textarea id="tx-in" rows="10"></textarea><table class="perf" id="tx-out" aria-live="polite"><tbody><tr><th scope="row">字數（含空格）</th><td data-k="chars">0</td></tr><tr><th scope="row">字數（不含空格）</th><td data-k="noSpace">0</td></tr><tr><th scope="row">字詞數</th><td data-k="words">0</td></tr><tr><th scope="row">行數</th><td data-k="lines">0</td></tr><tr><th scope="row">位元組數（UTF-8）</th><td data-k="bytes">0</td></tr></tbody></table><label class="check"><input type="checkbox" id="tx-join"> 連接段落內的換行（從 PDF 複製的文字）</label><div class="actions"><button class="btn btn-primary" type="button" id="tx-clean">整理</button><button class="btn btn-outline" type="button" id="tx-copy" data-done="已複製" data-fail="請選取文字後手動複製">複製</button></div></div><section class="prose" aria-labelledby="tx-h"><h2 id="tx-h">計算與整理規則</h2><ul><li>「整理」會刪除每行開頭和結尾的空格，把連續的空格合併為一個，段落之間只保留一個空行。</li><li>連接行時，行尾被連字號拆開的英文單字會重新拼合，中文和日文的行直接相連，不加空格。</li><li>換行在「字數（含空格）」中算一個字，在「字數（不含空格）」中不計算。</li><li>位元組數以 UTF-8 計算。有些輸入欄位以 Big5 把一個中文字算成 2 個位元組，顯示的數字可能不同。</li></ul><p class="meta">此工具不會傳送你輸入的文字或檔案。</p><p>如果想在 Windows 上每次貼上時自動修正 PDF 中斷開的行： <a href="pastefit/index.html">PasteFit</a></p></section>
 </div></main>
 <footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/donate.html">贊助</a><a href="../zh-tw/privacy.html">隱私權</a><a href="../zh-tw/terms.html">使用條款</a><a href="../zh-tw/refund.html">退款</a><a href="../zh-tw/tools.html">免費工具</a><a id="contact-link" href="#" hidden>聯絡</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>語言: <a href="../text-counter.html" lang="en">English</a> · <a href="../ko/text-counter.html" lang="ko">한국어</a> · <a href="../ja/text-counter.html" lang="ja">日本語</a> · <a href="../zh-cn/text-counter.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/text-counter.html" lang="zh-TW" aria-current="true">繁體中文</a> · <a href="../es/text-counter.html" lang="es">Español</a> · <a href="../de/text-counter.html" lang="de">Deutsch</a> · <a href="../fr/text-counter.html" lang="fr">Français</a> · <a href="../pt-br/text-counter.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/text-counter.html" lang="ru">Русский</a> · <a href="../vi/text-counter.html" lang="vi">Tiếng Việt</a></span><label>主題 <select id="theme-select"><option value="auto">預設</option><option value="dark">深色</option><option value="light">淺色</option></select></label></div><p class="mt-note">本頁為機器翻譯。若發現錯誤，歡迎告訴我們。</p><p>© 2026 Barbellsoft。依現狀提供，不附任何保證。</p></div></footer>
-<script nonce="cfbb3d2a65083b36c5742efa" src="../config.js?v=69a915c9"></script>
-<script nonce="cfbb3d2a65083b36c5742efa" src="../site.js?v=877e3be7"></script>
-<script nonce="cfbb3d2a65083b36c5742efa" src="../textclean.js?v=89c2f4a3"></script>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../textclean.js?v=89c2f4a3"></script>
 </body>
 </html>

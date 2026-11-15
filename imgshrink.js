@@ -14,7 +14,7 @@
   var file = document.getElementById("im-file"), out = document.getElementById("im-out");
   if (!file || !out || !window.createImageBitmap) return;
   var link = document.getElementById("im-dl"), wrap = document.getElementById("im-preview"), url = "", seq = 0;
-  function msg(k, a, b) { out.textContent = out.getAttribute("data-" + k).replace("{a}", a || "").replace("{b}", b || ""); }
+  function msg(k, a, b) { out.textContent = out.getAttribute("data-" + k).replace("{a}", function () { return a || ""; }).replace("{b}", function () { return b || ""; }); }
   var nf = new Intl.NumberFormat(document.documentElement.lang, { maximumFractionDigits: 0 });
   function kb(n) { return nf.format(Math.max(1, n / 1024)) + " KB"; }
   async function run() {
@@ -32,7 +32,8 @@
     g.drawImage(bmp, 0, 0, s.w, s.h);
     var blob = await new Promise(function (ok) { cv.toBlob(ok, type, q); });
     if (my !== seq) return;
-    if (!blob || blob.type !== type) { msg("nowebp"); return; }  // WebP 로 못 쓰는 브라우저는 PNG 를 돌려준다
+    if (!blob) { msg("toobig"); return; }  // 캔버스가 브라우저 크기 한도를 넘으면 toBlob 이 null 을 준다
+    if (blob.type !== type) { msg("nowebp"); return; }  // WebP 로 못 쓰는 브라우저는 PNG 를 돌려준다
     var shown = await createImageBitmap(blob);  // 미리보기는 압축된 결과를 다시 그린 것(화질 변화가 보이게)
     if (my !== seq) return;
     cv.getContext("2d").drawImage(shown, 0, 0);

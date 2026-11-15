@@ -197,8 +197,12 @@ table.perf tbody th { font-weight: 600; color: var(--ink); white-space: normal; 
 dl.guide { max-width: 42em; margin: 0 0 8px; }
 dl.guide dt { font-weight: 600; color: var(--ink); margin-top: 12px; }
 dl.guide dd { margin: 2px 0 0; }
-.calc { display: grid; gap: 8px; max-width: 28em; margin: 16px 0; padding: 16px; background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); }
+.calc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; max-width: 28em; margin: 16px 0; padding: 16px; background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); }
 .calc label { font-weight: 600; color: var(--ink); }
+/* 좁은 화면(390px)에서 긴 선택지·단추 문구(ru·de)가 칸을 밀어내지 않게(11-15 점검). 파일 이름 같은 긴 낱말도 줄바꿈 */
+.calc > * { min-width: 0; max-width: 100%; }
+.calc .btn { white-space: normal; line-height: 1.25; text-align: center; max-width: 100%; }
+.calc output, .calc ol { overflow-wrap: anywhere; }
 .calc input { font: inherit; font-size: 20px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--hairline); border-radius: var(--r); background: var(--canvas); color: var(--ink); }
 .calc output { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.35; }
 

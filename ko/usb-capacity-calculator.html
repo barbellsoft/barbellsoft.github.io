@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-7736d185d60ce9570f65e36b' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
 <title>USB 실제 용량 계산기: 64GB가 59.6GB로 보이는 이유</title>
 <meta name="description" content="포장에 적힌 용량을 넣으면 Windows에 보일 용량을 계산합니다. 1000과 1024의 차이, 파일 시스템이 쓰는 공간, 가짜 용량 드라이브를 확인하는 방법을 설명합니다.">
 <link rel="canonical" href="https://barbellsoft.com/ko/usb-capacity-calculator.html">
@@ -33,10 +33,9 @@
 <meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
 <meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
 <link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
-<link rel="stylesheet" href="../style.css?v=741674ce">
+<link rel="stylesheet" href="../style.css?v=e99b47a1">
 <meta name="google-adsense-account" content="ca-pub-3954424837501873">
-<script async nonce="7736d185d60ce9570f65e36b" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
-<script nonce="7736d185d60ce9570f65e36b" src="../theme.js?v=fd2f7cbd"></script>
+<script src="../theme.js?v=fd2f7cbd"></script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -46,8 +45,9 @@
 <h1>USB 실제 용량 계산기: 64GB가 59.6GB로 보이는 이유</h1><p class="prose">드라이브 제조사는 1GB를 1,000,000,000바이트로 셉니다. Windows는 1,073,741,824바이트(1024 × 1024 × 1024) 단위로 세면서도 GB라고 부릅니다. 그래서 같은 드라이브가 Windows에서는 더 작은 숫자로 보이며, 빠진 공간은 없습니다.</p><div class="calc"><label for="calc-gb">포장에 적힌 용량(GB)</label><input id="calc-gb" type="text" inputmode="decimal" autocomplete="off" value="64"><output id="calc-out" for="calc-gb" aria-live="polite" data-tpl="포장의 {gb}GB ≈ Windows의 {gib}GB" data-empty="0보다 큰 숫자를 입력하세요." data-dec=".">포장의 64GB ≈ Windows의 59.6GB</output></div><p class="meta prose">이 값은 드라이브 전체 크기입니다. 포맷한 뒤 보이는 사용 가능 공간은 파일 시스템이 자기 몫으로 쓰는 공간만큼 조금 더 작습니다. 포장의 딱 떨어지는 숫자보다 조금 적게 보고하는 드라이브도 많습니다.</p><section aria-labelledby="sizes"><h2 id="sizes">자주 쓰는 용량</h2><div class="perf-wrap"><table class="perf"><thead><tr><th scope="col">포장 표시</th><th scope="col">Windows 표시(약)</th></tr></thead><tbody><tr><th scope="row">8 GB</th><td>7.5 GB</td></tr><tr><th scope="row">16 GB</th><td>14.9 GB</td></tr><tr><th scope="row">32 GB</th><td>29.8 GB</td></tr><tr><th scope="row">64 GB</th><td>59.6 GB</td></tr><tr><th scope="row">128 GB</th><td>119.2 GB</td></tr><tr><th scope="row">256 GB</th><td>238.4 GB</td></tr><tr><th scope="row">512 GB</th><td>476.8 GB</td></tr><tr><th scope="row">1000 GB (1 TB)</th><td>931.3 GB</td></tr><tr><th scope="row">2000 GB (2 TB)</th><td>1862.6 GB</td></tr></tbody></table></div></section><section class="prose" aria-labelledby="fake"><h2 id="fake">가짜 용량을 의심할 때</h2><ul><li>Windows에는 이 계산기 값과 비슷하게 보이는데, 나중에 복사한 파일이 사라지거나 열리지 않습니다. 특히 큰 파일이나 드라이브가 거의 찼을 때 복사한 파일이 그렇습니다.</li><li>같은 용량의 다른 드라이브보다 가격이 훨씬 쌉니다.</li><li>드라이브를 채운 뒤 폴더나 파일 이름이 알아볼 수 없는 글자로 바뀝니다.</li></ul><p>가짜 드라이브는 Windows에 광고한 용량 그대로 보이기 때문에 이 계산기로는 잡을 수 없습니다. 확인하려면 쓰기·읽기 검증 도구를 쓰세요. 남은 공간 전체에 시험 데이터를 채우고 다시 읽어 봅니다. 나중에 쓴 데이터가 앞의 데이터를 대신하고 있으면 가짜 드라이브입니다. Windows에서는 ReviveUSB의 «드라이브 시험»에서 남은 공간 전체 시험을 고르면 이 확인을 합니다.</p></section><p><a href="usb-sd-error-guide.html">다른 USB·SD 카드 오류 메시지</a></p>
 </div></main>
 <footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../ko/launcher/index.html">Barbell Launcher</a><a href="../ko/revive/index.html">ReviveUSB</a><a href="../ko/chatda/index.html">Chatda</a><a href="../ko/revivefix/index.html">ReviveFix</a><a href="../ko/pastefit/index.html">PasteFit</a><a href="../ko/about.html">만든 사람</a><a href="../ko/donate.html">기부</a><a href="../ko/privacy.html">개인정보</a><a href="../ko/terms.html">이용약관</a><a href="../ko/refund.html">환불</a><a href="../ko/tools.html">무료 도구</a><a id="contact-link" href="#" hidden>연락</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>언어: <a href="../usb-capacity-calculator.html" lang="en">English</a> · <a href="../ko/usb-capacity-calculator.html" lang="ko" aria-current="true">한국어</a> · <a href="../ja/usb-capacity-calculator.html" lang="ja">日本語</a> · <a href="../zh-cn/usb-capacity-calculator.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/usb-capacity-calculator.html" lang="zh-TW">繁體中文</a> · <a href="../es/usb-capacity-calculator.html" lang="es">Español</a> · <a href="../de/usb-capacity-calculator.html" lang="de">Deutsch</a> · <a href="../fr/usb-capacity-calculator.html" lang="fr">Français</a> · <a href="../pt-br/usb-capacity-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/usb-capacity-calculator.html" lang="ru">Русский</a> · <a href="../vi/usb-capacity-calculator.html" lang="vi">Tiếng Việt</a></span><label>테마 <select id="theme-select"><option value="auto">기본</option><option value="dark">다크</option><option value="light">라이트</option></select></label></div><p>© 2026 바벨소프트. 있는 그대로 제공하며 어떤 보증도 하지 않습니다.</p></div></footer>
-<script nonce="7736d185d60ce9570f65e36b" src="../config.js?v=69a915c9"></script>
-<script nonce="7736d185d60ce9570f65e36b" src="../site.js?v=877e3be7"></script>
-<script nonce="7736d185d60ce9570f65e36b" src="../calc.js?v=e234efda"></script>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../margin.js?v=df836b07"></script>
+<script src="../calc.js?v=26a0ea8d"></script>
 </body>
 </html>

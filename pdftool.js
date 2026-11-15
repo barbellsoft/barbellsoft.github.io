@@ -1,6 +1,7 @@
 // PDF 합치기·페이지 추출(pdf-merge-split.html). pdf-lib 1.17.1(MIT, vendor/pdf-lib.min.js, 전역 PDFLib)을 쓴다 —
-// CSP 가 script-src 'self' 라 CDN 은 못 쓴다. 파일은 기기 밖으로 보내지 않는다. 암호 걸린 PDF 는 pdf-lib 가 load 에서
-// 오류를 내므로 안내만 한다. merge·extract·parseRanges 는 tests/test_site.py 가 node 로 검사한다.
+// CSP 가 script-src 'self' 라 CDN 은 못 쓴다. 파일은 기기 밖으로 보내지 않는다. 암호 걸린 PDF 는 처리하지 않는다 —
+// 권한 암호(편집 제한)만 걸린 것도 pdf-lib 로는 결과가 깨질 수 있다. pdf-lib 에게는 여는 암호와 권한 암호가 똑같이
+// «암호화됨» 으로 보여 둘을 한 안내로 묶는다. merge·extract·parseRanges 는 tests/test_site.py 가 node 로 검사한다.
 (function () {
   "use strict";
   // «1-3, 5, 8-» → [0,1,2,4,7,…] (0부터, 입력 순서, 중복 제외, 끝을 넘는 범위는 마지막 페이지까지). 잘못된 조각이 있으면 null
@@ -17,22 +18,34 @@
     }
     return out.length ? out : null;
   }
-  async function merge(lib, list) {  // list: 각 파일의 바이트(ArrayBuffer·Uint8Array), 이 순서대로 합친다
+  // 열기: PDF 가 아니면 code «notpdf»(머리 «%PDF-» 는 첫 1024바이트 안), 암호가 있으면 «locked», 그 밖의 읽기 실패는 «bad»
+  function fail(code) { var err = new Error(code); err.code = code; return err; }
+  async function open(lib, bytes) {
+    var head = new Uint8Array(bytes.buffer || bytes, bytes.byteOffset || 0, Math.min(1024, bytes.byteLength));
+    if (String.fromCharCode.apply(null, head).indexOf("%PDF-") < 0) throw fail("notpdf");
+    var doc;
+    try { doc = await lib.PDFDocument.load(bytes, { ignoreEncryption: true }); } catch (err) { throw fail("bad"); }
+    if (doc.isEncrypted) throw fail("locked");
+    return doc;
+  }
+  async function merge(lib, list) {  // list: 각 파일의 바이트(ArrayBuffer·Uint8Array), 이 순서대로 합친다. 실패하면 err.index = 몇 번째 파일
     var doc = await lib.PDFDocument.create();
     for (var i = 0; i < list.length; i++) {
-      var src = await lib.PDFDocument.load(list[i]);
-      (await doc.copyPages(src, src.getPageIndices())).forEach(function (p) { doc.addPage(p); });
+      try {
+        var src = await open(lib, list[i]);
+        (await doc.copyPages(src, src.getPageIndices())).forEach(function (p) { doc.addPage(p); });
+      } catch (err) { err.index = i; throw err; }
     }
     return { bytes: await doc.save(), pages: doc.getPageCount() };
   }
   async function extract(lib, bytes, ranges) {  // 범위가 틀리면 { total } 만(화면이 «1부터 total 사이» 안내)
-    var src = await lib.PDFDocument.load(bytes), idx = parseRanges(ranges, src.getPageCount());
+    var src = await open(lib, bytes), idx = parseRanges(ranges, src.getPageCount());
     if (!idx) return { total: src.getPageCount() };
     var doc = await lib.PDFDocument.create();
     (await doc.copyPages(src, idx)).forEach(function (p) { doc.addPage(p); });
     return { bytes: await doc.save(), pages: idx.length };
   }
-  if (typeof module === "object" && module.exports) { module.exports = { parseRanges: parseRanges, merge: merge, extract: extract }; return; }
+  if (typeof module === "object" && module.exports) { module.exports = { parseRanges: parseRanges, merge: merge, extract: extract, open: open }; return; }
 
   var out = document.getElementById("pdf-out"), link = document.getElementById("pdf-dl");
   if (!out || !link || !window.PDFLib) return;
@@ -43,7 +56,7 @@
   }
   pick.addEventListener("change", function () { picked = picked.concat(Array.from(pick.files)); pick.value = ""; showList(); });
   document.getElementById("pdf-clear").addEventListener("click", function () { picked = []; showList(); link.hidden = true; out.textContent = ""; mergeBtn.className = "btn btn-primary"; });
-  function msg(k, a) { out.textContent = out.getAttribute("data-" + k).replace("{a}", a); }
+  function msg(k, a) { out.textContent = out.getAttribute("data-" + k).replace("{a}", function () { return a; }); }  // 함수로 넣어야 파일 이름 속 $& 가 그대로 보임
   var result = document.getElementById("pdf-result"), mergeBtn = document.getElementById("pdf-merge");
   function offer(r, name) {
     if (url) URL.revokeObjectURL(url);
@@ -57,21 +70,25 @@
     link.hidden = true;
     mergeBtn.className = "btn btn-primary";
     out.textContent = out.getAttribute("data-busy");
-    try { await fn(); } catch (err) { msg("bad", ""); }
+    try { await fn(); } catch (err) { msg(err.code || "bad", err.file || ""); }  // 안내에 문제 파일 이름(textContent 로만)
   }
   function bytesOf(f) { return f.arrayBuffer(); }
 
   document.getElementById("pdf-merge").addEventListener("click", function () {
     guard(this, async function () {
       if (picked.length < 2) { msg("need2", ""); return; }
-      offer(await merge(PDFLib, await Promise.all(picked.map(bytesOf))), "merged.pdf");
+      var files = picked.slice();  // 기다리는 사이 목록이 바뀌어도 이름이 맞게
+      offer(await merge(PDFLib, await Promise.all(files.map(bytesOf))).catch(function (err) {
+        err.file = (files[err.index] || {}).name; throw err;
+      }), "merged.pdf");
     });
   });
   document.getElementById("pdf-split").addEventListener("click", function () {
     guard(this, async function () {
       var f = document.getElementById("pdf-one").files[0];
       if (!f) { msg("need1", ""); return; }
-      var r = await extract(PDFLib, await bytesOf(f), document.getElementById("pdf-range").value);
+      var r = await extract(PDFLib, await bytesOf(f), document.getElementById("pdf-range").value)
+        .catch(function (err) { err.file = f.name; throw err; });
       if (!r.bytes) { msg("range", r.total); return; }
       offer(r, f.name.replace(/\.pdf$/i, "") + "-pages.pdf");
     });

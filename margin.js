@@ -32,6 +32,7 @@
     }
     return /^(\d+\.?\d*|\.\d+)$/.test(s) ? parseFloat(s) : NaN;  // «12.» (입력 중)도 12
   }
+  if (typeof window === "object") window.bbParseAmount = parseAmount;  // 용량 계산기(calc.js)도 같은 규칙으로 읽는다
   if (typeof module === "object" && module.exports) { module.exports = { forward: forward, reverse: reverse, parseAmount: parseAmount }; return; }
 
   var form = document.getElementById("mg");
