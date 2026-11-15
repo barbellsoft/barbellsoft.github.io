@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Windows search can&#x27;t find your document? Search inside it | Barbellsoft</title>
+<meta name="description" content="You remember a phrase from inside a document but not its name. Why searches miss it, three kinds of search compared, and how to find it by its words.">
+<link rel="canonical" href="https://barbellsoft.com/blog/windows-search-alternative-for-documents.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/blog/windows-search-alternative-for-documents.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/blog/windows-search-alternative-for-documents.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/blog/windows-search-alternative-for-documents.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Windows search can&#x27;t find your document? Search inside it | Barbellsoft">
+<meta property="og:description" content="You remember a phrase from inside a document but not its name. Why searches miss it, three kinds of search compared, and how to find it by its words.">
+<meta property="og:url" content="https://barbellsoft.com/blog/windows-search-alternative-for-documents.html">
+<meta property="og:image" content="https://barbellsoft.com/img/chatda-en.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Windows search can't find your document? Search inside it", "description": "You remember a phrase from inside a document but not its name. Why searches miss it, three kinds of search compared, and how to find it by its words.", "datePublished": "2026-11-15", "inLanguage": "en", "url": "https://barbellsoft.com/blog/windows-search-alternative-for-documents.html", "image": "https://barbellsoft.com/img/chatda-en.png", "author": {"@id": "https://barbellsoft.com/#org"}, "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=61605d01">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-15</p><h1>Windows search can&#x27;t find your document? Search inside it</h1><div class="doc prose"><p>You remember writing "deposit due by the 15th" in some document last month. You don't remember the file name, or whether it was a Word file, a PDF or a spreadsheet. You type the phrase into the search box on the taskbar, and nothing useful comes back.</p>
+<p>This is a common gap. Most searching on a PC starts from the file name, and the name is exactly what you've forgotten. This post explains why a search can miss a document that is sitting right there, compares three kinds of search, and shows how to find a file by the words inside it with Chatda, a free search app for Windows 10 and 11 that also runs on macOS.</p>
+<h2 id="why-the-search-comes-back-empty">Why the search comes back empty</h2>
+<p>A search can only find what it has looked at beforehand. To answer instantly, every search tool keeps an index: a list it built earlier of file names, and sometimes of the text inside files. If the words you remember were never put into that index, no search box will find them.</p>
+<p>Three things decide whether a document's words are in an index:</p>
+<ul>
+<li><strong>Where the file is.</strong> An index covers certain folders or drives. A file on another drive, in a folder outside that list, or on a network folder may only be known by its name, or not at all.</li>
+<li><strong>What kind of file it is.</strong> To read the text inside, a program has to understand the format. If it doesn't, the file can still be found by name, but not by its contents.</li>
+<li><strong>Whether the index is up to date.</strong> A file saved a minute ago may not be in the index yet.</li>
+</ul>
+<h2 id="three-kinds-of-search-side-by-side">Three kinds of search, side by side</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name-only search tools</th>
+<th>The search built into Windows</th>
+<th>Chatda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finds files by name</td>
+<td>Yes, usually very fast</td>
+<td>Yes</td>
+<td>Yes, on every fixed drive (C:\, D:\ …) automatically</td>
+</tr>
+<tr>
+<td>Finds files by the text inside</td>
+<td>No, by design</td>
+<td>Depends on which locations are indexed and the file type</td>
+<td>Yes, in folders you add (TXT, MD, CSV, DOCX, XLSX, PPTX, PDF, HWPX)</td>
+</tr>
+<tr>
+<td>Network folders (NAS)</td>
+<td>Depends on the tool</td>
+<td>Depends on settings</td>
+<td>Yes, with Connect network folder</td>
+</tr>
+<tr>
+<td>Shows where the words appear</td>
+<td>No</td>
+<td>Varies</td>
+<td>Yes, an excerpt in the Content column</td>
+</tr>
+</tbody>
+</table>
+<p>Name-only tools are a good choice when you know part of the name. Built-in search works well for files in the places it indexes. When all you have is a phrase from inside the document, you need something that has read the documents, and that's the case Chatda is built for.</p>
+<h2 id="find-a-document-by-its-words-with-chatda">Find a document by its words with Chatda</h2>
+<p><strong>1. Install and open Chatda.</strong> Get it from the <a href="../chatda/download.html">download page</a>. On Windows, Chatda adds every fixed drive right away, so you can search file names on C:\ and D:\ from the start. For whole drives it indexes names, sizes and dates, not the text inside.</p>
+<p><strong>2. Add the folders whose contents you want searched.</strong> Click <strong>All locations ▾</strong>, then <strong>+ Add folder</strong>, and pick the folder where your documents live, such as Documents or Desktop. Indexing starts by itself, and the status bar at the bottom shows its progress.</p>
+<p><strong>3. Add a network folder if your files are on a NAS.</strong> In <strong>All locations ▾</strong>, choose <strong>Connect network folder</strong>, then enter the NAS address and your username and password.</p>
+<p><strong>4. Type the words you remember.</strong> Results appear as you type; there's no need to press Enter. The <strong>Content</strong> column shows where your words appear in each document, with the search words highlighted.</p>
+<p><strong>5. Narrow it down.</strong> If the word is in many file names too, set <strong>Search in</strong> to <strong>Content only</strong>, so you see only files that contain the word but don't have it in their name. You can also pick a file type, limit the date to the past week or month, or type a wildcard such as <code>*.pdf</code> together with your words.</p>
+<p><strong>6. Open it.</strong> Double-click a result to open it in its default app, or press <code>Ctrl+Enter</code> to show it in Explorer. <code>Ctrl+Shift+Space</code> brings up Chatda from anywhere, so next time you can start searching without hunting for the window.</p>
+<h2 id="how-fast-is-it">How fast is it?</h2>
+<p>On one test PC (Windows 10 Pro, AMD Ryzen 5 8500G, 31 GB RAM, NVMe SSD), Chatda indexed the names on the whole C: drive, about 11.8 million files, in 16 to 17 seconds, against 47 to 48 seconds for another file search program indexing the same files. A one-letter search took 87 to 92 ms. Results on your PC will differ; the conditions are on the <a href="../chatda/index.html">Chatda page</a>.</p>
+<h2 id="what-it-cant-do">What it can't do</h2>
+<p>Chatda reads the contents of TXT, MD, CSV, DOCX, XLSX, PPTX, PDF and HWPX files. Other formats, such as images or ZIP files, are found by name only. Whole drives added automatically are searched by name; add the folder itself to search inside its documents.</p>
+<p>Chatda isn't code-signed yet, so Windows SmartScreen may show a warning the first time, and macOS may refuse to open it at first. On Windows it installs for all users and asks for administrator approval.</p>
+<h2 id="if-the-document-still-doesnt-show-up">If the document still doesn't show up</h2>
+<ul>
+<li><strong>It was saved a moment ago.</strong> In a local folder Chatda picks up changes quickly; on a NAS it can take up to about 5 minutes. In a hurry, open the folder menu (<strong>⋯</strong> next to the folder) and choose <strong>Re-index</strong>.</li>
+<li><strong>No excerpt appears.</strong> The file's format may not support content search, or the file is only covered by a whole-drive entry. Add its folder with <strong>+ Add folder</strong>.</li>
+<li><strong>A NAS folder looks empty.</strong> Check that you can open the NAS address in Explorer, and if you're working from outside the office, that your VPN is connected.</li>
+</ul>
+<p>More answers are in the <a href="../chatda/help.html">Chatda help</a> and the <a href="../chatda/faq.html">FAQ</a>.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Can&#x27;t remember the file name? Find it by a word you wrote inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/windows-search-alternative-for-documents.html" lang="en" aria-current="true">English</a> · <a href="../ko/blog/windows-search-alternative-for-documents.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=761fe63d"></script>
+</body>
+</html>

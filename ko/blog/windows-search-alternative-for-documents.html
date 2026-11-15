@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Windows 검색으로 문서가 안 찾아질 때: 문서 속 글자로 찾기 | Barbellsoft</title>
+<meta name="description" content="문서 안에 쓴 말은 기억나는데 파일 이름이 생각나지 않을 때, 검색이 왜 못 찾는지와 세 가지 검색 방식의 차이, 문서 속 글자로 찾는 방법입니다.">
+<link rel="canonical" href="https://barbellsoft.com/ko/blog/windows-search-alternative-for-documents.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/blog/windows-search-alternative-for-documents.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/blog/windows-search-alternative-for-documents.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/blog/windows-search-alternative-for-documents.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Windows 검색으로 문서가 안 찾아질 때: 문서 속 글자로 찾기 | Barbellsoft">
+<meta property="og:description" content="문서 안에 쓴 말은 기억나는데 파일 이름이 생각나지 않을 때, 검색이 왜 못 찾는지와 세 가지 검색 방식의 차이, 문서 속 글자로 찾는 방법입니다.">
+<meta property="og:url" content="https://barbellsoft.com/ko/blog/windows-search-alternative-for-documents.html">
+<meta property="og:image" content="https://barbellsoft.com/img/chatda-ko.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Windows 검색으로 문서가 안 찾아질 때: 문서 속 글자로 찾기", "description": "문서 안에 쓴 말은 기억나는데 파일 이름이 생각나지 않을 때, 검색이 왜 못 찾는지와 세 가지 검색 방식의 차이, 문서 속 글자로 찾는 방법입니다.", "datePublished": "2026-11-15", "inLanguage": "ko", "url": "https://barbellsoft.com/ko/blog/windows-search-alternative-for-documents.html", "image": "https://barbellsoft.com/img/chatda-ko.png", "author": {"@id": "https://barbellsoft.com/#org"}, "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=61605d01">
+<script src="../../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../../ko/index.html"><img src="../../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="주 메뉴"><a href="../../ko/launcher/index.html">Barbell Launcher</a><a href="../../ko/revive/index.html">ReviveUSB</a><a href="../../ko/chatda/index.html">Chatda</a><a href="../../ko/revivefix/index.html">ReviveFix</a><a href="../../ko/pastefit/index.html">PasteFit</a><a href="../../ko/about.html">만든 사람</a><a href="../../ko/feedback.html">피드백</a><a href="../../ko/donate.html">기부</a><a href="../../ko/blog/index.html" aria-current="page">블로그</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">블로그</a> · 2026-11-15</p><h1>Windows 검색으로 문서가 안 찾아질 때: 문서 속 글자로 찾기</h1><div class="doc prose"><p>지난달 어느 문서에 "계약금은 15일까지 입금"이라고 쓴 기억은 나는데, 파일 이름도, 한글 파일이었는지 PDF였는지 엑셀이었는지도 생각나지 않습니다. 작업 표시줄 검색창에 그 문구를 넣어 봐도 쓸 만한 결과가 나오지 않습니다.</p>
+<p>흔히 겪는 일입니다. PC에서 하는 검색은 대부분 파일 이름에서 시작하는데, 지금 잊어버린 게 바로 그 이름이기 때문입니다. 이 글에서는 문서가 분명히 있는데도 검색이 못 찾는 이유, 세 가지 검색 방식의 차이, 그리고 Windows 10·11용 무료 검색 앱 Chatda로 문서 속 글자로 파일을 찾는 방법을 설명합니다. Chatda는 macOS에서도 돌아갑니다.</p>
+<h2 id="_1">검색 결과가 비어 있는 이유</h2>
+<p>검색은 미리 살펴본 것만 찾을 수 있습니다. 바로 답을 내기 위해 검색 도구는 모두 색인을 둡니다. 파일 이름, 경우에 따라서는 파일 속 글자까지 미리 정리해 둔 목록입니다. 기억하는 말이 이 색인에 들어간 적이 없다면 어떤 검색창으로도 찾을 수 없습니다.</p>
+<p>문서 속 글자가 색인에 들어가는지는 세 가지에 달려 있습니다.</p>
+<ul>
+<li><strong>파일이 어디에 있는가.</strong> 색인은 정해진 폴더나 드라이브만 다룹니다. 다른 드라이브, 목록 밖의 폴더, 네트워크 폴더에 있는 파일은 이름만 알거나 아예 모를 수 있습니다.</li>
+<li><strong>어떤 형식의 파일인가.</strong> 파일 속 글자를 읽으려면 그 형식을 알아야 합니다. 모르는 형식이면 이름으로는 찾아도 내용으로는 못 찾습니다.</li>
+<li><strong>색인이 최신인가.</strong> 방금 저장한 파일은 아직 색인에 없을 수 있습니다.</li>
+</ul>
+<h2 id="_2">세 가지 검색 방식 비교</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>이름만 찾는 검색 도구</th>
+<th>Windows에 들어 있는 검색</th>
+<th>Chatda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이름으로 찾기</td>
+<td>됨, 대개 매우 빠름</td>
+<td>됨</td>
+<td>됨, 모든 고정 드라이브(C:\, D:\ …)를 자동으로</td>
+</tr>
+<tr>
+<td>문서 속 글자로 찾기</td>
+<td>안 됨(이름만 다루는 방식)</td>
+<td>색인 위치와 파일 형식에 따라 다름</td>
+<td>됨, 추가한 폴더에서(TXT, MD, CSV, DOCX, XLSX, PPTX, PDF, HWPX)</td>
+</tr>
+<tr>
+<td>네트워크 폴더(NAS)</td>
+<td>도구마다 다름</td>
+<td>설정에 따라 다름</td>
+<td>됨, «네트워크 폴더 연결»로</td>
+</tr>
+<tr>
+<td>글자가 나온 자리 보여 주기</td>
+<td>안 됨</td>
+<td>경우에 따라 다름</td>
+<td>됨, «내용» 칸에 본문 일부</td>
+</tr>
+</tbody>
+</table>
+<p>이름 일부를 알 때는 이름만 찾는 도구로도 충분합니다. Windows 검색은 색인하는 위치에 있는 파일이라면 잘 찾습니다. 그런데 손에 쥔 게 문서 속 한 구절뿐이라면 문서를 미리 읽어 둔 도구가 필요하고, Chatda는 바로 그런 경우를 위해 만들었습니다.</p>
+<h2 id="chatda">Chatda로 문서 속 글자로 찾기</h2>
+<p><strong>1. Chatda를 설치하고 엽니다.</strong> <a href="../chatda/download.html">다운로드 페이지</a>에서 받으세요. Windows에서는 고정 드라이브를 바로 모두 추가하므로, 처음부터 C:\·D:\의 파일 이름을 검색할 수 있습니다. 드라이브 전체는 이름·크기·날짜만 색인하고 파일 속 글자는 읽지 않습니다.</p>
+<p><strong>2. 내용까지 찾을 폴더를 추가합니다.</strong> <strong>모든 위치 ▾</strong>를 누르고 <strong>+ 폴더 추가</strong>에서 문서가 있는 폴더(문서, 바탕 화면 등)를 고르세요. 색인은 저절로 시작되고, 아래 상태 표시줄에 진행 상황이 나옵니다.</p>
+<p><strong>3. 파일이 NAS에 있다면 네트워크 폴더를 연결합니다.</strong> <strong>모든 위치 ▾</strong>에서 <strong>네트워크 폴더 연결</strong>을 고르고 NAS 주소와 사용자 이름·비밀번호를 넣습니다.</p>
+<p><strong>4. 기억나는 말을 입력합니다.</strong> 입력하는 동안 결과가 나오니 Enter를 누를 필요가 없습니다. <strong>내용</strong> 칸에 각 문서에서 그 말이 나온 부분이 검색어를 강조한 채로 보입니다.</p>
+<p><strong>5. 범위를 좁힙니다.</strong> 그 단어가 파일 이름에도 많이 들어 있다면 <strong>찾을 곳</strong>을 <strong>내용만</strong>으로 바꾸세요. 이름에는 없고 문서 안에만 그 단어가 있는 파일만 남습니다. 파일 형식을 고르거나, 날짜를 지난주·지난달로 좁히거나, <code>*.hwpx</code> 같은 와일드카드를 검색어와 함께 넣을 수도 있습니다.</p>
+<p><strong>6. 엽니다.</strong> 결과를 두 번 누르면 기본 앱으로 열리고, <code>Ctrl+Enter</code>를 누르면 탐색기에서 위치를 보여 줍니다. <code>Ctrl+Shift+Space</code>를 누르면 어디서든 Chatda가 떠서, 다음부터는 창을 찾을 필요 없이 바로 검색할 수 있습니다.</p>
+<h2 id="_3">얼마나 빠른가</h2>
+<p>시험한 PC 한 대(Windows 10 Pro, AMD Ryzen 5 8500G, 31GB RAM, NVMe SSD)에서 Chatda는 C: 드라이브 전체, 약 1,180만 개 파일의 이름을 16~17초에 색인했습니다. 같은 파일을 색인한 다른 파일 검색 프로그램은 47~48초였습니다. 한 글자 검색은 87~92ms였습니다. PC마다 결과는 다르고, 측정 조건은 <a href="../chatda/index.html">Chatda 페이지</a>에 있습니다.</p>
+<h2 id="_4">할 수 없는 것</h2>
+<p>Chatda가 내용을 읽는 형식은 TXT, MD, CSV, DOCX, XLSX, PPTX, PDF, HWPX입니다. 그림이나 ZIP 같은 다른 형식은 이름으로만 찾습니다. 자동으로 추가된 드라이브 전체는 이름으로만 검색되니, 문서 속 글자까지 찾으려면 그 폴더를 따로 추가하세요.</p>
+<p>아직 코드 서명을 하지 않아 처음 실행할 때 Windows SmartScreen 경고가 나올 수 있고, macOS에서는 처음에 열리지 않을 수 있습니다. Windows에서는 모든 사용자용으로 설치하므로 설치할 때 관리자 승인을 요청합니다.</p>
+<h2 id="_5">그래도 문서가 안 나올 때</h2>
+<ul>
+<li><strong>방금 저장한 파일입니다.</strong> 내 PC 폴더라면 바뀐 내용을 금방 반영하지만, NAS는 5분 정도 걸릴 수 있습니다. 급하면 폴더 메뉴(폴더 옆 <strong>⋯</strong>)에서 <strong>다시 색인</strong>을 고르세요.</li>
+<li><strong>본문 일부가 안 보입니다.</strong> 내용 검색을 지원하지 않는 형식이거나, 드라이브 전체 항목에만 들어 있는 파일일 수 있습니다. <strong>+ 폴더 추가</strong>로 그 폴더를 추가하세요.</li>
+<li><strong>NAS 폴더가 비어 보입니다.</strong> 탐색기에서 NAS 주소가 열리는지 확인하고, 회사 밖에서 쓰는 중이라면 VPN이 연결돼 있는지 확인하세요.</li>
+</ul>
+<p>더 많은 답은 <a href="../chatda/help.html">Chatda 도움말</a>과 <a href="../chatda/faq.html">자주 묻는 질문</a>에 있습니다.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · 파일 이름이 기억나지 않아도, 문서에 쓴 단어 하나로 찾습니다 (Windows · macOS)</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">무료 다운로드</a><a class="btn btn-outline" href="../chatda/index.html">자세히</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../../ko/launcher/index.html">Barbell Launcher</a><a href="../../ko/revive/index.html">ReviveUSB</a><a href="../../ko/chatda/index.html">Chatda</a><a href="../../ko/revivefix/index.html">ReviveFix</a><a href="../../ko/pastefit/index.html">PasteFit</a><a href="../../ko/about.html">만든 사람</a><a href="../../ko/donate.html">기부</a><a href="../../ko/privacy.html">개인정보</a><a href="../../ko/terms.html">이용약관</a><a href="../../ko/refund.html">환불</a><a id="contact-link" href="#" hidden>연락</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>언어: <a href="../../blog/windows-search-alternative-for-documents.html" lang="en">English</a> · <a href="../../ko/blog/windows-search-alternative-for-documents.html" lang="ko" aria-current="true">한국어</a> · <a href="../../ja/index.html" lang="ja">日本語</a> · <a href="../../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../../es/index.html" lang="es">Español</a> · <a href="../../de/index.html" lang="de">Deutsch</a> · <a href="../../fr/index.html" lang="fr">Français</a> · <a href="../../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../../ru/index.html" lang="ru">Русский</a> · <a href="../../vi/index.html" lang="vi">Tiếng Việt</a></span><label>테마 <select id="theme-select"><option value="auto">기본</option><option value="dark">다크</option><option value="light">라이트</option></select></label></div><p>© 2026 바벨소프트. 있는 그대로 제공하며 어떤 보증도 하지 않습니다.</p></div></footer>
+<script src="../../config.js?v=69a915c9"></script>
+<script src="../../site.js?v=761fe63d"></script>
+</body>
+</html>
