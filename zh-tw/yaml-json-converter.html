@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>YAML JSON 轉換器：YAML 轉 JSON，JSON 轉 YAML</title>
+<meta name="description" content="在瀏覽器中把 YAML 轉成 JSON 或把 JSON 轉成 YAML，並複製結果。YAML 出錯時會顯示行號。工具不會傳送你輸入的內容。">
+<link rel="canonical" href="https://barbellsoft.com/zh-tw/yaml-json-converter.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/yaml-json-converter.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/yaml-json-converter.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/yaml-json-converter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/yaml-json-converter.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/yaml-json-converter.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/yaml-json-converter.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/yaml-json-converter.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/yaml-json-converter.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/yaml-json-converter.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/yaml-json-converter.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/yaml-json-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/yaml-json-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="YAML JSON 轉換器：YAML 轉 JSON，JSON 轉 YAML">
+<meta property="og:description" content="在瀏覽器中把 YAML 轉成 JSON 或把 JSON 轉成 YAML，並複製結果。YAML 出錯時會顯示行號。工具不會傳送你輸入的內容。">
+<meta property="og:url" content="https://barbellsoft.com/zh-tw/yaml-json-converter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YAML JSON 轉換器：YAML 轉 JSON，JSON 轉 YAML">
+<meta name="twitter:description" content="在瀏覽器中把 YAML 轉成 JSON 或把 JSON 轉成 YAML，並複製結果。YAML 出錯時會顯示行號。工具不會傳送你輸入的內容。">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "YAML JSON 轉換器：YAML 轉 JSON，JSON 轉 YAML", "description": "在瀏覽器中把 YAML 轉成 JSON 或把 JSON 轉成 YAML，並複製結果。YAML 出錯時會顯示行號。工具不會傳送你輸入的內容。", "inLanguage": "zh-TW", "url": "https://barbellsoft.com/zh-tw/yaml-json-converter.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=e99b47a1">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../zh-tw/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主選單"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/feedback.html">意見回饋</a><a href="../zh-tw/donate.html">贊助</a><a href="../blog/index.html" lang="en">部落格</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>YAML JSON 轉換器：YAML 轉 JSON，JSON 轉 YAML</h1><p class="prose">貼上 YAML 或 JSON，然後選擇轉換方向。</p><div class="calc tool"><label for="yj-in">輸入</label><textarea id="yj-in" rows="10" spellcheck="false" autocomplete="off"></textarea><div class="actions"><button class="btn btn-primary" type="button" id="yj-tojson">YAML → JSON</button><button class="btn btn-outline" type="button" id="yj-toyaml">JSON → YAML</button></div><output id="yj-msg" aria-live="polite" data-done="已轉換。" data-empty="請先輸入 YAML 或 JSON。" data-yaml="YAML 錯誤（第 {a} 行）：{b}" data-json="JSON 錯誤：{a}" data-cycle="這段 YAML 透過別名（*）參照了自己，無法寫成 JSON。" data-big="輸入太大或巢狀太深，無法在這裡轉換。" data-inf="這段 YAML 含有 JSON 無法表示的值（.inf、.nan）。"></output><label for="yj-out">結果</label><textarea id="yj-out" rows="10" spellcheck="false" readonly></textarea><div class="actions"><button class="btn btn-outline" type="button" id="yj-copy" data-done="已複製" data-fail="請選取結果後手動複製">複製結果</button></div></div><section class="prose" aria-labelledby="yj-h"><h2 id="yj-h">須知</h2><ul><li>YAML 以 YAML 1.2 核心結構描述（core schema）讀取。日期以及 yes、on 等值保留為文字，合併鍵（&lt;&lt;）會展開。</li><li>不支援自訂標籤（!名稱）和以 --- 分隔的多個文件，會顯示錯誤。</li><li>註解不會保留。JSON 中大於 9007199254740991 的整數可能失去精確度。</li></ul><p class="meta">此工具不會傳送你輸入的文字或檔案。</p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/donate.html">贊助</a><a href="../zh-tw/privacy.html">隱私權</a><a href="../zh-tw/terms.html">使用條款</a><a href="../zh-tw/refund.html">退款</a><a href="../zh-tw/tools.html">免費工具</a><a id="contact-link" href="#" hidden>聯絡</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>語言: <a href="../yaml-json-converter.html" lang="en">English</a> · <a href="../ko/yaml-json-converter.html" lang="ko">한국어</a> · <a href="../ja/yaml-json-converter.html" lang="ja">日本語</a> · <a href="../zh-cn/yaml-json-converter.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/yaml-json-converter.html" lang="zh-TW" aria-current="true">繁體中文</a> · <a href="../es/yaml-json-converter.html" lang="es">Español</a> · <a href="../de/yaml-json-converter.html" lang="de">Deutsch</a> · <a href="../fr/yaml-json-converter.html" lang="fr">Français</a> · <a href="../pt-br/yaml-json-converter.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/yaml-json-converter.html" lang="ru">Русский</a> · <a href="../vi/yaml-json-converter.html" lang="vi">Tiếng Việt</a></span><label>主題 <select id="theme-select"><option value="auto">預設</option><option value="dark">深色</option><option value="light">淺色</option></select></label></div><p class="mt-note">本頁為機器翻譯。若發現錯誤，歡迎告訴我們。</p><p>© 2026 Barbellsoft。依現狀提供，不附任何保證。</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../vendor/js-yaml.min.js?v=32391560"></script>
+<script src="../yamljson.js?v=facc012c"></script>
+</body>
+</html>

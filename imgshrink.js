@@ -9,6 +9,7 @@
     var k = max / Math.max(w, h);
     return { w: Math.max(1, Math.round(w * k)), h: Math.max(1, Math.round(h * k)) };
   }
+  if (typeof window === "object") window.bbFit = fit;  // 목표 용량 압축(imgtarget.js)도 같은 축소 규칙을 쓴다
   if (typeof module === "object" && module.exports) { module.exports = { fit: fit }; return; }
 
   var file = document.getElementById("im-file"), out = document.getElementById("im-out");

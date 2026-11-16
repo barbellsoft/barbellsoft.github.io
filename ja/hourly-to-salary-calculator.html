@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>時給・年収換算：時給・週給・月給・年収を相互に計算</title>
+<meta name="description" content="時給を週給・月給・年収に、年収を時給に換算します。週の労働時間と年間の週数で計算し、税金は差し引きません。">
+<link rel="canonical" href="https://barbellsoft.com/ja/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/hourly-to-salary-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/hourly-to-salary-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="時給・年収換算：時給・週給・月給・年収を相互に計算">
+<meta property="og:description" content="時給を週給・月給・年収に、年収を時給に換算します。週の労働時間と年間の週数で計算し、税金は差し引きません。">
+<meta property="og:url" content="https://barbellsoft.com/ja/hourly-to-salary-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="時給・年収換算：時給・週給・月給・年収を相互に計算">
+<meta name="twitter:description" content="時給を週給・月給・年収に、年収を時給に換算します。週の労働時間と年間の週数で計算し、税金は差し引きません。">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "時給・年収換算：時給・週給・月給・年収を相互に計算", "description": "時給を週給・月給・年収に、年収を時給に換算します。週の労働時間と年間の週数で計算し、税金は差し引きません。", "inLanguage": "ja", "url": "https://barbellsoft.com/ja/hourly-to-salary-calculator.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=e99b47a1">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../ja/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../ja/launcher/index.html">Barbell Launcher</a><a href="../ja/revive/index.html">ReviveUSB</a><a href="../ja/chatda/index.html">Chatda</a><a href="../ja/revivefix/index.html">ReviveFix</a><a href="../ja/pastefit/index.html">PasteFit</a><a href="../ja/about.html">概要</a><a href="../ja/feedback.html">フィードバック</a><a href="../ja/donate.html">寄付</a><a href="../ja/blog/index.html">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>時給・年収換算：時給・週給・月給・年収を相互に計算</h1><p class="prose">金額を入力し、その金額が何かを選んでください。週の労働時間と年間の週数から、ほかの金額を計算します。</p><div class="calc tool" id="hw" data-dec="."><label for="hw-amount">金額</label><input id="hw-amount" type="text" inputmode="decimal" autocomplete="off" value=""><label for="hw-per">この金額は</label><select id="hw-per"><option value="hour" selected>時給</option><option value="week">週給</option><option value="month">月給</option><option value="year">年収</option></select><label for="hw-hours">週の労働時間</label><input id="hw-hours" type="text" inputmode="decimal" autocomplete="off" value="40"><label for="hw-weeks">給与が出る年間の週数</label><input id="hw-weeks" type="text" inputmode="decimal" autocomplete="off" value="52"><table class="perf" aria-live="polite"><tbody><tr><th scope="row">時給</th><td data-k="hour">—</td></tr><tr><th scope="row">週給</th><td data-k="week">—</td></tr><tr><th scope="row">月給</th><td data-k="month">—</td></tr><tr><th scope="row">年収</th><td data-k="year">—</td></tr></tbody></table></div><section class="prose" aria-labelledby="hw-h"><h2 id="hw-h">計算方法</h2><ul><li>年収 = 時給 × 週の労働時間 × 年間の週数、月給 = 年収 ÷ 12、週給 = 時給 × 週の労働時間です。</li><li>すべて税引き前の金額です。税金、社会保険料、残業代、賞与は含みません。</li><li>52 週が 1 年分です。無給休暇など給与が出ない週があれば、その分を引いて入力してください。</li><li>受け取る通貨のまま入力してください。通貨の換算はしません。</li></ul><p class="meta">このツールは、入力した内容やファイルを送信しません。</p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../ja/launcher/index.html">Barbell Launcher</a><a href="../ja/revive/index.html">ReviveUSB</a><a href="../ja/chatda/index.html">Chatda</a><a href="../ja/revivefix/index.html">ReviveFix</a><a href="../ja/pastefit/index.html">PasteFit</a><a href="../ja/about.html">概要</a><a href="../ja/donate.html">寄付</a><a href="../ja/privacy.html">プライバシー</a><a href="../ja/terms.html">利用規約</a><a href="../ja/refund.html">返金</a><a href="../ja/tools.html">無料ツール</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../hourly-to-salary-calculator.html" lang="en">English</a> · <a href="../ko/hourly-to-salary-calculator.html" lang="ko">한국어</a> · <a href="../ja/hourly-to-salary-calculator.html" lang="ja" aria-current="true">日本語</a> · <a href="../zh-cn/hourly-to-salary-calculator.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/hourly-to-salary-calculator.html" lang="zh-TW">繁體中文</a> · <a href="../es/hourly-to-salary-calculator.html" lang="es">Español</a> · <a href="../de/hourly-to-salary-calculator.html" lang="de">Deutsch</a> · <a href="../fr/hourly-to-salary-calculator.html" lang="fr">Français</a> · <a href="../pt-br/hourly-to-salary-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/hourly-to-salary-calculator.html" lang="ru">Русский</a> · <a href="../vi/hourly-to-salary-calculator.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../margin.js?v=df836b07"></script>
+<script src="../wage.js?v=899b32d6"></script>
+</body>
+</html>

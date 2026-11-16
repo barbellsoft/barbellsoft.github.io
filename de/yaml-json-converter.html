@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>YAML-in-JSON-Konverter (und JSON in YAML)</title>
+<meta name="description" content="Wandeln Sie YAML in JSON oder JSON in YAML im Browser um und kopieren Sie das Ergebnis. Bei YAML-Fehlern wird die Zeile angezeigt. Das Tool überträgt den eingegebenen Text nicht.">
+<link rel="canonical" href="https://barbellsoft.com/de/yaml-json-converter.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/yaml-json-converter.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/yaml-json-converter.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/yaml-json-converter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/yaml-json-converter.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/yaml-json-converter.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/yaml-json-converter.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/yaml-json-converter.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/yaml-json-converter.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/yaml-json-converter.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/yaml-json-converter.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/yaml-json-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/yaml-json-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="YAML-in-JSON-Konverter (und JSON in YAML)">
+<meta property="og:description" content="Wandeln Sie YAML in JSON oder JSON in YAML im Browser um und kopieren Sie das Ergebnis. Bei YAML-Fehlern wird die Zeile angezeigt. Das Tool überträgt den eingegebenen Text nicht.">
+<meta property="og:url" content="https://barbellsoft.com/de/yaml-json-converter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YAML-in-JSON-Konverter (und JSON in YAML)">
+<meta name="twitter:description" content="Wandeln Sie YAML in JSON oder JSON in YAML im Browser um und kopieren Sie das Ergebnis. Bei YAML-Fehlern wird die Zeile angezeigt. Das Tool überträgt den eingegebenen Text nicht.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "YAML-in-JSON-Konverter (und JSON in YAML)", "description": "Wandeln Sie YAML in JSON oder JSON in YAML im Browser um und kopieren Sie das Ergebnis. Bei YAML-Fehlern wird die Zeile angezeigt. Das Tool überträgt den eingegebenen Text nicht.", "inLanguage": "de", "url": "https://barbellsoft.com/de/yaml-json-converter.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=e99b47a1">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../de/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Hauptmenü"><a href="../de/launcher/index.html">Barbell Launcher</a><a href="../de/revive/index.html">ReviveUSB</a><a href="../de/chatda/index.html">Chatda</a><a href="../de/revivefix/index.html">ReviveFix</a><a href="../de/pastefit/index.html">PasteFit</a><a href="../de/about.html">Über uns</a><a href="../de/feedback.html">Feedback</a><a href="../de/donate.html">Spenden</a><a href="../de/blog/index.html">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>YAML-in-JSON-Konverter (und JSON in YAML)</h1><p class="prose">Fügen Sie YAML oder JSON ein und wählen Sie die Richtung.</p><div class="calc tool"><label for="yj-in">Eingabe</label><textarea id="yj-in" rows="10" spellcheck="false" autocomplete="off"></textarea><div class="actions"><button class="btn btn-primary" type="button" id="yj-tojson">YAML → JSON</button><button class="btn btn-outline" type="button" id="yj-toyaml">JSON → YAML</button></div><output id="yj-msg" aria-live="polite" data-done="Umgewandelt." data-empty="Fügen Sie zuerst YAML oder JSON ein." data-yaml="YAML-Fehler in Zeile {a}: {b}" data-json="JSON-Fehler: {a}" data-cycle="Dieses YAML verweist über einen Alias (*) auf sich selbst und lässt sich nicht als JSON schreiben." data-big="Die Eingabe ist zu groß oder zu tief verschachtelt, um sie hier umzuwandeln." data-inf="Dieses YAML enthält .inf oder .nan, was JSON nicht darstellen kann."></output><label for="yj-out">Ergebnis</label><textarea id="yj-out" rows="10" spellcheck="false" readonly></textarea><div class="actions"><button class="btn btn-outline" type="button" id="yj-copy" data-done="Kopiert" data-fail="Markieren Sie das Ergebnis und kopieren Sie es">Ergebnis kopieren</button></div></div><section class="prose" aria-labelledby="yj-h"><h2 id="yj-h">Gut zu wissen</h2><ul><li>YAML wird mit dem YAML-1.2-Core-Schema gelesen. Datumsangaben und Wörter wie yes oder on bleiben Text, Merge-Schlüssel (&lt;&lt;) werden angewendet.</li><li>Benutzerdefinierte Tags (!name) und mehrere durch --- getrennte Dokumente werden nicht unterstützt und ergeben einen Fehler.</li><li>Kommentare bleiben nicht erhalten. Ganze Zahlen über 9007199254740991 in JSON können an Genauigkeit verlieren.</li></ul><p class="meta">Dieses Tool überträgt die eingegebenen Texte und Dateien nicht.</p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../de/launcher/index.html">Barbell Launcher</a><a href="../de/revive/index.html">ReviveUSB</a><a href="../de/chatda/index.html">Chatda</a><a href="../de/revivefix/index.html">ReviveFix</a><a href="../de/pastefit/index.html">PasteFit</a><a href="../de/about.html">Über uns</a><a href="../de/donate.html">Spenden</a><a href="../de/privacy.html">Datenschutz</a><a href="../de/terms.html">Nutzungsbedingungen</a><a href="../de/refund.html">Erstattung</a><a href="../de/tools.html">Kostenlose Tools</a><a id="contact-link" href="#" hidden>Kontakt</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Sprache: <a href="../yaml-json-converter.html" lang="en">English</a> · <a href="../ko/yaml-json-converter.html" lang="ko">한국어</a> · <a href="../ja/yaml-json-converter.html" lang="ja">日本語</a> · <a href="../zh-cn/yaml-json-converter.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/yaml-json-converter.html" lang="zh-TW">繁體中文</a> · <a href="../es/yaml-json-converter.html" lang="es">Español</a> · <a href="../de/yaml-json-converter.html" lang="de" aria-current="true">Deutsch</a> · <a href="../fr/yaml-json-converter.html" lang="fr">Français</a> · <a href="../pt-br/yaml-json-converter.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/yaml-json-converter.html" lang="ru">Русский</a> · <a href="../vi/yaml-json-converter.html" lang="vi">Tiếng Việt</a></span><label>Design <select id="theme-select"><option value="auto">Standard</option><option value="dark">Dunkel</option><option value="light">Hell</option></select></label></div><p class="mt-note">Diese Seite wurde maschinell übersetzt. Wenn Ihnen ein Fehler auffällt, sagen Sie uns bitte Bescheid.</p><p>© 2026 Barbellsoft. Bereitgestellt wie besehen, ohne Gewähr.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+<script src="../vendor/js-yaml.min.js?v=32391560"></script>
+<script src="../yamljson.js?v=facc012c"></script>
+</body>
+</html>

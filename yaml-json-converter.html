@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>YAML to JSON converter (and JSON to YAML)</title>
+<meta name="description" content="Convert YAML to JSON or JSON to YAML in your browser and copy the result. YAML errors show their line number. The tool does not send the text you enter.">
+<link rel="canonical" href="https://barbellsoft.com/yaml-json-converter.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/yaml-json-converter.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/yaml-json-converter.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/yaml-json-converter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/yaml-json-converter.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/yaml-json-converter.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/yaml-json-converter.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/yaml-json-converter.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/yaml-json-converter.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/yaml-json-converter.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/yaml-json-converter.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/yaml-json-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/yaml-json-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="YAML to JSON converter (and JSON to YAML)">
+<meta property="og:description" content="Convert YAML to JSON or JSON to YAML in your browser and copy the result. YAML errors show their line number. The tool does not send the text you enter.">
+<meta property="og:url" content="https://barbellsoft.com/yaml-json-converter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YAML to JSON converter (and JSON to YAML)">
+<meta name="twitter:description" content="Convert YAML to JSON or JSON to YAML in your browser and copy the result. YAML errors show their line number. The tool does not send the text you enter.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "YAML to JSON converter (and JSON to YAML)", "description": "Convert YAML to JSON or JSON to YAML in your browser and copy the result. YAML errors show their line number. The tool does not send the text you enter.", "inLanguage": "en", "url": "https://barbellsoft.com/yaml-json-converter.html", "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=e99b47a1">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="index.html"><img src="img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="launcher/index.html">Barbell Launcher</a><a href="revive/index.html">ReviveUSB</a><a href="chatda/index.html">Chatda</a><a href="revivefix/index.html">ReviveFix</a><a href="pastefit/index.html">PasteFit</a><a href="about.html">About</a><a href="feedback.html">Feedback</a><a href="donate.html">Donate</a><a href="blog/index.html">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>YAML to JSON converter (and JSON to YAML)</h1><p class="prose">Paste YAML or JSON, then choose the direction.</p><div class="calc tool"><label for="yj-in">Input</label><textarea id="yj-in" rows="10" spellcheck="false" autocomplete="off"></textarea><div class="actions"><button class="btn btn-primary" type="button" id="yj-tojson">YAML → JSON</button><button class="btn btn-outline" type="button" id="yj-toyaml">JSON → YAML</button></div><output id="yj-msg" aria-live="polite" data-done="Converted." data-empty="Paste some YAML or JSON first." data-yaml="YAML error on line {a}: {b}" data-json="JSON error: {a}" data-cycle="This YAML refers to itself through an alias (*), so it cannot be written as JSON." data-big="The input is too large or nested too deeply to convert here." data-inf="This YAML contains .inf or .nan, which JSON cannot hold."></output><label for="yj-out">Result</label><textarea id="yj-out" rows="10" spellcheck="false" readonly></textarea><div class="actions"><button class="btn btn-outline" type="button" id="yj-copy" data-done="Copied" data-fail="Select the result and copy it yourself">Copy result</button></div></div><section class="prose" aria-labelledby="yj-h"><h2 id="yj-h">Good to know</h2><ul><li>YAML is read with the YAML 1.2 core schema. Dates and words such as yes or on stay as text, and merge keys (&lt;&lt;) are applied.</li><li>Custom tags (!name) and several documents separated by --- are not supported and show an error.</li><li>Comments are not kept. Whole numbers larger than 9007199254740991 in JSON may lose precision.</li></ul><p class="meta">This tool does not send the text or files you enter.</p></section>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="launcher/index.html">Barbell Launcher</a><a href="revive/index.html">ReviveUSB</a><a href="chatda/index.html">Chatda</a><a href="revivefix/index.html">ReviveFix</a><a href="pastefit/index.html">PasteFit</a><a href="about.html">About</a><a href="donate.html">Donate</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a><a href="tools.html">Free tools</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="yaml-json-converter.html" lang="en" aria-current="true">English</a> · <a href="ko/yaml-json-converter.html" lang="ko">한국어</a> · <a href="ja/yaml-json-converter.html" lang="ja">日本語</a> · <a href="zh-cn/yaml-json-converter.html" lang="zh-CN">简体中文</a> · <a href="zh-tw/yaml-json-converter.html" lang="zh-TW">繁體中文</a> · <a href="es/yaml-json-converter.html" lang="es">Español</a> · <a href="de/yaml-json-converter.html" lang="de">Deutsch</a> · <a href="fr/yaml-json-converter.html" lang="fr">Français</a> · <a href="pt-br/yaml-json-converter.html" lang="pt-BR">Português (Brasil)</a> · <a href="ru/yaml-json-converter.html" lang="ru">Русский</a> · <a href="vi/yaml-json-converter.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="config.js?v=69a915c9"></script>
+<script src="site.js?v=877e3be7"></script>
+<script src="vendor/js-yaml.min.js?v=32391560"></script>
+<script src="yamljson.js?v=facc012c"></script>
+</body>
+</html>
