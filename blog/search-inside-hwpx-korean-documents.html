@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Search inside HWPX files together with PDF and Office files | Barbellsoft</title>
+<meta name="description" content="How to search the text of Korean HWPX documents, PDFs and Office files in one place, and why older HWP files only show up by their name.">
+<link rel="canonical" href="https://barbellsoft.com/blog/search-inside-hwpx-korean-documents.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/blog/search-inside-hwpx-korean-documents.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/blog/search-inside-hwpx-korean-documents.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Search inside HWPX files together with PDF and Office files | Barbellsoft">
+<meta property="og:description" content="How to search the text of Korean HWPX documents, PDFs and Office files in one place, and why older HWP files only show up by their name.">
+<meta property="og:url" content="https://barbellsoft.com/blog/search-inside-hwpx-korean-documents.html">
+<meta property="og:image" content="https://barbellsoft.com/img/og/chatda-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Search inside HWPX files together with PDF and Office files | Barbellsoft">
+<meta name="twitter:description" content="How to search the text of Korean HWPX documents, PDFs and Office files in one place, and why older HWP files only show up by their name.">
+<meta name="twitter:image" content="https://barbellsoft.com/img/og/chatda-en.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Search inside HWPX files together with PDF and Office files", "description": "How to search the text of Korean HWPX documents, PDFs and Office files in one place, and why older HWP files only show up by their name.", "datePublished": "2026-11-16", "inLanguage": "en", "url": "https://barbellsoft.com/blog/search-inside-hwpx-korean-documents.html", "image": "https://barbellsoft.com/img/chatda-en.png", "author": {"@id": "https://barbellsoft.com/#org"}, "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=e99b47a1">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-16</p><h1>Search inside HWPX files together with PDF and Office files</h1><div class="doc prose"><p>If you work with Korean documents, your folders are probably a mix. Reports written as HWPX, PDFs that someone emailed you, Word files, a few Excel sheets. You remember a phrase from one of them, maybe a project name or a line from a notice, but not which format it was in or what the file was called.</p>
+<p>Searching by file name doesn't help when the name is the part you forgot. You need a search that reads the text inside all of those formats at once and puts the results in one list. This post shows how to do that with Chatda, a free search app for Windows 10 and 11 that also runs on macOS, and what to check when a Korean document still won't turn up.</p>
+<h2 id="hwpx-and-hwp-are-different-files">HWPX and HWP are different files</h2>
+<p>Hangul documents come in two formats. HWPX is the newer one. HWP is the older one, and many folders still hold plenty of them.</p>
+<p>Chatda reads the text inside HWPX files. It does not read the text inside HWP files, so those can only be found by name. The full list of formats it reads inside is TXT, MD, CSV, DOCX, XLSX, PPTX, PDF and HWPX. Anything else, including images and ZIP files, matches by name only.</p>
+<p>So before you start, look at the extensions in the folders you care about. If an important document is still an .hwp file and you want to find it by what it says, open it in your word processor and save a copy as HWPX. Keep the original until you've checked that the copy opens properly.</p>
+<p>PDFs need a similar check. A PDF scanned from paper is a picture of text, and there are no letters in it for any search tool to read. Open it and try to select a sentence with the mouse. If nothing highlights, or the whole page highlights as one block, you'll only find that file by its name.</p>
+<h2 id="set-up-chatda-once">Set up Chatda once</h2>
+<p>Download Chatda from the <a href="../chatda/download.html">download page</a> and install it. Installing asks for administrator approval, because Chatda installs for all users together with its drive indexing service.</p>
+<p>Chatda isn't code-signed yet, so Windows SmartScreen may say it doesn't recognize the app. The download page lists the file's SHA-256 and shows how to compare it in PowerShell. If the value matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>. On a Mac, the first launch may say Chatda can't be opened: click <strong>Done</strong>, open System Settings &gt; Privacy &amp; Security, click <strong>Open Anyway</strong>, then open Chatda again.</p>
+<p>If you'd rather use a Korean interface, go to ⚙ Settings → <strong>Language</strong> and pick 한국어.</p>
+<p>On Windows, Chatda adds every fixed drive (C:\, D:\ and so on) by itself. For a whole drive it keeps only file names, sizes and dates, which means you can find any file by name straight away, but not by its contents. To search inside your documents, add the folders they live in:</p>
+<ol>
+<li>Click <strong>All locations ▾</strong> at the top.</li>
+<li>Choose <strong>+ Add folder</strong> and pick a folder, for example Documents or a project folder.</li>
+<li>Indexing starts on its own. The status bar at the bottom shows the progress and the time left.</li>
+</ol>
+<p>If the documents sit on a NAS, choose <strong>Connect network folder</strong> in the same panel and enter the NAS address, your username and your password.</p>
+<h2 id="search-in-korean">Search in Korean</h2>
+<p>Type a word or two into the search box. You don't need to press Enter, because results appear as you type, usually within 0.2 seconds. While you're still composing a Korean character, Chatda waits until the character is complete before it searches.</p>
+<p>You can mix Korean and English in one search, like <code>Ctrl 단축키</code>. Spacing doesn't matter much either: <code>회의록</code>, <code>회의 록</code> and <code>회의 록 2024</code> behave about the same. If you're not sure of the exact wording, start short. <code>3분기 결산</code> will find more than a long title you half remember.</p>
+<p>HWPX files, PDFs and Office files come back in the same table. The <strong>Content</strong> column shows where your words appear in each document, and an empty cell means the file matched by name only. Click a result once to open the preview panel on the right. For Word, Excel, PowerPoint and HWPX files it shows the extracted text (up to 300 MB), and for PDFs it shows the document text (up to 30 MB). Double-click to open the file in its usual app.</p>
+<h2 id="narrow-it-down">Narrow it down</h2>
+<p>When a common word turns up in dozens of files, these help:</p>
+<ul>
+<li>In the <strong>Search in</strong> dropdown, switch to <strong>Content only</strong>. Files that only have the word in their name drop out.</li>
+<li>Add an extension to the search. <code>예산 *.hwpx</code> finds HWPX files that contain 예산 (budget). <code>*.{hwpx,pdf}</code> covers both formats, and so does <code>ext:hwpx;pdf</code>.</li>
+<li>Put words in quotes, like <code>"지급 명세서"</code>, to find them together and in that order.</li>
+<li>Leave out drafts with a minus: <code>계약 -초안</code> hides results that contain 초안 (draft).</li>
+<li>Use the <strong>Date</strong> dropdown to limit results to the past week, month or year.</li>
+</ul>
+<p>If you need a list of what you found, for a report or to send to a colleague, use <strong>Export ▾</strong> → <strong>CSV (Excel)</strong>. It saves every result that matches the current search, not just the ones on screen, and the file opens in Excel without garbled Korean.</p>
+<h2 id="when-a-document-still-doesnt-show-up">When a document still doesn't show up</h2>
+<p>Work through these in order:</p>
+<ol>
+<li><strong>Is it .hwp rather than .hwpx?</strong> Old HWP files match by name only. Save a copy as HWPX if you need to search its contents.</li>
+<li><strong>Is the folder added by itself?</strong> A file covered only by a whole-drive entry like C:\ is searched by name. Add its folder with <strong>+ Add folder</strong>.</li>
+<li><strong>Is the PDF a scan?</strong> If you can't select its text, there is nothing inside it to search.</li>
+<li><strong>Is Chatda up to date?</strong> Version 9.33.0 fixed some Korean PDFs, such as PDFs made from Hangul documents, whose text couldn't be searched. Version 9.34.5 fixed file names where Korean is joined to digits or letters, like 1차 or 회의록v2, not matching in the middle of the name. When a new version is out, a banner appears at the top when Chatda starts; click <strong>Install</strong>.</li>
+<li><strong>Did you just save it?</strong> In a local folder Chatda picks up new and changed files within about half a second. On a NAS it can take up to five minutes. In a hurry, choose <strong>Re-index</strong> from the folder's menu.</li>
+<li><strong>Did indexing finish?</strong> A ⚠ mark in front of a folder name means it didn't. Choose <strong>Re-index</strong>.</li>
+<li><strong>Is the word too specific?</strong> Try <strong>Content only</strong> with a shorter, more general word. <code>병목</code> finds more than <code>결재 병목</code>.</li>
+</ol>
+<p>The <a href="../chatda/help.html">help page</a> explains every filter and search operator, and the <a href="../chatda/faq.html">FAQ</a> covers the questions that come up most.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Can&#x27;t remember the file name? Find it by a word you wrote inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a href="../tools.html">Free tools</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/search-inside-hwpx-korean-documents.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+</body>
+</html>
