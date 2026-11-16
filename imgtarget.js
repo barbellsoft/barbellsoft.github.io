@@ -3,11 +3,14 @@
 // 보내지 않는다. 미리보기·저장 방식은 imgshrink.js 와 같다(CSP img-src 에 blob: 없음). search 는 tests/test_site.py 가 검사한다.
 (function () {
   "use strict";
-  var QMIN = 0.5, QMAX = 0.92, STEPS = 6, MAXSIDE = 4096, MINSIDE = 32;
-  // encode(scale, q) → Promise<{size}>(scale = 원본 긴 변 대비 비율). 돌려주는 것은 늘 size ≤ target 인 결과이고,
+  // 캔버스 한도: 넓이 16,777,216 px(= 4096², iOS Safari 가 이보다 큰 캔버스를 빈 그림으로 낼 수 있음) — 짧은 변 반올림(최대
+  // 긴 변 × 0.5 px)을 넘지 않게 16,700,000 으로 둔다. 한 변 16,384 px. 긴 변만 4096 으로 묶으면 6000×1000 처럼 작은 그림도
+  // 줄어들었다(사후 점검 11-16)
+  var QMIN = 0.5, QMAX = 0.92, STEPS = 6, MAXAREA = 16.7e6, MAXSIDE = 16384, MINSIDE = 32;
+  // encode(scale, q) → Promise<{size}>(scale = 원본 대비 비율). 돌려주는 것은 늘 size ≤ target 인 결과이고,
   // 못 찾으면 null. 화질은 QMIN 아래로 내리지 않는다(그보다는 크기를 줄이는 쪽이 덜 뭉개진다)
-  async function search(encode, side, target) {
-    var scale = Math.min(1, MAXSIDE / side);
+  async function search(encode, w, h, target) {
+    var side = Math.max(w, h), scale = Math.min(1, MAXSIDE / side, Math.sqrt(MAXAREA / (w * h)));
     for (var round = 0; round < 12 && (round === 0 || side * scale >= MINSIDE); round++) {  // 아주 작은 그림도 한 번은 시도
       var low = await encode(scale, QMIN);
       if (low.size <= target) {
@@ -50,7 +53,7 @@
     async function encode(scale, q) {
       if (my !== seq) throw new Error("stale");
       if (scale !== drawn) {  // 같은 크기에서 화질만 바꿀 때는 다시 그리지 않는다
-        var s = window.bbFit(bmp.width, bmp.height, Math.round(Math.max(bmp.width, bmp.height) * scale)), g;
+        var s = window.bbFit(bmp.width, bmp.height, Math.floor(Math.max(bmp.width, bmp.height) * scale)), g;  // 내림: 넓이 한도를 반올림으로 넘지 않게
         cv.width = s.w; cv.height = s.h;
         g = cv.getContext("2d");
         if (type === "image/jpeg") { g.fillStyle = "#fff"; g.fillRect(0, 0, s.w, s.h); }  // 투명한 곳이 검게 되지 않게
@@ -62,23 +65,27 @@
       if (blob.type !== type) throw new Error("nowebp");  // WebP 로 못 쓰는 브라우저는 PNG 를 돌려준다
       return { size: blob.size, blob: blob, w: cv.width, h: cv.height };
     }
-    try { r = await search(encode, Math.max(bmp.width, bmp.height), target); }
+    try { r = await search(encode, bmp.width, bmp.height, target); }
     catch (err) { if (my === seq) msg(err.message === "nowebp" ? "nowebp" : "toobig"); return; }
     finally { bmp.close(); }
     if (my !== seq) return;
     if (!r) { msg("fail"); return; }
-    var shown = await createImageBitmap(r.blob);  // 미리보기는 압축된 결과를 다시 그린 것(화질 변화가 보이게)
-    if (my !== seq) return;
-    cv.width = r.w; cv.height = r.h;
-    cv.getContext("2d").drawImage(shown, 0, 0);
-    shown.close();
+    var shown = null;  // 미리보기는 압축된 결과를 다시 그린 것(화질 변화가 보이게). 못 열면 미리보기 없이 저장만
+    try { shown = await createImageBitmap(r.blob); } catch (err) { shown = null; }
+    if (my !== seq) { if (shown) shown.close(); return; }
+    if (shown) {
+      cv.width = r.w; cv.height = r.h;
+      cv.getContext("2d").drawImage(shown, 0, 0);
+      shown.close();
+    }
     if (url) URL.revokeObjectURL(url);
     url = URL.createObjectURL(r.blob);
     link.href = url;
     link.download = f.name.replace(/\.[^.]+$/, "") + "-" + target / 1000 + "KB" + (type === "image/webp" ? ".webp" : ".jpg");  // 원본 이름과 겹치지 않게
     link.hidden = false;
-    wrap.replaceChildren(cv);
-    msg("done", kb(f.size), kb(r.size), r.w + " × " + r.h);
+    if (shown) wrap.replaceChildren(cv);
+    // 형식을 바꾸면(PNG → JPG 등) 제한 안이어도 원본보다 커질 수 있다 → 원본이 제한 안이면 그대로 써도 된다고 안내
+    msg(r.size > f.size ? "bigger" : "done", kb(f.size), kb(r.size), r.w + " × " + r.h);
   }
   ["ts-file", "ts-kb", "ts-type"].forEach(function (id) { document.getElementById(id).addEventListener("change", run); });
 })();

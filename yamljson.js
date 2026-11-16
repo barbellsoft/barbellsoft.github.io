@@ -30,7 +30,8 @@
     guard(text);
     var v;
     try { v = lib.load(text, { schema: schemaOf(lib) }); } catch (err) {
-      if (err instanceof RangeError) throw fail("big");
+      // 깊이(maxDepth 100)·병합 키(maxTotalMergeKeys) 한도는 영어 원문 대신 언어별 «big» 안내(사후 점검 11-16)
+      if (err instanceof RangeError || /^(nesting|merge keys) exceeded max(Depth|TotalMergeKeys) \(/.test(err.reason || "")) throw fail("big");
       throw fail("yaml", err.mark ? err.mark.line + 1 : "?", err.reason || err.message);
     }
     try { check(v); } catch (err) { throw err.code ? err : fail("big"); }  // 아주 깊은 중첩은 RangeError

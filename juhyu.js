@@ -3,8 +3,10 @@
 // 이 계산식의 범위(주 40시간 이하)를 넘는 시간은 계산하지 않고 상담을 안내한다(4명 이하 사업장 등 예외가 있어 단정하지 않음). holiday 는 tests/test_site.py 가 검사한다.
 (function () {
   "use strict";
-  // → {code, h(주휴시간), pay}. code: ok·short(15시간 미만)·absent(개근 안 함)·over(40시간 초과)·bad(읽을 수 없음)
+  // → {code, h(주휴시간), pay}. code: ok·short(15시간 미만)·absent(개근 안 함)·over(40시간 초과)·big(시급 1억 원 초과 —
+  // 1e308 같은 값이 «∞원» 으로 보였음, 사후 점검 11-16)·bad(읽을 수 없음)
   function holiday(hours, wage, full) {
+    if (wage > 1e8 && hours > 0) return { code: "big" };
     if (!(hours > 0 && isFinite(hours) && wage >= 0 && isFinite(wage))) return { code: "bad" };
     if (hours > 40) return { code: "over" };
     if (hours < 15) return { code: "short", h: 0, pay: 0 };
@@ -29,7 +31,7 @@
   function show() {
     var w = window.bbParseAmount(wage.value, "."), r = holiday(window.bbParseAmount(document.getElementById("wk-hours").value, "."),
       wage.value.trim() ? w : NaN, document.getElementById("wk-full").checked);
-    out.textContent = r.code === "bad" || r.code === "over" ? "—" : nf.format(r.pay) + "원";
+    out.textContent = r.pay === undefined ? "—" : nf.format(r.pay) + "원";
     msg.textContent = msg.getAttribute("data-" + r.code).replace("{a}", function () { return nh.format(r.h); })
       .replace("{b}", function () { return nf.format(w); }).replace("{c}", function () { return nf.format(r.pay); });  // 낭독은 이 줄만(금액 포함)
   }
