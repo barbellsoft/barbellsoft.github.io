@@ -25,7 +25,7 @@ Last updated: 2026-11-15. The site is in English at the top level, with the same
 - Platform: Windows 10 and 11 (64-bit) and macOS (Apple silicon and Intel). App languages: English, Korean, Japanese.
 - Measured speed (one PC: Windows 10 Pro, AMD Ryzen 5 8500G, 31 GB RAM, NVMe SSD; the whole C: drive, about 11.8 million files): first index 16–17 s against 47–48 s for another file search program ("Program A"); one-letter search 87–92 ms against 115–128 ms; index file 125–132 MB against 381 MB. Results differ on other PCs; full conditions are on the Chatda page.
 - Known limits: files covered only by a whole-drive entry such as C:\ are searched by name; a new file on a NAS can take about 5 minutes to appear; favorites and recent searches don't sync between computers. The Windows build isn't code-signed and the Mac build isn't notarized yet.
-- Latest version: 9.34.8 (2026-11-15).
+- Latest version: 9.34.9 (2026-11-16).
 - Price: free, with no ads and no account.
 - Pages: https://barbellsoft.com/chatda/ · https://barbellsoft.com/chatda/download.html · https://barbellsoft.com/chatda/faq.html · https://barbellsoft.com/chatda/help.html
 
