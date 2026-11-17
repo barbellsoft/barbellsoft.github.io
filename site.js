@@ -147,5 +147,9 @@
   initContact();
   initCopy();
   countVisit();
+  // 홈 광고 칸(ins.adsbygoogle)이 있는 페이지만 광고를 요청한다. 인라인 스크립트 대신 nonce 가 붙은 이 파일에서 호출
+  if (document.querySelector("ins.adsbygoogle")) {
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (err) { /* 광고가 안 떠도 페이지는 그대로 */ }
+  }
   countDownloads();
 })();
