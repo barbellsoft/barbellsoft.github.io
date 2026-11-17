@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Search inside files on your Desktop and Downloads | Barbellsoft</title>
+<meta name="description" content="Find a document on Windows by a word inside it, not its name. Chatda now reads the files on your Desktop and in Downloads without any setup.">
+<link rel="canonical" href="https://barbellsoft.com/blog/search-inside-files-desktop-downloads.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/blog/search-inside-files-desktop-downloads.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/blog/search-inside-files-desktop-downloads.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Search inside files on your Desktop and Downloads | Barbellsoft">
+<meta property="og:description" content="Find a document on Windows by a word inside it, not its name. Chatda now reads the files on your Desktop and in Downloads without any setup.">
+<meta property="og:url" content="https://barbellsoft.com/blog/search-inside-files-desktop-downloads.html">
+<meta property="og:image" content="https://barbellsoft.com/img/og/chatda-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Search inside files on your Desktop and Downloads | Barbellsoft">
+<meta name="twitter:description" content="Find a document on Windows by a word inside it, not its name. Chatda now reads the files on your Desktop and in Downloads without any setup.">
+<meta name="twitter:image" content="https://barbellsoft.com/img/og/chatda-en.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Search inside files on your Desktop and Downloads", "description": "Find a document on Windows by a word inside it, not its name. Chatda now reads the files on your Desktop and in Downloads without any setup.", "datePublished": "2026-11-17", "inLanguage": "en", "url": "https://barbellsoft.com/blog/search-inside-files-desktop-downloads.html", "image": "https://barbellsoft.com/img/chatda-en.png", "author": {"@id": "https://barbellsoft.com/#org"}, "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=1b07c7f5">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-17</p><h1>Search inside files on your Desktop and Downloads</h1><div class="doc prose"><p>Most files on a work PC end up in one of two places. You save an attachment and it lands in Downloads. You want something close at hand and drop it on the Desktop. A few weeks later you remember a sentence from it, a client's name or a line from a quote, but not what the file was called.</p>
+<p>Searching by name doesn't help then. You need a search that reads the text inside the documents. This post shows how Chatda, a free search app for Windows 10 and 11 (it runs on macOS too), does that for your Desktop and Downloads folders, and what to check when a file still doesn't show up.</p>
+<h2 id="what-changed-in-chatda-93413">What changed in Chatda 9.34.13</h2>
+<p>On Windows, Chatda adds every fixed drive (C:\, D:\ and so on) by itself. For a whole drive it only keeps file names, sizes and dates. That makes any file findable by name right away, but a word that appears only inside a document wouldn't match.</p>
+<p>Until now you had to add the folders whose contents you wanted searched. Many people never did, and searching by content simply returned files whose names matched.</p>
+<p>Starting with version 9.34.13, Chatda on Windows adds your Desktop and Downloads folders once, on its own, the first time it runs. The documents in them are then searchable by what's written inside. If you already added those folders, or you removed one on purpose, Chatda leaves them as they are.</p>
+<h2 id="set-it-up">Set it up</h2>
+<p>Download Chatda from the <a href="../chatda/download.html">download page</a> and install it. Installing asks for administrator approval, because Chatda installs for all users together with its drive indexing service.</p>
+<p>Chatda isn't code-signed yet, so Windows SmartScreen may say it doesn't recognize the app. The download page lists the file's SHA-256 checksum and shows how to compare it in PowerShell. If the value matches, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<p>When Chatda starts, it indexes your drives and then the Desktop and Downloads folders. The status bar at the bottom shows the progress. If Chatda is already installed, update it to 9.34.13 or later.</p>
+<h2 id="search-by-a-word-inside-a-document">Search by a word inside a document</h2>
+<p>Type a word you remember into the search box. The default mode, <strong>Name + content</strong>, finds files that have the word in the name and files that have it inside.</p>
+<p>Look at the <strong>Content</strong> column in the results. It shows where your search words appear in the document. If it's empty, the file matched by name only.</p>
+<p>To see only the files that contain the word somewhere inside, pick <strong>Content only</strong> from the <strong>Search in</strong> dropdown in the filter bar. That leaves out files that match only by name, which helps when the word is common in file names.</p>
+<h2 id="which-files-are-read">Which files are read</h2>
+<p>Chatda reads the contents of TXT, MD, CSV, DOCX, XLSX, PPTX, PDF and HWPX files. Other formats, including older HWP files, images and code, match by name only.</p>
+<p>A PDF has to contain real text. Some PDFs are photos of paper pages, saved by a scanner or a phone app, and there are no letters in them to search. Open the file and try to select a sentence with your mouse. If nothing highlights, or the whole page highlights as one block, you'll only find that file by its name.</p>
+<h2 id="search-other-folders-too">Search other folders too</h2>
+<p>Your Desktop and Downloads aren't the only places documents live. For a project folder, a shared work folder or Documents, add it yourself:</p>
+<ol>
+<li>Click <strong>All locations ▾</strong> at the top.</li>
+<li>Choose <strong>+ Add folder</strong> and pick the folder.</li>
+<li>Indexing starts on its own, and the status bar shows how far along it is.</li>
+</ol>
+<p>If you have only whole drives added and no folder whose contents are read, Chatda shows a notice above the results with an <strong>Add folder</strong> button, so you don't have to guess why a word inside a document isn't found.</p>
+<h2 id="if-a-file-still-doesnt-show-up">If a file still doesn't show up</h2>
+<p>Check where the file is. A document on another drive, or in a folder you haven't added, is searched by name only. Add its folder and search again.</p>
+<p>Check the file type against the list above. A Word file saved in an older format or a scanned PDF will match by name only.</p>
+<p>Check the <strong>All types ▾</strong> filter at the top. If a type filter is on, files of other types are left out of the results.</p>
+<p>Try a shorter word or part of one. If you remember a phrase exactly, put it in quotes, for example <code>"payment statement"</code>.</p>
+<p>The <a href="../chatda/help.html">help page</a> explains the search modes and the search syntax in more detail, and the <a href="../chatda/faq.html">FAQ</a> covers installation questions.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Can&#x27;t remember the file name? Find it by a word you wrote inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a href="../tools.html">Free tools</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/search-inside-files-desktop-downloads.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=877e3be7"></script>
+</body>
+</html>
