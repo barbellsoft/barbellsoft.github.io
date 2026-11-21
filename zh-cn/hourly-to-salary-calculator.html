@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'nonce-4eb483da93108e9ebdb0ad44' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; form-action 'none'">
 <title>时薪年薪换算器：时薪、周薪、月薪、年薪互相换算</title>
 <meta name="description" content="把时薪换算成周薪、月薪和年薪，或把年薪换算回时薪。按每周工时和每年周数计算，不扣税。">
 <link rel="canonical" href="https://barbellsoft.com/zh-cn/hourly-to-salary-calculator.html">
@@ -35,19 +35,20 @@
 <link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
 <link rel="stylesheet" href="../style.css?v=fdeaaf34">
 <meta name="google-adsense-account" content="ca-pub-3954424837501873">
-<script src="../theme.js?v=fd2f7cbd"></script>
+<script async nonce="4eb483da93108e9ebdb0ad44" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3954424837501873" crossorigin="anonymous"></script>
+<script nonce="4eb483da93108e9ebdb0ad44" src="../theme.js?v=fd2f7cbd"></script>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
 <header class="site-header"><div class="wrap"><a class="brand" href="../zh-cn/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主导航"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/feedback.html">反馈</a><a href="../zh-cn/donate.html">捐助</a><a href="../blog/index.html" lang="en">博客</a></nav></div></header>
 
 <main id="main"><div class="wrap">
-<h1>时薪年薪换算器：时薪、周薪、月薪、年薪互相换算</h1><p class="prose">输入金额并选择它是哪种工资。工具按每周工时和每年周数算出其他金额。</p><div class="calc tool" id="hw" data-dec="."><label for="hw-amount">金额</label><input id="hw-amount" type="text" inputmode="decimal" autocomplete="off" value=""><label for="hw-per">这个金额是</label><select id="hw-per"><option value="hour" selected>时薪</option><option value="week">周薪</option><option value="month">月薪</option><option value="year">年薪</option></select><label for="hw-hours">每周工时</label><input id="hw-hours" type="text" inputmode="decimal" autocomplete="off" value="40"><label for="hw-weeks">每年领薪的周数</label><input id="hw-weeks" type="text" inputmode="decimal" autocomplete="off" value="52"><table class="perf" aria-live="polite"><tbody><tr><th scope="row">时薪</th><td data-k="hour">—</td></tr><tr><th scope="row">周薪</th><td data-k="week">—</td></tr><tr><th scope="row">月薪</th><td data-k="month">—</td></tr><tr><th scope="row">年薪</th><td data-k="year">—</td></tr></tbody></table></div><section class="prose" aria-labelledby="hw-h"><h2 id="hw-h">计算方法</h2><ul><li>年薪 = 时薪 × 每周工时 × 每年周数，月薪 = 年薪 ÷ 12，周薪 = 时薪 × 每周工时。</li><li>所有金额都是税前金额，不含税费、社会保险、加班费和奖金。</li><li>52 周是一整年。如果有不领薪的周（如无薪假），请减去相应周数。</li><li>请按领取工资的币种输入。工具不做货币换算。</li></ul><p class="meta">此工具不会发送你输入的文字或文件。</p></section>
+<h1>时薪年薪换算器：时薪、周薪、月薪、年薪互相换算</h1><p class="prose">输入金额并选择它是哪种工资。工具按每周工时和每年周数算出其他金额。</p><div class="calc tool" id="hw" data-dec="."><label for="hw-amount">金额</label><input id="hw-amount" type="text" inputmode="decimal" autocomplete="off" value=""><label for="hw-per">这个金额是</label><select id="hw-per"><option value="hour" selected>时薪</option><option value="week">周薪</option><option value="month">月薪</option><option value="year">年薪</option></select><label for="hw-hours">每周工时</label><input id="hw-hours" type="text" inputmode="decimal" autocomplete="off" value="40"><label for="hw-weeks">每年领薪的周数</label><input id="hw-weeks" type="text" inputmode="decimal" autocomplete="off" value="52"><table class="perf" aria-live="polite"><tbody><tr><th scope="row">时薪</th><td data-k="hour">—</td></tr><tr><th scope="row">周薪</th><td data-k="week">—</td></tr><tr><th scope="row">月薪</th><td data-k="month">—</td></tr><tr><th scope="row">年薪</th><td data-k="year">—</td></tr></tbody></table></div><section class="prose" aria-labelledby="hw-h"><h2 id="hw-h">计算方法</h2><ul><li>年薪 = 时薪 × 每周工时 × 每年周数，月薪 = 年薪 ÷ 12，周薪 = 时薪 × 每周工时。</li><li>所有金额都是税前金额，不含税费、社会保险、加班费和奖金。</li><li>52 周是一整年。如果有不领薪的周（如无薪假），请减去相应周数。</li><li>请按领取工资的币种输入。工具不做货币换算。</li></ul><p class="meta">此工具不会发送你输入的文字或文件。</p><p class="meta">本页面可能会显示广告。 <a href="privacy.html#ads">隐私</a></p></section>
 </div></main>
 <footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/donate.html">捐助</a><a href="../zh-cn/privacy.html">隐私</a><a href="../zh-cn/terms.html">使用条款</a><a href="../zh-cn/refund.html">退款</a><a href="../zh-cn/tools.html">免费工具</a><a id="contact-link" href="#" hidden>联系</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>语言: <a href="../hourly-to-salary-calculator.html" lang="en">English</a> · <a href="../ko/hourly-to-salary-calculator.html" lang="ko">한국어</a> · <a href="../ja/hourly-to-salary-calculator.html" lang="ja">日本語</a> · <a href="../zh-cn/hourly-to-salary-calculator.html" lang="zh-CN" aria-current="true">简体中文</a> · <a href="../zh-tw/hourly-to-salary-calculator.html" lang="zh-TW">繁體中文</a> · <a href="../es/hourly-to-salary-calculator.html" lang="es">Español</a> · <a href="../de/hourly-to-salary-calculator.html" lang="de">Deutsch</a> · <a href="../fr/hourly-to-salary-calculator.html" lang="fr">Français</a> · <a href="../pt-br/hourly-to-salary-calculator.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/hourly-to-salary-calculator.html" lang="ru">Русский</a> · <a href="../vi/hourly-to-salary-calculator.html" lang="vi">Tiếng Việt</a></span><label>主题 <select id="theme-select"><option value="auto">默认</option><option value="dark">深色</option><option value="light">浅色</option></select></label></div><p class="mt-note">本页面为机器翻译。如发现错误，欢迎告诉我们。</p><p>© 2026 Barbellsoft。按“原样”提供，不附带任何担保。</p></div></footer>
-<script src="../config.js?v=69a915c9"></script>
-<script src="../site.js?v=8575d8b0"></script>
-<script src="../margin.js?v=df836b07"></script>
-<script src="../wage.js?v=899b32d6"></script>
+<script nonce="4eb483da93108e9ebdb0ad44" src="../config.js?v=69a915c9"></script>
+<script nonce="4eb483da93108e9ebdb0ad44" src="../site.js?v=8575d8b0"></script>
+<script nonce="4eb483da93108e9ebdb0ad44" src="../margin.js?v=df836b07"></script>
+<script nonce="4eb483da93108e9ebdb0ad44" src="../wage.js?v=899b32d6"></script>
 </body>
 </html>
