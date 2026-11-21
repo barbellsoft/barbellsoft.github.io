@@ -1,6 +1,6 @@
 # Barbellsoft
 
-> Barbellsoft is a one-person software studio that makes small, free tools for Windows and macOS. The two main products are ReviveUSB, which recovers files from a USB drive or SD card that won't open and then repairs the drive, and Chatda, a desktop search app that finds files by name and by the text inside documents.
+> Barbellsoft is a one-person software studio that makes small tools for Windows and macOS. The two main products are ReviveUSB, which recovers files from a USB drive or SD card that won't open and then repairs the drive, and Chatda, a desktop search app that finds files by name and by the text inside documents.
 
 Last updated: 2026-11-15. The site is in English at the top level, with the same pages in Korean, Japanese, Chinese (Simplified and Traditional), Spanish, German, French, Portuguese (Brazil), Russian and Vietnamese under /ko/, /ja/, /zh-cn/, /zh-tw/, /es/, /de/, /fr/, /pt-br/, /ru/ and /vi/.
 
@@ -13,7 +13,7 @@ Last updated: 2026-11-15. The site is in English at the top level, with the same
 - Platform: Windows 10 and 11, 64-bit. Needs administrator rights because it reads the drive directly.
 - Download: one exe of about 8.8 MB, no installation. 11 interface languages.
 - Latest version: 0.2.15 (2026-11-07). Not code-signed yet, so Windows SmartScreen may warn on first run; SHA-256 values are on the download page.
-- Price: free, with no ads and no account. Donations are optional.
+- Price: free version saves up to 500 MB of recovered files in each recovery; diagnosis, imaging and repair have no limit. ReviveUSB Pro removes the recovery limit for a one-time US$29.99 (no subscription, up to 2 PCs), sold through Polar. No ads, no account. Donations are optional and unlock nothing.
 - Pages: https://barbellsoft.com/revive/ · https://barbellsoft.com/revive/download.html · https://barbellsoft.com/revive/faq.html · https://barbellsoft.com/revive/help.html
 
 ## Chatda
