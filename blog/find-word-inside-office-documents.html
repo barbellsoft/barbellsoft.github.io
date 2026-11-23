@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Find which Word, Excel or PowerPoint file contains a word | Barbellsoft</title>
+<meta name="description" content="How to find the document that mentions a name, phrase or number without opening files one by one, and what to check when the search finds nothing.">
+<link rel="canonical" href="https://barbellsoft.com/blog/find-word-inside-office-documents.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/blog/find-word-inside-office-documents.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/blog/find-word-inside-office-documents.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Find which Word, Excel or PowerPoint file contains a word | Barbellsoft">
+<meta property="og:description" content="How to find the document that mentions a name, phrase or number without opening files one by one, and what to check when the search finds nothing.">
+<meta property="og:url" content="https://barbellsoft.com/blog/find-word-inside-office-documents.html">
+<meta property="og:image" content="https://barbellsoft.com/img/og/chatda-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Find which Word, Excel or PowerPoint file contains a word | Barbellsoft">
+<meta name="twitter:description" content="How to find the document that mentions a name, phrase or number without opening files one by one, and what to check when the search finds nothing.">
+<meta name="twitter:image" content="https://barbellsoft.com/img/og/chatda-en.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Find which Word, Excel or PowerPoint file contains a word", "description": "How to find the document that mentions a name, phrase or number without opening files one by one, and what to check when the search finds nothing.", "datePublished": "2026-11-23", "inLanguage": "en", "url": "https://barbellsoft.com/blog/find-word-inside-office-documents.html", "image": "https://barbellsoft.com/img/chatda-en.png", "author": {"@id": "https://barbellsoft.com/#org"}, "publisher": {"@type": "Organization", "@id": "https://barbellsoft.com/#org", "name": "Barbellsoft", "url": "https://barbellsoft.com/", "logo": "https://barbellsoft.com/img/barbellsoft.svg", "sameAs": ["https://github.com/barbellsoft", "https://mastodon.social/@barbellsoft", "https://bsky.app/profile/barbellsoft.com"]}}</script>
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=fdeaaf34">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="Main"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../feedback.html">Feedback</a><a href="../donate.html">Donate</a><a href="../blog/index.html" aria-current="page">Blog</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<p class="meta"><a href="index.html">Blog</a> · 2026-11-23</p><h1>Find which Word, Excel or PowerPoint file contains a word</h1><div class="doc prose"><p>You remember a sentence. Maybe it was a client's name, a product code or a phrase from a proposal. You don't remember the file name, and there are forty reports, spreadsheets and slide decks in the folder where it probably lives. So you start opening them one at a time and pressing Ctrl+F in each.</p>
+<p>That works, but it's slow, and it gets worse when the folder sits on a NAS or the files have names like <code>final_v3.docx</code>. There is a faster way, and the part people usually miss is that a file's name and its contents are two separate things to search.</p>
+<h2 id="why-a-normal-file-search-often-misses-it">Why a normal file search often misses it</h2>
+<p>Most file searches start from the name. If you type <code>Henderson</code> and the word only appears on page 4 of <code>proposal_draft.docx</code>, a name search has nothing to match. To find it, a program has to open each document ahead of time, pull out its text and keep that text in an index it can look up quickly.</p>
+<p>Word, Excel and PowerPoint files saved in the current formats (DOCX, XLSX and PPTX) store their text in a way a search program can read without opening Office. Older files saved as .doc, .xls or .ppt use a different format, and many search tools, including the one below, only match those by name.</p>
+<h2 id="a-few-safe-habits-before-you-search">A few safe habits before you search</h2>
+<p>None of this needs special software, but it saves time either way.</p>
+<p>Think of the most unusual word you remember. A surname, a part number or an invoice code turns up far fewer results than "report" or "budget".</p>
+<p>Search for a short piece rather than the whole sentence. You may remember the phrase slightly differently from how it was typed.</p>
+<p>If you have a rough idea of the folder or the year, keep it in mind. Narrowing by folder or date is often what turns 200 results into 3.</p>
+<p>If the files are old .doc, .xls or .ppt, opening one in Office and saving it as .docx, .xlsx or .pptx makes its text searchable. Keep the original until you're sure the copy is fine.</p>
+<h2 id="how-to-do-it-with-chatda">How to do it with Chatda</h2>
+<p>Chatda is a free search program for Windows and macOS. It finds files on your PC, external drives and network folders by name and by the text inside documents. It reads the contents of TXT, MD, CSV, DOCX, XLSX, PPTX, PDF and HWPX files.</p>
+<h3 id="1-add-the-folder-where-the-documents-are">1. Add the folder where the documents are</h3>
+<p>This is the step that decides whether content search works. On Windows, Chatda indexes every fixed drive (C:\, D:\ and so on) by itself, but for a whole drive only file names, sizes and dates are searchable. Your Desktop and Downloads folders are added once automatically, so documents there are searched by content.</p>
+<p>For anything else, such as Documents or a project folder, click <strong>All locations ▾</strong>, then <strong>+ Add folder</strong>, and choose the folder. Indexing starts on its own, and the status bar at the bottom shows progress. For a NAS, use <strong>Connect network folder</strong> in the same panel and enter the address, username and password.</p>
+<h3 id="2-switch-the-search-to-content-only">2. Switch the search to Content only</h3>
+<p>In the filter bar, open the <strong>Search in</strong> dropdown and pick <strong>Content only</strong>. The default, Name + content, also works, but Content only leaves out files that match by name, so you see only documents that have the word inside them.</p>
+<h3 id="3-type-the-word">3. Type the word</h3>
+<p>Results appear as you type, without pressing Enter. Each line shows the file name, its folder and a <strong>Content</strong> column with the passage where your word appears, so you can often tell which file it is without opening anything.</p>
+<p>If you remember an exact phrase, put it in quotes: <code>"payment statement"</code> finds the words together and in that order. To find files that contain two words anywhere, type both: <code>Henderson 2026</code>.</p>
+<h3 id="4-narrow-it-down-if-there-are-too-many">4. Narrow it down if there are too many</h3>
+<p>Click <code>All types ▾</code> and tick only DOCX, XLSX or PPTX. Use the <strong>Date</strong> dropdown if you know roughly when the file was changed. You can also type filters straight into the search box. For example, <code>quote ext:xlsx dm:thismonth path:clients</code> finds xlsx files under a "clients" folder, changed this month, that contain "quote".</p>
+<h3 id="5-check-before-you-open">5. Check before you open</h3>
+<p>Click a result once to open the preview panel on the right. For Word, Excel and PowerPoint files it shows the extracted text with your search words highlighted. Double-click to open the file in its usual app, or press Ctrl+Enter to show it in Explorer or Finder.</p>
+<h2 id="if-it-doesnt-find-the-file">If it doesn't find the file</h2>
+<p><strong>The file is old .doc, .xls or .ppt.</strong> Chatda reads contents only from the formats listed above. Other formats are found by name only. Save a copy in the newer format, or search for a word from the file name instead.</p>
+<p><strong>The folder was never added.</strong> If a file is covered only by a whole-drive entry like C:\, its contents aren't searched. Add its folder with <strong>+ Add folder</strong>. If you've only added whole drives, Chatda shows a notice with an <strong>Add folder</strong> button above the results.</p>
+<p><strong>A filter is still on.</strong> Check the <code>All types ▾</code> and <strong>Date</strong> dropdowns, and click <strong>All locations ▾</strong>, then <strong>All folders</strong>, so you aren't limited to one folder. Active filters appear as chips in the status bar; click one to clear it.</p>
+<p><strong>The file is brand new.</strong> In a local folder Chatda picks it up in about half a second. On a NAS it can take up to about 5 minutes. If you're in a hurry, choose <strong>Re-index</strong> from the folder menu (⋯ or right-click the folder).</p>
+<p><strong>Your search is too specific.</strong> Try a shorter word or a fragment. <code>bottleneck</code> finds more than <code>approval bottleneck</code>.</p>
+<p><strong>The document is a scan.</strong> If the "text" in a file is really a picture of a page, there is no text for any search to read. That is common with scanned PDFs pasted into Word.</p>
+<h2 id="before-installing">Before installing</h2>
+<p>Chatda isn't code-signed yet, so Windows SmartScreen may say it doesn't recognize the app. The download page shows the SHA-256 value to compare before you choose More info, then Run anyway. It installs for all users and asks for administrator approval. On a Mac, the first launch may say it can't be opened; the <a href="../chatda/download.html">download page</a> explains how to allow it. The <a href="../chatda/help.html">help page</a> covers search syntax and filters in more detail.</p></div><aside class="callout post-cta"><p><strong>Chatda</strong> · Can&#x27;t remember the file name? Find it by a word you wrote inside. (Windows · macOS). Free, no ads.</p><div class="actions"><a class="btn btn-primary" href="../chatda/download.html">Download Chatda</a><a class="btn btn-outline" href="../chatda/index.html">Learn more</a></div></aside>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../launcher/index.html">Barbell Launcher</a><a href="../revive/index.html">ReviveUSB</a><a href="../chatda/index.html">Chatda</a><a href="../revivefix/index.html">ReviveFix</a><a href="../pastefit/index.html">PasteFit</a><a href="../about.html">About</a><a href="../donate.html">Donate</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refund.html">Refunds</a><a href="../tools.html">Free tools</a><a id="contact-link" href="#" hidden>Contact</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>Language: <a href="../blog/find-word-inside-office-documents.html" lang="en" aria-current="true">English</a> · <a href="../ko/index.html" lang="ko">한국어</a> · <a href="../ja/index.html" lang="ja">日本語</a> · <a href="../zh-cn/index.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/index.html" lang="zh-TW">繁體中文</a> · <a href="../es/index.html" lang="es">Español</a> · <a href="../de/index.html" lang="de">Deutsch</a> · <a href="../fr/index.html" lang="fr">Français</a> · <a href="../pt-br/index.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/index.html" lang="ru">Русский</a> · <a href="../vi/index.html" lang="vi">Tiếng Việt</a></span><label>Theme <select id="theme-select"><option value="auto">Default</option><option value="dark">Dark</option><option value="light">Light</option></select></label></div><p>© 2026 Barbellsoft. Provided as is, with no warranty.</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=8575d8b0"></script>
+</body>
+</html>
