@@ -227,3 +227,27 @@ dl.guide dd { margin: 2px 0 0; }
 .home-ad-label { margin: 0 0 6px; font-size: 12px; color: var(--mute); text-align: center; }
 .home-ad ins { display: block; min-height: 300px; }
 .home-ad:has(ins[data-ad-status="unfilled"]) { display: none; } /* 광고가 안 채워지면 «광고» 표기만 남지 않게 칸째 접음 */
+/* 설치 도움말(install.html): 경고 창 고르기 → 창 그림 + 번호 단계 */
+.pick-list { list-style: none; padding: 0; margin: 20px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.pick { display: flex; flex-direction: column; gap: 4px; min-height: 44px; padding: 14px 16px; background: var(--card); border: 1px solid var(--hairline); border-radius: var(--r); color: var(--ink); text-decoration: none; }
+.pick:hover { border-color: var(--ink); color: var(--ink); }
+.pick span { color: var(--mute); font-size: 14px; }
+.inst { margin-top: 40px; scroll-margin-top: 16px; }
+.inst-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 720px) { .inst-grid { grid-template-columns: 1fr; } }
+.mock { display: grid; gap: 10px; }
+.win { position: relative; background: #ffffff; color: #1b1b1b; border: 1px solid #c8c8c8; border-radius: 8px; padding: 12px 14px; font: 13px/1.45 "Segoe UI", system-ui, sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
+.win p { margin: 0 0 8px; }
+.win-ss { background: #0f5aa6; color: #ffffff; border-color: #0f5aa6; }
+.win-title { font-size: 20px; margin-bottom: 10px; }
+.win-title-sm { font-weight: 700; }
+.win-file { font-weight: 600; }
+.win-row { display: flex; gap: 8px; justify-content: flex-end; }
+.win-btn { position: relative; display: inline-block; padding: 4px 14px; border: 1px solid currentColor; border-radius: 4px; }
+.win-blue { background: #0f6cbd; color: #ffffff; border-color: #0f6cbd; }
+.win-link { position: relative; display: block; width: fit-content; text-decoration: underline; }
+.win-menu { list-style: none; margin: 0; padding: 4px 0; border-top: 1px solid #e0e0e0; }
+.win-menu li { position: relative; padding: 4px 0; }
+.mk { display: inline-grid; place-items: center; width: 20px; height: 20px; margin-left: 6px; border-radius: 50%; background: var(--accent); color: #ffffff; font: 700 12px/1 var(--font); vertical-align: middle; }
+.steps { padding-left: 1.4em; }
+.steps li { margin-bottom: 8px; }
