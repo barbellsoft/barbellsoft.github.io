@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>Barbellsoft のプログラムのインストール: Windows や Edge にブロックされたとき</title>
+<meta name="description" content="Edge で「一般的にダウンロードされていません」、青い「Windows によって PC が保護されました」、スマート アプリ コントロールのブロックが出たときに、どこを押せばよいかを図で説明します。">
+<link rel="canonical" href="https://barbellsoft.com/ja/install.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/install.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/install.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/install.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/install.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/install.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/install.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/install.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/install.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/install.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/install.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/install.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/install.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="Barbellsoft のプログラムのインストール: Windows や Edge にブロックされたとき">
+<meta property="og:description" content="Edge で「一般的にダウンロードされていません」、青い「Windows によって PC が保護されました」、スマート アプリ コントロールのブロックが出たときに、どこを押せばよいかを図で説明します。">
+<meta property="og:url" content="https://barbellsoft.com/ja/install.html">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Barbellsoft のプログラムのインストール: Windows や Edge にブロックされたとき">
+<meta name="twitter:description" content="Edge で「一般的にダウンロードされていません」、青い「Windows によって PC が保護されました」、スマート アプリ コントロールのブロックが出たときに、どこを押せばよいかを図で説明します。">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="icon" href="../img/icon-96.png?v=22b56a12" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png?v=f9686b1e">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#1c1c1c">
+<link rel="stylesheet" href="../style.css?v=56bce451">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../ja/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="メイン"><a href="../ja/launcher/index.html">Barbell Launcher</a><a href="../ja/revive/index.html">ReviveUSB</a><a href="../ja/chatda/index.html">Chatda</a><a href="../ja/revivefix/index.html">ReviveFix</a><a href="../ja/pastefit/index.html">PasteFit</a><a href="../ja/about.html">概要</a><a href="../ja/feedback.html">フィードバック</a><a href="../ja/donate.html">寄付</a><a href="../ja/blog/index.html">ブログ</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>ダウンロードやインストールがブロックされたとき</h1><p class="prose">私たちのプログラムは新しく、まだコード署名がないため、Windows と Edge が見慣れないファイルとして扱います。いま表示されている画面に近いものを選んでください。</p><ul class="pick-list" id="pick"><li><a class="pick" href="#edge"><strong>Edge で保存できない</strong><span>「一般的にダウンロードされていません」</span></a></li><li><a class="pick" href="#smartscreen"><strong>青い画面が出た</strong><span>「Windows によって PC が保護されました」</span></a></li><li><a class="pick" href="#sac"><strong>スマート アプリ コントロールにブロックされた</strong><span>「安全でない可能性のあるアプリ」</span></a></li><li><a class="pick" href="#find"><strong>ダウンロードしたファイルが見つからない</strong><span>ダウンロード フォルダーを開く</span></a></li></ul><section class="callout" aria-labelledby="check-h"><h2 id="check-h">まずファイルを確認</h2><p>警告を進める前に、私たちが公開したファイルか確認してください。各ダウンロード ページに SHA-256 があります。PowerShell で次のコマンドを実行して比べてください。</p><pre><code>Get-FileHash .\&lt;file&gt; -Algorithm SHA256</code></pre></section><section class="inst" id="edge" aria-labelledby="edge-h"><h2 id="edge-h">Edge で「一般的にダウンロードされていません」と出る</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win edge"><p class="win-file">⬇ ReviveUSB.exe</p><p>ReviveUSB.exe は一般的にダウンロードされていません。開く前に ReviveUSB.exe が信頼できることを確認してください。</p><p class="win-row"><span class="win-btn">···<span class="mk" aria-hidden="true">1</span></span></p><ul class="win-menu"><li>保存<span class="mk" aria-hidden="true">2</span></li><li>このファイルが安全であることを報告する</li></ul></div><div class="win"><p><strong>開く前に ReviveUSB.exe が信頼できることを確認してください</strong></p><p class="win-link">詳細表示<span class="mk" aria-hidden="true">3</span></p><p class="win-link">保持する<span class="mk" aria-hidden="true">4</span></p><p class="win-row"><span class="win-btn win-blue">削除</span></p></div></div><div><ol class="steps"><li>右上のダウンロード パネルでファイルにマウスを合わせ、···(三つの点)を押します。</li><li>保存を押します。</li><li>確認画面では削除ではなく、詳細表示を押します。</li><li>保持するを押すとファイルが保存され、開けるようになります。</li></ol><p class="meta"><a href="#pick">一覧に戻る</a></p></div></div></section><section class="inst" id="smartscreen" aria-labelledby="smartscreen-h"><h2 id="smartscreen-h">「Windows によって PC が保護されました」が出る</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win win-ss"><p class="win-title">Windows によって PC が保護されました</p><p>Microsoft Defender SmartScreen は認識されないアプリの起動を停止しました。このアプリを実行すると、PC に問題が起こる可能性があります。</p><p class="win-link">詳細情報<span class="mk" aria-hidden="true">1</span></p><p class="win-row"><span class="win-btn">実行<span class="mk" aria-hidden="true">2</span></span><span class="win-btn">実行しない</span></p></div></div><div><ol class="steps"><li>ボタンが「実行しない」だけでも画面を閉じないでください。詳細情報を押します。</li><li>署名がないため発行元は「不明な発行元」と表示されます。実行を押します。</li></ol><p class="meta"><a href="#pick">一覧に戻る</a></p></div></div></section><section class="inst" id="sac" aria-labelledby="sac-h"><h2 id="sac-h">スマート アプリ コントロールにブロックされた</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win"><p class="win-title-sm">このアプリの一部がブロックされました</p><p>スマート アプリ コントロールが、安全でない可能性のあるアプリをブロックしました。</p><p class="win-row"><span class="win-btn">OK</span></p></div></div><div><p>この画面には、それでも実行するボタンがありません。スマート アプリ コントロールは既知のプログラムか署名されたプログラムだけを許可し、私たちのプログラムにはまだ署名がありません。</p><ol class="steps"><li>Windows セキュリティ → アプリとブラウザー コントロール → スマート アプリ コントロールの設定 を開きます。</li><li>オフにするとプログラムを実行できます。Windows のバージョンによっては、一度オフにすると Windows をリセットするまで再びオンにできないことがあるので、慎重に決めてください。</li><li>オンのままにしたい場合は、別の PC で使うか、署名版が出るまでお待ちください。</li></ol><p class="meta"><a href="#pick">一覧に戻る</a></p></div></div></section><section class="inst" id="find" aria-labelledby="find-h"><h2 id="find-h">ダウンロードしたファイルが見つからない</h2><ol class="steps"><li>Windows キー + E でエクスプローラーを開きます。</li><li>左側のダウンロードを押します。更新日時の順に並べると、新しいファイルが一番上にあります。</li><li>Edge や Chrome では Ctrl + J を押し、ファイルを開く、またはフォルダーに表示を押しても構いません。</li></ol><p class="meta"><a href="#pick">一覧に戻る</a></p></section><p class="meta">画面は説明のために描き直したものです。Windows や Edge のバージョンによって文字や位置が少し異なることがあります。</p>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../ja/launcher/index.html">Barbell Launcher</a><a href="../ja/revive/index.html">ReviveUSB</a><a href="../ja/chatda/index.html">Chatda</a><a href="../ja/revivefix/index.html">ReviveFix</a><a href="../ja/pastefit/index.html">PasteFit</a><a href="../ja/about.html">概要</a><a href="../ja/donate.html">寄付</a><a href="../ja/privacy.html">プライバシー</a><a href="../ja/terms.html">利用規約</a><a href="../ja/refund.html">返金</a><a href="../ja/tools.html">無料ツール</a><a id="contact-link" href="#" hidden>お問い合わせ</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>言語: <a href="../install.html" lang="en">English</a> · <a href="../ko/install.html" lang="ko">한국어</a> · <a href="../ja/install.html" lang="ja" aria-current="true">日本語</a> · <a href="../zh-cn/install.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/install.html" lang="zh-TW">繁體中文</a> · <a href="../es/install.html" lang="es">Español</a> · <a href="../de/install.html" lang="de">Deutsch</a> · <a href="../fr/install.html" lang="fr">Français</a> · <a href="../pt-br/install.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/install.html" lang="ru">Русский</a> · <a href="../vi/install.html" lang="vi">Tiếng Việt</a></span><label>テーマ <select id="theme-select"><option value="auto">既定</option><option value="dark">ダーク</option><option value="light">ライト</option></select></label></div><p class="mt-note">このページは機械翻訳です。誤りに気づいたらお知らせください。</p><p>© 2026 Barbellsoft. 現状のまま提供され、いかなる保証もありません。</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=8575d8b0"></script>
+</body>
+</html>

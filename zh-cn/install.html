@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>安装 Barbellsoft 程序：被 Windows 或 Edge 拦截时</title>
+<meta name="description" content="Edge 提示“通常不会被下载”、出现蓝色的“Windows 已保护你的电脑”、或被智能应用控制拦截时，图解该点哪里。">
+<link rel="canonical" href="https://barbellsoft.com/zh-cn/install.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/install.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/install.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/install.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/install.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/install.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/install.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/install.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/install.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/install.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/install.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/install.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/install.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="安装 Barbellsoft 程序：被 Windows 或 Edge 拦截时">
+<meta property="og:description" content="Edge 提示“通常不会被下载”、出现蓝色的“Windows 已保护你的电脑”、或被智能应用控制拦截时，图解该点哪里。">
+<meta property="og:url" content="https://barbellsoft.com/zh-cn/install.html">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装 Barbellsoft 程序：被 Windows 或 Edge 拦截时">
+<meta name="twitter:description" content="Edge 提示“通常不会被下载”、出现蓝色的“Windows 已保护你的电脑”、或被智能应用控制拦截时，图解该点哪里。">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="icon" href="../img/icon-96.png?v=22b56a12" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png?v=f9686b1e">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#1c1c1c">
+<link rel="stylesheet" href="../style.css?v=56bce451">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../zh-cn/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主导航"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/feedback.html">反馈</a><a href="../zh-cn/donate.html">捐助</a><a href="../blog/index.html" lang="en">博客</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>下载或安装被拦截时</h1><p class="prose">我们的程序刚发布，还没有代码签名，所以 Windows 和 Edge 不认识它。请选择和你现在看到的窗口相似的一项。</p><ul class="pick-list" id="pick"><li><a class="pick" href="#edge"><strong>Edge 不让保存</strong><span>“通常不会被下载”</span></a></li><li><a class="pick" href="#smartscreen"><strong>出现蓝色窗口</strong><span>“Windows 已保护你的电脑”</span></a></li><li><a class="pick" href="#sac"><strong>被智能应用控制拦截</strong><span>“可能不安全的应用”</span></a></li><li><a class="pick" href="#find"><strong>找不到下载的文件</strong><span>打开“下载”文件夹</span></a></li></ul><section class="callout" aria-labelledby="check-h"><h2 id="check-h">先核对文件</h2><p>跳过警告之前，请确认文件是我们发布的。每个下载页面都列出了 SHA-256。在 PowerShell 中运行下面的命令进行比较。</p><pre><code>Get-FileHash .\&lt;file&gt; -Algorithm SHA256</code></pre></section><section class="inst" id="edge" aria-labelledby="edge-h"><h2 id="edge-h">Edge 提示文件“通常不会被下载”</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win edge"><p class="win-file">⬇ ReviveUSB.exe</p><p>ReviveUSB.exe 通常不会被下载。在打开 ReviveUSB.exe 之前，请确保你信任它。</p><p class="win-row"><span class="win-btn">···<span class="mk" aria-hidden="true">1</span></span></p><ul class="win-menu"><li>保留<span class="mk" aria-hidden="true">2</span></li><li>将此文件报告为安全</li></ul></div><div class="win"><p><strong>在打开 ReviveUSB.exe 之前，请确保你信任它</strong></p><p class="win-link">显示更多<span class="mk" aria-hidden="true">3</span></p><p class="win-link">仍然保留<span class="mk" aria-hidden="true">4</span></p><p class="win-row"><span class="win-btn win-blue">删除</span></p></div></div><div><ol class="steps"><li>在右上角的下载面板中，把鼠标移到文件上，点击 ···（三个点）。</li><li>点击“保留”。</li><li>弹出的窗口中不要点“删除”，点击“显示更多”。</li><li>点击“仍然保留”，文件就会保存并可以打开。</li></ol><p class="meta"><a href="#pick">返回列表</a></p></div></div></section><section class="inst" id="smartscreen" aria-labelledby="smartscreen-h"><h2 id="smartscreen-h">出现“Windows 已保护你的电脑”</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win win-ss"><p class="win-title">Windows 已保护你的电脑</p><p>Microsoft Defender SmartScreen 阻止了无法识别的应用启动。运行此应用可能会导致你的电脑存在风险。</p><p class="win-link">更多信息<span class="mk" aria-hidden="true">1</span></p><p class="win-row"><span class="win-btn">仍要运行<span class="mk" aria-hidden="true">2</span></span><span class="win-btn">不运行</span></p></div></div><div><ol class="steps"><li>即使只有“不运行”一个按钮，也不要关闭窗口。点击“更多信息”。</li><li>程序没有签名，发布者显示为“未知发布者”。点击“仍要运行”。</li></ol><p class="meta"><a href="#pick">返回列表</a></p></div></div></section><section class="inst" id="sac" aria-labelledby="sac-h"><h2 id="sac-h">被智能应用控制拦截</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win"><p class="win-title-sm">此应用的部分内容已被阻止</p><p>智能应用控制阻止了可能不安全的应用。</p><p class="win-row"><span class="win-btn">OK</span></p></div></div><div><p>这个窗口没有“仍要运行”的按钮。智能应用控制只允许已知的或已签名的程序，而我们的程序还没有签名。</p><ol class="steps"><li>打开 Windows 安全中心 → 应用和浏览器控制 → 智能应用控制设置。</li><li>选择“关”后程序就能运行。根据 Windows 版本，一旦关闭，可能要重置 Windows 才能再次打开，请慎重决定。</li><li>如果想保持开启，可以在另一台电脑上使用，或等待已签名的版本。</li></ol><p class="meta"><a href="#pick">返回列表</a></p></div></div></section><section class="inst" id="find" aria-labelledby="find-h"><h2 id="find-h">找不到下载的文件</h2><ol class="steps"><li>按 Windows 键 + E 打开文件资源管理器。</li><li>点击左侧的“下载”。按修改日期排序时，新文件在最上面。</li><li>在 Edge 或 Chrome 中也可以按 Ctrl + J，然后点击“打开文件”或“在文件夹中显示”。</li></ol><p class="meta"><a href="#pick">返回列表</a></p></section><p class="meta">窗口是为了说明而重新绘制的。不同版本的 Windows 和 Edge 文字或位置可能略有不同。</p>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-cn/launcher/index.html">Barbell Launcher</a><a href="../zh-cn/revive/index.html">ReviveUSB</a><a href="../zh-cn/chatda/index.html">Chatda</a><a href="../zh-cn/revivefix/index.html">ReviveFix</a><a href="../zh-cn/pastefit/index.html">PasteFit</a><a href="../zh-cn/about.html">关于</a><a href="../zh-cn/donate.html">捐助</a><a href="../zh-cn/privacy.html">隐私</a><a href="../zh-cn/terms.html">使用条款</a><a href="../zh-cn/refund.html">退款</a><a href="../zh-cn/tools.html">免费工具</a><a id="contact-link" href="#" hidden>联系</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>语言: <a href="../install.html" lang="en">English</a> · <a href="../ko/install.html" lang="ko">한국어</a> · <a href="../ja/install.html" lang="ja">日本語</a> · <a href="../zh-cn/install.html" lang="zh-CN" aria-current="true">简体中文</a> · <a href="../zh-tw/install.html" lang="zh-TW">繁體中文</a> · <a href="../es/install.html" lang="es">Español</a> · <a href="../de/install.html" lang="de">Deutsch</a> · <a href="../fr/install.html" lang="fr">Français</a> · <a href="../pt-br/install.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/install.html" lang="ru">Русский</a> · <a href="../vi/install.html" lang="vi">Tiếng Việt</a></span><label>主题 <select id="theme-select"><option value="auto">默认</option><option value="dark">深色</option><option value="light">浅色</option></select></label></div><p class="mt-note">本页面为机器翻译。如发现错误，欢迎告诉我们。</p><p>© 2026 Barbellsoft。按“原样”提供，不附带任何担保。</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=8575d8b0"></script>
+</body>
+</html>

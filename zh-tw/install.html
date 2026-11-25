@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://barbellsoft.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>安裝 Barbellsoft 程式：被 Windows 或 Edge 封鎖時</title>
+<meta name="description" content="Edge 顯示「不常被下載」、出現藍色的「Windows 已保護您的電腦」，或被智慧型應用程式控制封鎖時，用圖說明要按哪裡。">
+<link rel="canonical" href="https://barbellsoft.com/zh-tw/install.html">
+<link rel="alternate" hreflang="en" href="https://barbellsoft.com/install.html">
+<link rel="alternate" hreflang="ko" href="https://barbellsoft.com/ko/install.html">
+<link rel="alternate" hreflang="ja" href="https://barbellsoft.com/ja/install.html">
+<link rel="alternate" hreflang="zh-CN" href="https://barbellsoft.com/zh-cn/install.html">
+<link rel="alternate" hreflang="zh-TW" href="https://barbellsoft.com/zh-tw/install.html">
+<link rel="alternate" hreflang="es" href="https://barbellsoft.com/es/install.html">
+<link rel="alternate" hreflang="de" href="https://barbellsoft.com/de/install.html">
+<link rel="alternate" hreflang="fr" href="https://barbellsoft.com/fr/install.html">
+<link rel="alternate" hreflang="pt-BR" href="https://barbellsoft.com/pt-br/install.html">
+<link rel="alternate" hreflang="ru" href="https://barbellsoft.com/ru/install.html">
+<link rel="alternate" hreflang="vi" href="https://barbellsoft.com/vi/install.html">
+<link rel="alternate" hreflang="x-default" href="https://barbellsoft.com/install.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Barbellsoft">
+<meta property="og:title" content="安裝 Barbellsoft 程式：被 Windows 或 Edge 封鎖時">
+<meta property="og:description" content="Edge 顯示「不常被下載」、出現藍色的「Windows 已保護您的電腦」，或被智慧型應用程式控制封鎖時，用圖說明要按哪裡。">
+<meta property="og:url" content="https://barbellsoft.com/zh-tw/install.html">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安裝 Barbellsoft 程式：被 Windows 或 Edge 封鎖時">
+<meta name="twitter:description" content="Edge 顯示「不常被下載」、出現藍色的「Windows 已保護您的電腦」，或被智慧型應用程式控制封鎖時，用圖說明要按哪裡。">
+<meta name="fediverse:creator" content="@barbellsoft@mastodon.social">
+<meta name="p:domain_verify" content="d0e7993e92b70f06ff9ad1d7e57e5e55">
+<meta name="google-site-verification" content="kuPAFE-9gfX8pwjG-Sh6KBzYLEz_0T4jk_n8jKTvDiU">
+<meta name="naver-site-verification" content="28209335732750759de9bda32b4e2206d48731d2">
+<link rel="icon" href="../img/barbellsoft.svg?v=ecd6ffa7" type="image/svg+xml">
+<link rel="icon" href="../img/icon-96.png?v=22b56a12" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png?v=f9686b1e">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#1c1c1c">
+<link rel="stylesheet" href="../style.css?v=56bce451">
+<meta name="google-adsense-account" content="ca-pub-3954424837501873">
+<script src="../theme.js?v=fd2f7cbd"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="../zh-tw/index.html"><img src="../img/barbellsoft.svg?v=ecd6ffa7" alt="" width="28" height="28"><span class="word">Barbell<em>soft</em></span></a><nav class="nav" aria-label="主選單"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/feedback.html">意見回饋</a><a href="../zh-tw/donate.html">贊助</a><a href="../blog/index.html" lang="en">部落格</a></nav></div></header>
+
+<main id="main"><div class="wrap">
+<h1>下載或安裝被封鎖時</h1><p class="prose">我們的程式剛推出，還沒有程式碼簽章，所以 Windows 和 Edge 不認得它。請選擇和您現在看到的視窗相似的一項。</p><ul class="pick-list" id="pick"><li><a class="pick" href="#edge"><strong>Edge 無法保留檔案</strong><span>「不常被下載」</span></a></li><li><a class="pick" href="#smartscreen"><strong>出現藍色視窗</strong><span>「Windows 已保護您的電腦」</span></a></li><li><a class="pick" href="#sac"><strong>被智慧型應用程式控制封鎖</strong><span>「可能不安全的應用程式」</span></a></li><li><a class="pick" href="#find"><strong>找不到下載的檔案</strong><span>開啟「下載」資料夾</span></a></li></ul><section class="callout" aria-labelledby="check-h"><h2 id="check-h">先核對檔案</h2><p>略過警告之前，請確認檔案是我們發布的。每個下載頁面都有 SHA-256。在 PowerShell 執行下面的命令來比對。</p><pre><code>Get-FileHash .\&lt;file&gt; -Algorithm SHA256</code></pre></section><section class="inst" id="edge" aria-labelledby="edge-h"><h2 id="edge-h">Edge 顯示檔案「不常被下載」</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win edge"><p class="win-file">⬇ ReviveUSB.exe</p><p>ReviveUSB.exe 不常被下載。開啟 ReviveUSB.exe 之前，請確定您信任它。</p><p class="win-row"><span class="win-btn">···<span class="mk" aria-hidden="true">1</span></span></p><ul class="win-menu"><li>保留<span class="mk" aria-hidden="true">2</span></li><li>回報此檔案是安全的</li></ul></div><div class="win"><p><strong>開啟 ReviveUSB.exe 之前，請確定您信任它</strong></p><p class="win-link">顯示更多<span class="mk" aria-hidden="true">3</span></p><p class="win-link">仍要保留<span class="mk" aria-hidden="true">4</span></p><p class="win-row"><span class="win-btn win-blue">刪除</span></p></div></div><div><ol class="steps"><li>在右上角的下載面板中，將滑鼠移到檔案上，按 ···（三個點）。</li><li>按「保留」。</li><li>跳出的視窗中不要按「刪除」，按「顯示更多」。</li><li>按「仍要保留」，檔案就會儲存並可以開啟。</li></ol><p class="meta"><a href="#pick">回到清單</a></p></div></div></section><section class="inst" id="smartscreen" aria-labelledby="smartscreen-h"><h2 id="smartscreen-h">出現「Windows 已保護您的電腦」</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win win-ss"><p class="win-title">Windows 已保護您的電腦</p><p>Microsoft Defender SmartScreen 已防止某個無法辨識的應用程式啟動。執行此應用程式可能會讓您的電腦暴露在風險之下。</p><p class="win-link">其他資訊<span class="mk" aria-hidden="true">1</span></p><p class="win-row"><span class="win-btn">仍要執行<span class="mk" aria-hidden="true">2</span></span><span class="win-btn">不要執行</span></p></div></div><div><ol class="steps"><li>即使只有「不要執行」一個按鈕，也不要關閉視窗。按「其他資訊」。</li><li>程式沒有簽章，發行者會顯示為「未知的發行者」。按「仍要執行」。</li></ol><p class="meta"><a href="#pick">回到清單</a></p></div></div></section><section class="inst" id="sac" aria-labelledby="sac-h"><h2 id="sac-h">被智慧型應用程式控制封鎖</h2><div class="inst-grid"><div class="mock" aria-hidden="true"><div class="win"><p class="win-title-sm">此應用程式的部分內容已被封鎖</p><p>智慧型應用程式控制已封鎖可能不安全的應用程式。</p><p class="win-row"><span class="win-btn">OK</span></p></div></div><div><p>這個視窗沒有「仍要執行」的按鈕。智慧型應用程式控制只允許已知或已簽章的程式，而我們的程式還沒有簽章。</p><ol class="steps"><li>開啟 Windows 安全性 → 應用程式與瀏覽器控制 → 智慧型應用程式控制設定。</li><li>選擇「關閉」後程式就能執行。依 Windows 版本，關閉後可能要重設 Windows 才能再開啟，請謹慎決定。</li><li>如果想保持開啟，可以在另一台電腦使用，或等待已簽章的版本。</li></ol><p class="meta"><a href="#pick">回到清單</a></p></div></div></section><section class="inst" id="find" aria-labelledby="find-h"><h2 id="find-h">找不到下載的檔案</h2><ol class="steps"><li>按 Windows 鍵 + E 開啟檔案總管。</li><li>按左側的「下載」。依修改日期排序時，新檔案在最上面。</li><li>在 Edge 或 Chrome 也可以按 Ctrl + J，再按「開啟檔案」或「在資料夾中顯示」。</li></ol><p class="meta"><a href="#pick">回到清單</a></p></section><p class="meta">視窗是為了說明而重新繪製的。不同版本的 Windows 和 Edge 文字或位置可能略有不同。</p>
+</div></main>
+<footer class="site-footer"><div class="wrap"><nav aria-label="Footer"><a href="../zh-tw/launcher/index.html">Barbell Launcher</a><a href="../zh-tw/revive/index.html">ReviveUSB</a><a href="../zh-tw/chatda/index.html">Chatda</a><a href="../zh-tw/revivefix/index.html">ReviveFix</a><a href="../zh-tw/pastefit/index.html">PasteFit</a><a href="../zh-tw/about.html">關於</a><a href="../zh-tw/donate.html">贊助</a><a href="../zh-tw/privacy.html">隱私權</a><a href="../zh-tw/terms.html">使用條款</a><a href="../zh-tw/refund.html">退款</a><a href="../zh-tw/tools.html">免費工具</a><a id="contact-link" href="#" hidden>聯絡</a><a rel="me" href="https://mastodon.social/@barbellsoft">Mastodon</a><a href="https://bsky.app/profile/barbellsoft.com">Bluesky</a></nav><div class="prefs"><span>語言: <a href="../install.html" lang="en">English</a> · <a href="../ko/install.html" lang="ko">한국어</a> · <a href="../ja/install.html" lang="ja">日本語</a> · <a href="../zh-cn/install.html" lang="zh-CN">简体中文</a> · <a href="../zh-tw/install.html" lang="zh-TW" aria-current="true">繁體中文</a> · <a href="../es/install.html" lang="es">Español</a> · <a href="../de/install.html" lang="de">Deutsch</a> · <a href="../fr/install.html" lang="fr">Français</a> · <a href="../pt-br/install.html" lang="pt-BR">Português (Brasil)</a> · <a href="../ru/install.html" lang="ru">Русский</a> · <a href="../vi/install.html" lang="vi">Tiếng Việt</a></span><label>主題 <select id="theme-select"><option value="auto">預設</option><option value="dark">深色</option><option value="light">淺色</option></select></label></div><p class="mt-note">本頁為機器翻譯。若發現錯誤，歡迎告訴我們。</p><p>© 2026 Barbellsoft。依現狀提供，不附任何保證。</p></div></footer>
+<script src="../config.js?v=69a915c9"></script>
+<script src="../site.js?v=8575d8b0"></script>
+</body>
+</html>
